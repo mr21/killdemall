@@ -8,7 +8,9 @@
 typedef		struct
 {
   Entity	entity;
-  SDLazy_Anim*	anim_tirs[8];
+  SDLazy_Anim*	turret_anim[8];
+  char		turret_shoot[4];
+  double	time_last_turret_shoot;
 }		Player;
 
 void		player_init(SDLData*, Player*);

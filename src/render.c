@@ -26,8 +26,8 @@ void		render_player(SDLData* d, Player* p)
 
   for (u = 0; u < 8; ++u)
     {
-      SDLazy_SetPos(p->anim_tirs[u], &v);
-      SDLazy_Blit(p->anim_tirs[u]);
+      SDLazy_SetPos(p->turret_anim[u], &v);
+      SDLazy_Blit(p->turret_anim[u]);
     }
 }
 
