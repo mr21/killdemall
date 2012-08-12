@@ -1,4 +1,4 @@
-Shoot-em-Up-SDL-2D
-==================
+Shoot'em Up - SDL 2D
+====================
 
-Un mini jeu via la SDL
+Un mini jeu SDL (utilisant la lib sur laquelle je travaille "SDLazy")
