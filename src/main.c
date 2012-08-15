@@ -1,6 +1,7 @@
 #include	"data.h"
 #include	"events.h"
 #include	"core.h"
+#include	"render.h"
 
 static void	initSDLData(SDLData* d)
 {
