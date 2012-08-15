@@ -2,12 +2,12 @@
 
 /* Gestion temporaire du double clavier :D */
 
-/*
 #define		KEY_FORWARD	'z'
 #define		KEY_LEFTWARD	'q'
-*/
+/*
 #define		KEY_FORWARD	'w'
 #define		KEY_LEFTWARD	'a'
+*/
 
 #define		KEY_BACKWARD	's'
 #define		KEY_RIGHTWARD	'd'
