@@ -1,5 +1,5 @@
-#ifndef		PLAYER_H
-#define		PLAYER_H
+#ifndef		XSHIP_H
+#define		XSHIP_H
 
 #include	"SDLazy/SDLazy.h"
 #include	"entity.h"
@@ -11,8 +11,8 @@ typedef		struct
   SDLazy_Anim*	turret_anim[8];
   char		turret_shoot[4];
   double	time_last_turret_shoot;
-}		Player;
+}		XShip;
 
-void		player_init(SDLData*, Player*);
+void		xship_init(SDLData*, XShip*);
 
 #endif

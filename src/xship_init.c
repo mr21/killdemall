@@ -1,8 +1,8 @@
 #include	<string.h>
-#include	"player.h"
+#include	"xship.h"
 #include	"sdldata.h"
 
-void		player_init(SDLData* d, Player* p)
+void		xship_init(SDLData* d, XShip* p)
 {
   unsigned	u;
 

@@ -8,7 +8,7 @@ void		core_camera_focus(SDLData* d, v2f* v)
   d->cam.y += (v->y - d->cam.y) * CAMSPD * SDLazy_GetFrameTime();
 }
 
-void		core_player_shoot(Data* d, Player* p)
+void		core_xship_shoot(Data* d, XShip* p)
 {
   unsigned	u;
   double	cadence = .2;
@@ -34,5 +34,5 @@ void		core(void)
   core_camera_focus(&d->sdldata, &d->player.entity.pos);
 
   core_entity_move(d, &d->player.entity);
-  core_player_shoot(d, &d->player);
+  core_xship_shoot(d, &d->player);
 }

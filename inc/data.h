@@ -4,12 +4,12 @@
 #include	"CList.h"
 #include	"data_typedef.h"
 #include	"sdldata.h"
-#include	"player.h"
+#include	"xship.h"
 
 struct		Data
 {
   SDLData	sdldata;
-  Player	player;
+  XShip		player;
   CList		ammos;
 };
 

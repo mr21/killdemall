@@ -12,7 +12,7 @@ SRC		=	src/main.c		\
 			src/core.c		\
 			src/core_entity_move.c	\
 			src/render.c		\
-			src/player_init.c	\
+			src/xship_init.c	\
 			src/entity.c		\
 			src/ammo_push.c		\
 			src/ammos_blit.c	\

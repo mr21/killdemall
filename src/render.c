@@ -9,7 +9,7 @@ v2f*		v2f_calc_pos(SDLData* d, v2f* w)
   return &v;
 }
 
-void		render_player(SDLData* d, Player* p)
+void		render_xship(SDLData* d, XShip* p)
 {
   unsigned	u;
   v2f		v = *v2f_calc_pos(d, &p->entity.pos);
@@ -42,5 +42,5 @@ void		render(void)
   SDLazy_SetPos(d->sdldata.srf[SRF_BG], &v);
   SDLazy_Blit(d->sdldata.srf[SRF_BG]);
 
-  render_player(&d->sdldata, &d->player);
+  render_xship(&d->sdldata, &d->player);
 }
