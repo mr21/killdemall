@@ -30,6 +30,7 @@ int		main(void)
   
   initSDLData(&d.sdldata);
   player_init(&d.sdldata, &d.player);
+  CList_init(&d.ammos, NULL);
 
   SDLazy_SetCursor(CURSOR_CROSS);
 

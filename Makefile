@@ -1,6 +1,7 @@
 NAME		=	shmupsdl2d
 CC		=	gcc
-CFLAGS		=	-Wall -Wextra -pedantic -Iinc/
+CFLAGS		=	-Wall -Wextra -pedantic
+CFLAGS		+=	-Iinc -Iinc/SDLazy -Iinc/SDLazy/CList
 LDFLAGS		=	-lSDL -lSDL_image -lm lib/libSDLazy.a lib/libCList.a
 RM		=	@rm -f
 
@@ -11,6 +12,8 @@ SRC		=	src/main.c		\
 			src/render.c		\
 			src/player_init.c	\
 			src/entity.c		\
+			src/ammo_push.c		\
+			src/ammos_blit.c	\
 
 OBJ		=	$(SRC:.c=.o)
 

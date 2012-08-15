@@ -10,7 +10,7 @@ struct		Data
 {
   SDLData	sdldata;
   Player	player;
-  CList		bullet;
+  CList		ammos;
 };
 
 void		init(Data*);

@@ -1,7 +1,7 @@
 #ifndef		SDLDATA_H
 #define		SDLDATA_H
 
-#include	"SDLazy/SDLazy.h"
+#include	"SDLazy.h"
 
 enum
 {
@@ -14,6 +14,7 @@ enum
 typedef			struct
 {
   SDLazy_Surface*	srf[NB_SRFS];
+  /*SDLazy_Surface*	srf_bullets[NB_BULLETS];*/
   v2f			cam;
 }			SDLData;
 
