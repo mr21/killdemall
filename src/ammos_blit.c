@@ -1,4 +1,5 @@
 #include	"ammo.h"
+#include	"sdldata.h"
 
 static SDLData*	g_sdldata;
 

@@ -2,8 +2,8 @@
 #define		AMMO_H
 
 #include	"SDLazy.h"
-#include	"data.h"
-#include	"sdldata.h"
+#include	"data_typedef.h"
+#include	"sdldata_typedef.h"
 #include	"entity.h"
 
 typedef		enum

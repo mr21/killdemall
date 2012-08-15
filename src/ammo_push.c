@@ -1,4 +1,5 @@
 #include	"ammo.h"
+#include	"data.h"
 
 Ammo*		ammo_push(Data* d, Ammo* am)
 {

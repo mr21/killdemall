@@ -2,6 +2,8 @@
 #define		SDLDATA_H
 
 #include	"SDLazy.h"
+#include	"sdldata_typedef.h"
+#include	"ammo.h"
 
 enum
 {
@@ -11,11 +13,11 @@ enum
   NB_SRFS
 };
 
-typedef			struct
+struct			SDLData
 {
   SDLazy_Surface*	srf[NB_SRFS];
-  /*SDLazy_Surface*	srf_bullets[NB_BULLETS];*/
+  SDLazy_Surface*	srf_bullets[NB_AMMOS];
   v2f			cam;
-}			SDLData;
+};
 
 #endif
