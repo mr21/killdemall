@@ -7,7 +7,7 @@ printf("X(%+6.1f /%+6.1f) ; Y(%+6.1f /%+6.1f)\n",
        e->dir.y, e->dir_press[1] * -mxspd + e->dir_press[3] * mxspd);
 */
 
-void		core_entity_move(Data* d, Entity* e)
+void		core_ship_move(Data* d, Ship* e)
 {
   const double	friction = 0.1;
   double	mxspd, *tmp;

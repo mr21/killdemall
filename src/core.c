@@ -15,7 +15,7 @@ void		core_xship_shoot(Data* d, XShip* p)
   (void)d;
 
   for (u = 0; u < 4; ++u)
-    if (p->entity.shoot_press[u])
+    if (p->ship.shoot_press[u])
       {
 	if (SDLazy_GetTotalTime() > p->time_last_turret_shoot + cadence)
 	  {
@@ -31,8 +31,8 @@ void		core(void)
 {
   Data*		d = SDLazy_GetData();
 
-  core_camera_focus(&d->sdldata, &d->player.entity.pos);
+  core_camera_focus(&d->sdldata, &d->player.ship.pos);
 
-  core_entity_move(d, &d->player.entity);
+  core_ship_move(d, &d->player.ship);
   core_xship_shoot(d, &d->player);
 }

@@ -12,7 +12,7 @@ v2f*		v2f_calc_pos(SDLData* d, v2f* w)
 void		render_xship(SDLData* d, XShip* p)
 {
   unsigned	u;
-  v2f		v = *v2f_calc_pos(d, &p->entity.pos);
+  v2f		v = *v2f_calc_pos(d, &p->ship.pos);
 
   SDLazy_SetPos(d->srf[SRF_P_NO], &v);
   SDLazy_SetPos(d->srf[SRF_P_NE], &v);

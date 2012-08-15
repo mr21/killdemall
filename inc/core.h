@@ -2,9 +2,9 @@
 #define		CORE_H
 
 #include	"data_typedef.h"
-#include	"entity.h"
+#include	"ship.h"
 
 void		core(void);
-void		core_entity_move(Data*, Entity*);
+void		core_ship_move(Data*, Ship*);
 
 #endif

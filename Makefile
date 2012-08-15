@@ -10,7 +10,7 @@ SRC		=	src/main.c		\
 			src/sdldata_init.c	\
 			src/events.c		\
 			src/core.c		\
-			src/core_entity_move.c	\
+			src/core_ship_move.c	\
 			src/render.c		\
 			src/xship_init.c	\
 			src/entity.c		\

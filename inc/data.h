@@ -9,6 +9,7 @@
 struct		Data
 {
   SDLData	sdldata;
+  CList		ships;
   XShip		player;
   CList		ammos;
 };

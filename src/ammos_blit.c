@@ -5,7 +5,7 @@ static SDLData*	g_sdldata;
 
 static void	_blit(Ammo* b)
 {
-  
+  (void)b;
 }
 
 void		ammos_blit(SDLData* d, CList* ammos)

@@ -4,7 +4,7 @@
 #include	"SDLazy.h"
 #include	"data_typedef.h"
 #include	"sdldata_typedef.h"
-#include	"entity.h"
+#include	"ship.h"
 
 typedef		enum
 {
@@ -15,7 +15,7 @@ typedef		enum
 typedef		struct
 {
   eAmmoType	type;
-  void*		from_who;
+  Ship*		from_who;
   v2f		pos;
   v2f		dir;
   double	rad;
