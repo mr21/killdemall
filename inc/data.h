@@ -13,6 +13,6 @@ struct		Data
   CList		ammos;
 };
 
-void		init(Data*);
+void		data_init(Data*);
 
 #endif

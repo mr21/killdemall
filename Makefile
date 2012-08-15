@@ -6,6 +6,8 @@ LDFLAGS		=	-lSDL -lSDL_image -lm lib/libSDLazy.a lib/libCList.a
 RM		=	@rm -f
 
 SRC		=	src/main.c		\
+			src/data_init.c		\
+			src/sdldata_init.c	\
 			src/events.c		\
 			src/core.c		\
 			src/core_entity_move.c	\

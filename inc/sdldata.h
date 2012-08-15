@@ -20,4 +20,6 @@ struct			SDLData
   v2f			cam;
 };
 
+void		sdldata_init(SDLData*);
+
 #endif
