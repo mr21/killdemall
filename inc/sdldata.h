@@ -20,12 +20,12 @@ enum
 
 struct			SDLData
 {
-  SDLazy_Surface*	srf_bgs[NB_BGS];
+  SDLazy_Surface*	srf_bg[NB_BGS];
   SDLazy_Surface*	srf_ship[NB_SRFS];
-  SDLazy_Surface*	srf_bullets[NB_AMMOS];
+  SDLazy_Surface*	srf_ammo[NB_AMMOS];
   v2f			cam;
 };
 
-void		sdldata_init(SDLData*);
+void			sdldata_init(SDLData*);
 
 #endif

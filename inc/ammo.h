@@ -9,6 +9,7 @@
 typedef		enum
 {
   AMMO_BULLET,
+  AMMO_ROCKET,
   NB_AMMOS
 }		eAmmoType;
 

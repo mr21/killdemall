@@ -34,13 +34,13 @@ void		render_xship(SDLData* d, XShip* p)
 void		render(void)
 {
   Data*		d = SDLazy_GetData();
-  v2f		v = *v2f_calc_pos(&d->sdldata, v2f_(SDLazy_GetWidth(d->sdldata.srf_bgs[BG0]) / -2,
-						    SDLazy_GetHeight(d->sdldata.srf_bgs[BG0]) / -2));
+  v2f		v = *v2f_calc_pos(&d->sdldata, v2f_(SDLazy_GetWidth(d->sdldata.srf_bg[BG0]) / -2,
+						    SDLazy_GetHeight(d->sdldata.srf_bg[BG0]) / -2));
 
   SDL_FillRect(SDLazy_GetScreen(), 0, 0);
 
-  SDLazy_SetPos(d->sdldata.srf_bgs[BG0], &v);
-  SDLazy_Blit(d->sdldata.srf_bgs[BG0]);
+  SDLazy_SetPos(d->sdldata.srf_bg[BG0], &v);
+  SDLazy_Blit(d->sdldata.srf_bg[BG0]);
 
   render_xship(&d->sdldata, (XShip*)d->player);
 }
