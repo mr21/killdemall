@@ -7,15 +7,21 @@
 
 enum
 {
-  SRF_BG,
-  SRF_P_NO, SRF_P_NE, SRF_P_SO, SRF_P_SE,
-  SRF_AN_TIR,
+  BG0,
+  NB_BGS
+};
+
+enum
+{
+  SRF_SHIP_NO, SRF_SHIP_NE, SRF_SHIP_SO, SRF_SHIP_SE,
+  SRF_SHIP_AN_TURRET,
   NB_SRFS
 };
 
 struct			SDLData
 {
-  SDLazy_Surface*	srf[NB_SRFS];
+  SDLazy_Surface*	srf_bgs[NB_BGS];
+  SDLazy_Surface*	srf_ship[NB_SRFS];
   SDLazy_Surface*	srf_bullets[NB_AMMOS];
   v2f			cam;
 };

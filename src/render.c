@@ -14,15 +14,15 @@ void		render_xship(SDLData* d, XShip* p)
   unsigned	u;
   v2f		v = *v2f_calc_pos(d, &p->ship.pos);
 
-  SDLazy_SetPos(d->srf[SRF_P_NO], &v);
-  SDLazy_SetPos(d->srf[SRF_P_NE], &v);
-  SDLazy_SetPos(d->srf[SRF_P_SO], &v);
-  SDLazy_SetPos(d->srf[SRF_P_SE], &v);
+  SDLazy_SetPos(d->srf_ship[SRF_SHIP_NO], &v);
+  SDLazy_SetPos(d->srf_ship[SRF_SHIP_NE], &v);
+  SDLazy_SetPos(d->srf_ship[SRF_SHIP_SO], &v);
+  SDLazy_SetPos(d->srf_ship[SRF_SHIP_SE], &v);
 
-  SDLazy_Blit(d->srf[SRF_P_NO]);
-  SDLazy_Blit(d->srf[SRF_P_NE]);
-  SDLazy_Blit(d->srf[SRF_P_SO]);
-  SDLazy_Blit(d->srf[SRF_P_SE]);
+  SDLazy_Blit(d->srf_ship[SRF_SHIP_NO]);
+  SDLazy_Blit(d->srf_ship[SRF_SHIP_NE]);
+  SDLazy_Blit(d->srf_ship[SRF_SHIP_SO]);
+  SDLazy_Blit(d->srf_ship[SRF_SHIP_SE]);
 
   for (u = 0; u < 8; ++u)
     {
@@ -34,13 +34,13 @@ void		render_xship(SDLData* d, XShip* p)
 void		render(void)
 {
   Data*		d = SDLazy_GetData();
-  v2f		v = *v2f_calc_pos(&d->sdldata, v2f_(SDLazy_GetWidth(d->sdldata.srf[SRF_BG]) / -2,
-						    SDLazy_GetHeight(d->sdldata.srf[SRF_BG]) / -2));
+  v2f		v = *v2f_calc_pos(&d->sdldata, v2f_(SDLazy_GetWidth(d->sdldata.srf_bgs[BG0]) / -2,
+						    SDLazy_GetHeight(d->sdldata.srf_bgs[BG0]) / -2));
 
   SDL_FillRect(SDLazy_GetScreen(), 0, 0);
 
-  SDLazy_SetPos(d->sdldata.srf[SRF_BG], &v);
-  SDLazy_Blit(d->sdldata.srf[SRF_BG]);
+  SDLazy_SetPos(d->sdldata.srf_bgs[BG0], &v);
+  SDLazy_Blit(d->sdldata.srf_bgs[BG0]);
 
   render_xship(&d->sdldata, (XShip*)d->player);
 }

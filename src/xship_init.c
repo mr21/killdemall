@@ -11,7 +11,7 @@ void		xship_init(SDLData* d, XShip* p)
   p->ship.accel = 0.15;
   for (u = 0; u < 8; ++u)
     {
-      p->turret_anim[u] = SDLazy_AnimCreate(d->srf[SRF_AN_TIR], 7, 7, ANIM_PAUSE);
+      p->turret_anim[u] = SDLazy_AnimCreate(d->srf_ship[SRF_SHIP_AN_TURRET], 7, 7, ANIM_PAUSE);
       SDLazy_SetCenter(p->turret_anim[u], v2f_(-23, -1.5));
     }
   SDLazy_SetScaleY (p->turret_anim[0], -1);
