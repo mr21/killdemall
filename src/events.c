@@ -34,15 +34,15 @@ void		evKeydown(SDL_Event* e)
 
   switch (e->key.keysym.sym)
     {
-    case KEY_FORWARD:	ship_forward  (d, &d->player.ship, 1);	break;
-    case KEY_BACKWARD:	ship_backward (d, &d->player.ship, 1);	break;
-    case KEY_LEFTWARD:	ship_leftward (d, &d->player.ship, 1);	break;
-    case KEY_RIGHTWARD:	ship_rightward(d, &d->player.ship, 1);	break;
+    case KEY_FORWARD:	ship_forward   (d, d->player, 1);	break;
+    case KEY_BACKWARD:	ship_backward  (d, d->player, 1);	break;
+    case KEY_LEFTWARD:	ship_leftward  (d, d->player, 1);	break;
+    case KEY_RIGHTWARD:	ship_rightward (d, d->player, 1);	break;
 
-    case KEY_LEFTSHT:	ship_leftshoot (d, &d->player.ship, 1);	break;
-    case KEY_RIGHTSHT:	ship_rightshoot(d, &d->player.ship, 1);	break;
-    case KEY_UPSHT:	ship_upshoot   (d, &d->player.ship, 1);	break;
-    case KEY_DOWNSHT:	ship_downshoot (d, &d->player.ship, 1);	break;
+    case KEY_LEFTSHT:	ship_leftshoot (d, d->player, 1);	break;
+    case KEY_RIGHTSHT:	ship_rightshoot(d, d->player, 1);	break;
+    case KEY_UPSHT:	ship_upshoot   (d, d->player, 1);	break;
+    case KEY_DOWNSHT:	ship_downshoot (d, d->player, 1);	break;
 
     case SDLK_ESCAPE:	SDLazy_Quit(0);
     default: break;
@@ -55,15 +55,15 @@ void		evKeyup(SDL_Event* e)
 
   switch (e->key.keysym.sym)
     {
-    case KEY_FORWARD:	ship_forward  (d, &d->player.ship, 0);	break;
-    case KEY_BACKWARD:	ship_backward (d, &d->player.ship, 0);	break;
-    case KEY_LEFTWARD:	ship_leftward (d, &d->player.ship, 0);	break;
-    case KEY_RIGHTWARD:	ship_rightward(d, &d->player.ship, 0);	break;
+    case KEY_FORWARD:	ship_forward   (d, d->player, 0);	break;
+    case KEY_BACKWARD:	ship_backward  (d, d->player, 0);	break;
+    case KEY_LEFTWARD:	ship_leftward  (d, d->player, 0);	break;
+    case KEY_RIGHTWARD:	ship_rightward (d, d->player, 0);	break;
 
-    case KEY_LEFTSHT:	ship_leftshoot (d, &d->player.ship, 0);	break;
-    case KEY_RIGHTSHT:	ship_rightshoot(d, &d->player.ship, 0);	break;
-    case KEY_UPSHT:	ship_upshoot   (d, &d->player.ship, 0);	break;
-    case KEY_DOWNSHT:	ship_downshoot (d, &d->player.ship, 0);	break;
+    case KEY_LEFTSHT:	ship_leftshoot (d, d->player, 0);	break;
+    case KEY_RIGHTSHT:	ship_rightshoot(d, d->player, 0);	break;
+    case KEY_UPSHT:	ship_upshoot   (d, d->player, 0);	break;
+    case KEY_DOWNSHT:	ship_downshoot (d, d->player, 0);	break;
     default: break;
     }
 }

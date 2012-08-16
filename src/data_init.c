@@ -2,8 +2,14 @@
 
 void		data_init(Data* d)
 {
+  XShip		xship;
+
   sdldata_init(&d->sdldata);
-  xship_init(&d->sdldata, &d->player);
   CList_init(&d->ships, NULL);
   CList_init(&d->ammos, NULL);
+
+  xship_init(&d->sdldata, &xship);
+
+  CList_push_back(&d->ships, &xship, sizeof xship);
+  d->player = CList_data(CList_end(&d->ships));
 }

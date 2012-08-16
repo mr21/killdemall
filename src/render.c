@@ -42,5 +42,5 @@ void		render(void)
   SDLazy_SetPos(d->sdldata.srf[SRF_BG], &v);
   SDLazy_Blit(d->sdldata.srf[SRF_BG]);
 
-  render_xship(&d->sdldata, &d->player);
+  render_xship(&d->sdldata, (XShip*)d->player);
 }

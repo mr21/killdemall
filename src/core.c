@@ -31,8 +31,8 @@ void		core(void)
 {
   Data*		d = SDLazy_GetData();
 
-  core_camera_focus(&d->sdldata, &d->player.ship.pos);
+  core_camera_focus(&d->sdldata, &d->player->pos);
 
-  core_ship_move(d, &d->player.ship);
-  core_xship_shoot(d, &d->player);
+  core_ship_move(d, d->player);
+  core_xship_shoot(d, (XShip*)d->player);
 }
