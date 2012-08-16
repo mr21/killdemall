@@ -1,18 +1,12 @@
+#include	"render.h"
 #include	"data.h"
-
-v2f*		v2f_calc_pos(SDLData* d, v2f* w)
-{
-  static v2f	v;
-
-  v.x = (int)(SDLazy_GetWidth(0) / 2 - d->cam.x + w->x);
-  v.y = (int)(SDLazy_GetHeight(0) / 2 - d->cam.y + w->y);
-  return &v;
-}
+#include	"sdldata.h"
+#include	"xship.h"
 
 void		render_xship(SDLData* d, XShip* p)
 {
   unsigned	u;
-  v2f		v = *v2f_calc_pos(d, &p->ship.pos);
+  v2f		v = *pos_onscreen(&d->cam, &p->ship.pos);
 
   SDLazy_SetPos(d->srf_ship[SRF_SHIP_NO], &v);
   SDLazy_SetPos(d->srf_ship[SRF_SHIP_NE], &v);
@@ -34,8 +28,8 @@ void		render_xship(SDLData* d, XShip* p)
 void		render(void)
 {
   Data*		d = SDLazy_GetData();
-  v2f		v = *v2f_calc_pos(&d->sdldata, v2f_(SDLazy_GetWidth(d->sdldata.srf_bg[BG0]) / -2,
-						    SDLazy_GetHeight(d->sdldata.srf_bg[BG0]) / -2));
+  v2f		v = *pos_onscreen(&d->sdldata.cam, v2f_(SDLazy_GetWidth(d->sdldata.srf_bg[BG0]) / -2,
+							SDLazy_GetHeight(d->sdldata.srf_bg[BG0]) / -2));
 
   SDL_FillRect(SDLazy_GetScreen(), 0, 0);
 
@@ -43,4 +37,6 @@ void		render(void)
   SDLazy_Blit(d->sdldata.srf_bg[BG0]);
 
   render_xship(&d->sdldata, (XShip*)d->player);
+
+  ammos_blit(&d->sdldata, &d->ammos);
 }
