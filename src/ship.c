@@ -9,28 +9,24 @@ void		ship_leftward(Data* d, Ship* s, char press)
 {
   (void)d;
   s->dir_press[0] = press;
-  restore_shoot_freq(s);
 }
 
 void		ship_rightward(Data* d, Ship* s, char press)
 {
   (void)d;
   s->dir_press[2] = press;
-  restore_shoot_freq(s);
 }
 
 void		ship_forward(Data* d, Ship* s, char press)
 {
   (void)d;
   s->dir_press[1] = press;
-  restore_shoot_freq(s);
 }
 
 void		ship_backward(Data* d, Ship* s, char press)
 {
   (void)d;
   s->dir_press[3] = press;
-  restore_shoot_freq(s);
 }
 
 void            ship_upshoot(Data* d, Ship* s, char press)
