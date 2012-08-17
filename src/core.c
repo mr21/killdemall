@@ -10,12 +10,45 @@ void		core_camera_focus(SDLData* d, v2f* v)
 
 static void	create_ammo(Data* d, XShip* p)
 {
+#define		BULLET_SPD	50
   Ammo		b;
+  v2f		vd, vp = p->ship.pos;
+
+  if (p->ship.shoot_press[0])
+    {
+      vp.x += p->turret_shoot[0] ? 6 : -6;
+      vp.y -= 35;
+      vd.x = 0;
+      vd.y = -BULLET_SPD;
+    }
+  else if (p->ship.shoot_press[1])
+    {
+      vp.x += 35;
+      vp.y += p->turret_shoot[1] ? 6 : -6;
+      vd.x = BULLET_SPD;
+      vd.y = 0;
+    }
+  else if (p->ship.shoot_press[2])
+    {
+      vp.x += p->turret_shoot[2] ? -6 : 6;
+      vp.y += 35;
+      vd.x = 0;
+      vd.y = BULLET_SPD;
+    }
+  else if (p->ship.shoot_press[3])
+    {
+      vp.x -= 35;
+      vp.y += p->turret_shoot[3] ? -6 : 6;
+      vd.x = -BULLET_SPD;
+      vd.y = 0;
+    }
 
   b.type = AMMO_BULLET;
   b.from_who = (Ship*)p;
-  b.pos = p->ship.pos;
-
+  b.duration_time = 1.;
+  b.rad = 0.;
+  b.pos = vp;
+  b.dir = vd;
   ammo_push(d, &b);
 }
 
@@ -42,7 +75,7 @@ void		core(void)
   Data*		d = SDLazy_GetData();
 
   core_camera_focus(&d->sdldata, &d->player->pos);
-
   core_ship_move(d, d->player);
   core_xship_shoot(d, (XShip*)d->player);
+  ammos_core(&d->ammos);
 }

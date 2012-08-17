@@ -20,9 +20,12 @@ typedef		struct
   v2f		pos;
   v2f		dir;
   double	rad;
+  double	created_time;
+  double	duration_time;
 }		Ammo;
 
-Ammo*		ammo_push(Data*, Ammo*);
+void		ammo_push(Data*, Ammo*);
 void		ammos_blit(SDLData*, CList* ammos);
+void		ammos_core(CList* ammos);
 
 #endif

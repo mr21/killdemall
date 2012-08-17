@@ -16,6 +16,7 @@ SRC		=	src/main.c		\
 			src/ship.c		\
 			src/xship_init.c	\
 			src/ammo_push.c		\
+			src/ammos_core.c	\
 			src/ammos_blit.c	\
 
 OBJ		=	$(SRC:.c=.o)

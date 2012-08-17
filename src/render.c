@@ -36,7 +36,7 @@ void		render(void)
   SDLazy_SetPos(d->sdldata.srf_bg[BG0], &v);
   SDLazy_Blit(d->sdldata.srf_bg[BG0]);
 
-  render_xship(&d->sdldata, (XShip*)d->player);
-
   ammos_blit(&d->sdldata, &d->ammos);
+
+  render_xship(&d->sdldata, (XShip*)d->player);
 }
