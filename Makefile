@@ -8,14 +8,19 @@ RM		=	@rm -f
 SRC		=	src/main.c		\
 			src/data_init.c		\
 			src/sdldata_init.c	\
+						\
 			src/events.c		\
 			src/core.c		\
 			src/camera_focus.c	\
-			src/core_ship_move.c	\
+						\
 			src/render.c		\
 			src/pos_onscreen.c	\
+						\
 			src/ship.c		\
+			src/ship_move.c		\
 			src/xship_init.c	\
+			src/xship_shoot.c	\
+						\
 			src/ammo_push.c		\
 			src/ammos_core.c	\
 			src/ammos_blit.c	\

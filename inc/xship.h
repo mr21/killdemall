@@ -3,7 +3,8 @@
 
 #include	"SDLazy.h"
 #include	"ship.h"
-#include	"sdldata.h"
+#include	"sdldata_typedef.h"
+#include	"data_typedef.h"
 
 typedef		struct
 {
@@ -14,5 +15,6 @@ typedef		struct
 }		XShip;
 
 void		xship_init(SDLData*, XShip*);
+void		xship_shoot(Data*, XShip*);
 
 #endif

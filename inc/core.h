@@ -6,7 +6,6 @@
 #include	"ship.h"
 
 void		core(void);
-void		core_ship_move(Data*, Ship*);
 void		camera_focus(SDLData*, v2f*);
 
 #endif

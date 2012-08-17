@@ -23,6 +23,7 @@ typedef		struct
 }		Ship;
 
 Ship*		ship_push(CList* ships, Ship*);
+void		ship_move(Data*, Ship*);
 
 /* Move */
 void            ship_leftward (Data*, Ship*, char press);
