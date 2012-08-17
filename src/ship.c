@@ -1,49 +1,62 @@
 #include	"ship.h"
 
-void		ship_leftward(Data* d, Ship* e, char press)
+static void	restore_shoot_freq(Ship* s)
 {
-  (void)d;
-  e->dir_press[0] = press;
+  s->shoot_freq = .05;
 }
 
-void		ship_rightward(Data* d, Ship* e, char press)
+void		ship_leftward(Data* d, Ship* s, char press)
 {
   (void)d;
-  e->dir_press[2] = press;
+  s->dir_press[0] = press;
+  restore_shoot_freq(s);
 }
 
-void		ship_forward(Data* d, Ship* e, char press)
+void		ship_rightward(Data* d, Ship* s, char press)
 {
   (void)d;
-  e->dir_press[1] = press;
+  s->dir_press[2] = press;
+  restore_shoot_freq(s);
 }
 
-void		ship_backward(Data* d, Ship* e, char press)
+void		ship_forward(Data* d, Ship* s, char press)
 {
   (void)d;
-  e->dir_press[3] = press;
+  s->dir_press[1] = press;
+  restore_shoot_freq(s);
 }
 
-void            ship_upshoot(Data* d, Ship* e, char press)
+void		ship_backward(Data* d, Ship* s, char press)
 {
   (void)d;
-  e->shoot_press[0] = press;
+  s->dir_press[3] = press;
+  restore_shoot_freq(s);
 }
 
-void            ship_rightshoot(Data* d, Ship* e, char press)
+void            ship_upshoot(Data* d, Ship* s, char press)
 {
   (void)d;
-  e->shoot_press[1] = press;
+  s->shoot_press[0] = press;
+  restore_shoot_freq(s);
 }
 
-void            ship_downshoot(Data* d, Ship* e, char press)
+void            ship_rightshoot(Data* d, Ship* s, char press)
 {
   (void)d;
-  e->shoot_press[2] = press;
+  s->shoot_press[1] = press;
+  restore_shoot_freq(s);
 }
 
-void            ship_leftshoot(Data* d, Ship* e, char press)
+void            ship_downshoot(Data* d, Ship* s, char press)
 {
   (void)d;
-  e->shoot_press[3] = press;
+  s->shoot_press[2] = press;
+  restore_shoot_freq(s);
+}
+
+void            ship_leftshoot(Data* d, Ship* s, char press)
+{
+  (void)d;
+  s->shoot_press[3] = press;
+  restore_shoot_freq(s);
 }

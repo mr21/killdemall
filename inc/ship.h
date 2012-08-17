@@ -19,6 +19,7 @@ typedef		struct
   v2f		dir;
   char		dir_press[4];
   char		shoot_press[4];
+  double	shoot_freq;
 }		Ship;
 
 Ship*		ship_push(CList* ships, Ship*);

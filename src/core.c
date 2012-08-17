@@ -10,7 +10,7 @@ void		core_camera_focus(SDLData* d, v2f* v)
 
 static void	create_ammo(Data* d, XShip* p)
 {
-#define		BULLET_SPD	50
+#define		BULLET_SPD	650
   Ammo		b;
   v2f		vd, vp = p->ship.pos;
 
@@ -55,18 +55,18 @@ static void	create_ammo(Data* d, XShip* p)
 void		core_xship_shoot(Data* d, XShip* p)
 {
   unsigned	u;
-  double	cadence = .2;
   (void)d;
 
   for (u = 0; u < 4; ++u)
     if (p->ship.shoot_press[u] &&
-	SDLazy_GetTotalTime() > p->time_last_turret_shoot + cadence)
+	SDLazy_GetTotalTime() > p->time_last_turret_shoot + p->ship.shoot_freq)
       {
 	p->time_last_turret_shoot = SDLazy_GetTotalTime();
 	p->turret_shoot[u] = !p->turret_shoot[u];
 	SDLazy_AnimRewind(p->turret_anim[u * 2 + p->turret_shoot[u]]);
 	SDLazy_AnimPlay(p->turret_anim[u * 2 + p->turret_shoot[u]]); /* rajouter une feature dans la lib, pour faire les deux en meme temps */
 	create_ammo(d, p);
+	p->ship.shoot_freq *= 1.1;
       }
 }
 
