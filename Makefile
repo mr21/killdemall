@@ -10,6 +10,7 @@ SRC		=	src/main.c		\
 			src/sdldata_init.c	\
 			src/events.c		\
 			src/core.c		\
+			src/camera_focus.c	\
 			src/core_ship_move.c	\
 			src/render.c		\
 			src/pos_onscreen.c	\

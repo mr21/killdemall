@@ -1,13 +1,6 @@
 #include	"core.h"
 #include	"data.h"
 
-void		core_camera_focus(SDLData* d, v2f* v)
-{
-#define		CAMSPD		4.0
-  d->cam.x += (v->x - d->cam.x) * CAMSPD * SDLazy_GetFrameTime();
-  d->cam.y += (v->y - d->cam.y) * CAMSPD * SDLazy_GetFrameTime();
-}
-
 static void	create_ammo(Data* d, XShip* p)
 {
 #define		BULLET_SPD	650
@@ -74,7 +67,7 @@ void		core(void)
 {
   Data*		d = SDLazy_GetData();
 
-  core_camera_focus(&d->sdldata, &d->player->pos);
+  camera_focus(&d->sdldata, &d->player->pos);
   core_ship_move(d, d->player);
   core_xship_shoot(d, (XShip*)d->player);
   ammos_core(&d->ammos);
