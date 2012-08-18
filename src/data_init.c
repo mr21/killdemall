@@ -4,6 +4,7 @@ void		data_init(Data* d)
 {
   XShip		xship;
 
+  ctrls_init(&d->ctrls, KEYB_FR);
   sdldata_init(&d->sdldata);
   CList_init(&d->ships, NULL);
   CList_init(&d->ammos, NULL);

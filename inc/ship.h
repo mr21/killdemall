@@ -15,6 +15,7 @@ typedef		struct
   eShipType	type;
   double	mxspd;
   double	accel;
+  double	weight;
   v2f		pos;
   v2f		dir;
   char		dir_press[4];

@@ -1,21 +1,5 @@
 #include	"data.h"
-
-/* Gestion temporaire du double clavier :D */
-
-#define		KEY_FORWARD	'z'
-#define		KEY_LEFTWARD	'q'
-/*
-#define		KEY_FORWARD	'w'
-#define		KEY_LEFTWARD	'a'
-*/
-
-#define		KEY_BACKWARD	's'
-#define		KEY_RIGHTWARD	'd'
-
-#define		KEY_LEFTSHT	SDLK_LEFT
-#define		KEY_RIGHTSHT	SDLK_RIGHT
-#define		KEY_UPSHT	SDLK_UP
-#define		KEY_DOWNSHT	SDLK_DOWN
+#include	"controls.h"
 
 void		evQuit(SDL_Event* e)
 {
@@ -28,42 +12,30 @@ void		evMousemove(SDL_Event* e)
   (void)e;
 }
 
+static void	ship(Data* d, SDLKey k, char press)
+{
+  SDLKey*	c = d->ctrls.key;
+
+  if      (k == c[UPWARD])	ship_forward    (d, d->player, press);
+  else if (k == c[DOWNWARD])	ship_backward   (d, d->player, press);
+  else if (k == c[LEFTWARD])	ship_leftward   (d, d->player, press);
+  else if (k == c[RIGHTWARD])	ship_rightward  (d, d->player, press);
+  else if (k == c[UPSHOOT])	ship_upshoot    (d, d->player, press);
+  else if (k == c[RIGHTSHOOT])	ship_rightshoot (d, d->player, press);
+  else if (k == c[DOWNSHOOT])	ship_downshoot  (d, d->player, press);
+  else if (k == c[LEFTSHOOT])	ship_leftshoot  (d, d->player, press);
+}
+
 void		evKeydown(SDL_Event* e)
 {
-  Data*		d = SDLazy_GetData();
-
   switch (e->key.keysym.sym)
     {
-    case KEY_FORWARD:	ship_forward   (d, d->player, 1);	break;
-    case KEY_BACKWARD:	ship_backward  (d, d->player, 1);	break;
-    case KEY_LEFTWARD:	ship_leftward  (d, d->player, 1);	break;
-    case KEY_RIGHTWARD:	ship_rightward (d, d->player, 1);	break;
-
-    case KEY_LEFTSHT:	ship_leftshoot (d, d->player, 1);	break;
-    case KEY_RIGHTSHT:	ship_rightshoot(d, d->player, 1);	break;
-    case KEY_UPSHT:	ship_upshoot   (d, d->player, 1);	break;
-    case KEY_DOWNSHT:	ship_downshoot (d, d->player, 1);	break;
-
     case SDLK_ESCAPE:	SDLazy_Quit(0);
-    default: break;
+    default:		ship(SDLazy_GetData(), e->key.keysym.sym, 1);
     }
 }
 
 void		evKeyup(SDL_Event* e)
 {
-  Data*		d = SDLazy_GetData();
-
-  switch (e->key.keysym.sym)
-    {
-    case KEY_FORWARD:	ship_forward   (d, d->player, 0);	break;
-    case KEY_BACKWARD:	ship_backward  (d, d->player, 0);	break;
-    case KEY_LEFTWARD:	ship_leftward  (d, d->player, 0);	break;
-    case KEY_RIGHTWARD:	ship_rightward (d, d->player, 0);	break;
-
-    case KEY_LEFTSHT:	ship_leftshoot (d, d->player, 0);	break;
-    case KEY_RIGHTSHT:	ship_rightshoot(d, d->player, 0);	break;
-    case KEY_UPSHT:	ship_upshoot   (d, d->player, 0);	break;
-    case KEY_DOWNSHT:	ship_downshoot (d, d->player, 0);	break;
-    default: break;
-    }
+  ship(SDLazy_GetData(), e->key.keysym.sym, 0);
 }

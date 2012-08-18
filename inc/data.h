@@ -5,10 +5,12 @@
 #include	"data_typedef.h"
 #include	"sdldata.h"
 #include	"xship.h"
+#include	"controls.h"
 
 struct		Data
 {
   SDLData	sdldata;
+  Controls	ctrls;
   CList		ships;
   CList		ammos;
   Ship*		player;

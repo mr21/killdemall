@@ -12,6 +12,7 @@ typedef		struct
   SDLazy_Anim*	turret_anim[8];
   char		turret_shoot[4];
   double	time_last_turret_shoot;
+  v2f		base_pos[4];
 }		XShip;
 
 void		xship_init(SDLData*, XShip*);
