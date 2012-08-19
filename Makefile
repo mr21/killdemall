@@ -20,6 +20,7 @@ SRC		=	src/main.c		\
 			src/ship.c		\
 			src/ship_move.c		\
 			src/xship_init.c	\
+			src/xship_move_anim.c	\
 			src/xship_shoot.c	\
 						\
 			src/ammo_push.c		\
