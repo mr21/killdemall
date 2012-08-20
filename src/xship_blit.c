@@ -4,9 +4,10 @@
 
 void		xship_blit(SDLData* d, XShip* s)
 {
-  v2f		v = *pos_onscreen(&d->cam, &s->ship.pos);
+  v2f		v;
   unsigned	u;
 
+  pos_onscreen(&v, &d->cam, &s->ship.pos);
   SDLazy_SetPos(d->srf_ship[SRF_SHIP_BASE], &v);
   SDLazy_Blit(d->srf_ship[SRF_SHIP_BASE]);
   for (u = 0; u < 4; ++u)

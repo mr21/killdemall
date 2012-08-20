@@ -7,8 +7,10 @@ static SDLData*		g_d;
 static void		blit(Ammo* b)
 {
   SDLazy_Surface*	am = g_d->srf_ammo[b->type];
+  v2f			v;
 
-  SDLazy_SetPos(am, pos_onscreen(&g_d->cam, &b->pos));
+  pos_onscreen(&v, &g_d->cam, &b->pos);
+  SDLazy_SetPos(am, &v);
   SDLazy_Blit(am);
 }
 

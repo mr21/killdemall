@@ -6,8 +6,10 @@
 void		render(void)
 {
   Data*		d = SDLazy_GetData();
-  v2f		v = *pos_onscreen(&d->sdldata.cam, v2f_(SDLazy_GetWidth(d->sdldata.srf_bg[BG0]) / -2,
-							SDLazy_GetHeight(d->sdldata.srf_bg[BG0]) / -2));
+  v2f		v;
+
+  pos_onscreen(&v, &d->sdldata.cam, v2f_(SDLazy_GetWidth(d->sdldata.srf_bg[BG0]) / -2,
+					 SDLazy_GetHeight(d->sdldata.srf_bg[BG0]) / -2));
 
   SDL_FillRect(SDLazy_GetScreen(), 0, 0);
 
