@@ -16,8 +16,6 @@ static void	move(XShip* s, unsigned spr, unsigned key)
 
 void		xship_move(XShip* s)
 {
-  double	d;
-
   move(s, 0, 3);
   move(s, 2, 1);
   move(s, 0, 2);
