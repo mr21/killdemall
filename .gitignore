@@ -2,3 +2,5 @@
 *.slo
 *.lo
 *.o
+
+shmupsdl2d
