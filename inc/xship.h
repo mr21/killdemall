@@ -17,8 +17,8 @@ typedef			struct
 }			XShip;
 
 void		xship_init(SDLData*, XShip*);
+void		xship_blit(SDLData*, XShip*);
 void		xship_shoot(Data*, XShip*);
 void		xship_move_anim(XShip*);
-void		xship_blit(SDLData*, XShip*);
 
 #endif

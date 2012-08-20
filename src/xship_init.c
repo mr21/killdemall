@@ -2,7 +2,7 @@
 #include	"xship.h"
 #include	"sdldata.h"
 
-static void	_8_turrets(SDLData* d, XShip* s)
+static void	_turrets(SDLData* d, XShip* s)
 {
   unsigned	u;
 
@@ -22,10 +22,19 @@ static void	_8_turrets(SDLData* d, XShip* s)
   SDLazy_SetScale  (s->turret_anim[7], v2f_(-1, -1));
 }
 
+static void	_base(SDLData* d, XShip* s)
+{
+  unsigned	u;
+
+  for (u = 0; u < 4; ++u)
+    s->bases_sprite[u] = SDLazy_SpriteCreate(d->srf_ship[SRF_SHIP_NO + u]);
+}
+
 void		xship_init(SDLData* d, XShip* s)
 {
   memset(s, 0, sizeof *s);
-  _8_turrets(d, s);
+  _turrets(d, s);
+  _base(d, s);
   s->ship.mxspd = 300.;
   s->ship.accel = 0.15;
   s->ship.weight = 1.;
