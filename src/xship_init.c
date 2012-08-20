@@ -8,7 +8,7 @@ static void	_turrets(SDLData* d, XShip* s)
 
   for (u = 0; u < 8; ++u)
     {
-      s->turret_anim[u] = SDLazy_AnimCreate(d->srf_ship[SRF_SHIP_AN_TURRET], 7, 7, ANIM_PAUSE);
+      s->turret_anim[u] = SDLazy_AnimCreate(d->srf_ship[SRF_SHIP_TURRET], 7, 7, ANIM_PAUSE);
       SDLazy_SetCenter(s->turret_anim[u], v2f_(-23, -1.5));
     }
   SDLazy_SetScaleY (s->turret_anim[0], -1);

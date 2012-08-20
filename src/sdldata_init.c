@@ -13,13 +13,15 @@ static void	load_ship(SDLData* d)
   d->srf_ship[SRF_SHIP_NE]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(43, 20, 23, 23));
   d->srf_ship[SRF_SHIP_SO]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(20, 43, 23, 23));
   d->srf_ship[SRF_SHIP_SE]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(43, 43, 23, 23));
+  d->srf_ship[SRF_SHIP_BASE]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(200, 60, 22, 22));
 
   SDLazy_SetCenterAlign(d->srf_ship[SRF_SHIP_NO], ALIGN_BOTTOM | ALIGN_RIGHT);
   SDLazy_SetCenterAlign(d->srf_ship[SRF_SHIP_NE], ALIGN_BOTTOM | ALIGN_LEFT);
   SDLazy_SetCenterAlign(d->srf_ship[SRF_SHIP_SO], ALIGN_TOP | ALIGN_RIGHT);
   SDLazy_SetCenterAlign(d->srf_ship[SRF_SHIP_SE], ALIGN_TOP | ALIGN_LEFT);
+  SDLazy_SetCenterAlign(d->srf_ship[SRF_SHIP_BASE], ALIGN_CENTER | ALIGN_CENTER);
 
-  d->srf_ship[SRF_SHIP_AN_TURRET]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(100, 70, 11, 10));
+  d->srf_ship[SRF_SHIP_TURRET]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(100, 70, 11, 10));
 }
 
 static void	load_ammo(SDLData* d)
