@@ -8,6 +8,7 @@ void		core(void)
 
   camera_focus(&d->sdldata, &d->player->pos);
   ship_move(d, d->player);
+  xship_move((XShip*)d->player);
   xship_shoot(d, (XShip*)d->player);
   ammos_core(&d->ammos);
 }
