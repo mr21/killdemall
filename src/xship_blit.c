@@ -19,4 +19,6 @@ void		xship_blit(SDLData* d, XShip* s)
       SDLazy_SetPos(s->turret_anim[u], &v);
       SDLazy_Blit(s->turret_anim[u]);
     }
+  SDLazy_SetPos(d->srf_ship[SRF_SHIP_TOP], &v);
+  SDLazy_Blit(d->srf_ship[SRF_SHIP_TOP]);
 }
