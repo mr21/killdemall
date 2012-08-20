@@ -3,28 +3,6 @@
 #include	"sdldata.h"
 #include	"xship.h"
 
-void		render_xship(SDLData* d, XShip* p)
-{
-  unsigned	u;
-  v2f		v = *pos_onscreen(&d->cam, &p->ship.pos);
-
-  SDLazy_SetPos(d->srf_ship[SRF_SHIP_NO], &v);
-  SDLazy_SetPos(d->srf_ship[SRF_SHIP_NE], &v);
-  SDLazy_SetPos(d->srf_ship[SRF_SHIP_SO], &v);
-  SDLazy_SetPos(d->srf_ship[SRF_SHIP_SE], &v);
-
-  SDLazy_Blit(d->srf_ship[SRF_SHIP_NO]);
-  SDLazy_Blit(d->srf_ship[SRF_SHIP_NE]);
-  SDLazy_Blit(d->srf_ship[SRF_SHIP_SO]);
-  SDLazy_Blit(d->srf_ship[SRF_SHIP_SE]);
-
-  for (u = 0; u < 8; ++u)
-    {
-      SDLazy_SetPos(p->turret_anim[u], &v);
-      SDLazy_Blit(p->turret_anim[u]);
-    }
-}
-
 void		render(void)
 {
   Data*		d = SDLazy_GetData();
@@ -38,5 +16,5 @@ void		render(void)
 
   ammos_blit(&d->sdldata, &d->ammos);
 
-  render_xship(&d->sdldata, (XShip*)d->player);
+  xship_blit(&d->sdldata, (XShip*)d->player);
 }
