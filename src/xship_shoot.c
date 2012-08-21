@@ -49,8 +49,8 @@ void            xship_shoot(Data* d, XShip* p)
       {
 	p->time_last_turret_shoot = SDLazy_GetTotalTime();
         p->turret_shoot[u] = !p->turret_shoot[u];
+        p->ship.shoot_freq *= FREQ_FACT;
         SDLazy_AnimReplay(p->turret_anim[u * 2 + p->turret_shoot[u]]);
         create_ammo(d, p);
-        p->ship.shoot_freq *= FREQ_FACT;
       }
 }

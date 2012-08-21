@@ -10,26 +10,22 @@ printf("X(%+6.1f /%+6.1f) ; Y(%+6.1f /%+6.1f)\n",
 void		ship_move(Data* d, Ship* s)
 {
   const double	friction = 0.1;
-  double	mxspd, *tmp;
+  double	mxspd = s->mxspd;
+  double*	tmp;
   int		i;
   (void)d;
 
   for (i = 0; i < 2; ++i)
     {
       tmp = i ? &s->dir.y : &s->dir.x;
-      mxspd = s->mxspd;
       if (s->dir_press[i] && !s->dir_press[i + 2])
 	{
-	  if (s->dir_press[!i] || s->dir_press[!i + 2])
-	    mxspd /= 2.;
 	  if (*tmp > -mxspd + .01 &&
 	      (*tmp -= mxspd / s->accel * SDLazy_GetFrameTime()) < -mxspd)
 	    *tmp = -mxspd;
 	}
       else if (s->dir_press[i + 2] && !s->dir_press[i])
 	{
-	  if (s->dir_press[!i] || s->dir_press[!i + 2])
-	    mxspd /= 2.;
 	  if (*tmp < +mxspd - .01 &&
 	      (*tmp += mxspd / s->accel * SDLazy_GetFrameTime()) > +mxspd)
 	    *tmp = +mxspd;
