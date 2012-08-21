@@ -11,6 +11,7 @@ typedef			struct
   Ship			ship;
   SDLazy_Sprite*	bases_sprite[4];
   SDLazy_Anim*		turret_anim[8];
+  SDLazy_Anim*		reactor_anim[4];
   char			turret_shoot[4];
   double		time_last_turret_shoot;
   v2f			base_pos[4];
@@ -19,6 +20,6 @@ typedef			struct
 void		xship_init(SDLData*, XShip*);
 void		xship_blit(SDLData*, XShip*);
 void		xship_shoot(Data*, XShip*);
-void		xship_move(XShip*);
+void		xship_move_bases(XShip*);
 
 #endif

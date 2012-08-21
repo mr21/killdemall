@@ -20,7 +20,7 @@ static void	move(XShip* s, int spr, int key, int tur)
   SDLazy_IncCenterX(s->turret_anim[(tur + 2) % 8], -d);
 }
 
-void		xship_move(XShip* s)
+void		xship_move_bases(XShip* s)
 {
   move(s, 0, 3, 0);
   move(s, 2, 1, 4);
