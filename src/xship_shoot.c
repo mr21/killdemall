@@ -2,6 +2,7 @@
 #include	"data.h"
 
 #define		BULLET_SPD	650
+#define		FREQ_FACT	1.1
 
 static void	create_ammo(Data* d, XShip* p)
 {
@@ -10,31 +11,23 @@ static void	create_ammo(Data* d, XShip* p)
 
   if (p->ship.shoot_press[0])
     {
-      vp.x += p->turret_shoot[0] ? 6 : -6;
-      vp.y -= 35;
-      vd.x = 0;
-      vd.y = -BULLET_SPD;
+      vp.x += p->turret_shoot[0] ? 6 : -6,	vp.y -= 35;
+      vd.x = 0,					vd.y = -BULLET_SPD;
     }
   else if (p->ship.shoot_press[1])
     {
-      vp.x += 35;
-      vp.y += p->turret_shoot[1] ? 6 : -6;
-      vd.x = BULLET_SPD;
-      vd.y = 0;
+      vp.x += 35,				vp.y += p->turret_shoot[1] ? 6 : -6;
+      vd.x = BULLET_SPD,			vd.y = 0;
     }
   else if (p->ship.shoot_press[2])
     {
-      vp.x += p->turret_shoot[2] ? -6 : 6;
-      vp.y += 35;
-      vd.x = 0;
-      vd.y = BULLET_SPD;
+      vp.x += p->turret_shoot[2] ? -6 : 6,	vp.y += 35;
+      vd.x = 0,					vd.y = BULLET_SPD;
     }
   else if (p->ship.shoot_press[3])
     {
-      vp.x -= 35;
-      vp.y += p->turret_shoot[3] ? -6 : 6;
-      vd.x = -BULLET_SPD;
-      vd.y = 0;
+      vp.x -= 35,				vp.y += p->turret_shoot[3] ? -6 : 6;
+      vd.x = -BULLET_SPD,			vd.y = 0;
     }
 
   b.type = AMMO_BULLET;
@@ -56,9 +49,8 @@ void            xship_shoot(Data* d, XShip* p)
       {
 	p->time_last_turret_shoot = SDLazy_GetTotalTime();
         p->turret_shoot[u] = !p->turret_shoot[u];
-        SDLazy_AnimRewind(p->turret_anim[u * 2 + p->turret_shoot[u]]);
-        SDLazy_AnimPlay(p->turret_anim[u * 2 + p->turret_shoot[u]]);
+        SDLazy_AnimReplay(p->turret_anim[u * 2 + p->turret_shoot[u]]);
         create_ammo(d, p);
-        p->ship.shoot_freq *= 1.1;
+        p->ship.shoot_freq *= FREQ_FACT;
       }
 }

@@ -48,10 +48,10 @@ void			SDLazy_AnimsPause(void);
 void			SDLazy_AnimsStop(void);
 void			SDLazy_AnimsTimer(Uint16 ms);
 /*   Sur une animation en particuliere */
-void			SDLazy_AnimRewind(SDLazy_Anim*);
-void			SDLazy_AnimPlay(SDLazy_Anim*);
-void			SDLazy_AnimPause(SDLazy_Anim*);
-void			SDLazy_AnimStop(SDLazy_Anim*);
+void			SDLazy_AnimReplay(SDLazy_Anim*);
+int			SDLazy_AnimPlay(SDLazy_Anim*);
+int			SDLazy_AnimPause(SDLazy_Anim*);
+int			SDLazy_AnimStop(SDLazy_Anim*);
 
 /* Getters / Setters */
 eAnimStatus		SDLazy_AnimStatus(SDLazy_Anim*);
