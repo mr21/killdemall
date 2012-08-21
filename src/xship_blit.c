@@ -8,11 +8,12 @@ void		xship_blit(SDLData* d, XShip* s)
   unsigned	u;
 
   pos_onscreen(&v, &d->cam, &s->ship.pos);
-  SDLazy_SetPos(d->srf_ship[SRF_SHIP_BASE], &v);
-  SDLazy_Blit(d->srf_ship[SRF_SHIP_BASE]);
+
   for (u = 0; u < 4; ++u)
     SDLazy_SetPos(s->reactor_anim[u], &v),
       SDLazy_Blit(s->reactor_anim[u]);
+  SDLazy_SetPos(d->srf_ship[SRF_SHIP_BASE], &v);
+  SDLazy_Blit(d->srf_ship[SRF_SHIP_BASE]);
   for (u = 0; u < 4; ++u)
     SDLazy_SetPos(s->bases_sprite[u], &v),
       SDLazy_Blit(s->bases_sprite[u]);

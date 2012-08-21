@@ -25,7 +25,7 @@ static void	load_ship(SDLData* d)
   SDLazy_SetCenter(d->srf_ship[SRF_SHIP_TOP],  v2f_(-1, 1));
 
   d->srf_ship[SRF_SHIP_TURRET]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(100,  70, 11, 10));
-  d->srf_ship[SRF_SHIP_REACTOR]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(150, 100, 10, 21));
+  d->srf_ship[SRF_SHIP_REACTOR]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(150, 100, 12, 24));
 }
 
 static void	load_ammo(SDLData* d)

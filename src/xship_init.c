@@ -30,12 +30,12 @@ static void	_reactors(SDLData* d, XShip* s)
     {
       s->reactor_anim[u] = SDLazy_AnimCreate(d->srf_ship[SRF_SHIP_REACTOR], 9, 5, ANIM_STOP);
       SDLazy_SetCenterAlign(s->reactor_anim[u], ALIGN_CENTER | ALIGN_BOTTOM);
-      SDLazy_SetCenter(s->reactor_anim[u], v2f_(0, 11));
+      SDLazy_SetCenter(s->reactor_anim[u], v2f_(-0.2, 8.5));
       SDLazy_AnimTimer(s->reactor_anim[u], 30);
     }
-  SDLazy_SetRot(s->reactor_anim[1], RADIANS( 90));
-  SDLazy_SetRot(s->reactor_anim[2], RADIANS(180));
-  SDLazy_SetRot(s->reactor_anim[3], RADIANS(270));
+  SDLazy_SetRot(s->reactor_anim[1], M_PI2);
+  SDLazy_SetRot(s->reactor_anim[2], M_PI);
+  SDLazy_SetRot(s->reactor_anim[3], -M_PI2);
 }
 
 static void	_base(SDLData* d, XShip* s)
