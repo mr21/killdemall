@@ -21,6 +21,7 @@ SRC		=	src/main.c		\
 			src/ship_move.c		\
 			src/xship_init.c	\
 			src/xship_blit.c	\
+			src/xship_move.c	\
 			src/xship_move_bases.c	\
 			src/xship_shoot.c	\
 						\

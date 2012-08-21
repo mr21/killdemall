@@ -22,6 +22,22 @@ static void	_turrets(SDLData* d, XShip* s)
   SDLazy_SetScale  (s->turret_anim[7], v2f_(-1, -1));
 }
 
+static void	_reactors(SDLData* d, XShip* s)
+{
+  unsigned	u;
+
+  for (u = 0; u < 4; ++u)
+    {
+      s->reactor_anim[u] = SDLazy_AnimCreate(d->srf_ship[SRF_SHIP_REACTOR], 9, 5, ANIM_STOP);
+      SDLazy_SetCenterAlign(s->reactor_anim[u], ALIGN_CENTER | ALIGN_BOTTOM);
+      SDLazy_SetCenter(s->reactor_anim[u], v2f_(0, 11));
+      SDLazy_AnimTimer(s->reactor_anim[u], 30);
+    }
+  SDLazy_SetRot(s->reactor_anim[1], RADIANS( 90));
+  SDLazy_SetRot(s->reactor_anim[2], RADIANS(180));
+  SDLazy_SetRot(s->reactor_anim[3], RADIANS(270));
+}
+
 static void	_base(SDLData* d, XShip* s)
 {
   unsigned	u;
@@ -34,6 +50,7 @@ void		xship_init(SDLData* d, XShip* s)
 {
   memset(s, 0, sizeof *s);
   _turrets(d, s);
+  _reactors(d, s);
   _base(d, s);
   s->ship.mxspd = 300.;
   s->ship.accel = 0.15;
