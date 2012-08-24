@@ -1,6 +1,7 @@
 #include	"xship.h"
 
-#define		LIM	7
+#define		LIM	12
+#define		SPD	6
 
 static void	move(XShip* s, int spr, int key, int tur)
 {
@@ -9,7 +10,7 @@ static void	move(XShip* s, int spr, int key, int tur)
   d = -(key % 2 ? SDLazy_GetCenterX : SDLazy_GetCenterY)(s->bases_sprite[spr]);
   if (s->ship.dir_press[key])
     d += LIM;
-  d *= 15. * SDLazy_GetFrameTime();
+  d *= SPD * SDLazy_GetFrameTime();
   (key % 2 ? SDLazy_IncCenterX : SDLazy_IncCenterY)(s->bases_sprite[spr], +d);
   (key % 2 ? SDLazy_IncCenterX : SDLazy_IncCenterY)(s->bases_sprite[spr + 1 + !(key % 2)], -d);
 
