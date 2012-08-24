@@ -3,46 +3,81 @@
 
 #include		<stddef.h>
 
+/* ForEach's value */
+enum
+{
+  CLIST_CONTINUE,  /* Une maniere de ne rien faire  */
+  CLIST_BREAK,     /* On stoppe la boucle           */
+  CLIST_ERASE,     /* On supprime le maillon actuel */
+  CLIST_ERASE_STOP /* On supprime et on s'arrete    */
+};
+
 typedef	struct CLink	CLink;
 typedef	struct CList	CList;
+
+struct			CLink
+{
+  CLink*		prev;
+  CLink*		next;
+  void			(*free)();
+  void*			data;
+};
 
 struct			CList
 {
   CLink*		begin;
   CLink*		end;
   size_t		size;
-  void			(*des)();
+  void			(*free)();
 };
 
-struct			CLink
-{
-  CList*		list;
-  CLink*		prev;
-  CLink*		next;
-  void*			data;
-};
+/* Init & destroy */
+void			CList_init(CList*, void (*destr)());
+void			CList_clear(CList*);
 
-/* CLink* getters */
-CList*			CList_list(CLink const*);
-CLink*			CList_prev(CLink const*);
-CLink*			CList_next(CLink const*);
-void*			CList_data(CLink const*);
+/* CLink* [gs]etters */
+CLink*			CLink_prev(CLink const*);
+CLink*			CLink_next(CLink const*);
+void*			CLink_data(CLink const*);
+void			(*CLink_free(CLink const*))();
 
-/* CList* getters */
+/* CList* [gs]etters */
 CLink*			CList_begin(CList const*);
 CLink*			CList_end(CList const*);
 size_t			CList_size(CList const*);
 int			CList_empty(CList const*);
 
-void			CList_clear(CList*);
-CLink*			CList_erase(CLink*);
-CLink*			CList_find_data(CList const*, void const* data);
-unsigned		CList_find_n_destroy(CList*, void const* data);
-void			CList_foreach(CList const*, void (*fun)());
-void			CList_init(CList*, void (*des)());
+/* Add */
+CLink*			CList_push_back(CList*, void* data, size_t, void (*destr)());
+CLink*			CList_push_front(CList*, void* data, size_t, void (*destr)());
+
+/* Delete */
+CLink*			CList_erase(CList*, CLink*);
 CLink*			CList_pop_back(CList*);
 CLink*			CList_pop_front(CList*);
-CLink*			CList_push_back(CList*, void* data, size_t);
-CLink*			CList_push_front(CList*, void* data, size_t);
+
+/* Treatement */
+void			CList_foreach(CList*, int (*f)());
+
+/* Find...            */
+/*     ...by pointer  */
+CLink*			CList_pfind_back(CList const*, void const*);
+CLink*			CList_pfind_front(CList const*, void const*);
+CLink*			CList_pfind_after(CLink const*, void const*);
+CLink*			CList_pfind_before(CLink const*, void const*);
+/*     ...by function */
+CLink*			CList_ffind_back(CList const*, int (*f)());
+CLink*			CList_ffind_front(CList const*, int (*f)());
+CLink*			CList_ffind_after(CLink const*, int (*f)());
+CLink*			CList_ffind_before(CLink const*, int (*f)());
+
+/* Merge */
+CList*			CList_merge_back(CList*, CList*);
+CList*			CList_merge_front(CList*, CList*);
+CList*			CList_merge_after(CList*, CLink*, CList*);
+CList*			CList_merge_before(CList*, CLink*, CList*);
+
+/* Cut !!TODO!! */
+CList*			CList_cut_after(CList*, CLink const*, size_t);
 
 #endif

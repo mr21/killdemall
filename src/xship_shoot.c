@@ -1,7 +1,7 @@
 #include	"xship.h"
 #include	"data.h"
 
-#define		BULLET_SPD	650
+#define		BULLET_SPD	800
 #define		FREQ_FACT	1.1
 
 static void	create_ammo(Data* d, XShip* p)

@@ -11,6 +11,6 @@ void		data_init(Data* d)
 
   xship_init(&d->sdldata, &xship);
 
-  CList_push_back(&d->ships, &xship, sizeof xship);
-  d->player = CList_data(CList_end(&d->ships));
+  CList_push_back(&d->ships, &xship, sizeof xship, NULL);
+  d->player = CLink_data(CList_end(&d->ships));
 }
