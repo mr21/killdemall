@@ -54,5 +54,5 @@ void		xship_init(SDLData* d, XShip* s)
   _base(d, s);
   s->ship.mxspd = 300.;
   s->ship.accel = 0.15;
-  s->ship.weight = 1.;
+  s->ship.weight = 1.07;
 }
