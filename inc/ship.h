@@ -23,8 +23,14 @@ typedef		struct
   double	shoot_freq;
 }		Ship;
 
+enum
+{
+  SHIP_AXE_X = 1, SHIP_AXE_Y
+};
+
 Ship*		ship_push(CList* ships, Ship*);
 void		ship_move(Data*, Ship*);
+void		ship_recoil(Ship*, double recoil_x, int dir);
 
 /* Move */
 void            ship_leftward (Data*, Ship*, char press);

@@ -13,7 +13,7 @@ static void	ammo0(XShip* s, v2f* vp, v2f* vd)
   vp->y -= 33 + (s->turret_shoot[0] ?
 		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NE]) :
 		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NO]));
-  s->ship.dir.y += RECOIL;
+  ship_recoil((Ship*)s, RECOIL, SHIP_AXE_Y);
 }
 
 static void	ammo1(XShip* s, v2f* vp, v2f* vd)
@@ -24,7 +24,7 @@ static void	ammo1(XShip* s, v2f* vp, v2f* vd)
   vp->x += 33 - (s->turret_shoot[1] ?
 		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SE]) :
 		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NE]));
-  s->ship.dir.x -= RECOIL;
+  ship_recoil((Ship*)s, -RECOIL, SHIP_AXE_X);
 }
 
 static void	ammo2(XShip* s, v2f* vp, v2f* vd)
@@ -35,7 +35,7 @@ static void	ammo2(XShip* s, v2f* vp, v2f* vd)
   vp->y += 33 + (s->turret_shoot[2] ?
 		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NO]) :
 		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NE]));
-  s->ship.dir.y -= RECOIL;
+  ship_recoil((Ship*)s, -RECOIL, SHIP_AXE_Y);
 }
 
 static void	ammo3(XShip* s, v2f* vp, v2f* vd)
@@ -46,7 +46,7 @@ static void	ammo3(XShip* s, v2f* vp, v2f* vd)
   vp->x -= 33 + (s->turret_shoot[3] ?
 		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NO]) :
 		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SO]));
-  s->ship.dir.x += RECOIL;
+  ship_recoil((Ship*)s, RECOIL, SHIP_AXE_X);
 }
 
 static void	create_ammo(Data* d, XShip* p)
