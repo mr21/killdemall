@@ -6,8 +6,8 @@ void		data_init(Data* d)
 
   ctrls_init(&d->ctrls, KEYB_EN);
   sdldata_init(&d->sdldata);
-  CList_init(&d->ships, NULL);
-  CList_init(&d->ammos, NULL);
+  CList_init(&d->ships);
+  CList_init(&d->ammos);
 
   xship_init(&d->sdldata, &xship);
 

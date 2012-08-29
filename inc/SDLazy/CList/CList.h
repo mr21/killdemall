@@ -30,7 +30,7 @@ struct			CList
   size_t		size;
 };
 
-/* Init & destro */
+/* Init & destroy */
 void			CList_init (CList*);
 void			CList_clear(CList*);
 
