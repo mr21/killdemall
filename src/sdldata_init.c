@@ -38,10 +38,18 @@ static void	load_ammo(SDLData* d)
     SDLazy_SetCenterAlign(d->srf_ammo[u], ALIGN_CENTER | ALIGN_CENTER);
 }
 
+static void	load_decors(SDLData* d)
+{
+  d->srf_menu[SRF_MENU_BG]	= SDLazy_SurfaceLoad("img/menu_bg.png", NULL);
+  SDLazy_SetCenterAlign(d->srf_menu[SRF_MENU_BG],   ALIGN_TOP | ALIGN_RIGHT);
+  SDLazy_SetPosAlign(d->srf_menu[SRF_MENU_BG], ALIGN_TOP | ALIGN_RIGHT);
+}
+
 void		sdldata_init(SDLData* d)
 {
   d->cam.x = d->cam.y = 0;
   load_bgs(d);
   load_ship(d);
   load_ammo(d);
+  load_decors(d);
 }

@@ -3,6 +3,13 @@
 #include	"sdldata.h"
 #include	"xship.h"
 
+static void	menu(SDLData* d)
+{
+  SDLazy_SetPos(d->srf_menu[SRF_MENU_BG], v2f_(SDLazy_GetWidth(0), 0));
+  SDLazy_SetScaleY(d->srf_menu[SRF_MENU_BG], SDLazy_GetHeight(0) / 2.0);
+  SDLazy_Blit(d->srf_menu[SRF_MENU_BG]);
+}
+
 void		render(void)
 {
   Data*		d = SDLazy_GetData();
@@ -19,4 +26,7 @@ void		render(void)
   ammos_blit(&d->sdldata, &d->ammos);
 
   xship_blit(&d->sdldata, (XShip*)d->player);
+
+
+  menu(&d->sdldata);
 }
