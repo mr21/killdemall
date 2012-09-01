@@ -5,7 +5,6 @@
 
 static void	menu(SDLData* d)
 {
-  SDLazy_SetPos(d->srf_menu[SRF_MENU_BG], v2f_(SDLazy_GetWidth(0), 0));
   SDLazy_SetScaleY(d->srf_menu[SRF_MENU_BG], SDLazy_GetHeight(0) / 2.0);
   SDLazy_Blit(d->srf_menu[SRF_MENU_BG]);
 }
