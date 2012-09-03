@@ -7,6 +7,9 @@ static void	menu(SDLData* d)
 {
   SDLazy_SetScaleY(d->srf_menu[SRF_MENU_BG], SDLazy_GetHeight(0) / 2.0);
   SDLazy_Blit(d->srf_menu[SRF_MENU_BG]);
+
+  SDLazy_SetPosX(d->btn_menu[BTN_MENU_KEYBOARD], SDLazy_GetPosX(d->srf_menu[SRF_MENU_BG]) - 8);
+  SDLazy_Blit(d->btn_menu[BTN_MENU_KEYBOARD]);
 }
 
 void		render(void)
@@ -25,7 +28,6 @@ void		render(void)
   ammos_blit(&d->sdldata, &d->ammos);
 
   xship_blit(&d->sdldata, (XShip*)d->player);
-
 
   menu(&d->sdldata);
 }

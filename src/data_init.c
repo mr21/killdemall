@@ -4,8 +4,11 @@ void		data_init(Data* d)
 {
   XShip		xship;
 
-  ctrls_init(&d->ctrls, KEYB_EN);
   sdldata_init(&d->sdldata);
+
+  ctrls_init(&d->ctrls, KEYB_EN);
+  SDLazy_ButtonSetState(d->sdldata.btn_menu[BTN_MENU_KEYBOARD], d->ctrls.kb);
+
   CList_init(&d->ships);
   CList_init(&d->ammos);
 

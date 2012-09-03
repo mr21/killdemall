@@ -6,8 +6,8 @@
 
 typedef		enum
 {
-  KEYB_EN,
-  KEYB_FR
+  KEYB_FR,
+  KEYB_EN
 }		eKeyB;
 
 enum
@@ -20,8 +20,10 @@ enum
 typedef		struct
 {
   SDLKey	key[NB_CTRLS];
+  eKeyB		kb;
 }		Controls;
 
 void		ctrls_init(Controls*, eKeyB);
+void		ctrls_switch(void);
 
 #endif
