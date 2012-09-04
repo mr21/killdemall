@@ -6,8 +6,9 @@ void		data_init(Data* d)
 
   sdldata_init(&d->sdldata);
 
+  menu_load(&d->menu);
   ctrls_init(&d->ctrls, KEYB_EN);
-  SDLazy_ButtonSetState(d->sdldata.btn_menu[BTN_MENU_KEYBOARD], d->ctrls.kb);
+  SDLazy_ButtonSetState(d->menu.btn[BTN_MENU_KEYBOARD], d->ctrls.kb);
 
   CList_init(&d->ships);
   CList_init(&d->ammos);

@@ -19,26 +19,11 @@ enum
   NB_SRF_SHIP
 };
 
-enum
-{
-  SRF_MENU_BG,
-  SRF_MENU_KEYBOARD,
-  NB_SRF_MENU
-};
-
-enum
-{
-  BTN_MENU_KEYBOARD,
-  NB_BTN_MENU
-};
-
 struct			SDLData
 {
   SDLazy_Surface*	srf_bg[NB_BGS];
   SDLazy_Surface*	srf_ship[NB_SRF_SHIP];
   SDLazy_Surface*	srf_ammo[NB_AMMOS];
-  SDLazy_Surface*	srf_menu[NB_SRF_MENU];
-  SDLazy_Button*	btn_menu[NB_BTN_MENU];
   v2f			cam;
 };
 

@@ -1,5 +1,4 @@
 #include	"sdldata.h"
-#include	"controls.h"
 
 static char const* spr = "img/sprites.png";
 
@@ -39,30 +38,10 @@ static void	load_ammo(SDLData* d)
     SDLazy_SetCenterAlign(d->srf_ammo[u], ALIGN_CENTER | ALIGN_CENTER);
 }
 
-static void	load_menu(SDLData* d)
-{
-  SDLazy_Button*	b;
-
-  d->srf_menu[SRF_MENU_BG]	 = SDLazy_SurfaceLoad("img/menu_bg.png",  NULL);
-  d->srf_menu[SRF_MENU_KEYBOARD] = SDLazy_SurfaceLoad("img/keyboard.png", SDLazy_Rect(0, 0, 128, 36));
-
-  SDLazy_SetCenterAlign(d->srf_menu[SRF_MENU_BG], ALIGN_TOP | ALIGN_RIGHT);
-  SDLazy_SetPosAlign(d->srf_menu[SRF_MENU_BG], ALIGN_TOP | ALIGN_RIGHT);
-
-  b = SDLazy_ButtonCreate(d->srf_menu[SRF_MENU_KEYBOARD], 2);
-  SDLazy_SetCenterAlign(b, ALIGN_TOP | ALIGN_RIGHT);
-  SDLazy_SetPosAlign(b, ALIGN_TOP | ALIGN_RIGHT);
-  SDLazy_SetPosY(b, 20);
-  SDLazy_ButtonSetFun(b, BUTTON_CLICUP, ctrls_switch);
-
-  d->btn_menu[BTN_MENU_KEYBOARD] = b;
-}
-
 void		sdldata_init(SDLData* d)
 {
   d->cam.x = d->cam.y = 0;
   load_bgs(d);
   load_ship(d);
   load_ammo(d);
-  load_menu(d);
 }

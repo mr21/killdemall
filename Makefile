@@ -9,6 +9,7 @@ SRC		=	src/main.c		\
 			src/data_init.c		\
 			src/sdldata_init.c	\
 			src/ctrls_init.c	\
+			src/menu.c		\
 						\
 			src/events.c		\
 			src/core.c		\

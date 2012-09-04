@@ -6,10 +6,12 @@
 #include	"sdldata.h"
 #include	"xship.h"
 #include	"controls.h"
+#include	"menu.h"
 
 struct		Data
 {
   SDLData	sdldata;
+  Menu		menu;
   Controls	ctrls;
   CList		ships;
   CList		ammos;
