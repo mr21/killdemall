@@ -22,7 +22,7 @@ typedef			struct
   SDLazy_Button*	btn[NB_BTN_MENU];
 }			Menu;
 
-void			menu_load(Menu*);
+void			menu_init(Menu*);
 void			menu_blit(Menu*);
 void			menu_core(Menu*);
 

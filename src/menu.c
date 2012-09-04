@@ -1,7 +1,7 @@
 #include	"menu.h"
 #include	"controls.h"
 
-void		menu_load(Menu* d)
+void		menu_init(Menu* d)
 {
   SDLazy_Button*        b;
 
