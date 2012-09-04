@@ -5,6 +5,8 @@ void		menu_init(Menu* d)
 {
   SDLazy_Button*        b;
 
+  d->status = 0;
+
   d->srf[SRF_MENU_BG]       = SDLazy_SurfaceLoad("img/menu_bg.png",  NULL);
   d->srf[SRF_MENU_KEYBOARD] = SDLazy_SurfaceLoad("img/keyboard.png", SDLazy_Rect(0, 0, 128, 36));
 

@@ -20,6 +20,7 @@ typedef			struct
 {
   SDLazy_Surface*	srf[NB_SRF_MENU];
   SDLazy_Button*	btn[NB_BTN_MENU];
+  char			status;
 }			Menu;
 
 void			menu_init(Menu*);
