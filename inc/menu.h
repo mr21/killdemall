@@ -7,12 +7,14 @@ enum
 {
   SRF_MENU_BG,
   SRF_MENU_KEYBOARD,
+  SRF_MENU_OPEN,
   NB_SRF_MENU
 };
 
 enum
 {
   BTN_MENU_KEYBOARD,
+  BTN_MENU_OPEN,
   NB_BTN_MENU
 };
 
