@@ -28,10 +28,13 @@ static void	ship(Data* d, SDLKey k, char press)
 
 void		evKeydown(SDL_Event* e)
 {
+  Data*		d = SDLazy_GetData();
+
   switch (e->key.keysym.sym)
     {
     case SDLK_ESCAPE:	SDLazy_Quit(0);
-    default:		ship(SDLazy_GetData(), e->key.keysym.sym, 1);
+    case SDLK_TAB:	menu_openclose(&d->menu);
+    default:		ship(d, e->key.keysym.sym, 1);
     }
 }
 

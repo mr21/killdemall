@@ -6,6 +6,7 @@ void		core(void)
 {
   Data*		d = SDLazy_GetData();
 
+  menu_core(&d->menu);
   camera_focus(&d->sdldata, &d->player->pos);
   ship_move(d, d->player);
   xship_move_bases((XShip*)d->player);
