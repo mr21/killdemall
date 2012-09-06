@@ -14,11 +14,11 @@ static void	move(XShip* s, int spr, int key, int tur)
   (key % 2 ? SDLazy_IncCenterX : SDLazy_IncCenterY)(s->bases_sprite[spr], +d);
   (key % 2 ? SDLazy_IncCenterX : SDLazy_IncCenterY)(s->bases_sprite[spr + 1 + !(key % 2)], -d);
 
-  SDLazy_IncCenterY(s->turret_anim[tur + 0], -d);
-  SDLazy_IncCenterY(s->turret_anim[tur + 1], -d);
+  SDLazy_IncCenterX(s->turret_anim[tur + 0], d);
+  SDLazy_IncCenterX(s->turret_anim[tur + 1], d);
 
-  SDLazy_IncCenterX(s->turret_anim[tur ? tur - 1 : 7], -d);
-  SDLazy_IncCenterX(s->turret_anim[(tur + 2) % 8], -d);
+  SDLazy_IncCenterY(s->turret_anim[tur ? tur - 1 : 7], d);
+  SDLazy_IncCenterY(s->turret_anim[(tur + 2) % 8], d);
 }
 
 void		xship_move_bases(XShip* s)

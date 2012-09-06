@@ -9,17 +9,17 @@ static void	_turrets(SDLData* d, XShip* s)
   for (u = 0; u < 8; ++u)
     {
       s->turret_anim[u] = SDLazy_AnimCreate(d->srf_ship[SRF_SHIP_TURRET], 7, 7, ANIM_PAUSE);
-      SDLazy_SetCenter(s->turret_anim[u], v2f_(-23, -1.5));
+      SDLazy_SetCenter(s->turret_anim[u], v2f_(10.5, 34));
     }
-  SDLazy_SetScaleY (s->turret_anim[0], -1);
-  SDLazy_SetRot    (s->turret_anim[0], RADIANS(-90));
-  SDLazy_SetRot    (s->turret_anim[1], RADIANS(-90));
-  SDLazy_SetScaleY (s->turret_anim[2], -1);
-  SDLazy_SetScaleY (s->turret_anim[4], -1);
-  SDLazy_SetRot    (s->turret_anim[4], RADIANS(+90));
-  SDLazy_SetRot    (s->turret_anim[5], RADIANS(+90));
-  SDLazy_SetScaleX (s->turret_anim[6], -1);
-  SDLazy_SetScale  (s->turret_anim[7], v2f_(-1, -1));
+  SDLazy_SetScaleX (s->turret_anim[1], -1);
+  SDLazy_SetRot    (s->turret_anim[2], RADIANS(+90));
+  SDLazy_SetRot    (s->turret_anim[3], RADIANS(+90));
+  SDLazy_SetScaleX (s->turret_anim[3], -1);
+  SDLazy_SetScale  (s->turret_anim[4], v2f_(-1, -1));
+  SDLazy_SetScaleY (s->turret_anim[5], -1);
+  SDLazy_SetRot    (s->turret_anim[6], RADIANS(-90));
+  SDLazy_SetRot    (s->turret_anim[7], RADIANS(-90));
+  SDLazy_SetScaleX (s->turret_anim[7], -1);
 }
 
 static void	_reactors(SDLData* d, XShip* s)
