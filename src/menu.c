@@ -10,9 +10,9 @@ static void	_menu_openclose_cb(void)
   d->status = !d->status;
 }
 
-void		menu_openclose(Menu* d)
+void		menu_openclose(Menu* d, int status)
 {
-  d->status = !d->status;
+  d->status = status;
   SDLazy_ButtonSetState(d->btn[BTN_MENU_OPEN], d->status);
 }
 

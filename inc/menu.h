@@ -30,6 +30,6 @@ typedef			struct
 void			menu_init(Menu*);
 void			menu_blit(Menu*);
 void			menu_core(Menu*);
-void			menu_openclose(Menu*);
+void			menu_openclose(Menu*, int status);
 
 #endif
