@@ -7,7 +7,7 @@ int		main(void)
 {
   Data		d;
 
-  SDLazy_Init(1000, 600, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE, "Shoot'em Up - SDL 2D");
+  SDLazy_Init(1152, 864, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE, "Shoot'em Up - SDL 2D");
 
   data_init(&d);
 
@@ -22,3 +22,12 @@ int		main(void)
 
   return 0;
 }
+
+/*
+  Quelques resolutions par defaut :
+  1280, 1024
+  1152, 864
+  1024, 768
+  832, 624
+  800, 600
+*/
