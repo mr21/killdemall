@@ -8,7 +8,7 @@ RM		=	@rm -f
 SRC		=	src/main.c		\
 			src/data_init.c		\
 			src/sdldata_init.c	\
-			src/ctrls_init.c	\
+			src/controls.c		\
 			src/menu.c		\
 						\
 			src/events.c		\
