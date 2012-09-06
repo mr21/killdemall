@@ -43,7 +43,7 @@ void		menu_init(Menu* d)
   SDLazy_SetCenterAlign(b, ALIGN_TOP | ALIGN_LEFT);
   SDLazy_SetPosAlign(b, ALIGN_TOP | ALIGN_RIGHT);
   SDLazy_SetPosY(b, 50);
-  SDLazy_ButtonSetFun(b, BUTTON_CLICUP, ctrls_switch);
+  SDLazy_ButtonSetFun(b, BUTTON_CLICUP, ctrls_qwerty_azerty);
 
   b = SDLazy_ButtonCreate(d->srf[SRF_MENU_OPEN], 2);
   d->btn[BTN_MENU_OPEN] = b;

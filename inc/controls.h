@@ -21,9 +21,11 @@ typedef		struct
 {
   SDLKey	key[NB_CTRLS];
   eKeyB		kb;
+  char		move_wasd;
 }		Controls;
 
-void		ctrls_init(Controls*, eKeyB);
-void		ctrls_switch(void);
+void		ctrls_init(Controls*);
+void		ctrls_qwerty_azerty(void);
+void		ctrls_switch_cmds(void);
 
 #endif
