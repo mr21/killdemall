@@ -25,7 +25,7 @@ void		menu_init(Menu* d)
   d->srf[SRF_MENU_BG]         = SDLazy_SurfaceLoad("img/sprites.png", SDLazy_Rect(370, 150, 150,  8));
   d->srf[SRF_MENU_FULLSCREEN] = SDLazy_SurfaceLoad("img/sprites.png", SDLazy_Rect(370, 185,  30, 27));
   d->srf[SRF_MENU_KEYBOARD]   = SDLazy_SurfaceLoad("img/sprites.png", SDLazy_Rect( 20, 150, 128, 36));
-  d->srf[SRF_MENU_COMMANDS]   = SDLazy_SurfaceLoad("img/sprites.png", SDLazy_Rect( 20, 150, 128, 36));
+  d->srf[SRF_MENU_COMMANDS]   = SDLazy_SurfaceLoad("img/sprites.png", SDLazy_Rect( 20, 280, 128, 36));
   d->srf[SRF_MENU_OPEN]       = SDLazy_SurfaceLoad("img/sprites.png", SDLazy_Rect(290, 150,  32, 32));
 
   SDLazy_SetCenterAlign(d->srf[SRF_MENU_BG], ALIGN_TOP | ALIGN_LEFT);
