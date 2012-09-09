@@ -1,8 +1,15 @@
-NAME		=	shmupsdl2d
+NAME		=	bin/shmupsdl2d
 CC		=	gcc
 CFLAGS		=	-Wall -Wextra -pedantic
 CFLAGS		+=	-Iinc -Iinc/SDLazy -Iinc/SDLazy/CList
-LDFLAGS		=	-lSDL -lSDL_image -lm lib/libSDLazy.a lib/libCList.a
+
+LDFLAGS		=	-L.
+LDFLAGS		+=	-lm
+LDFLAGS		+=	bin/libSDL-1.2.so.0
+LDFLAGS		+=	bin/libSDL_image-1.2.so.0
+LDFLAGS		+=	bin/libSDLazy.so
+LDFLAGS		+=	bin/libCList.so
+
 RM		=	@rm -f
 
 SRC		=	src/main.c		\

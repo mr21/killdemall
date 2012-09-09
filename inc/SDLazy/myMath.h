@@ -20,6 +20,9 @@ typedef struct {	int	x, y; }		v2i;
 typedef struct {	double	x, y; }		v2f;
 typedef struct {	double	a, b, c, d; }	m4f;
 
+double			mycos(double rad);
+double			mysin(double rad);
+
 v2i*			v2i_(int x, int y);
 v2f*			v2f_(double x, double y);
 m4f*			m4f_(double a, double b, double c, double d);
