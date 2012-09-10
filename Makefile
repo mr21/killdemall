@@ -7,6 +7,8 @@ LDFLAGS		=	-L.
 LDFLAGS		+=	-lm
 LDFLAGS		+=	bin/libSDL-1.2.so.0
 LDFLAGS		+=	bin/libSDL_image-1.2.so.0
+LDFLAGS		+=	bin/libtiff.so.3
+LDFLAGS		+=	bin/libjpeg.so.62
 LDFLAGS		+=	bin/libSDLazy.so
 LDFLAGS		+=	bin/libCList.so
 
