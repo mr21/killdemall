@@ -5,7 +5,7 @@
 #define		FREQ_FACT	1.1
 #define		RECOIL		120.0
 
-static void	ammo0(XShip* s, v2f* vp, v2f* vd)
+static void	ammo0(XShip* s, v2f* vp, v2f* vd, float* pan)
 {
   vd->x = 0;
   vd->y = -BULLET_SPD;
@@ -14,9 +14,10 @@ static void	ammo0(XShip* s, v2f* vp, v2f* vd)
 		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NE]) :
 		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NO]));
   ship_recoil((Ship*)s, RECOIL, SHIP_AXE_Y);
+  *pan = s->turret_shoot[0] ? .5 : -.5;
 }
 
-static void	ammo1(XShip* s, v2f* vp, v2f* vd)
+static void	ammo1(XShip* s, v2f* vp, v2f* vd, float* pan)
 {
   vd->x = BULLET_SPD;
   vd->y = 0;
@@ -25,9 +26,10 @@ static void	ammo1(XShip* s, v2f* vp, v2f* vd)
 		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SE]) :
 		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NE]));
   ship_recoil((Ship*)s, -RECOIL, SHIP_AXE_X);
+  *pan = .5;
 }
 
-static void	ammo2(XShip* s, v2f* vp, v2f* vd)
+static void	ammo2(XShip* s, v2f* vp, v2f* vd, float* pan)
 {
   vd->x = 0;
   vd->y = BULLET_SPD;
@@ -36,9 +38,10 @@ static void	ammo2(XShip* s, v2f* vp, v2f* vd)
 		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NO]) :
 		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NE]));
   ship_recoil((Ship*)s, -RECOIL, SHIP_AXE_Y);
+  *pan = s->turret_shoot[2] ? -.5 : .5;
 }
 
-static void	ammo3(XShip* s, v2f* vp, v2f* vd)
+static void	ammo3(XShip* s, v2f* vp, v2f* vd, float* pan)
 {
   vd->x = -BULLET_SPD;
   vd->y = 0;
@@ -47,21 +50,23 @@ static void	ammo3(XShip* s, v2f* vp, v2f* vd)
 		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NO]) :
 		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SO]));
   ship_recoil((Ship*)s, RECOIL, SHIP_AXE_X);
+  *pan = -.5;
 }
 
 static void	create_ammo(Data* d, XShip* p)
 {
   Ammo		b;
   v2f		vd, vp = p->ship.pos;
+  float		pan;
 
   if (p->ship.shoot_press[0])
-    ammo0(p, &vp, &vd);
+    ammo0(p, &vp, &vd, &pan);
   else if (p->ship.shoot_press[1])
-    ammo1(p, &vp, &vd);
+    ammo1(p, &vp, &vd, &pan);
   else if (p->ship.shoot_press[2])
-    ammo2(p, &vp, &vd);
+    ammo2(p, &vp, &vd, &pan);
   else if (p->ship.shoot_press[3])
-    ammo3(p, &vp, &vd);
+    ammo3(p, &vp, &vd, &pan);
 
   b.type = AMMO_BULLET;
   b.from_who = (Ship*)p;
@@ -70,6 +75,7 @@ static void	create_ammo(Data* d, XShip* p)
   b.pos = vp;
   b.dir = vd;
   ammo_push(d, &b);
+  sound_play(SND_XHSIP_SHOOT, .8, pan, 60000 + rand() % 20000);
 }
 
 void            xship_shoot(Data* d, XShip* p)
