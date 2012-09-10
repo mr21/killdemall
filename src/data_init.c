@@ -5,6 +5,7 @@ void		data_init(Data* d)
   XShip		xship;
 
   sdldata_init(&d->sdldata);
+  sound_init(&d->sound);
 
   menu_init(&d->menu);
   ctrls_init(&d->ctrls);

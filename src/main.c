@@ -7,7 +7,7 @@ int		main(void)
 {
   Data		d;
 
-  SDLazy_Init(1152, 864, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE, "Shoot'em Up - SDL 2D");
+  SDLazy_Init(1024, 768, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE, "Shoot'em Up - SDL 2D");
 
   data_init(&d);
 

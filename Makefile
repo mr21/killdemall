@@ -27,6 +27,7 @@ RM		=	@rm -f
 OBJ		=	$(SRC)main.o
 OBJ		+=	$(SRC)data_init.o
 OBJ		+=	$(SRC)sdldata_init.o
+OBJ		+=	$(SRC)sound_init.o
 OBJ		+=	$(SRC)controls.o
 OBJ		+=	$(SRC)menu.o
 OBJ		+=	$(SRC)events.o

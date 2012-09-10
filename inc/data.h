@@ -7,10 +7,12 @@
 #include	"xship.h"
 #include	"controls.h"
 #include	"menu.h"
+#include	"sound.h"
 
 struct		Data
 {
   SDLData	sdldata;
+  Sound		sound;
   Menu		menu;
   Controls	ctrls;
   CList		ships;
