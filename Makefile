@@ -11,6 +11,8 @@ LDFLAGS		+=	bin/libtiff.so.3
 LDFLAGS		+=	bin/libjpeg.so.62
 LDFLAGS		+=	bin/libSDLazy.so
 LDFLAGS		+=	bin/libCList.so
+LDFLAGS		+=	bin/libfmodex64.so
+LDFLAGS		+=	-pthread
 
 RM		=	@rm -f
 
