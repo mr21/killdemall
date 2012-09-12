@@ -3,16 +3,21 @@
 #include	"data.h"
 #include	"controls.h"
 
+static void	_snd_open_close(int status)
+{
+  sound_play(SND_MENU_OPEN, .9, .8, status ? 25000 : 22050);
+}
+
 static void	_menu_openclose_cb(void)
 {
   Menu*		d = &((Data*)SDLazy_GetData())->menu;
 
-  d->status = !d->status;
+  _snd_open_close(d->status = !d->status);
 }
 
 void		menu_openclose(Menu* d, int status)
 {
-  d->status = status;
+  _snd_open_close(d->status = status);
   SDLazy_ButtonSetState(d->btn[BTN_MENU_OPEN], d->status);
 }
 

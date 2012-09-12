@@ -7,6 +7,7 @@
 typedef		enum
 {
   SND_XHSIP_SHOOT,
+  SND_MENU_OPEN,
   NB_SND
 }		eSound;
 

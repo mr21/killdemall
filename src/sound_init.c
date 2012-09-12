@@ -7,10 +7,10 @@ int		sound_init(Sound* s)
 {
   FMOD_RESULT	res;
 
-  if (0
-      || FMOD_OK != (res = FMOD_System_Create(&s->system))
+  if (   FMOD_OK != (res = FMOD_System_Create(&s->system))
       || FMOD_OK != (res = FMOD_System_Init(s->system, 32, FMOD_INIT_NORMAL, NULL))
       || FMOD_OK != (res = FMOD_System_CreateSound(s->system, "sound/xship_shoot.wav", FMOD_SOFTWARE, 0, &s->mp3[SND_XHSIP_SHOOT]))
+      || FMOD_OK != (res = FMOD_System_CreateSound(s->system, "sound/menu_open.wav", FMOD_SOFTWARE, 0, &s->mp3[SND_MENU_OPEN]))
       )
     return printf("FMOD error! (%d) %s\n", res, FMOD_ErrorString(res));
   return 0;
