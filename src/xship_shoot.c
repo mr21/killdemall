@@ -59,13 +59,13 @@ static void	create_ammo(Data* d, XShip* p)
   v2f		vd, vp = p->ship.pos;
   float		pan;
 
-  if (p->ship.shoot_press[0])
+  if (p->ship.shoot_dir == 0)
     ammo0(p, &vp, &vd, &pan);
-  else if (p->ship.shoot_press[1])
+  else if (p->ship.shoot_dir == 1)
     ammo1(p, &vp, &vd, &pan);
-  else if (p->ship.shoot_press[2])
+  else if (p->ship.shoot_dir == 2)
     ammo2(p, &vp, &vd, &pan);
-  else if (p->ship.shoot_press[3])
+  else if (p->ship.shoot_dir == 3)
     ammo3(p, &vp, &vd, &pan);
 
   b.type = AMMO_BULLET;
@@ -80,10 +80,10 @@ static void	create_ammo(Data* d, XShip* p)
 
 void            xship_shoot(Data* d, XShip* p)
 {
-  unsigned      u;
+  int		u;
 
   for (u = 0; u < 4; ++u)
-    if (p->ship.shoot_press[u] &&
+    if (p->ship.shoot_dir == u &&
         SDLazy_GetTotalTime() > p->time_last_turret_shoot + p->ship.shoot_freq)
       {
 	p->time_last_turret_shoot = SDLazy_GetTotalTime();

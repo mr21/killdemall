@@ -49,6 +49,7 @@ static void	_base(SDLData* d, XShip* s)
 void		xship_init(SDLData* d, XShip* s)
 {
   memset(s, 0, sizeof *s);
+  s->ship.shoot_dir = -1;
   _turrets(d, s);
   _reactors(d, s);
   _base(d, s);

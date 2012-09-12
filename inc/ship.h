@@ -19,7 +19,7 @@ typedef		struct
   v2f		pos;
   v2f		dir;
   char		dir_press[4];
-  char		shoot_press[4];
+  char		shoot_dir;
   double	shoot_freq;
 }		Ship;
 
