@@ -2,14 +2,15 @@ NAME		=	shmupsdl2d
 
 BIN		=	bin/
 SRC		=	src/
+INC		=	inc/
 
 CC		=	gcc
 
-CFLAGS		=	-Wall -Wextra -pedantic
-CFLAGS		+=	-Iinc
-CFLAGS		+=	-Iinc/FmodEx
-CFLAGS		+=	-Iinc/SDLazy
-CFLAGS		+=	-Iinc/SDLazy/CList
+CFLAGS		=	-Wall -Wextra -pedantic -ansi
+CFLAGS		+=	-I$(INC)
+CFLAGS		+=	-I$(INC)FmodEx
+CFLAGS		+=	-I$(INC)SDLazy
+CFLAGS		+=	-I$(INC)SDLazy/CList
 
 LDFLAGS		=	-L.
 LDFLAGS		+=	-lm
