@@ -6,6 +6,14 @@
 
 typedef		enum
 {
+  DIR_UP    = 1,
+  DIR_RIGHT = 2,
+  DIR_DOWN  = 4,
+  DIR_LEFT  = 8
+}		eShipDir;
+
+typedef		enum
+{
   XSHIP,
   KAMSHIP
 }		eShipType;
@@ -19,7 +27,7 @@ typedef		struct
   v2f		pos;
   v2f		dir;
   char		dir_press[4];
-  char		shoot_dir;
+  eShipDir	shoot_dir;
   double	shoot_freq;
 }		Ship;
 

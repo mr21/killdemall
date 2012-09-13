@@ -41,27 +41,27 @@ void		ship_backward(Data* d, Ship* s, char press)
 void            ship_upshoot(Data* d, Ship* s, char press)
 {
   (void)d;
-  s->shoot_dir = press ? 0 : 0;
+  s->shoot_dir = press ? s->shoot_dir | DIR_UP : s->shoot_dir ^ DIR_UP;
   restore_shoot_freq(s);
 }
 
 void            ship_rightshoot(Data* d, Ship* s, char press)
 {
   (void)d;
-  s->shoot_dir = press ? 1 : 1;
+  s->shoot_dir = press ? s->shoot_dir | DIR_RIGHT : s->shoot_dir ^ DIR_RIGHT;
   restore_shoot_freq(s);
 }
 
 void            ship_downshoot(Data* d, Ship* s, char press)
 {
   (void)d;
-  s->shoot_dir = press ? 2 : 2;
+  s->shoot_dir = press ? s->shoot_dir | DIR_DOWN : s->shoot_dir ^ DIR_DOWN;
   restore_shoot_freq(s);
 }
 
 void            ship_leftshoot(Data* d, Ship* s, char press)
 {
   (void)d;
-  s->shoot_dir = press ? 3 : 3;
+  s->shoot_dir = press ? s->shoot_dir | DIR_LEFT : s->shoot_dir ^ DIR_LEFT;
   restore_shoot_freq(s);
 }

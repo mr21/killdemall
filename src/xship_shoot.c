@@ -59,13 +59,13 @@ static void	create_ammo(Data* d, XShip* p)
   v2f		vd, vp = p->ship.pos;
   float		pan;
 
-  if (p->ship.shoot_dir == 0)
+  if (p->ship.shoot_dir & DIR_UP)
     ammo0(p, &vp, &vd, &pan);
-  else if (p->ship.shoot_dir == 1)
+  else if (p->ship.shoot_dir & DIR_RIGHT)
     ammo1(p, &vp, &vd, &pan);
-  else if (p->ship.shoot_dir == 2)
+  else if (p->ship.shoot_dir & DIR_DOWN)
     ammo2(p, &vp, &vd, &pan);
-  else if (p->ship.shoot_dir == 3)
+  else if (p->ship.shoot_dir & DIR_LEFT)
     ammo3(p, &vp, &vd, &pan);
 
   b.type = AMMO_BULLET;
@@ -80,16 +80,16 @@ static void	create_ammo(Data* d, XShip* p)
 
 void            xship_shoot(Data* d, XShip* p)
 {
-  int		u;
+  unsigned	u = 1, v = 0;
 
-  for (u = 0; u < 4; ++u)
-    if (p->ship.shoot_dir == u &&
+  for (; v < 4; ++v, u <<= 1)
+    if (p->ship.shoot_dir & u &&
         SDLazy_GetTotalTime() > p->time_last_turret_shoot + p->ship.shoot_freq)
       {
 	p->time_last_turret_shoot = SDLazy_GetTotalTime();
-        p->turret_shoot[u] = !p->turret_shoot[u];
+        p->turret_shoot[v] = !p->turret_shoot[v];
         p->ship.shoot_freq *= FREQ_FACT;
-        SDLazy_AnimReplay(p->turret_anim[u * 2 + p->turret_shoot[u]]);
+        SDLazy_AnimReplay(p->turret_anim[v * 2 + p->turret_shoot[v]]);
         create_ammo(d, p);
       }
 }
