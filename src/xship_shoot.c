@@ -116,9 +116,13 @@ static float	_pan(eShipDir dir)
     0;
 }
 
-static float	_freq()
+static float	_freq(Ship* s)
 {
-  return 60000 + rand() % 20000;
+  double	inter = 2.0 - s->shtfq_max;
+
+  printf("%.2f\n", (s->shtfq_curr - s->shtfq_max) / (2.0 - s->shtfq_max) );
+
+  return 44100 + (inter / (s->shtfq_curr - s->shtfq_max)) * 5000;
 }
 
 static void	create_ammo(Data* d, XShip* p)
@@ -135,7 +139,7 @@ static void	create_ammo(Data* d, XShip* p)
   b.pos = vp;
   b.dir = vd;
   ammo_push(d, &b);
-  sound_play(SND_XHSIP_SHOOT, .8, _pan(p->ship.shoot_dir), _freq());
+  sound_play(SND_XHSIP_SHOOT, .8, _pan(p->ship.shoot_dir), _freq(&p->ship));
 }
 
 void            xship_shoot(Data* d, XShip* p)
