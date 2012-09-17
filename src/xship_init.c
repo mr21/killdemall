@@ -52,7 +52,10 @@ void		xship_init(SDLData* d, XShip* s)
   _turrets(d, s);
   _reactors(d, s);
   _base(d, s);
-  s->ship.mxspd = 300.;
-  s->ship.accel = 0.15;
-  s->ship.weight = 1.07;
+  s->ship.mxspd      = 300; /* 300 */
+  s->ship.accel      = 0.15; /* 0.15 */
+  s->ship.weight     = 1.07; /* 1.07 */
+  s->ship.shtfq_max  = 0.05; /* 0.05 */
+  s->ship.shtfq_lost = 0.01; /* 0.01 */
+  s->ship.shtfq_curr = s->ship.shtfq_max;
 }

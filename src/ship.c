@@ -7,7 +7,7 @@ Ce code est encore temporaire.. l'heritage n'est pas très logique ici :S
 
 static void	restore_shoot_freq(Ship* s)
 {
-  s->shoot_freq = .05;
+  s->shtfq_curr = s->shtfq_max;
 }
 
 void		ship_forward(Data* d, Ship* s, char press)

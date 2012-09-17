@@ -24,11 +24,13 @@ typedef		struct
   double	mxspd;
   double	accel;
   double	weight;
+  double	shtfq_max;
+  double	shtfq_lost;
+  double	shtfq_curr;
   v2f		pos;
   v2f		dir;
   char		dir_press[4];
   eShipDir	shoot_dir;
-  double	shoot_freq;
 }		Ship;
 
 enum
