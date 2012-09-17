@@ -4,6 +4,9 @@
 #define		BULLET_SPD	650
 #define		RECOIL		120.0
 
+/* CE FICHIER EST L'UN DES PLUS DEGUEULASSE; A FACTORISER D'URGENCE!
+(mais jle ferai sans doute jamais car j'osef) */
+
 /*
 x 0001  1 UP
 x 0010  2 RIGHT
@@ -18,8 +21,8 @@ x 1100 12 DOWN | LEFT
 
 static void	ammoUp(XShip* s, v2f* vp, v2f* vd)
 {
-  vd->x += 0;
-  vd->y += -BULLET_SPD;
+  vd->x = 0;
+  vd->y = -BULLET_SPD;
   vp->x += (6 + SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NO])) * (s->turret_shoot[0] ? 1 : -1);
   vp->y -= 33 + (s->turret_shoot[0] ?
 		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NE]) :
@@ -29,8 +32,8 @@ static void	ammoUp(XShip* s, v2f* vp, v2f* vd)
 
 static void	ammoRight(XShip* s, v2f* vp, v2f* vd)
 {
-  vd->x += BULLET_SPD;
-  vd->y += 0;
+  vd->x = BULLET_SPD;
+  vd->y = 0;
   vp->y += (6 + SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NE])) * (s->turret_shoot[1] ? 1 : -1);
   vp->x += 33 - (s->turret_shoot[1] ?
 		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SE]) :
@@ -40,8 +43,8 @@ static void	ammoRight(XShip* s, v2f* vp, v2f* vd)
 
 static void	ammoDown(XShip* s, v2f* vp, v2f* vd)
 {
-  vd->x += 0;
-  vd->y += BULLET_SPD;
+  vd->x = 0;
+  vd->y = BULLET_SPD;
   vp->x += (6 + SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SO])) * (s->turret_shoot[2] ? -1 : 1);
   vp->y += 33 + (s->turret_shoot[2] ?
 		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NO]) :
@@ -51,8 +54,8 @@ static void	ammoDown(XShip* s, v2f* vp, v2f* vd)
 
 static void	ammoLeft(XShip* s, v2f* vp, v2f* vd)
 {
-  vd->x += -BULLET_SPD;
-  vd->y += 0;
+  vd->x = -BULLET_SPD;
+  vd->y = 0;
   vp->y += (6 + SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NO])) * (s->turret_shoot[3] ? -1 : 1);
   vp->x -= 33 + (s->turret_shoot[3] ?
 		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NO]) :
@@ -62,8 +65,8 @@ static void	ammoLeft(XShip* s, v2f* vp, v2f* vd)
 
 static void	ammoUpRight(XShip* s, v2f* vp, v2f* vd)
 {
-  vd->x += BULLET_SPD * 0.7071;
-  vd->y -= BULLET_SPD * 0.7071;
+  vd->x = +BULLET_SPD * 0.7071;
+  vd->y = -BULLET_SPD * 0.7071;
   vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NE]);
   vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NE]);
   ship_recoil((Ship*)s, -RECOIL * 0.7071, SHIP_AXE_X);
@@ -72,8 +75,8 @@ static void	ammoUpRight(XShip* s, v2f* vp, v2f* vd)
 
 static void	ammoUpLeft(XShip* s, v2f* vp, v2f* vd)
 {
-  vd->x -= BULLET_SPD * 0.7071;
-  vd->y -= BULLET_SPD * 0.7071;
+  vd->x = -BULLET_SPD * 0.7071;
+  vd->y = -BULLET_SPD * 0.7071;
   vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NO]);
   vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NO]);
   ship_recoil((Ship*)s, +RECOIL * 0.7071, SHIP_AXE_X);
@@ -82,8 +85,8 @@ static void	ammoUpLeft(XShip* s, v2f* vp, v2f* vd)
 
 static void	ammoDownRight(XShip* s, v2f* vp, v2f* vd)
 {
-  vd->x += BULLET_SPD * 0.7071;
-  vd->y += BULLET_SPD * 0.7071;
+  vd->x = +BULLET_SPD * 0.7071;
+  vd->y = +BULLET_SPD * 0.7071;
   vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_SE]);
   vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SE]);
   ship_recoil((Ship*)s, -RECOIL * 0.7071, SHIP_AXE_X);
@@ -92,8 +95,8 @@ static void	ammoDownRight(XShip* s, v2f* vp, v2f* vd)
 
 static void	ammoDownLeft(XShip* s, v2f* vp, v2f* vd)
 {
-  vd->x -= BULLET_SPD * 0.7071;
-  vd->y += BULLET_SPD * 0.7071;
+  vd->x = -BULLET_SPD * 0.7071;
+  vd->y = +BULLET_SPD * 0.7071;
   vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_SO]);
   vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SO]);
   ship_recoil((Ship*)s, +RECOIL * 0.7071, SHIP_AXE_X);
@@ -118,17 +121,15 @@ static float	_pan(eShipDir dir)
 
 static float	_freq(Ship* s)
 {
-  double	inter = 2.0 - s->shtfq_max;
-
-  printf("%.2f\n", (s->shtfq_curr - s->shtfq_max) / (2.0 - s->shtfq_max) );
-
-  return 44100 + (inter / (s->shtfq_curr - s->shtfq_max)) * 5000;
+  return 44100 + 10000 *
+    (1 - (s->shtfq_curr - s->shtfq_max) / (0.2 - s->shtfq_max)) +
+    rand() % 10000;
 }
 
 static void	create_ammo(Data* d, XShip* p)
 {
   Ammo		b;
-  v2f		vd = {0, 0};
+  v2f		vd;
   v2f		vp = p->ship.pos;
 
   ammo[p->ship.shoot_dir](p, &vp, &vd);
@@ -144,17 +145,20 @@ static void	create_ammo(Data* d, XShip* p)
 
 void            xship_shoot(Data* d, XShip* p)
 {
-  unsigned	u, v;
+  int		anim;
 
-  if (ammo[p->ship.shoot_dir])
-    for (u = 1, v = 0; v < 4; ++v, u <<= 1)
-      if (p->ship.shoot_dir & u &&
-	  SDLazy_GetTotalTime() > p->time_last_turret_shoot + p->ship.shtfq_curr)
+  if (ammo[p->ship.shoot_dir] &&
+      SDLazy_GetTotalTime() > p->time_last_turret_shoot + p->ship.shtfq_curr)
+    {
+      p->time_last_turret_shoot = SDLazy_GetTotalTime();
+      p->ship.shtfq_curr *= p->ship.shtfq_lost;
+      create_ammo(d, p);
+      anim = p->ship.shoot_dir;
+      if (anim < 3 || anim == 4 || anim == 8)
 	{
-	  p->time_last_turret_shoot = SDLazy_GetTotalTime();
-	  p->turret_shoot[v] = !p->turret_shoot[v];
-	  p->ship.shtfq_curr += p->ship.shtfq_lost;
-	  SDLazy_AnimReplay(p->turret_anim[v * 2 + p->turret_shoot[v]]);
-	  create_ammo(d, p);
+	  anim = anim < 3 ? anim - 1 : anim == 4 ? 2 : 3;
+	  SDLazy_AnimReplay(p->turret_anim[anim * 2 + p->turret_shoot[anim]]);
+	  p->turret_shoot[anim] = !p->turret_shoot[anim];
 	}
+    }
 }
