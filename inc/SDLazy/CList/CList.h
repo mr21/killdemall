@@ -31,7 +31,7 @@ struct			CList
   size_t		size;
 };
 
-/* Init & destro */
+/* Init & destroy */
 void			CList_init (CList*);
 void			CList_clear(CList*);
 
@@ -49,14 +49,16 @@ size_t			CList_size (CList const*);
 int			CList_empty(CList const*);
 CLink*			CList_prev (CList const*, size_t);
 CLink*			CList_next (CList const*, size_t);
+size_t			CList_count(CLink const*, CLink const*);
+size_t			CList_count_n_li(CLink*, CLink*, CList const*);
 
-/* Add */
+/* Push */
 CLink*			CList_push_back  (CList*, void* data, size_t, void (*destr)());
 CLink*			CList_push_front (CList*, void* data, size_t, void (*destr)());
 CLink*			CList_push_after (CLink*, void* data, size_t, void (*destr)());
 CLink*			CList_push_before(CLink*, void* data, size_t, void (*destr)());
 
-/* Delete */
+/* Pop */
 CLink*			CList_pop      (CLink*);
 CLink*			CList_pop_back (CList*);
 CLink*			CList_pop_front(CList*);
@@ -83,11 +85,12 @@ CList*			CList_merge_after (CLink* ln, CList* la);
 CList*			CList_merge_before(CLink* ln, CList* la);
 
 /* Cut */
+void			CList_extract  (CLink* lna, CLink* lnb, CList* li);
 CList*			CList_cut      (CLink*, CLink*);
 CList*			CList_cut_back (CLink*);
 CList*			CList_cut_front(CLink*);
 
-/* Move !!TODO!! */
+/* Move */
 CList*			CList_move_back  (CLink* lna, CLink* lnb, CList* la);
 CList*			CList_move_front (CLink* lna, CLink* lnb, CList* la);
 CList*			CList_move_after (CLink* lna, CLink* lnb, CLink* lnc);
