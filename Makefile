@@ -10,7 +10,7 @@ CFLAGS		=	-Wall -Wextra -pedantic -ansi
 CFLAGS		+=	-I$(INC)
 CFLAGS		+=	-I$(INC)FmodEx
 CFLAGS		+=	-I$(INC)SDLazy
-CFLAGS		+=	-I$(INC)SDLazy/CList
+CFLAGS		+=	-I$(INC)CList
 
 LDFLAGS		=	-L.
 LDFLAGS		+=	-lm

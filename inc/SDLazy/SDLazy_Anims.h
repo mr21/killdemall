@@ -1,7 +1,7 @@
 #ifndef			SDLAZY_ANIMS_H
 # define		SDLAZY_ANIMS_H
 
-# include		"CList/CList.h"
+# include		"CList.h"
 # include		"SDLazy_Surfaces.h"
 # include		"SDLazy_ObjHeader.h"
 

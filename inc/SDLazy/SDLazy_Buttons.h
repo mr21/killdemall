@@ -1,7 +1,7 @@
 #ifndef			SDLAZY_BUTTONS_H
 # define		SDLAZY_BUTTONS_H
 
-# include		"CList/CList.h"
+# include		"CList.h"
 # include		"SDLazy_Surfaces.h"
 # include		"SDLazy_ObjHeader.h"
 # include		"SDLazy_TinySprite.h"

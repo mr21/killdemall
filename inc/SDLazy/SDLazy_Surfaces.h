@@ -2,7 +2,7 @@
 # define		SDLAZY_SURFACES_H
 
 # include		<SDL/SDL.h>
-# include		"CList/CList.h"
+# include		"CList.h"
 # include		"SDLazy_ObjHeader.h"
 # include		"SDLazy_TinySprite.h"
 # include		"myMath.h"
