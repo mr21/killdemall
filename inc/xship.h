@@ -12,6 +12,7 @@ typedef			struct
   SDLazy_Sprite*	bases_sprite[4];
   SDLazy_Anim*		turret_anim[8];
   SDLazy_Anim*		reactor_anim[4];
+  SDLazy_Anim*		cannon_anim;
   char			turret_shoot[4];
   double		time_last_turret_shoot;
   v2f			base_pos[4];

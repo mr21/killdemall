@@ -16,6 +16,7 @@ int		main(void)
   SDLazy_AddEvent(SDL_KEYDOWN, evKeydown);
   SDLazy_AddEvent(SDL_KEYUP, evKeyup);
   SDLazy_AddEvent(SDL_MOUSEMOTION, evMousemove);
+  SDLazy_AddEvent(SDL_MOUSEBUTTONDOWN, evMousedown);
   SDLazy_AddEvent(SDL_QUIT, evQuit);
 
   SDLazy_Loop(&d, core, render);

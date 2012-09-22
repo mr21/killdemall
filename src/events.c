@@ -12,6 +12,14 @@ void		evMousemove(SDL_Event* e)
   (void)e;
 }
 
+void		evMousedown(SDL_Event* e)
+{
+  Data*		d = SDLazy_GetData();
+  (void)e;
+
+  SDLazy_AnimReplay(((XShip*)d->player)->cannon_anim);
+}
+
 static void	ship(Data* d, SDLKey k, char press)
 {
   SDLKey*	c = d->ctrls.key;
