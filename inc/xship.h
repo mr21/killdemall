@@ -23,5 +23,6 @@ void		xship_blit(SDLData*, XShip*);
 void		xship_shoot(Data*, XShip*);
 void		xship_move(Data*, XShip*, int dir, int press);
 void		xship_move_bases(XShip*);
+void		xship_core(XShip* s);
 
 #endif

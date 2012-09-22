@@ -41,6 +41,7 @@ OBJ		+=	$(SRC)ship_move.o
 OBJ		+=	$(SRC)ship_recoil.o
 OBJ		+=	$(SRC)xship_init.o
 OBJ		+=	$(SRC)xship_blit.o
+OBJ		+=	$(SRC)xship_core.o
 OBJ		+=	$(SRC)xship_move.o
 OBJ		+=	$(SRC)xship_move_bases.o
 OBJ		+=	$(SRC)xship_shoot.o
