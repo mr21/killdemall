@@ -6,8 +6,9 @@
 
 typedef		enum
 {
-  SND_XHSIP_SHOOT,
   SND_MENU_OPEN,
+  SND_XSHIP_SHOOT,
+  SND_XSHIP_CANNON,
   NB_SND
 }		eSound;
 

@@ -140,7 +140,7 @@ static void	create_ammo(Data* d, XShip* p)
   b.pos = vp;
   b.dir = vd;
   ammo_push(d, &b);
-  sound_play(SND_XHSIP_SHOOT, .8, _pan(p->ship.shoot_dir), _freq(&p->ship));
+  sound_play(SND_XSHIP_SHOOT, .8, _pan(p->ship.shoot_dir), _freq(&p->ship));
 }
 
 void            xship_shoot(Data* d, XShip* p)
