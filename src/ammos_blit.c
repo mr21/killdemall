@@ -11,6 +11,7 @@ static int		blit(Ammo* b)
 
   pos_onscreen(&v, &g_d->cam, &b->pos);
   SDLazy_SetPos(am, &v);
+  SDLazy_SetRot(am, b->rad);
   SDLazy_Blit(am);
   return CLIST_CONTINUE;
 }
