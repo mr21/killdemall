@@ -43,6 +43,7 @@ OBJ		+=	$(SRC)xship_init.o
 OBJ		+=	$(SRC)xship_blit.o
 OBJ		+=	$(SRC)xship_core.o
 OBJ		+=	$(SRC)xship_move.o
+OBJ		+=	$(SRC)xship_cannon_fire.o
 OBJ		+=	$(SRC)xship_move_bases.o
 OBJ		+=	$(SRC)xship_shoot.o
 OBJ		+=	$(SRC)ammo_push.o
