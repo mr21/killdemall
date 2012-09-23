@@ -126,7 +126,7 @@ static float	_freq(Ship* s)
     rand() % 10000;
 }
 
-static void	create_ammo(Data* d, XShip* p)
+static void	create_ammo(XShip* p)
 {
   Ammo		b;
   v2f		vd;
@@ -139,11 +139,11 @@ static void	create_ammo(Data* d, XShip* p)
   b.rad = 0.;
   b.pos = vp;
   b.dir = vd;
-  ammo_push(d, &b);
+  ammo_push(SDLazy_GetData(), &b);
   sound_play(SND_XSHIP_SHOOT, .8, _pan(p->ship.shoot_dir), _freq(&p->ship));
 }
 
-void            xship_shoot(Data* d, XShip* p)
+void            xship_shoot(XShip* p)
 {
   int		anim;
 
@@ -152,7 +152,7 @@ void            xship_shoot(Data* d, XShip* p)
     {
       p->time_last_turret_shoot = SDLazy_GetTotalTime();
       p->ship.shtfq_curr *= p->ship.shtfq_lost;
-      create_ammo(d, p);
+      create_ammo(p);
       anim = p->ship.shoot_dir;
       if (anim < 3 || anim == 4 || anim == 8)
 	{
