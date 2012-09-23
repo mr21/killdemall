@@ -7,11 +7,6 @@ void		evQuit(SDL_Event* e)
   SDLazy_Quit(0);
 }
 
-void		evMousemove(SDL_Event* e)
-{
-  (void)e;
-}
-
 void		evMousedown(SDL_Event* e)
 {
   (void)e;
