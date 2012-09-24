@@ -93,6 +93,6 @@ void		menu_core(Menu* d)
 
   if (!w)
     w = SDLazy_GetWidth(d->srf[SRF_MENU_BG]) - SDLazy_GetCenterX(d->srf[SRF_MENU_BG]);
-  x -= (d->status ? (w + x) : x) * SDLazy_GetFrameTime() * 6;
+  x -= (d->status ? (w + x) : x) * .2;
   SDLazy_SetPosX(d->srf[SRF_MENU_BG], x);
 }
