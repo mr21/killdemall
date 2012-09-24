@@ -6,7 +6,7 @@ _Kill Dem All_ est un mini jeu SDL (utilisant la lib' sur laquelle je travaille 
 
 _Envie de tester ?_  
 Okay c'est cool alors faites directement :
-`cd /tmp && git clone git://github.com/Mr21/Shoot-em-Up-SDL-2D.git && cd Shoot* && clear && cat R* && ./l*`  
+`cd /tmp && git clone git://github.com/Mr21/Shoot-em-Up-SDL-2D.git && cd Shoot* && clear && cat R* && ./K*`  
 
 Les controles pour le moment sont :  
 
