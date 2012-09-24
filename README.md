@@ -1,7 +1,7 @@
-Shoot'em Up - SDL 2D
-====================
+KillDemAll
+==========
 
-Un mini jeu SDL (utilisant la lib' sur laquelle je travaille *SDLazy*)
+_Kill Dem All_ est un mini jeu SDL (utilisant la lib' sur laquelle je travaille _SDLazy_)
 
 
 _Envie de tester ?_  
@@ -10,7 +10,8 @@ Okay c'est cool alors faites directement :
 
 Les controles pour le moment sont :  
 
-* **Deplacement** : WASD (on peut passer en AZERTY dans le menu)
-* **Ouverture du menu** : TAB (ou clic sur la petite fleche a droite)
-* **Tirs** : les fleches directionnelles (il est possible aussi d'intervertir les commandes dans le menu)
-* **Ragequit** : Echap (ca quitte tout d'un coup, c'est temporaire :D)
+* __Deplacement__ : WASD (on peut passer en AZERTY via le menu)
+* __Ouvrir le menu__ : TAB (ou clic sur la petite flèche à droite)
+* __Tirs avec les turrels__ : les flèches directionnelles (il est aussi possible d'intervertir les commandes dans le menu)
+* __Tirs avec le canon primaire__ : Clic gauche
+* __Ragequit__ : Echap (ca quitte tout d'un coup, c'est temporaire :D)
