@@ -33,8 +33,8 @@ static void	load_ammo(SDLData* d)
 {
   unsigned	u;
 
-  d->srf_ammo[AMMO_BULLET]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(200, 30,  4, 4));
-  d->srf_ammo[AMMO_ROCKET]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(200, 20, 14, 4));
+  d->srf_ammo[AMMO_BULLET]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(210, 20, 4,  4));
+  d->srf_ammo[AMMO_ROCKET]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(200, 20, 4, 14));
   for (u = 0; u < NB_AMMOS; ++u)
     SDLazy_SetCenterAlign(d->srf_ammo[u], ALIGN_CENTER | ALIGN_CENTER);
 }

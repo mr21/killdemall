@@ -10,7 +10,7 @@ void		xship_cannon_fire(XShip* s)
   b.type = AMMO_ROCKET;
   b.from_who = (Ship*)s;
   b.duration_time = 1.;
-  b.rad = radAn - M_PI2;
+  b.rad = radAn;
   b.dir.x = sin(radAn);
   b.dir.y = cos(radAn - M_PI);
   b.pos.x = s->ship.pos.x + b.dir.x * 40;
