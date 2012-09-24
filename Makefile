@@ -7,7 +7,7 @@ INC		=	inc/
 CC		=	gcc
 
 CFLAGS		=	-Wall -Wextra -pedantic -ansi
-CFLAGS		+=	-I$(INC)
+CFLAGS		+=	-I$(INC)KillDemAll
 CFLAGS		+=	-I$(INC)FmodEx
 CFLAGS		+=	-I$(INC)SDLazy
 CFLAGS		+=	-I$(INC)CList
