@@ -51,6 +51,11 @@ double				SDLazy_GetTotalTime(void);
 void				SDLazy_SetFPS(Uint16 delay);
 void				SDLazy_SetFPSMax(Uint16 max);
 
+/* Mouse */
+v2i*				SDLazy_GetMouse(void);
+int				SDLazy_GetMouseX(void);
+int				SDLazy_GetMouseY(void);
+
 SDL_Surface*			SDLazy_GetScreen(void);
 
 /* Blit */
