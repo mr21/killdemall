@@ -9,8 +9,11 @@ void		evQuit(SDL_Event* e)
 
 void		evMousedown(SDL_Event* e)
 {
-  if (e->button.button == SDL_BUTTON_LEFT)
-    xship_cannon_fire((XShip*)((Data*)SDLazy_GetData())->player);
+  Data*		d = SDLazy_GetData();
+
+  if (e->button.button == SDL_BUTTON_LEFT &&
+      !menu_mouseover(&d->menu))
+    xship_cannon_fire((XShip*)d->player);
 }
 
 static void	ship(Data* d, SDLKey k, char press)

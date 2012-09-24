@@ -21,6 +21,11 @@ void		menu_openclose(Menu* d, int status)
   SDLazy_ButtonSetState(d->btn[BTN_MENU_OPEN], d->status);
 }
 
+int		menu_mouseover(Menu* d)
+{
+  return SDLazy_Hover(d->srf[SRF_MENU_BG]);
+}
+
 void		menu_init(Menu* d)
 {
   SDLazy_Button*        b;

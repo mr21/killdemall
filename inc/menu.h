@@ -33,5 +33,6 @@ void			menu_init(Menu*);
 void			menu_blit(Menu*);
 void			menu_core(Menu*);
 void			menu_openclose(Menu*, int status);
+int			menu_mouseover(Menu* d);
 
 #endif
