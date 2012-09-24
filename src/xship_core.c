@@ -8,7 +8,9 @@ void		xship_core(XShip* s)
   v.x = g_sdlazy.mouse.x - v.x;
   v.y = g_sdlazy.mouse.y - v.y;
   d = v.y ? -atan(v.x / v.y) : 0;
-  if (v.y >= 0)
+  if (v.y > 0)
     d += M_PI;
+  else if (!v.y)
+    d = v.x > 0 ? M_PI2 : -M_PI2;
   SDLazy_SetRot(s->cannon_anim, d);
 }
