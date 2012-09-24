@@ -1,4 +1,4 @@
-NAME		=	shmupsdl2d
+NAME		=	killdemall
 
 BIN		=	bin/
 SRC		=	src/
@@ -59,7 +59,7 @@ clean		:
 			$(RM) $(OBJ)
 
 fclean		:	clean
-			$(RM) $(NAME)
+			$(RM) $(BIN)$(NAME)
 
 re		:	fclean $(NAME)
 
