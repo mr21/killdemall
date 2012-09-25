@@ -42,6 +42,8 @@ Ship*		ship_push(CList* ships, Ship*);
 void		ship_move(Data*, Ship*);
 void		ship_recoil(Ship*, double recoil_x, int dir);
 
+void		ship_init(Ship*, eShipType);
+
 /* Move */
 void            ship_leftward (Data*, Ship*, char press);
 void            ship_rightward(Data*, Ship*, char press);
