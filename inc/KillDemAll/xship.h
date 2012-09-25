@@ -4,7 +4,6 @@
 #include	"SDLazy.h"
 #include	"ship.h"
 #include	"sdldata_typedef.h"
-#include	"data_typedef.h"
 
 typedef			struct
 {
@@ -20,7 +19,7 @@ typedef			struct
 
 void		xship_init(SDLData*, XShip*);
 void		xship_blit(SDLData*, XShip*);
-void		xship_move(Data*, XShip*, int dir, int press);
+void		xship_move(XShip*, int dir, int press);
 void		xship_move_bases(XShip*);
 void		xship_core(XShip*);
 void		xship_shoot(XShip*);
