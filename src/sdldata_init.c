@@ -9,24 +9,24 @@ static void	load_bgs(SDLData* d)
 
 static void	load_xship(SDLData* d)
 {
-  d->srf_ship[SRF_SHIP_NO]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect( 20, 20, 23, 23));
-  d->srf_ship[SRF_SHIP_NE]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect( 43, 20, 23, 23));
-  d->srf_ship[SRF_SHIP_SO]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect( 20, 43, 23, 23));
-  d->srf_ship[SRF_SHIP_SE]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect( 43, 43, 23, 23));
-  d->srf_ship[SRF_SHIP_BASE]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(200, 60, 22, 22));
-  d->srf_ship[SRF_SHIP_TOP]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(100, 20, 16, 16));
+  d->srf_xship[SRF_XSHIP_NO]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect( 20, 20, 23, 23));
+  d->srf_xship[SRF_XSHIP_NE]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect( 43, 20, 23, 23));
+  d->srf_xship[SRF_XSHIP_SO]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect( 20, 43, 23, 23));
+  d->srf_xship[SRF_XSHIP_SE]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect( 43, 43, 23, 23));
+  d->srf_xship[SRF_XSHIP_BASE]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(200, 60, 22, 22));
+  d->srf_xship[SRF_XSHIP_TOP]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(100, 20, 16, 16));
 
-  SDLazy_SetCenterAlign(d->srf_ship[SRF_SHIP_NO],   ALIGN_BOTTOM | ALIGN_RIGHT);
-  SDLazy_SetCenterAlign(d->srf_ship[SRF_SHIP_NE],   ALIGN_BOTTOM | ALIGN_LEFT);
-  SDLazy_SetCenterAlign(d->srf_ship[SRF_SHIP_SO],      ALIGN_TOP | ALIGN_RIGHT);
-  SDLazy_SetCenterAlign(d->srf_ship[SRF_SHIP_SE],      ALIGN_TOP | ALIGN_LEFT);
-  SDLazy_SetCenterAlign(d->srf_ship[SRF_SHIP_BASE], ALIGN_CENTER | ALIGN_CENTER);
-  SDLazy_SetCenterAlign(d->srf_ship[SRF_SHIP_TOP],  ALIGN_CENTER | ALIGN_CENTER);
-  SDLazy_SetCenter(d->srf_ship[SRF_SHIP_TOP],  v2f_(-1, 1));
+  SDLazy_SetCenterAlign(d->srf_xship[SRF_XSHIP_NO],   ALIGN_BOTTOM | ALIGN_RIGHT);
+  SDLazy_SetCenterAlign(d->srf_xship[SRF_XSHIP_NE],   ALIGN_BOTTOM | ALIGN_LEFT);
+  SDLazy_SetCenterAlign(d->srf_xship[SRF_XSHIP_SO],      ALIGN_TOP | ALIGN_RIGHT);
+  SDLazy_SetCenterAlign(d->srf_xship[SRF_XSHIP_SE],      ALIGN_TOP | ALIGN_LEFT);
+  SDLazy_SetCenterAlign(d->srf_xship[SRF_XSHIP_BASE], ALIGN_CENTER | ALIGN_CENTER);
+  SDLazy_SetCenterAlign(d->srf_xship[SRF_XSHIP_TOP],  ALIGN_CENTER | ALIGN_CENTER);
+  SDLazy_SetCenter(d->srf_xship[SRF_XSHIP_TOP],  v2f_(-1, 1));
 
-  d->srf_ship[SRF_SHIP_TURRET]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(100,  65, 10, 11));
-  d->srf_ship[SRF_SHIP_REACTOR]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(150, 100, 12, 24));
-  d->srf_ship[SRF_SHIP_CANNON]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(280,  50, 12, 50));
+  d->srf_xship[SRF_XSHIP_TURRET]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(100,  65, 10, 11));
+  d->srf_xship[SRF_XSHIP_REACTOR]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(150, 100, 12, 24));
+  d->srf_xship[SRF_XSHIP_CANNON]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(280,  50, 12, 50));
 }
 
 static void	load_kamship(SDLData* d)

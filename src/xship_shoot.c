@@ -23,10 +23,10 @@ static void	ammoUp(XShip* s, v2f* vp, v2f* vd)
 {
   vd->x = 0;
   vd->y = -BULLET_SPD;
-  vp->x += (6 + SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NO])) * (s->turret_shoot[0] ? 1 : -1);
+  vp->x += (6 + SDLazy_GetCenterX(s->bases_sprite[SRF_XSHIP_NO])) * (s->turret_shoot[0] ? 1 : -1);
   vp->y -= 33 + (s->turret_shoot[0] ?
-		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NE]) :
-		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NO]));
+		 SDLazy_GetCenterY(s->bases_sprite[SRF_XSHIP_NE]) :
+		 SDLazy_GetCenterY(s->bases_sprite[SRF_XSHIP_NO]));
   ship_recoil((Ship*)s, RECOIL, SHIP_AXE_Y);
 }
 
@@ -34,10 +34,10 @@ static void	ammoRight(XShip* s, v2f* vp, v2f* vd)
 {
   vd->x = BULLET_SPD;
   vd->y = 0;
-  vp->y += (6 + SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NE])) * (s->turret_shoot[1] ? 1 : -1);
+  vp->y += (6 + SDLazy_GetCenterY(s->bases_sprite[SRF_XSHIP_NE])) * (s->turret_shoot[1] ? 1 : -1);
   vp->x += 33 - (s->turret_shoot[1] ?
-		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SE]) :
-		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NE]));
+		 SDLazy_GetCenterX(s->bases_sprite[SRF_XSHIP_SE]) :
+		 SDLazy_GetCenterX(s->bases_sprite[SRF_XSHIP_NE]));
   ship_recoil((Ship*)s, -RECOIL, SHIP_AXE_X);
 }
 
@@ -45,10 +45,10 @@ static void	ammoDown(XShip* s, v2f* vp, v2f* vd)
 {
   vd->x = 0;
   vd->y = BULLET_SPD;
-  vp->x += (6 + SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SO])) * (s->turret_shoot[2] ? -1 : 1);
+  vp->x += (6 + SDLazy_GetCenterX(s->bases_sprite[SRF_XSHIP_SO])) * (s->turret_shoot[2] ? -1 : 1);
   vp->y += 33 + (s->turret_shoot[2] ?
-		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NO]) :
-		 SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NE]));
+		 SDLazy_GetCenterY(s->bases_sprite[SRF_XSHIP_NO]) :
+		 SDLazy_GetCenterY(s->bases_sprite[SRF_XSHIP_NE]));
   ship_recoil((Ship*)s, -RECOIL, SHIP_AXE_Y);
 }
 
@@ -56,10 +56,10 @@ static void	ammoLeft(XShip* s, v2f* vp, v2f* vd)
 {
   vd->x = -BULLET_SPD;
   vd->y = 0;
-  vp->y += (6 + SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NO])) * (s->turret_shoot[3] ? -1 : 1);
+  vp->y += (6 + SDLazy_GetCenterY(s->bases_sprite[SRF_XSHIP_NO])) * (s->turret_shoot[3] ? -1 : 1);
   vp->x -= 33 + (s->turret_shoot[3] ?
-		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NO]) :
-		 SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SO]));
+		 SDLazy_GetCenterX(s->bases_sprite[SRF_XSHIP_NO]) :
+		 SDLazy_GetCenterX(s->bases_sprite[SRF_XSHIP_SO]));
   ship_recoil((Ship*)s, RECOIL, SHIP_AXE_X);
 }
 
@@ -67,8 +67,8 @@ static void	ammoUpRight(XShip* s, v2f* vp, v2f* vd)
 {
   vd->x = +BULLET_SPD * 0.7071;
   vd->y = -BULLET_SPD * 0.7071;
-  vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NE]);
-  vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NE]);
+  vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_XSHIP_NE]);
+  vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_XSHIP_NE]);
   ship_recoil((Ship*)s, -RECOIL * 0.7071, SHIP_AXE_X);
   ship_recoil((Ship*)s, +RECOIL * 0.7071, SHIP_AXE_Y);
 }
@@ -77,8 +77,8 @@ static void	ammoUpLeft(XShip* s, v2f* vp, v2f* vd)
 {
   vd->x = -BULLET_SPD * 0.7071;
   vd->y = -BULLET_SPD * 0.7071;
-  vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_NO]);
-  vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_NO]);
+  vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_XSHIP_NO]);
+  vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_XSHIP_NO]);
   ship_recoil((Ship*)s, +RECOIL * 0.7071, SHIP_AXE_X);
   ship_recoil((Ship*)s, +RECOIL * 0.7071, SHIP_AXE_Y);
 }
@@ -87,8 +87,8 @@ static void	ammoDownRight(XShip* s, v2f* vp, v2f* vd)
 {
   vd->x = +BULLET_SPD * 0.7071;
   vd->y = +BULLET_SPD * 0.7071;
-  vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_SE]);
-  vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SE]);
+  vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_XSHIP_SE]);
+  vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_XSHIP_SE]);
   ship_recoil((Ship*)s, -RECOIL * 0.7071, SHIP_AXE_X);
   ship_recoil((Ship*)s, -RECOIL * 0.7071, SHIP_AXE_Y);
 }
@@ -97,8 +97,8 @@ static void	ammoDownLeft(XShip* s, v2f* vp, v2f* vd)
 {
   vd->x = -BULLET_SPD * 0.7071;
   vd->y = +BULLET_SPD * 0.7071;
-  vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_SHIP_SO]);
-  vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_SHIP_SO]);
+  vp->y -= SDLazy_GetCenterY(s->bases_sprite[SRF_XSHIP_SO]);
+  vp->x -= SDLazy_GetCenterX(s->bases_sprite[SRF_XSHIP_SO]);
   ship_recoil((Ship*)s, +RECOIL * 0.7071, SHIP_AXE_X);
   ship_recoil((Ship*)s, -RECOIL * 0.7071, SHIP_AXE_Y);
 }

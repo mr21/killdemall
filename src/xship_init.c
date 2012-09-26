@@ -9,7 +9,7 @@ static void	_turrets(SDLData* d, XShip* s)
 
   for (u = 0; u < 8; ++u)
     {
-      s->turret_anim[u] = SDLazy_AnimCreate(d->srf_ship[SRF_SHIP_TURRET], 7, 7, ANIM_PAUSE);
+      s->turret_anim[u] = SDLazy_AnimCreate(d->srf_xship[SRF_XSHIP_TURRET], 7, 7, ANIM_PAUSE);
       SDLazy_SetCenter(s->turret_anim[u], v2f_(10.5, 34));
     }
   SDLazy_SetScaleX (s->turret_anim[1], -1);
@@ -29,7 +29,7 @@ static void	_reactors(SDLData* d, XShip* s)
 
   for (u = 0; u < 4; ++u)
     {
-      s->reactor_anim[u] = SDLazy_AnimCreate(d->srf_ship[SRF_SHIP_REACTOR], 9, 5, ANIM_STOP);
+      s->reactor_anim[u] = SDLazy_AnimCreate(d->srf_xship[SRF_XSHIP_REACTOR], 9, 5, ANIM_STOP);
       SDLazy_SetCenterAlign(s->reactor_anim[u], ALIGN_CENTER | ALIGN_BOTTOM);
       SDLazy_SetCenter(s->reactor_anim[u], v2f_(-0.2, 8.5));
       SDLazy_AnimTimer(s->reactor_anim[u], 70);
@@ -44,12 +44,12 @@ static void	_base(SDLData* d, XShip* s)
   unsigned	u;
 
   for (u = 0; u < 4; ++u)
-    s->bases_sprite[u] = SDLazy_SpriteCreate(d->srf_ship[SRF_SHIP_NO + u]);
+    s->bases_sprite[u] = SDLazy_SpriteCreate(d->srf_xship[SRF_XSHIP_NO + u]);
 }
 
 static void	_cannon(SDLData* d, XShip* s)
 {
-  s->cannon_anim = SDLazy_AnimCreate(d->srf_ship[SRF_SHIP_CANNON], 8, 8, ANIM_PAUSE);
+  s->cannon_anim = SDLazy_AnimCreate(d->srf_xship[SRF_XSHIP_CANNON], 8, 8, ANIM_PAUSE);
   SDLazy_SetCenter(s->cannon_anim, v2f_(6, 47));
   SDLazy_AnimTimer(s->cannon_anim, 40);
 }
