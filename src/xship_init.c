@@ -1,5 +1,6 @@
 #include	<string.h>
 #include	"xship.h"
+#include	"data.h"
 #include	"sdldata.h"
 
 static void	_turrets(SDLData* d, XShip* s)
@@ -53,8 +54,10 @@ static void	_cannon(SDLData* d, XShip* s)
   SDLazy_AnimTimer(s->cannon_anim, 40);
 }
 
-void		xship_init(SDLData* d, XShip* s)
+void		xship_init(XShip* s)
 {
+  SDLData*	d = &((Data*)SDLazy_GetData())->sdldata;
+
   memset(s, 0, sizeof *s);
   ship_init((Ship*)s, XSHIP);
   ship_setaccel((Ship*)s, 0.15);

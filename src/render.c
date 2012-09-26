@@ -23,7 +23,7 @@ void		render(void)
 
   ammos_blit(&d->sdldata, &d->ammos);
 
-  xship_blit(&d->sdldata, (XShip*)d->player);
+  xship_blit((XShip*)d->player);
 
   menu_blit(&d->menu);
 }

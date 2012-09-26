@@ -1,9 +1,11 @@
 #include	"xship.h"
+#include	"data.h"
 #include	"sdldata.h"
 #include	"render.h"
 
-void		xship_blit(SDLData* d, XShip* s)
+void		xship_blit(XShip* s)
 {
+  SDLData*	d = &((Data*)SDLazy_GetData())->sdldata;
   v2f		v;
   unsigned	u;
 

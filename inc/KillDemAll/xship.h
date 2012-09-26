@@ -17,11 +17,12 @@ typedef			struct
   v2f			base_pos[4];
 }			XShip;
 
-void		xship_init(SDLData*, XShip*);
-void		xship_blit(SDLData*, XShip*);
+void		xship_init(XShip*);
+void		xship_blit(XShip*);
+void		xship_core(XShip*);
+
 void		xship_move(XShip*, int dir, int press);
 void		xship_move_bases(XShip*);
-void		xship_core(XShip*);
 void		xship_shoot(XShip*);
 void		xship_cannon_fire(XShip*);
 
