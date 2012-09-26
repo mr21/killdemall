@@ -38,7 +38,7 @@ void		evKeydown(SDL_Event* e)
   switch (e->key.keysym.sym)
     {
     case SDLK_ESCAPE:	SDLazy_Quit(0);
-    case SDLK_TAB:	menu_openclose(&d->menu, 1);
+    case SDLK_TAB:	menu_open(&d->menu);
     default:		ship(d, e->key.keysym.sym, 1);
     }
 }
@@ -49,7 +49,7 @@ void		evKeyup(SDL_Event* e)
 
   switch (e->key.keysym.sym)
     {
-    case SDLK_TAB:	menu_openclose(&d->menu, 0);
+    case SDLK_TAB:	menu_close(&d->menu);
     default:		ship(d, e->key.keysym.sym, 0);
     }
 }
