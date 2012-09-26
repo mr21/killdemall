@@ -1,22 +1,23 @@
 #include	"render.h"
 #include	"data.h"
 #include	"sdldata.h"
-#include	"xship.h"
 #include	"menu.h"
+#include	"xship.h"
+#include	"kamship.h"
 
-static int	render_ship(Ship* s)
+static int	ship_blit(Ship* s)
 {
   switch (s->type)
     {
     case XSHIP:	  xship_blit((XShip*)s);     break;
-    case KAMSHIP: /*kamship_blit((KamShip*)s);*/ break;
+    case KAMSHIP: kamship_blit((KamShip*)s); break;
     }
   return CLIST_CONTINUE;
 }
 
-static void	render_ships(CList* ships)
+static void	ships_blit(CList* ships)
 {
-  CList_foreach(ships, render_ship);
+  CList_foreach(ships, ship_blit);
 }
 
 void		render(void)
@@ -36,9 +37,7 @@ void		render(void)
   SDLazy_SetPos(d->sdldata.srf_bg[BG0], &v);
   SDLazy_Blit(d->sdldata.srf_bg[BG0]);
 
+  ships_blit(&d->ships);
   ammos_blit(&d->sdldata, &d->ammos);
-
-  render_ships(&d->ships);
-
   menu_blit(&d->menu);
 }

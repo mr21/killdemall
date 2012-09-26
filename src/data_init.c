@@ -22,5 +22,6 @@ void		data_init(Data* d)
   d->player = CLink_data(CList_end(&d->ships));
 
   kamship_init(&kamship);
+  ship_setpos((Ship*)&kamship, v2f_(50, 50));
   CList_push_back(&d->ships, &kamship, sizeof kamship, NULL);
 }

@@ -32,6 +32,7 @@ static void	load_xship(SDLData* d)
 static void	load_kamship(SDLData* d)
 {
   d->srf_kamship[SRF_KAMSHIP_BODY] = SDLazy_SurfaceLoad("img/kamship.png", NULL);
+  SDLazy_SetCenterAlign(d->srf_kamship[SRF_KAMSHIP_BODY], ALIGN_CENTER | ALIGN_CENTER);
 }
 
 static void	load_ammo(SDLData* d)
