@@ -10,6 +10,7 @@ void		core(void)
   camera_focus(&d->sdldata, &d->player->pos);
 
   ship_move(d, d->player);
+
   xship_move_bases((XShip*)d->player);
   xship_shoot((XShip*)d->player);
   xship_core((XShip*)d->player);
