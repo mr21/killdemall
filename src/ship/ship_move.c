@@ -1,11 +1,10 @@
 #include	"core.h"
 
-void		ship_move(Data* d, Ship* s)
+void		ship_move(Ship* s)
 {
   double	mxspd = s->mxspd;
   double*	tmp;
   int		i;
-  (void)d;
 
   for (i = 0; i < 2; ++i)
     {
