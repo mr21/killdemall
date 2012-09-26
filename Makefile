@@ -38,6 +38,7 @@ OBJ		+=	$(SRC)render.o
 OBJ		+=	$(SRC)pos_onscreen.o
 OBJ		+=	$(SRC)ship.o
 OBJ		+=	$(SRC)ship_init.o
+OBJ		+=	$(SRC)ship_setters.o
 OBJ		+=	$(SRC)ship_move.o
 OBJ		+=	$(SRC)ship_recoil.o
 OBJ		+=	$(SRC)xship_init.o

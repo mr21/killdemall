@@ -44,6 +44,15 @@ void		ship_recoil(Ship*, double recoil_x, int dir);
 
 void		ship_init(Ship*, eShipType);
 
+/* Setters */
+void            ship_setaccel  (Ship*, double);
+void            ship_setweight (Ship*, double);
+void            ship_setspd_max(Ship*, double);
+void            ship_setpos    (Ship*, v2f*);
+void            ship_setfq_max (Ship*, double);
+void            ship_setfq_lost(Ship*, double);
+void            ship_resetfq   (Ship*);
+
 /* Move */
 void            ship_leftward (Data*, Ship*, char press);
 void            ship_rightward(Data*, Ship*, char press);

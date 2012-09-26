@@ -56,11 +56,13 @@ static void	_cannon(SDLData* d, XShip* s)
 void		xship_init(SDLData* d, XShip* s)
 {
   memset(s, 0, sizeof *s);
-
-  ship_init(&s->ship, XSHIP);
-
-  ship_setfq_max(&s->ship, 0.05);
-
+  ship_init((Ship*)s, XSHIP);
+  ship_setaccel((Ship*)s, 0.15);
+  ship_setweight((Ship*)s, 1.07);
+  ship_setspd_max((Ship*)s, 300);
+  ship_setfq_max((Ship*)s, 0.05);
+  ship_setfq_lost((Ship*)s, 1.1);
+  ship_resetfq((Ship*)s);
   _turrets(d, s);
   _reactors(d, s);
   _base(d, s);
