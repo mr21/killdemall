@@ -1,4 +1,5 @@
 #include	"data.h"
+#include	"xship.h"
 
 void		data_init(Data* d)
 {

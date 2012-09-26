@@ -4,7 +4,7 @@
 #include	"CList.h"
 #include	"data_typedef.h"
 #include	"sdldata.h"
-#include	"xship.h"
+#include	"ship.h"
 #include	"controls.h"
 #include	"menu.h"
 #include	"sound.h"

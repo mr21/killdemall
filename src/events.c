@@ -1,4 +1,5 @@
 #include	"data.h"
+#include	"xship.h"
 #include	"controls.h"
 
 void		evQuit(SDL_Event* e)
