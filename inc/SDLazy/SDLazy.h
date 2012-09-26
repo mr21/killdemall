@@ -46,6 +46,7 @@ void				SDLazy_Fullscreen(void);
 
 /* Getters / Setters */
 void*				SDLazy_GetData(void);
+void				SDLazy_SetData(void*);
 double				SDLazy_GetFrameTime(void);
 double				SDLazy_GetTotalTime(void);
 void				SDLazy_SetFPS(Uint16 delay);

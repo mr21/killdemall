@@ -5,11 +5,12 @@
 
 int		main(void)
 {
-  Data		d;
+  Data		data;
 
   SDLazy_Init(1024, 768, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE, "KillDemAll");
+  SDLazy_SetData(&data);
 
-  data_init(&d);
+  data_init(&data);
 
   SDLazy_SetCursor(CURSOR_CROSS);
 
@@ -18,7 +19,7 @@ int		main(void)
   SDLazy_AddEvent(SDL_MOUSEBUTTONDOWN, evMousedown);
   SDLazy_AddEvent(SDL_QUIT, evQuit);
 
-  SDLazy_Loop(&d, core, render);
+  SDLazy_Loop(&data, core, render);
 
   return 0;
 }
