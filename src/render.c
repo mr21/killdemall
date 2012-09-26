@@ -4,6 +4,21 @@
 #include	"xship.h"
 #include	"menu.h"
 
+static int	render_ship(Ship* s)
+{
+  switch (s->type)
+    {
+    case XSHIP:	  xship_blit((XShip*)s);     break;
+    case KAMSHIP: /*kamship_blit((KamShip*)s);*/ break;
+    }
+  return CLIST_CONTINUE;
+}
+
+static void	render_ships(CList* ships)
+{
+  CList_foreach(ships, render_ship);
+}
+
 void		render(void)
 {
   static Uint32	bg_col;
@@ -23,7 +38,7 @@ void		render(void)
 
   ammos_blit(&d->sdldata, &d->ammos);
 
-  xship_blit((XShip*)d->player);
+  render_ships(&d->ships);
 
   menu_blit(&d->menu);
 }
