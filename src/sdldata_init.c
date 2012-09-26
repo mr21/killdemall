@@ -7,7 +7,7 @@ static void	load_bgs(SDLData* d)
   d->srf_bg[BG0] = SDLazy_SurfaceLoad("img/bg.jpg", NULL);
 }
 
-static void	load_ship(SDLData* d)
+static void	load_xship(SDLData* d)
 {
   d->srf_ship[SRF_SHIP_NO]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect( 20, 20, 23, 23));
   d->srf_ship[SRF_SHIP_NE]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect( 43, 20, 23, 23));
@@ -29,6 +29,11 @@ static void	load_ship(SDLData* d)
   d->srf_ship[SRF_SHIP_CANNON]	= SDLazy_SurfaceLoad(spr, SDLazy_Rect(280,  50, 12, 50));
 }
 
+static void	load_kamship(SDLData* d)
+{
+  d->srf_kamship[SRF_KAMSHIP_BODY] = SDLazy_SurfaceLoad("img/kamship.png", NULL);
+}
+
 static void	load_ammo(SDLData* d)
 {
   unsigned	u;
@@ -43,6 +48,7 @@ void		sdldata_init(SDLData* d)
 {
   d->cam.x = d->cam.y = 0;
   load_bgs(d);
-  load_ship(d);
+  load_xship(d);
+  load_kamship(d);
   load_ammo(d);
 }

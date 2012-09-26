@@ -16,13 +16,20 @@ enum
   SRF_SHIP_NO, SRF_SHIP_NE, SRF_SHIP_SO, SRF_SHIP_SE,
   SRF_SHIP_TURRET, SRF_SHIP_REACTOR, SRF_SHIP_CANNON,
   SRF_SHIP_BASE, SRF_SHIP_TOP,
-  NB_SRF_SHIP
+  NB_SRF_XSHIP
+};
+
+enum
+{
+  SRF_KAMSHIP_BODY,
+  NB_SRF_KAMSHIP
 };
 
 struct			SDLData
 {
   SDLazy_Surface*	srf_bg[NB_BGS];
-  SDLazy_Surface*	srf_ship[NB_SRF_SHIP];
+  SDLazy_Surface*	srf_ship[NB_SRF_XSHIP];
+  SDLazy_Surface*	srf_kamship[NB_SRF_KAMSHIP];
   SDLazy_Surface*	srf_ammo[NB_AMMOS];
   v2f			cam;
 };

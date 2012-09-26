@@ -8,7 +8,7 @@
 typedef			struct
 {
   Ship			ship;
-  SDLazy_Sprite*	srf_body;
+  SDLazy_Sprite*	spr_body;
   Ship*			target;
 }			KamShip;
 
