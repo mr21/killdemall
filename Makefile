@@ -41,6 +41,7 @@ OBJ		+=	$(SRC)ship_init.o
 OBJ		+=	$(SRC)ship_setters.o
 OBJ		+=	$(SRC)ship_move.o
 OBJ		+=	$(SRC)ship_recoil.o
+OBJ		+=	$(SRC)ships_blit.o
 OBJ		+=	$(SRC)xship_init.o
 OBJ		+=	$(SRC)xship_blit.o
 OBJ		+=	$(SRC)xship_core.o

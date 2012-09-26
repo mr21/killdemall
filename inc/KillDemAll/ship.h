@@ -44,6 +44,9 @@ void		ship_recoil(Ship*, double recoil_x, int dir);
 
 void		ship_init(Ship*, eShipType);
 
+/* ShipS */
+void		ships_blit(CList* ships);
+
 /* Setters */
 void            ship_setaccel  (Ship*, double);
 void            ship_setweight (Ship*, double);
