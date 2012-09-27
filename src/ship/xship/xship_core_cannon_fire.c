@@ -2,7 +2,7 @@
 #include	"sound.h"
 #include	"ammo.h"
 
-void		xship_cannon_fire(XShip* s)
+void		xship_core_cannon_fire(XShip* s)
 {
   Ammo		b;
   double	radAn = SDLazy_GetRot(s->cannon_anim);

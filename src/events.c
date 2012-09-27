@@ -14,7 +14,7 @@ void		evMousedown(SDL_Event* e)
 
   if (e->button.button == SDL_BUTTON_LEFT &&
       !menu_mouseover(&d->menu))
-    xship_cannon_fire((XShip*)d->player);
+    xship_core_cannon_fire((XShip*)d->player);
 }
 
 static void	ship(Data* d, SDLKey k, char press)

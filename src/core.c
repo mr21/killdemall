@@ -9,10 +9,7 @@ void		core(void)
   menu_core(&d->menu);
   camera_focus(&d->sdldata, &d->player->pos);
 
-  ship_move(d->player);
-
-  xship_move_bases((XShip*)d->player);
-  xship_shoot((XShip*)d->player);
+  ship_core(d->player);
   xship_core((XShip*)d->player);
 
   ammos_core(&d->ammos);

@@ -1,5 +1,6 @@
 #include	"xship.h"
-#include	"data.h"
+#include	"sdldata.h"
+#include	"sound.h"
 
 #define		BULLET_SPD	650
 #define		RECOIL		120.0
@@ -143,22 +144,22 @@ static void	create_ammo(XShip* p)
   sound_play(SND_XSHIP_SHOOT, .8, _pan(p->ship.shoot_dir), _freq(&p->ship));
 }
 
-void            xship_shoot(XShip* p)
+void            xship_core_shoot(XShip* s)
 {
   int		anim;
 
-  if (ammo[p->ship.shoot_dir] &&
-      SDLazy_GetTotalTime() > p->time_last_turret_shoot + p->ship.shtfq_curr)
+  if (ammo[s->ship.shoot_dir] &&
+      SDLazy_GetTotalTime() > s->time_last_turret_shoot + s->ship.shtfq_curr)
     {
-      p->time_last_turret_shoot = SDLazy_GetTotalTime();
-      p->ship.shtfq_curr *= p->ship.shtfq_lost;
-      create_ammo(p);
-      anim = p->ship.shoot_dir;
+      s->time_last_turret_shoot = SDLazy_GetTotalTime();
+      s->ship.shtfq_curr *= s->ship.shtfq_lost;
+      create_ammo(s);
+      anim = s->ship.shoot_dir;
       if (anim < 3 || anim == 4 || anim == 8)
 	{
 	  anim = anim < 3 ? anim - 1 : anim == 4 ? 2 : 3;
-	  SDLazy_AnimReplay(p->turret_anim[anim * 2 + p->turret_shoot[anim]]);
-	  p->turret_shoot[anim] = !p->turret_shoot[anim];
+	  SDLazy_AnimReplay(s->turret_anim[anim * 2 + s->turret_shoot[anim]]);
+	  s->turret_shoot[anim] = !s->turret_shoot[anim];
 	}
     }
 }

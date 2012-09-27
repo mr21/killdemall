@@ -40,9 +40,10 @@ enum
 
 Ship*		ship_push(CList* ships, Ship*);
 void		ship_move(Ship*);
-void		ship_recoil(Ship*, double recoil_x, int dir);
+void		ship_recoil(Ship*, double recoil, int dir);
 
 void		ship_init(Ship*, eShipType);
+void		ship_core(Ship*);
 
 /* ShipS */
 void		ships_blit(CList* ships);

@@ -21,9 +21,12 @@ void		xship_init(XShip*);
 void		xship_blit(XShip*);
 void		xship_core(XShip*);
 
+void		xship_core_move_bases(XShip*);
+void		xship_core_shoot(XShip*);
+void		xship_core_rot_cannon(XShip*);
+void		xship_core_cannon_fire(XShip*);
+void		xship_core_dir(XShip*);
+
 void		xship_move(XShip*, int dir, int press);
-void		xship_move_bases(XShip*);
-void		xship_shoot(XShip*);
-void		xship_cannon_fire(XShip*);
 
 #endif
