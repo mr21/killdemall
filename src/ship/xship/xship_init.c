@@ -68,6 +68,7 @@ void		xship_init(XShip* xs)
   ship_setfq_lost(s, 1.1);
   ship_resetfq(s);
   s->left_clic = xship_core_cannon_fire;
+  s->blit = xship_blit;
   _turrets(d, xs);
   _reactors(d, xs);
   _base(d, xs);
