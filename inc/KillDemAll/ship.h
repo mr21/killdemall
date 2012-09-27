@@ -47,6 +47,7 @@ void		ship_core(Ship*);
 
 /* ShipS */
 void		ships_blit(CList* ships);
+void		ships_core(CList* ships);
 
 /* Setters */
 void            ship_setaccel  (Ship*, double);

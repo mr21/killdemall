@@ -19,8 +19,9 @@ typedef			struct
 
 void		xship_init(XShip*);
 void		xship_blit(XShip*);
-void		xship_core(XShip*);
 
+/* Core */
+void		xship_core(XShip*);
 void		xship_core_move_bases(XShip*);
 void		xship_core_shoot(XShip*);
 void		xship_core_rot_cannon(XShip*);

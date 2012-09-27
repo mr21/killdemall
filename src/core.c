@@ -1,6 +1,5 @@
 #include	"core.h"
 #include	"data.h"
-#include	"xship.h"
 
 void		core(void)
 {
@@ -8,9 +7,6 @@ void		core(void)
 
   menu_core(&d->menu);
   camera_focus(&d->sdldata, &d->player->pos);
-
-  ship_core(d->player);
-  xship_core((XShip*)d->player);
-
+  ships_core(&d->ships);
   ammos_core(&d->ammos);
 }
