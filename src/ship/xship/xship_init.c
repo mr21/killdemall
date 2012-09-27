@@ -54,20 +54,22 @@ static void	_cannon(SDLData* d, XShip* s)
   SDLazy_AnimTimer(s->cannon_anim, 40);
 }
 
-void		xship_init(XShip* s)
+void		xship_init(XShip* xs)
 {
   SDLData*	d = &((Data*)SDLazy_GetData())->sdldata;
+  Ship*		s = (Ship*)xs;
 
-  memset(s, 0, sizeof *s);
-  ship_init((Ship*)s, XSHIP);
-  ship_setaccel((Ship*)s, 0.15);
-  ship_setweight((Ship*)s, 1.07);
-  ship_setspd_max((Ship*)s, 300);
-  ship_setfq_max((Ship*)s, 0.05);
-  ship_setfq_lost((Ship*)s, 1.1);
-  ship_resetfq((Ship*)s);
-  _turrets(d, s);
-  _reactors(d, s);
-  _base(d, s);
-  _cannon(d, s);
+  memset(xs, 0, sizeof *xs);
+  ship_init(s, XSHIP);
+  ship_setaccel(s, 0.15);
+  ship_setweight(s, 1.07);
+  ship_setspd_max(s, 300);
+  ship_setfq_max(s, 0.05);
+  ship_setfq_lost(s, 1.1);
+  ship_resetfq(s);
+  s->left_clic = xship_core_cannon_fire;
+  _turrets(d, xs);
+  _reactors(d, xs);
+  _base(d, xs);
+  _cannon(d, xs);
 }

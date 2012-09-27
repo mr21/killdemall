@@ -21,6 +21,7 @@ typedef		enum
 typedef		struct
 {
   eShipType	type;
+  void		(*left_clic)();
   double	mxspd;
   double	accel;
   double	weight;
