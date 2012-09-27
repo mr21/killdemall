@@ -26,6 +26,7 @@ LDFLAGS		+=	-pthread
 RM		=	@rm -f
 
 OBJ		=	$(SRC)main.o
+OBJ		+=	$(SRC)null.o
 OBJ		+=	$(SRC)data_init.o
 OBJ		+=	$(SRC)sdldata_init.o
 OBJ		+=	$(SRC)sound.o
