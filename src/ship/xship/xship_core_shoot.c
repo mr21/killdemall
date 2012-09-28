@@ -133,7 +133,7 @@ static void	create_ammo(XShip* p)
   v2f		vd;
   v2f		vp = p->ship.pos;
 
-  ammo[p->ship.shoot_dir](p, &vp, &vd);
+  ammo[p->shoot_dir](p, &vp, &vd);
   b.type = AMMO_BULLET;
   b.from_who = (Ship*)p;
   b.duration_time = 1.;
@@ -141,20 +141,20 @@ static void	create_ammo(XShip* p)
   b.pos = vp;
   b.dir = vd;
   ammo_push(SDLazy_GetData(), &b);
-  sound_play(SND_XSHIP_SHOOT, .8, _pan(p->ship.shoot_dir), _freq(&p->ship));
+  sound_play(SND_XSHIP_SHOOT, .8, _pan(p->shoot_dir), _freq(&p->ship));
 }
 
 void            xship_core_shoot(XShip* s)
 {
   int		anim;
 
-  if (ammo[s->ship.shoot_dir] &&
+  if (ammo[s->shoot_dir] &&
       SDLazy_GetTotalTime() > s->time_last_turret_shoot + s->ship.shtfq_curr)
     {
       s->time_last_turret_shoot = SDLazy_GetTotalTime();
       s->ship.shtfq_curr *= s->ship.shtfq_lost;
       create_ammo(s);
-      anim = s->ship.shoot_dir;
+      anim = s->shoot_dir;
       if (anim < 3 || anim == 4 || anim == 8)
 	{
 	  anim = anim < 3 ? anim - 1 : anim == 4 ? 2 : 3;

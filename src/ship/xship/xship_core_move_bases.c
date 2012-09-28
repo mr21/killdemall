@@ -8,7 +8,7 @@ static void	move(XShip* s, int spr, int key, int tur)
   double	d;
 
   d = -(key % 2 ? SDLazy_GetCenterX : SDLazy_GetCenterY)(s->bases_sprite[spr]);
-  if (s->ship.dir_press[key])
+  if (s->dir_press[key])
     d += LIM;
   d *= SPD * SDLazy_GetFrameTime();
   (key % 2 ? SDLazy_IncCenterX : SDLazy_IncCenterY)(s->bases_sprite[spr], +d);

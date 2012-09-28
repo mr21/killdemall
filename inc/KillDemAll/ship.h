@@ -29,8 +29,6 @@ typedef		struct
   double	shtfq_curr;
   v2f		pos;
   v2f		dir;
-  char		dir_press[4];
-  eShipDir	shoot_dir;
 
   /* Virtual methode */
   void		(*left_clic)();

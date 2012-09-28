@@ -12,6 +12,8 @@ typedef			struct
   SDLazy_Anim*		turret_anim[8];
   SDLazy_Anim*		reactor_anim[4];
   SDLazy_Anim*		cannon_anim;
+  eShipDir		shoot_dir;
+  char			dir_press[4];
   char			turret_shoot[4];
   double		time_last_turret_shoot;
   v2f			base_pos[4];
@@ -25,8 +27,10 @@ void		xship_core(XShip*);
 void		xship_core_move_bases(XShip*);
 void		xship_core_shoot(XShip*);
 void		xship_core_rot_cannon(XShip*);
-void		xship_core_cannon_fire(XShip*);
 void		xship_core_dir(XShip*);
+
+/* Events */
+void		xship_event_cannon_fire(XShip*);
 
 /* Move */
 void		xship_leftward (XShip*, char press);
