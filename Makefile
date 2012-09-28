@@ -56,7 +56,6 @@ OBJ		+=	$(SRC)ship/xship/xship_core_shoot.o
 OBJ		+=	$(SRC)ship/xship/xship_core_dir.o
 OBJ		+=	$(SRC)ship/xship/xship_core_rot_cannon.o
 OBJ		+=	$(SRC)ship/xship/xship_core_cannon_fire.o
-OBJ		+=	$(SRC)ship/xship/xship_move.o
 OBJ		+=	$(SRC)ship/kamship/kamship_init.o
 OBJ		+=	$(SRC)ship/kamship/kamship_blit.o
 OBJ		+=	$(SRC)ship/kamship/kamship_core.o
