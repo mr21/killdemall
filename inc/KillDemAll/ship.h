@@ -21,9 +21,6 @@ typedef		enum
 typedef		struct
 {
   eShipType	type;
-  void		(*left_clic)();
-  void		(*blit)();
-  void		(*core)();
   double	mxspd;
   double	accel;
   double	weight;
@@ -34,6 +31,11 @@ typedef		struct
   v2f		dir;
   char		dir_press[4];
   eShipDir	shoot_dir;
+
+  /* Virtual methode */
+  void		(*left_clic)();
+  void		(*blit)();
+  void		(*core)();
 }		Ship;
 
 enum
