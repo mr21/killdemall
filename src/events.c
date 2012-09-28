@@ -20,14 +20,14 @@ static void	ship(Data* d, SDLKey k, char press)
 {
   SDLKey*	c = d->ctrls.key;
 
-  if      (k == c[UPWARD])	ship_forward    (d->player, press);
-  else if (k == c[DOWNWARD])	ship_backward   (d->player, press);
-  else if (k == c[LEFTWARD])	ship_leftward   (d->player, press);
-  else if (k == c[RIGHTWARD])	ship_rightward  (d->player, press);
-  else if (k == c[UPSHOOT])	ship_upshoot    (d->player, press);
-  else if (k == c[RIGHTSHOOT])	ship_rightshoot (d->player, press);
-  else if (k == c[DOWNSHOOT])	ship_downshoot  (d->player, press);
-  else if (k == c[LEFTSHOOT])	ship_leftshoot  (d->player, press);
+  if      (k == c[UPWARD])	xship_forward    ((XShip*)d->player, press);
+  else if (k == c[DOWNWARD])	xship_backward   ((XShip*)d->player, press);
+  else if (k == c[LEFTWARD])	xship_leftward   ((XShip*)d->player, press);
+  else if (k == c[RIGHTWARD])	xship_rightward  ((XShip*)d->player, press);
+  else if (k == c[UPSHOOT])	xship_upshoot    ((XShip*)d->player, press);
+  else if (k == c[RIGHTSHOOT])	xship_rightshoot ((XShip*)d->player, press);
+  else if (k == c[DOWNSHOOT])	xship_downshoot  ((XShip*)d->player, press);
+  else if (k == c[LEFTSHOOT])	xship_leftshoot  ((XShip*)d->player, press);
 }
 
 void		evKeydown(SDL_Event* e)

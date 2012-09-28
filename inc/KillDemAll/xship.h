@@ -28,6 +28,16 @@ void		xship_core_rot_cannon(XShip*);
 void		xship_core_cannon_fire(XShip*);
 void		xship_core_dir(XShip*);
 
-void		xship_move(XShip*, int dir, int press);
+/* Move */
+void		xship_leftward (XShip*, char press);
+void		xship_rightward(XShip*, char press);
+void		xship_forward  (XShip*, char press);
+void		xship_backward (XShip*, char press);
+
+/* Shoot */
+void		xship_leftshoot (XShip*, char press);
+void		xship_rightshoot(XShip*, char press);
+void		xship_upshoot   (XShip*, char press);
+void		xship_downshoot (XShip*, char press);
 
 #endif

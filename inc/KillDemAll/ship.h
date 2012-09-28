@@ -63,16 +63,4 @@ void            ship_setfq_max (Ship*, double);
 void            ship_setfq_lost(Ship*, double);
 void            ship_resetfq   (Ship*);
 
-/* Move */
-void            ship_leftward (Ship*, char press);
-void            ship_rightward(Ship*, char press);
-void            ship_forward  (Ship*, char press);
-void            ship_backward (Ship*, char press);
-
-/* Shoot */
-void            ship_leftshoot (Ship*, char press);
-void            ship_rightshoot(Ship*, char press);
-void            ship_upshoot   (Ship*, char press);
-void            ship_downshoot (Ship*, char press);
-
 #endif
