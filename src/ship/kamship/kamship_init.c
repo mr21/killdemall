@@ -9,6 +9,7 @@ void		kamship_init(KamShip* ks)
 
   ship_init(s, KAMSHIP);
   s->blit = kamship_blit;
+  s->core = kamship_core;
   ks->spr_body = SDLazy_SpriteCreate(d->srf_kamship[SRF_KAMSHIP_BODY]);
   ks->target = NULL;
 }

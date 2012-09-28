@@ -4,11 +4,7 @@
 static int	_core(Ship* s)
 {
   ship_core(s);
-  switch (s->type)
-    {
-    case XSHIP:   xship_core((XShip*)s); break;
-    case KAMSHIP: /**/ break;
-    }
+  s->core(s);
   return CLIST_CONTINUE;
 }
 

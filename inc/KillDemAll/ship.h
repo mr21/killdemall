@@ -23,6 +23,7 @@ typedef		struct
   eShipType	type;
   void		(*left_clic)();
   void		(*blit)();
+  void		(*core)();
   double	mxspd;
   double	accel;
   double	weight;
