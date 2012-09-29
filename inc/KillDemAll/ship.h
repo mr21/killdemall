@@ -34,6 +34,9 @@ typedef		struct
   void		(*left_clic)();
   void		(*blit)();
   void		(*core)();
+  void		(*arrows[4])();
+  void		(*moves[4])();
+
 }		Ship;
 
 enum
