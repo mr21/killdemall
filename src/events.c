@@ -1,5 +1,5 @@
 #include	"data.h"
-#include	"xship.h"
+#include	"ship.h"
 #include	"controls.h"
 
 void		evQuit(SDL_Event* e)
@@ -20,14 +20,14 @@ static void	ship(Data* d, SDLKey k, char press)
 {
   SDLKey*	c = d->ctrls.key;
 
-  if      (k == c[UPWARD])     xship_event_wasd  ((XShip*)d->player, DIR_UP,    press);
-  else if (k == c[RIGHTWARD])  xship_event_wasd  ((XShip*)d->player, DIR_RIGHT, press);
-  else if (k == c[DOWNWARD])   xship_event_wasd  ((XShip*)d->player, DIR_DOWN,  press);
-  else if (k == c[LEFTWARD])   xship_event_wasd  ((XShip*)d->player, DIR_LEFT,  press);
-  else if (k == c[UPSHOOT])    xship_event_arrows((XShip*)d->player, DIR_UP,    press);
-  else if (k == c[RIGHTSHOOT]) xship_event_arrows((XShip*)d->player, DIR_RIGHT, press);
-  else if (k == c[DOWNSHOOT])  xship_event_arrows((XShip*)d->player, DIR_DOWN,  press);
-  else if (k == c[LEFTSHOOT])  xship_event_arrows((XShip*)d->player, DIR_LEFT,  press);
+  if      (k == c[UPWARD])     d->player->wasd  ((void*)d->player, DIR_UP,    press);
+  else if (k == c[RIGHTWARD])  d->player->wasd  ((void*)d->player, DIR_RIGHT, press);
+  else if (k == c[DOWNWARD])   d->player->wasd  ((void*)d->player, DIR_DOWN,  press);
+  else if (k == c[LEFTWARD])   d->player->wasd  ((void*)d->player, DIR_LEFT,  press);
+  else if (k == c[UPSHOOT])    d->player->arrows((void*)d->player, DIR_UP,    press);
+  else if (k == c[RIGHTSHOOT]) d->player->arrows((void*)d->player, DIR_RIGHT, press);
+  else if (k == c[DOWNSHOOT])  d->player->arrows((void*)d->player, DIR_DOWN,  press);
+  else if (k == c[LEFTSHOOT])  d->player->arrows((void*)d->player, DIR_LEFT,  press);
 }
 
 void		evKeydown(SDL_Event* e)
