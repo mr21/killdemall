@@ -1,25 +1,26 @@
 #include	"xship.h"
 
+static void	_move(Ship* s, double* tmp, int neg)
+{
+  if (neg)
+    {
+      if (*tmp > -s->mxspd + .01 && (*tmp -= s->mxspd / s->accel * SDLazy_GetFrameTime()) < -s->mxspd)
+	*tmp = -s->mxspd;
+    }
+  else if (*tmp < +s->mxspd - .01 && (*tmp += s->mxspd / s->accel * SDLazy_GetFrameTime()) > +s->mxspd)
+    *tmp = +s->mxspd;
+}
+
 void		xship_core_dir(XShip* xs)
 {
   Ship*		s = (Ship*)xs;
-  double*       tmp;
-  int           i;
 
-  for (i = 0; i < 2; ++i)
-    {
-      tmp = i ? &s->dir.y : &s->dir.x;
-      if (xs->dir_press[i] && !xs->dir_press[i + 2])
-        {
-          if (*tmp > -s->mxspd + .01 &&
-              (*tmp -= s->mxspd / s->accel * SDLazy_GetFrameTime()) < -s->mxspd)
-            *tmp = -s->mxspd;
-        }
-      else if (xs->dir_press[i + 2] && !xs->dir_press[i])
-        {
-          if (*tmp < +s->mxspd - .01 &&
-              (*tmp += s->mxspd / s->accel * SDLazy_GetFrameTime()) > +s->mxspd)
-            *tmp = +s->mxspd;
-        }
-    }
+  if (xs->move_dir & DIR_LEFT && !(xs->move_dir & DIR_RIGHT))
+    _move(s, &s->dir.x, 1);
+  else if (xs->move_dir & DIR_RIGHT && !(xs->move_dir & DIR_LEFT))
+    _move(s, &s->dir.x, 0);
+  if (xs->move_dir & DIR_UP && !(xs->move_dir & DIR_DOWN))
+    _move(s, &s->dir.y, 1);
+  else if (xs->move_dir & DIR_DOWN && !(xs->move_dir & DIR_UP))
+    _move(s, &s->dir.y, 0);
 }
