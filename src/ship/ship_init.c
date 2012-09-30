@@ -5,9 +5,11 @@
 void		ship_init(Ship* s, eShipType type)
 {
   memset(s, 0, sizeof *s);
-  s->left_clic = null;
-  s->blit = null;
-  s->core = null;
-  ship_setweight(s, 1);
   s->type = type;
+  s->core = null;
+  s->left_clic = null;
+  s->arrows = null;
+  s->wasd = null;
+  s->blit = null;
+  ship_setweight(s, 1);
 }
