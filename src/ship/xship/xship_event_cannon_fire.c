@@ -2,6 +2,8 @@
 #include	"sound.h"
 #include	"ammo.h"
 
+#define		RECOIL_ROCKET	200
+
 void		xship_event_cannon_fire(XShip* s)
 {
   Ammo		b;
@@ -15,8 +17,8 @@ void		xship_event_cannon_fire(XShip* s)
   b.dir.y = cos(radAn - M_PI);
   b.pos.x = s->ship.pos.x + b.dir.x * 40;
   b.pos.y = s->ship.pos.y + b.dir.y * 40;
-  ship_recoil((Ship*)s, -b.dir.x * 200, SHIP_AXE_X);
-  ship_recoil((Ship*)s, -b.dir.y * 200, SHIP_AXE_Y);
+  ship_recoil((Ship*)s, -b.dir.x * RECOIL_ROCKET, SHIP_AXE_X);
+  ship_recoil((Ship*)s, -b.dir.y * RECOIL_ROCKET, SHIP_AXE_Y);
   b.dir.x *= 700.;
   b.dir.y *= 700.;
   ammo_push(SDLazy_GetData(), &b);
