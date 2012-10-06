@@ -16,4 +16,7 @@ void		kamship_init(KamShip*);
 void		kamship_blit(KamShip*);
 void		kamship_core(KamShip*);
 
+/* Events */
+void		kamship_event_leftclic(KamShip*);
+
 #endif

@@ -35,6 +35,6 @@ void			menu_core(Menu*);
 void			menu_open(Menu*);
 void			menu_close(Menu*);
 void			menu_toggle(void);
-int			menu_mouseover(Menu* d);
+int			menu_mouseover(Menu*);
 
 #endif
