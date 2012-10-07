@@ -7,10 +7,13 @@ void		xship_core_rot_cannon(XShip* s)
 
   v.x = SDLazy_GetMouseX() - v.x;
   v.y = SDLazy_GetMouseY() - v.y;
-  d = v.y ? -atan(v.x / v.y) : 0;
-  if (v.y > 0)
-    d += M_PI;
-  else if (!v.y)
+  if (!v.y)
     d = v.x > 0 ? M_PI2 : -M_PI2;
+  else
+    {
+      d = -atan(v.x / v.y);
+      if (v.y > 0)
+	d += M_PI;
+    }
   SDLazy_SetRot(s->cannon_anim, d);
 }
