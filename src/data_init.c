@@ -15,7 +15,7 @@ static void	tmp(Data* d)
   CList_push_back(&d->ships, &kamship, sizeof kamship, NULL);
 
   d->player = CLink_data(CList_begin(&d->ships));
-  /*d->player = CLink_data(CList_end(&d->ships));*/
+  d->player = CLink_data(CList_end(&d->ships));
 }
 
 void		data_init(Data* d)

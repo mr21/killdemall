@@ -1,6 +1,6 @@
 #include	"kamship.h"
 
-void		kamship_core(KamShip* s)
+void		kamship_core(KamShip* k)
 {
-  (void)s;
+  (void)k;
 }

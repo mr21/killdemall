@@ -8,6 +8,7 @@ void		kamship_init(KamShip* ks)
   Ship*		s = (Ship*)ks;
 
   ship_init(s, KAMSHIP);
+  ship_setweight(s, 1.02);
   s->blit = kamship_blit;
   s->core = kamship_core;
   s->left_clic = kamship_event_leftclic;
