@@ -12,5 +12,6 @@ void		kamship_init(KamShip* ks)
   s->core = kamship_core;
   s->left_clic = kamship_event_leftclic;
   ks->spr_body = SDLazy_SpriteCreate(d->srf_kamship[SRF_KAMSHIP_BODY]);
-  ks->target = NULL;
+  ks->dest.x = 0.;
+  ks->dest.y = 0.;
 }

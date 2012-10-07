@@ -9,7 +9,7 @@ typedef			struct
 {
   Ship			ship;
   SDLazy_Sprite*	spr_body;
-  Ship*			target;
+  v2f			dest;
 }			KamShip;
 
 void		kamship_init(KamShip*);
