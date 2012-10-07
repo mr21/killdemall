@@ -7,7 +7,7 @@ int		main(void)
 {
   Data		data;
 
-  SDLazy_Init(600, 500, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE, "KillDemAll");
+  SDLazy_Init(800, 600, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE, "KillDemAll");
   SDLazy_SetData(&data);
 
   data_init(&data);
