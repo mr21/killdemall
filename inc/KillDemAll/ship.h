@@ -18,9 +18,12 @@ typedef		enum
   KAMSHIP
 }		eShipType;
 
-typedef		struct
+typedef		struct Ship Ship;
+
+struct		Ship
 {
   eShipType	type;
+  Ship*		target;
   double	mxspd;
   double	accel;
   double	weight;
@@ -35,7 +38,7 @@ typedef		struct
   void		(*core)();
   void		(*wasd)();
   void		(*arrows)();
-}		Ship;
+};
 
 enum
 {
@@ -61,5 +64,6 @@ void            ship_setpos    (Ship*, v2f*);
 void            ship_setfq_max (Ship*, double);
 void            ship_setfq_lost(Ship*, double);
 void            ship_resetfq   (Ship*);
+void            ship_settarget (Ship*, Ship* trg);
 
 #endif

@@ -9,13 +9,15 @@ static void	tmp(Data* d)
 
   xship_init(&xship);
   kamship_init(&kamship);
+  ship_settarget((Ship*)&kamship, (Ship*)&xship);
+
   ship_setpos((Ship*)&kamship, v2f_(50, 50));
 
   CList_push_back(&d->ships, &xship, sizeof xship, NULL);
   CList_push_back(&d->ships, &kamship, sizeof kamship, NULL);
 
   d->player = CLink_data(CList_begin(&d->ships));
-  /*d->player = CLink_data(CList_end(&d->ships));*/
+  d->player = CLink_data(CList_end(&d->ships));
 }
 
 void		data_init(Data* d)
