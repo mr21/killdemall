@@ -60,6 +60,7 @@ CLink*			CList_push_before(CLink*, void* data, size_t, void (*destr)());
 
 /* Pop */
 CLink*			CList_pop      (CLink*);
+CLink*			CList_popn     (CLink* a, CLink* b);
 CLink*			CList_pop_back (CList*);
 CLink*			CList_pop_front(CList*);
 
