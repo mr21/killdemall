@@ -1,9 +1,6 @@
 KillDemAll
 ==========
 
-Ce debut de jeu va etre converti en canvas :)
-
-[old readme]
 _Kill Dem All_ est un mini jeu SDL (utilisant la lib' sur laquelle je travaille _SDLazy_)
 
 _Envie de tester ?_  
@@ -17,4 +14,3 @@ Les controles pour le moment sont :
 * __Tirs avec les turrels__ : les flèches directionnelles (il est aussi possible d'intervertir les commandes dans le menu)
 * __Tirs avec le canon primaire__ : Clic gauche
 * __Ragequit__ : Echap (ca quitte tout d'un coup, c'est temporaire :D)
-[/old readme]
