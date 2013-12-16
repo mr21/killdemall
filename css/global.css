@@ -1,0 +1,3 @@
+body    { margin:0; font:12px sans-serif; text-align:center; color:#ddd; background:#333; }
+#global { display:inline-block; margin:auto; text-align:left; }
+canvas  { display:block; background:#888; }
