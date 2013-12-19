@@ -5,13 +5,21 @@ var KillDemAll = {
 			elem,
 			['css/sprites.png'],
 			{
-				load: function() { self.load() },
-				loop: function() { self.loop() }
+				load    : function()  { self.load()     },
+				loop    : function()  { self.loop()     },
+				keydown : function(e) { self.keydown(e) },
+				keyup   : function(e) { self.keyup(e)   }
 			}
 		);
 	},
 	load: function() {
 		this.xship_01 = new KillDemAll.XShip();
+	},
+	keydown: function(key) {
+		lg('keydown :' + key);
+	},
+	keyup: function(key) {
+		lg('keyup   :' + key);
 	},
 	loop: function() {
 		var ctx = this.canvas2d.ctx;
