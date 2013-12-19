@@ -1,7 +1,6 @@
 var KillDemAll = {
-	init: function() {
+	init: function(elem) {
 		var self      = this;
-		var elem      = document.getElementsByTagName('canvas')[0];
 		this.canvas2d = new Canvas2D(
 			elem,
 			['css/sprites.png'],

@@ -4,6 +4,14 @@ function Canvas2D(el, images, fnInit, fnLoop) {
 	this.fnInit = fnInit;
 	this.fnLoop = fnLoop;
 	this.assets = new Assets(this, images);
+	// events
+	el._addEvent('click', function(ev) {
+		ev.stopPropagation();
+		this._addClass('active');
+	});
+	document._addEvent('click', function() {
+		el._delClass('active');
+	});
 }
 Canvas2D.prototype = {
 	launch: function() {
