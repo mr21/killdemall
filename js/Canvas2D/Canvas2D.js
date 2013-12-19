@@ -1,8 +1,7 @@
-function Canvas2D(el, images, fnInit, fnLoop) {
+function Canvas2D(el, images, fns) {
 	var self    = this;
 	this.ctx    = el.getContext('2d');
-	this.fnInit = fnInit;
-	this.fnLoop = fnLoop;
+	this.fns    = fns;
 	this.assets = new Assets(this, images);
 	// events
 	el._addEvent('click', function(ev) {
@@ -15,7 +14,7 @@ function Canvas2D(el, images, fnInit, fnLoop) {
 }
 Canvas2D.prototype = {
 	launch: function() {
-		this.fnInit();
+		this.fns.load();
 		var self      = this;
 		this.time     = new Time();
 		this.intervId = window.setInterval(function() {
@@ -24,7 +23,7 @@ Canvas2D.prototype = {
 	},
 	loop: function() {
 		this.time.update();
-		this.fnLoop();
+		this.fns.loop();
 		this.assets.update();
 	},
 	stop: function() {

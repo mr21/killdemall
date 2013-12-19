@@ -4,8 +4,10 @@ var KillDemAll = {
 		this.canvas2d = new Canvas2D(
 			elem,
 			['css/sprites.png'],
-			function() { self.load() },
-			function() { self.loop() }
+			{
+				load: function() { self.load() },
+				loop: function() { self.loop() }
+			}
 		);
 	},
 	load: function() {
