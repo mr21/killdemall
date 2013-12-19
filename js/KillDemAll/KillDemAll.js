@@ -16,14 +16,10 @@ var KillDemAll = {
 		);
 	},
 	load: function() {
-		this.xship_01 = new KillDemAll.XShip();
+		this.xship = new KillDemAll.XShip();
 	},
-	keydown: function(key) {
-		lg('keydown(' + key + ')');
-	},
-	keyup: function(key) {
-		lg('keyup(' + key + ')');
-	},
+	keydown: function(k) { if (k >= 37 && k <= 40) this.xship.userMove(k, 1); },
+	keyup:   function(k) { if (k >= 37 && k <= 40) this.xship.userMove(k, 0); },
 	mousedown: function(x, y) {
 		lg('mousedown(' + x + ', ' + y + ')');
 	},
@@ -31,14 +27,14 @@ var KillDemAll = {
 		lg('mouseup(' + x + ', ' + y + ')');
 	},
 	mousemove: function(x, y, xRel, yRel) {
-		lg('mousemove(' + x + ', ' + y + ', ' + xRel + ', ' + yRel + ')');
+		//lg('mousemove(' + x + ', ' + y + ', ' + xRel + ', ' + yRel + ')');
 	},
 	loop: function() {
 		var ctx = this.canvas2d.ctx;
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		ctx.save();
 			ctx.translate(100, 100);
-				this.xship_01.render();
+				this.xship.render();
 		ctx.restore();
 	}
 };
