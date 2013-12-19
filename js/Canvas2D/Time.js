@@ -1,9 +1,9 @@
-function TimeManager() {
+function Time() {
 	this.reset();
 	this.realTime  = this.startTime;
 	this.frameTime = 0;
 }
-TimeManager.prototype = {
+Time.prototype = {
 	update: function() {
 		var d = new Date().getTime() / 1000;
 		this.frameTime = d - this.realTime;

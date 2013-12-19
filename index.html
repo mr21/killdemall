@@ -3,11 +3,18 @@
 <head>
 <title>Kill Dem All</title>
 <link type="text/css" rel="stylesheet" href="css/global.css"/>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/AssetsManager.js"></script>
-<script type="text/javascript" src="js/TimeManager.js"></script>
-<script type="text/javascript" src="js/ships/ship.js"></script>
-<script type="text/javascript" src="js/ships/xship.js"></script>
+<script type="text/javascript" src="js/Canvas2D/Canvas2D.js"></script>
+<script type="text/javascript" src="js/Canvas2D/Assets.js"></script>
+<script type="text/javascript" src="js/Canvas2D/Time.js"></script>
+<script type="text/javascript" src="js/KillDemAll/KillDemAll.js"></script>
+<script type="text/javascript" src="js/KillDemAll/Ships/Ship.js"></script>
+<script type="text/javascript" src="js/KillDemAll/Ships/XShip.js"></script>
+<script type="text/javascript">
+function lg(s) { console.log(s) }
+window.onload = function() {
+	KillDemAll.init();
+};
+</script>
 </head>
 <body>
 

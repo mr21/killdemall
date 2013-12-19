@@ -1,10 +1,9 @@
-killdemall.Ship = function() {
+KillDemAll.Ship = function() {
 	this.sprites;
 	this.vPos  = {x:0, y:0};
 	this.vMove = {x:0, y:0};
 };
-
-killdemall.Ship.prototype = {
+KillDemAll.Ship.prototype = {
 	core: function() {
 		lg('ship.core()');
 	},
