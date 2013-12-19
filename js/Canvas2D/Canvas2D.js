@@ -3,21 +3,21 @@ function Canvas2D(el, images, fns) {
 	this.ctx    = el.getContext('2d');
 	this.fns    = fns;
 	this.assets = new Assets(this, images);
-	this.active = false;
-	// events
+	// active/inactive
+	var active = false;
 	el._addEvent('click', function(ev) {
 		ev.stopPropagation();
-		self.active = true;
+		active = true;
 		this._addClass('active');
 	});
 	document._addEvent('click', function() {
-		self.active = false;
+		active = false;
 		el._delClass('active');
 	});
 	// keyboard
-	this.keyBool = [];
-	if (fns.keydown) document._addEvent('keydown', function(e) { if (self.active && !self.keyBool[e.keyCode]) { self.keyBool[e.keyCode] = 1; fns.keydown(e.keyCode) }});
-	if (fns.keyup)   document._addEvent('keyup',   function(e) { if (self.active &&  self.keyBool[e.keyCode]) { self.keyBool[e.keyCode] = 0; fns.keyup  (e.keyCode) }});
+	var keyBool = [];
+	if (fns.keydown) document._addEvent('keydown', function(e) { if (active && !keyBool[e = e.keyCode]) { keyBool[e] = 1; fns.keydown(e) }});
+	if (fns.keyup)   document._addEvent('keyup',   function(e) { if (active &&  keyBool[e = e.keyCode]) { keyBool[e] = 0; fns.keyup  (e) }});
 }
 Canvas2D.prototype = {
 	launch: function() {
