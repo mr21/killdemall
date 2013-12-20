@@ -3,7 +3,10 @@ var KillDemAll = {
 		var self      = this;
 		this.canvas2d = new Canvas2D(
 			elem,
-			['css/sprites.png'],
+			[
+				'css/sprites.png',
+				'css/ground.jpg'
+			],
 			{
 				load      : function()  { self.load()     },
 				loop      : function()  { self.loop()     },
@@ -17,6 +20,7 @@ var KillDemAll = {
 		//this.canvas2d.debug(true);
 	},
 	load: function() {
+		this.map   = new KillDemAll.Map(this.canvas2d.assets);
 		this.xship = new KillDemAll.XShip(this.canvas2d.assets);
 		this.xship.ship.vPos.x = 200;
 		this.xship.ship.vPos.y = 100;
@@ -36,6 +40,7 @@ var KillDemAll = {
 		this.xship.update(this.canvas2d.time);
 		var ctx = this.canvas2d.ctx;
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+		this.map.render(ctx);
 		this.xship.render(ctx);
 	}
 };
