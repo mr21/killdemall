@@ -16,7 +16,9 @@ var KillDemAll = {
 		);
 	},
 	load: function() {
-		this.xship = new KillDemAll.XShip();
+		this.xship = new KillDemAll.XShip(this.canvas2d.assets);
+		this.xship.vPos.x = 200;
+		this.xship.vPos.y = 100;
 	},
 	keydown: function(k) { if (k >= 37 && k <= 40) this.xship.userMove(k, 1); },
 	keyup:   function(k) { if (k >= 37 && k <= 40) this.xship.userMove(k, 0); },
@@ -30,11 +32,9 @@ var KillDemAll = {
 		//lg('mousemove(' + x + ', ' + y + ', ' + xRel + ', ' + yRel + ')');
 	},
 	loop: function() {
+		this.xship.update(this.canvas2d.time);
 		var ctx = this.canvas2d.ctx;
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-		ctx.save();
-			ctx.translate(100, 100);
-				this.xship.render();
-		ctx.restore();
+		this.xship.render(ctx);
 	}
 };

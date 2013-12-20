@@ -1,5 +1,4 @@
-KillDemAll.Ship = function() {
-	this.sprites;
+KillDemAll.Ship = function(shipChild) {
 	this.vPos     = new Vector2D();
 	this.vDir     = new Vector2D(); // la direction que demande le joueur.
 	this.vMove    = new Vector2D(); // ou l'on va reellement.
@@ -9,11 +8,8 @@ KillDemAll.Ship = function() {
 	this.moveKeys = [0,0,0,0]; // ^ > v <
 };
 KillDemAll.Ship.prototype = {
-	core: function() {
-		lg('ship.core()');
-	},
-	render: function() {
-		lg('ship.render()');
+	update: function(time) {
+
 	},
 	userMove: function(key, press) {
 		switch (key) {
