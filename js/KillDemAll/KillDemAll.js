@@ -14,11 +14,12 @@ var KillDemAll = {
 				mousemove : function()  { self.mousemove.apply(self, arguments) }
 			}
 		);
+		//this.canvas2d.debug(true);
 	},
 	load: function() {
 		this.xship = new KillDemAll.XShip(this.canvas2d.assets);
-		this.xship.vPos.x = 200;
-		this.xship.vPos.y = 100;
+		this.xship.ship.vPos.x = 200;
+		this.xship.ship.vPos.y = 100;
 	},
 	keydown: function(k) { if (k >= 37 && k <= 40) this.xship.userMove(k, 1); },
 	keyup:   function(k) { if (k >= 37 && k <= 40) this.xship.userMove(k, 0); },
