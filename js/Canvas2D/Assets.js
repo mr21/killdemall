@@ -63,8 +63,8 @@ Assets.assetSprite = function(manager, args) {
 	this.manager = manager;
 	this.x       = args[0];
 	this.y       = args[1];
-	this.h       = args[2];
-	this.w       = args[3];
+	this.w       = args[2];
+	this.h       = args[3];
 	this.src     = manager.findImg(args[4]);
 };
 Assets.assetSprite.prototype = {
@@ -88,7 +88,7 @@ Assets.assetAnim = function(manager, args) {
 	this.loop      = args[6];
 	this.frame     = this.returnTo === -1 ? -1 : 0;
 	args[4]        = args[7];
-	this.sprite    = new manager.assetSprite(manager, args);
+	this.sprite    = new Assets.assetSprite(manager, args);
 	this.pause();
 };
 Assets.assetAnim.prototype = {
