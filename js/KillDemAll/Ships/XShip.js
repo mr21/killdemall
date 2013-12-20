@@ -10,7 +10,8 @@ KillDemAll.XShip = function(assets) {
 	};
 	this.anims = {
 		'reactors' : [],
-		'turrets'  : []
+		'turrets'  : [],
+		'cannon'   : assets.anim(122, 21, 12, 50, 8, 0, false)
 	};
 	for (var i = 0; i < 4; ++i)
 		this.anims.reactors[i] = assets.anim( 18, 77, 12, 24, 9, 5, true);
@@ -74,6 +75,10 @@ KillDemAll.XShip.prototype = {
 				ctx.restore();
 				// top
 				this.sprites.top.draw( -7,  -9);
+				ctx.save();
+					ctx.rotate(0);
+						this.anims.cannon.draw(-6, -47);
+				ctx.restore();
 
 		ctx.restore();
 	}
