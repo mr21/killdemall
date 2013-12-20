@@ -53,7 +53,7 @@ Assets.prototype = {
 		else if (!isNaN(ind = parseInt(imgPath)))
 			img = this.images[ind];
 		else
-			for (var i = 0; img = this.images[i] && img.src !== imgPath; ++i) {}
+			for (var i = 0; (img = this.images[i]) && img.src.indexOf(imgPath) === -1; ++i) {}
 		return img || null;
 	},
 	update: function() {
