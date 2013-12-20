@@ -64,12 +64,12 @@ Assets.prototype = {
 
 // assetSprite ####################################
 Assets.assetSprite = function(assets, args) {
+	this.src    = assets.findImg(args[4]);
 	this.assets = assets;
 	this.x      = args[0];
 	this.y      = args[1];
-	this.w      = args[2];
-	this.h      = args[3];
-	this.src    = assets.findImg(args[4]);
+	this.w      = args[2] || this.src.width  - this.x;
+	this.h      = args[3] || this.src.height - this.y;
 };
 Assets.assetSprite.prototype = {
 	// public
