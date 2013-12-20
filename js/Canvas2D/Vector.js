@@ -1,5 +1,8 @@
 function Vector2D(x, y) {
-	this.set(x, y);
+	this.set(
+		x || 0,
+		y || 0
+	);
 }
 Vector2D.prototype = {
 	set: function(x, y) {
