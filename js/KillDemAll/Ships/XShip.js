@@ -21,8 +21,10 @@ KillDemAll.XShip = function(assets) {
 KillDemAll.XShip.prototype = {
 	userMove: function(key, press) {
 		var dir = this.ship.userMove(key, press);
-		var anim = this.anims.reactors[(dir + 2) % 4];
-		press ? anim.play() : anim.stop();
+		if (dir !== -1) {
+			var anim = this.anims.reactors[(dir + 2) % 4];
+			press ? anim.play() : anim.stop();
+		}
 	},
 	update: function(time) {
 		this.ship.update(time);

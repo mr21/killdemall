@@ -25,8 +25,8 @@ var KillDemAll = {
 		this.xship.ship.vPos.x = 200;
 		this.xship.ship.vPos.y = 100;
 	},
-	keydown: function(k) { if (k >= 37 && k <= 40) this.xship.userMove(k, 1); },
-	keyup:   function(k) { if (k >= 37 && k <= 40) this.xship.userMove(k, 0); },
+	keydown: function(k) { this.xship.userMove(k, 1); },
+	keyup:   function(k) { this.xship.userMove(k, 0); },
 	mousedown: function(x, y) {
 		lg('mousedown(' + x + ', ' + y + ')');
 	},

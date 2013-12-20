@@ -12,14 +12,15 @@ KillDemAll.Ship.prototype = {
 
 	},
 	userMove: function(key, press) {
-		var dir;
+		var dir = -1;
 		switch (key) {
-			case 38 : this.moveKeys[dir = 0] = press; break; // ^
-			case 39 : this.moveKeys[dir = 1] = press; break; // >
-			case 40 : this.moveKeys[dir = 2] = press; break; // v
-			case 37 : this.moveKeys[dir = 3] = press; break; // <
+			case 87 : this.moveKeys[dir = 0] = press; break; // ^ (W)
+			case 68 : this.moveKeys[dir = 1] = press; break; // > (D)
+			case 83 : this.moveKeys[dir = 2] = press; break; // v (S)
+			case 65 : this.moveKeys[dir = 3] = press; break; // < (A)
 		}
-		this.calcDir();
+		if (dir !== -1)
+			this.calcDir();
 		return dir;
 	},
 	// private
