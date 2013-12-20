@@ -2,6 +2,7 @@ function Canvas2D(el, images, fns) {
 	var self    = this;
 	this.ctx    = el.getContext('2d');
 	this.fns    = fns;
+	this.time   = new Time();
 	this.assets = new Assets(this, images);
 	// active/inactive
 	var active = false;
@@ -14,6 +15,7 @@ function Canvas2D(el, images, fns) {
 		active = false;
 		el._delClass('active');
 	});
+	el.click(); // tmp
 	// keyboard
 	var keyBool = [];
 	if (fns.keydown) document._addEvent('keydown', function(e) { if (active && !keyBool[e = e.keyCode]) { keyBool[e] = 1; fns.keydown(e) }});
@@ -24,10 +26,13 @@ function Canvas2D(el, images, fns) {
 	if (fns.mousemove) el._addEvent('mousemove', function(e) { if (active) fns.mousemove(e.layerX, e.layerY, offsetMouse.xRel, offsetMouse.yRel) });
 }
 Canvas2D.prototype = {
+	debug: function(state) {
+		this.assets.debug(state);
+	},
 	launch: function() {
+		var self = this;
 		this.fns.load();
-		var self      = this;
-		this.time     = new Time();
+		this.time.reset();
 		this.intervId = window.setInterval(function() {
 			self.loop();
 		}, 1000 / 40);

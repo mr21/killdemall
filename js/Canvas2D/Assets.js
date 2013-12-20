@@ -1,7 +1,7 @@
 // Assets ####################################
-function Assets(Canvas2D, images) {
-	this.ctx           = Canvas2D.ctx;
-	this.time          = Canvas2D.time;
+function Assets(canvas2d, images) {
+	this.ctx           = canvas2d.ctx;
+	this.time          = canvas2d.time;
 	this.images        = [];
 	this.sprites       = [];
 	this.anims         = [];
@@ -13,12 +13,16 @@ function Assets(Canvas2D, images) {
 		img.onload = function() {
 			self.images.push(this);
 			if (--nbImagesToLoad === 0)
-				Canvas2D.launch();
+				canvas2d.launch();
 		};
 	}
+	this.debug(false);
 }
 Assets.prototype = {
 	// public
+	debug: function(state) {
+		this.debugging = state;
+	},
 	sprite: function(x, y, w, h, imgPath) {
 		var sprite = new Assets.assetSprite(this, arguments);
 		this.sprites.push(sprite);
@@ -59,18 +63,22 @@ Assets.prototype = {
 };
 
 // assetSprite ####################################
-Assets.assetSprite = function(manager, args) {
-	this.manager = manager;
-	this.x       = args[0];
-	this.y       = args[1];
-	this.w       = args[2];
-	this.h       = args[3];
-	this.src     = manager.findImg(args[4]);
+Assets.assetSprite = function(assets, args) {
+	this.assets = assets;
+	this.x      = args[0];
+	this.y      = args[1];
+	this.w      = args[2];
+	this.h      = args[3];
+	this.src    = assets.findImg(args[4]);
 };
 Assets.assetSprite.prototype = {
 	// public
 	draw: function(x, y) {
-		this.manager.ctx.drawImage(
+		if (this.assets.debugging) {
+			this.assets.ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
+			this.assets.ctx.fillRect(x, y, this.w, this.h);
+		}
+		this.assets.ctx.drawImage(
 			this.src,
 			this.x, this.y,
 			this.w, this.h,
@@ -81,14 +89,15 @@ Assets.assetSprite.prototype = {
 };
 
 // assetAnim ####################################
-Assets.assetAnim = function(manager, args) {
-	this.framesAxe = 'xy'[args[4] > 0];
-	this.nbFrames  = Math.abs(args[4]);
-	this.returnTo  = args[5];
-	this.loop      = args[6];
-	this.frame     = this.returnTo === -1 ? -1 : 0;
-	args[4]        = args[7];
-	this.sprite    = new Assets.assetSprite(manager, args);
+Assets.assetAnim = function(assets, args) {
+	this.framesAxeX = args[4] > 0;
+	this.nbFrames   = Math.abs(args[4]);
+	this.returnTo   = args[5];
+	this.loop       = args[6];
+	this.frame      = this.returnTo === -1 ? -1 : 0;
+	args[4]         = args[7];
+	this.sprite     = new Assets.assetSprite(assets, args);
+	this.timePrev   = assets.time.realTime;
 	this.pause();
 };
 Assets.assetAnim.prototype = {
@@ -100,7 +109,7 @@ Assets.assetAnim.prototype = {
 	play: function() {
 		this.playing = true;
 		if (this.frame === -1)
-			this.moveFrame(1);
+			this.moveFrame(+1);
 	},
 	pause: function() {
 		this.playing = false;
@@ -113,13 +122,23 @@ Assets.assetAnim.prototype = {
 	},
 	// private
 	moveFrame: function(f) {
-		switch (this.framesAxe) {
-			case 'x' : this.sprite.x += this.sprite.w * f; break;
-			case 'y' : this.sprite.y += this.sprite.h * f; break;
-		}
 		this.frame += f;
+		if (this.framesAxeX)
+			this.sprite.x += this.sprite.w * f;
+		else
+			this.sprite.y += this.sprite.h * f;
 	},
 	update: function(time) {
-
+		if (!this.playing) {
+			this.timePrev = time.realTime;
+		} else if (time.realTime - this.timePrev >= 0.040) {
+			if (this.frame >= this.nbFrames - 1) {
+				this.moveFrame(this.returnTo - this.nbFrames);
+				this.rewind();
+			} else {
+				this.moveFrame(+1);
+				this.timePrev = time.realTime;
+			}
+		}
 	}
 };
