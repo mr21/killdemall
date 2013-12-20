@@ -1,5 +1,10 @@
 body    { margin:0; font:12px sans-serif; text-align:center; color:#ddd; background:#111; }
 #global { display:inline-block; margin:auto; text-align:left; }
+h1 span { font-size:12px; }
 canvas  { display:block; background:#333; }
+ul.man         { font-family:monospace; }
+ul.man b:after { content:'\A0:\A0'; }
+ul.man b span        { border:1px solid #555; border-radius:2px; padding:0 4px; color:#aaa; background:#222; }
+ul.man b span + span { margin-left:4px; }
 /* Canvas2D */
 canvas.active { box-shadow:0 0 5px rgba(128, 128, 255, 0.7); }
