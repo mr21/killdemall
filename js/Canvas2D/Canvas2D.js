@@ -39,12 +39,14 @@ Canvas2D.prototype = {
 		}, 1000 / 40);
 	},
 	loop: function() {
+		var time = this.time;
+		var ctx  = this.ctx;
 		this.time.update();
-		this.fns.update();
-		this.ctx.save();
-			this.ctx.translate(this.vectView.x, this.vectView.y);
-				this.fns.render();
-		this.ctx.restore();
+		this.fns.update(time);
+		ctx.save();
+			ctx.translate(this.vectView.x, this.vectView.y);
+				this.fns.render(ctx);
+		ctx.restore();
 		this.assets.update();
 	},
 	stop: function() {

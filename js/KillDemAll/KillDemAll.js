@@ -9,8 +9,8 @@ var KillDemAll = {
 			],
 			{
 				load      : function()  { self.load()     },
-				update    : function()  { self.update()   },
-				render    : function()  { self.render()   },
+				update    : function(t) { self.update(t)  },
+				render    : function(c) { self.render(c)  },
 				keydown   : function(e) { self.keydown(e) },
 				keyup     : function(e) { self.keyup(e)   },
 				mousedown : function()  { self.mousedown.apply(self, arguments) },
@@ -37,11 +37,10 @@ var KillDemAll = {
 	mousemove: function(x, y, xRel, yRel) {
 		//lg('mousemove(' + x + ', ' + y + ', ' + xRel + ', ' + yRel + ')');
 	},
-	update: function() {
-		this.xship.update(this.canvas2d.time);
+	update: function(time) {
+		this.xship.update(time);
 	},
-	render: function() {
-		var ctx = this.canvas2d.ctx;
+	render: function(ctx) {
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		this.map.render(ctx);
 		this.xship.render(ctx);
