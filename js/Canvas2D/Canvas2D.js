@@ -1,9 +1,10 @@
 function Canvas2D(el, images, fns) {
-	var self    = this;
-	this.ctx    = el.getContext('2d');
-	this.fns    = fns;
-	this.time   = new Time();
-	this.assets = new Assets(this, images);
+	var self      = this;
+	this.ctx      = el.getContext('2d');
+	this.fns      = fns;
+	this.time     = new Time();
+	this.assets   = new Assets(this, images);
+	this.vectView = new Vector2D();
 	// active/inactive
 	var active = false;
 	el._addEvent('click', function(ev) {
@@ -39,10 +40,16 @@ Canvas2D.prototype = {
 	},
 	loop: function() {
 		this.time.update();
-		this.fns.loop();
+		this.ctx.save();
+			this.ctx.translate(this.vectView.x, this.vectView.y);
+				this.fns.loop();
+		this.ctx.restore();
 		this.assets.update();
 	},
 	stop: function() {
 		window.clearInterval(this.intervId);
+	},
+	setView: function(x, y) {
+		this.vectView.set(x, y);
 	}
 };
