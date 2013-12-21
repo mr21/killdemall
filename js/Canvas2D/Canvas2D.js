@@ -40,9 +40,10 @@ Canvas2D.prototype = {
 	},
 	loop: function() {
 		this.time.update();
+		this.fns.update();
 		this.ctx.save();
 			this.ctx.translate(this.vectView.x, this.vectView.y);
-				this.fns.loop();
+				this.fns.render();
 		this.ctx.restore();
 		this.assets.update();
 	},
