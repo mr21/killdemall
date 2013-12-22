@@ -1,30 +1,23 @@
 function Canvas2D(el, images, fns) {
 	var self      = this;
+	this.elem     = el;
 	this.ctx      = el.getContext('2d');
 	this.fns      = fns;
 	this.time     = new Time();
 	this.assets   = new Assets(this, images);
 	this.vectView = new Vector2D();
 	// active/inactive
-	var active = false;
+	this.active = false;
 	el._addEvent('click', function(ev) {
 		ev.stopPropagation();
-		active = true;
+		self.active = true;
 		this._addClass('active');
 	});
 	document._addEvent('click', function() {
-		active = false;
+		self.active = false;
 		el._delClass('active');
 	});
 	el.click(); // tmp
-	// keyboard
-	var keyBool = [];
-	if (fns.keydown) document._addEvent('keydown', function(e) { if (active && !keyBool[e = e.keyCode]) { keyBool[e] = 1; fns.keydown(e) }});
-	if (fns.keyup)   document._addEvent('keyup',   function(e) { if (active &&  keyBool[e = e.keyCode]) { keyBool[e] = 0; fns.keyup  (e) }});
-	// mouse
-	if (fns.mousedown) el._addEvent('mousedown', function(e) { if (active) fns.mousedown(e.layerX - self.vectView.x, e.layerY - self.vectView.y) });
-	if (fns.mouseup)   el._addEvent('mouseup',   function(e) { if (active) fns.mouseup  (e.layerX - self.vectView.x, e.layerY - self.vectView.y) });
-	if (fns.mousemove) el._addEvent('mousemove', function(e) { if (active) fns.mousemove(e.layerX - self.vectView.x, e.layerY - self.vectView.y, offsetMouse.xRel, offsetMouse.yRel) });
 }
 Canvas2D.prototype = {
 	debug: function(state) {
@@ -32,7 +25,17 @@ Canvas2D.prototype = {
 	},
 	launch: function() {
 		var self = this;
+		var fns  = this.fns;
 		this.fns.load();
+		// Events
+		// -- keyboard
+		var keyBool = [];
+		if (fns.keydown) document._addEvent('keydown', function(e) { if (self.active && !keyBool[e = e.keyCode]) { keyBool[e] = 1; fns.keydown(e) }});
+		if (fns.keyup)   document._addEvent('keyup',   function(e) { if (self.active &&  keyBool[e = e.keyCode]) { keyBool[e] = 0; fns.keyup  (e) }});
+		// -- mouse
+		if (fns.mousedown) this.elem._addEvent('mousedown', function(e) { if (self.active) fns.mousedown(e.layerX - self.vectView.x, e.layerY - self.vectView.y) });
+		if (fns.mouseup)   this.elem._addEvent('mouseup',   function(e) { if (self.active) fns.mouseup  (e.layerX - self.vectView.x, e.layerY - self.vectView.y) });
+		if (fns.mousemove) this.elem._addEvent('mousemove', function(e) { if (self.active) fns.mousemove(e.layerX - self.vectView.x, e.layerY - self.vectView.y, offsetMouse.xRel, offsetMouse.yRel) });
 		this.time.reset();
 		this.intervId = window.setInterval(function() {
 			self.loop();
