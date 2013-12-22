@@ -6,6 +6,7 @@ KillDemAll.Ship = function() {
 	this.maxSpeed = 300;
 	this.speed    =   0;
 	this.moveKeys = [0,0,0,0]; // ^ > v <
+	this.mouseRad = 0;
 };
 KillDemAll.Ship.prototype = {
 	update: function(time) {
@@ -22,6 +23,12 @@ KillDemAll.Ship.prototype = {
 		if (dir !== -1)
 			this.calcDir();
 		return dir;
+	},
+	calcMouseRad: function(x, y) {
+		return this.mouseRad = Math.PI - Math.atan2(
+			x - this.vPos.x,
+			y - this.vPos.y
+		);
 	},
 	// private
 	calcDir: function() {

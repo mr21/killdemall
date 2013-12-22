@@ -27,6 +27,9 @@ KillDemAll.XShip.prototype = {
 			press ? anim.play() : anim.stop();
 		}
 	},
+	userMoveCannon: function(x, y) {
+		this.ship.calcMouseRad(x, y);
+	},
 	update: function(time) {
 		this.ship.update(time);
 		var size = 8,
@@ -76,7 +79,7 @@ KillDemAll.XShip.prototype = {
 				// top
 				this.sprites.top.draw( -7,  -9);
 				ctx.save();
-					ctx.rotate(0);
+					ctx.rotate(this.ship.mouseRad);
 						this.anims.cannon.draw(-6, -47);
 				ctx.restore();
 
