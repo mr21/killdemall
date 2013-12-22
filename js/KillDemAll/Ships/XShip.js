@@ -18,6 +18,7 @@ KillDemAll.XShip = function(assets) {
 	for (var i = 0; i < 8; ++i)
 		this.anims.turrets[i]  = assets.anim(137, 86, 10, 11, 7, 0, false);
 	this.armorVector = [0,0,0,0]; // v < ^ >
+	this.cannonRad   = 0;
 };
 KillDemAll.XShip.prototype = {
 	userMove: function(key, press) {
@@ -31,19 +32,30 @@ KillDemAll.XShip.prototype = {
 		this.ship.calcMouseRad(x, y);
 	},
 	update: function(time) {
+		var speedArmor  = 15;
+		var speedCannon = 10;
+		// ship
 		this.ship.update(time);
-		var size = 8,
-			speed = 15 * time.frameTime;
+		// armor
+		var armorSize = 8;
 		for (var i = 0; i < 4; ++i)
 			if (this.ship.moveKeys[i]) {
-				this.armorVector[i] += (size - this.armorVector[i]) * speed;
-				if (this.armorVector[i] > size)
-					this.armorVector[i] = size;
+				this.armorVector[i] += (armorSize - this.armorVector[i]) * speedArmor * time.frameTime;
+				if (this.armorVector[i] > armorSize)
+					this.armorVector[i] = armorSize;
 			} else {
-				this.armorVector[i] -= this.armorVector[i] * speed;
+				this.armorVector[i] -= this.armorVector[i] * speedArmor * time.frameTime;
 				if (this.armorVector[i] < 0)
 					this.armorVector[i] = 0;
 			}
+		// cannon
+		var diffRad = this.ship.mouseRad - this.cannonRad;
+		if (diffRad > Math.PI)
+			diffRad -= Math.PI * 2;
+		else if (diffRad < -Math.PI)
+			diffRad += Math.PI * 2;
+		this.cannonRad += diffRad * speedCannon * time.frameTime;
+		this.cannonRad = (Math.PI * 2 + this.cannonRad) % (Math.PI * 2);
 	},
 	render: function(ctx) {
 		ctx.save();
@@ -79,7 +91,7 @@ KillDemAll.XShip.prototype = {
 				// top
 				this.sprites.top.draw( -7,  -9);
 				ctx.save();
-					ctx.rotate(this.ship.mouseRad);
+					ctx.rotate(this.cannonRad);
 						this.anims.cannon.draw(-6, -47);
 				ctx.restore();
 
