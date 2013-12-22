@@ -22,9 +22,9 @@ function Canvas2D(el, images, fns) {
 	if (fns.keydown) document._addEvent('keydown', function(e) { if (active && !keyBool[e = e.keyCode]) { keyBool[e] = 1; fns.keydown(e) }});
 	if (fns.keyup)   document._addEvent('keyup',   function(e) { if (active &&  keyBool[e = e.keyCode]) { keyBool[e] = 0; fns.keyup  (e) }});
 	// mouse
-	if (fns.mousedown) el._addEvent('mousedown', function(e) { if (active) fns.mousedown(e.layerX, e.layerY) });
-	if (fns.mouseup)   el._addEvent('mouseup',   function(e) { if (active) fns.mouseup  (e.layerX, e.layerY) });
-	if (fns.mousemove) el._addEvent('mousemove', function(e) { if (active) fns.mousemove(e.layerX, e.layerY, offsetMouse.xRel, offsetMouse.yRel) });
+	if (fns.mousedown) el._addEvent('mousedown', function(e) { if (active) fns.mousedown(e.layerX - self.vectView.x, e.layerY - self.vectView.y) });
+	if (fns.mouseup)   el._addEvent('mouseup',   function(e) { if (active) fns.mouseup  (e.layerX - self.vectView.x, e.layerY - self.vectView.y) });
+	if (fns.mousemove) el._addEvent('mousemove', function(e) { if (active) fns.mousemove(e.layerX - self.vectView.x, e.layerY - self.vectView.y, offsetMouse.xRel, offsetMouse.yRel) });
 }
 Canvas2D.prototype = {
 	debug: function(state) {
