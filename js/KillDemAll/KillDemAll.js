@@ -13,9 +13,9 @@ var KillDemAll = {
 				render    : function() { self.render   .apply(self, arguments) },
 				keydown   : function() { self.keydown  .apply(self, arguments) },
 				keyup     : function() { self.keyup    .apply(self, arguments) },
-				mousedown : function() { self.mousedown.apply(self, arguments) },
+				mousemove : function() { self.mousemove.apply(self, arguments) },
+				mousedown : function() { self.mousedown.apply(self, arguments) }
 				//mouseup   : function() { self.mouseup  .apply(self, arguments) },
-				mousemove : function() { self.mousemove.apply(self, arguments) }
 			}
 		);
 		//this.canvas2d.debug(true);
