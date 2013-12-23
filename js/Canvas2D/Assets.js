@@ -74,10 +74,6 @@ Assets.assetSprite = function(assets, args) {
 Assets.assetSprite.prototype = {
 	// public
 	draw: function(x, y) {
-		if (this.assets.debugging) {
-			this.assets.ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
-			this.assets.ctx.fillRect(x, y, this.w, this.h);
-		}
 		this.assets.ctx.drawImage(
 			this.src,
 			this.x, this.y,
@@ -85,6 +81,10 @@ Assets.assetSprite.prototype = {
 			x,      y,
 			this.w, this.h
 		);
+		if (this.assets.debugging) {
+			this.assets.ctx.strokeStyle = 'rgba(255, 255, 50, 1)';
+			this.assets.ctx.strokeRect(x, y, this.w, this.h);
+		}
 	}
 };
 
