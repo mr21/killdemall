@@ -5,9 +5,9 @@ function Vector2D(x, y) {
 	);
 }
 Vector2D.prototype = {
-	set: function(x, y) {
-		this.x = x;
-		this.y = y;
+	set: function(v, y) {
+		this.x = v.x || v;
+		this.y = v.y || y;
 	},
 	add: function(v, y) {
 		this.x += v.x || v;
