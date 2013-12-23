@@ -28,7 +28,7 @@ Assets.prototype = {
 		this.sprites.push(sprite);
 		return sprite;
 	},
-	anim: function(x, y, w, h, nbFrames, returnTo, loop, imgPath) {
+	anim: function(x, y, w, h, nbFrames, returnTo, loop, delay, imgPath) {
 		var anim = new Assets.assetAnim(this, arguments);
 		this.anims.push(anim);
 		return anim;
@@ -94,8 +94,9 @@ Assets.assetAnim = function(assets, args) {
 	this.nbFrames   = Math.abs(args[4]);
 	this.returnTo   = args[5];
 	this.loop       = args[6];
+	this.delay      = args[7] || 0.04;
 	this.frame      = this.returnTo === -1 ? -1 : 0;
-	args[4]         = args[7];
+	args[4]         = args[8];
 	this.sprite     = new Assets.assetSprite(assets, args);
 	this.timePrev   = assets.time.realTime;
 	this.pause();
@@ -131,10 +132,11 @@ Assets.assetAnim.prototype = {
 	update: function(time) {
 		if (!this.playing) {
 			this.timePrev = time.realTime;
-		} else if (time.realTime - this.timePrev >= 0.040) {
+		} else if (time.realTime - this.timePrev >= this.delay) {
 			if (this.frame >= this.nbFrames - 1) {
-				this.moveFrame(this.returnTo - this.nbFrames);
-				this.rewind();
+				this.moveFrame(this.returnTo - this.nbFrames + 1);
+				if (!this.loop)
+					this.pause();
 			} else {
 				this.moveFrame(+1);
 				this.timePrev = time.realTime;
