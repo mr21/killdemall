@@ -56,7 +56,6 @@ Canvas2D.prototype = {
 	stop: function() {
 		window.clearInterval(this.intervId);
 	},
-	setView: function(x, y) {
-		this.vectView.set(x, y);
-	}
+	getView: function()     { return this.vectView    },
+	setView: function(v, y) { this.vectView.set(v, y) }
 };
