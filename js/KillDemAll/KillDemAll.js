@@ -23,12 +23,20 @@ var KillDemAll = {
 	load: function() {
 		this.map   = new KillDemAll.Map(this.canvas2d.assets);
 		this.xship = new KillDemAll.XShip(this.canvas2d.assets);
-		this.xship.ship.vPos.x = 200;
-		this.xship.ship.vPos.y = 100;
-		this.canvas2d.setView(50, 100);
+		this.xship.ship.vPos.x = 100;
+		this.xship.ship.vPos.y = 200;
 	},
 	update: function(time) {
+		// update du XShip
 		this.xship.update(time);
+		// centrer la vue sur le XShip
+		var viewSpeed = 3 * time.frameTime;
+		var vShip = this.xship.ship.vPos;
+		var vView = this.canvas2d.getView();
+		this.canvas2d.setView(
+			vView.x + ((-vShip.x + this.canvas2d.elem.width  / 2) - vView.x) * viewSpeed,
+			vView.y + ((-vShip.y + this.canvas2d.elem.height / 2) - vView.y) * viewSpeed
+		);
 	},
 	render: function(ctx) {
 		this.map.render(ctx);
