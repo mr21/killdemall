@@ -14,7 +14,7 @@ var KillDemAll = {
 				keydown   : function() { self.keydown  .apply(self, arguments) },
 				keyup     : function() { self.keyup    .apply(self, arguments) },
 				mousedown : function() { self.mousedown.apply(self, arguments) },
-				mouseup   : function() { self.mouseup  .apply(self, arguments) },
+				//mouseup   : function() { self.mouseup  .apply(self, arguments) },
 				mousemove : function() { self.mousemove.apply(self, arguments) }
 			}
 		);
@@ -27,18 +27,6 @@ var KillDemAll = {
 		this.xship.ship.vPos.y = 100;
 		this.canvas2d.setView(50, 100);
 	},
-	keydown:   function(k) { this.xship.userMove(k, 1); },
-	keyup:     function(k) { this.xship.userMove(k, 0); },
-	mousedown: function(x, y) {
-		lg('mousedown(' + x + ', ' + y + ')');
-	},
-	mouseup: function(x, y) {
-		lg('mouseup(' + x + ', ' + y + ')');
-	},
-	mousemove: function(x, y, xRel, yRel) {
-		this.xship.userMoveCannon(x, y);
-		//lg('mousemove(' + x + ', ' + y + ', ' + xRel + ', ' + yRel + ')');
-	},
 	update: function(time) {
 		this.xship.update(time);
 	},
@@ -46,5 +34,10 @@ var KillDemAll = {
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		this.map.render(ctx);
 		this.xship.render(ctx);
-	}
+	},
+	keydown:   function(k)    { this.xship.userMove(k, 1)       },
+	keyup:     function(k)    { this.xship.userMove(k, 0)       },
+	mousemove: function(x, y) { this.xship.userMoveCannon(x, y) },
+	mousedown: function()     { this.xship.userShootCannon()    }
+	//mouseup:   function(x, y) { lg('mouseup(' + x + ', ' + y + ')') },
 };
