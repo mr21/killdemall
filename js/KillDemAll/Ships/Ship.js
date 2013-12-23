@@ -10,7 +10,16 @@ KillDemAll.Ship = function() {
 };
 KillDemAll.Ship.prototype = {
 	update: function(time) {
-
+		// deplacement
+		this.vPos.x += this.vMove.x * time.frameTime;
+		this.vPos.y += this.vMove.y * time.frameTime;
+		// adherence selon le poids
+		this.vMove.div(this.weight);
+		// acceleration
+		this.vMove.addXY(
+			this.vDir.x * 15,
+			this.vDir.y * 15
+		);
 	},
 	userMove: function(key, press) {
 		var dir = -1;
