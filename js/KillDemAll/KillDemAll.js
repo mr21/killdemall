@@ -31,7 +31,6 @@ var KillDemAll = {
 		this.xship.update(time);
 	},
 	render: function(ctx) {
-		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		this.map.render(ctx);
 		this.xship.render(ctx);
 	},

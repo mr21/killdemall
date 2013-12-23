@@ -46,6 +46,7 @@ Canvas2D.prototype = {
 		var ctx  = this.ctx;
 		this.time.update();
 		this.fns.update(time);
+		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		ctx.save();
 			ctx.translate(this.vectView.x, this.vectView.y);
 				this.fns.render(ctx);
