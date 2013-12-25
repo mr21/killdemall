@@ -1,0 +1,2 @@
+canvas { position:relative; }
+canvas.active { box-shadow:0 0 5px rgba(128, 128, 255, 0.7); }

@@ -6,5 +6,3 @@ ul.man         { font-family:monospace; line-height:22px; }
 ul.man b:after { content:'\A0:\A0'; }
 ul.man b span        { border:1px solid #555; border-radius:2px; padding:0 4px; color:#aaa; background:#222; }
 ul.man b span + span { margin-left:4px; }
-/* Canvas2D */
-canvas.active { box-shadow:0 0 5px rgba(128, 128, 255, 0.7); }
