@@ -22,11 +22,14 @@ var KillDemAll = {
 	},
 	load: function() {
 		this.map   = new KillDemAll.Map(this.canvas2d.assets);
+		this.ammo  = new KillDemAll.Ammo(this.canvas2d.assets);
 		this.xship = new KillDemAll.XShip(this.canvas2d.assets);
 		this.xship.ship.vPos.x = 100;
 		this.xship.ship.vPos.y = 200;
 	},
 	update: function(time) {
+		// update des tirs
+		this.ammo.update(time);
 		// update du XShip
 		this.xship.update(time);
 		// centrer la vue sur le XShip
@@ -41,6 +44,7 @@ var KillDemAll = {
 	render: function(ctx) {
 		this.map.render(ctx);
 		this.xship.render(ctx);
+		this.ammo.render(ctx);
 	},
 	keydown:   function(k)    { this.xship.userMove(k, 1)       },
 	keyup:     function(k)    { this.xship.userMove(k, 0)       },
