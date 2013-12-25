@@ -5,7 +5,7 @@ function Canvas2D(el, images, fns) {
 	this.fns      = fns;
 	this.time     = new Time();
 	this.assets   = new Assets(this, images);
-	this.vectView = new Vector2D();
+	this.vectView = new Vector2D(0, 0);
 	// active/inactive
 	this.active = false;
 	el._addEvent('click', function(ev) {

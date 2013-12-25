@@ -1,8 +1,6 @@
-function Vector2D(x, y) {
-	this.setXY(
-		x || 0,
-		y || 0
-	);
+function Vector2D(v, y) {
+	this.x = v.x || v;
+	this.y = v.y || y;
 }
 Vector2D.prototype = {
 	setXY:   function(x, y) { this.x  =   x; this.y  =   y; },

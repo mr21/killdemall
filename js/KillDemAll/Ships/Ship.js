@@ -1,7 +1,7 @@
 KillDemAll.Ship = function() {
-	this.vPos     = new Vector2D();
-	this.vDir     = new Vector2D(); // la direction que demande le joueur.
-	this.vMove    = new Vector2D(); // ou l'on va reellement.
+	this.vPos     = new Vector2D(0, 0);
+	this.vDir     = new Vector2D(0, 0); // la direction que demande le joueur.
+	this.vMove    = new Vector2D(0, 0); // ou l'on va reellement.
 	this.weight   =   1.07;
 	this.maxSpeed = 300;
 	this.speed    =   0;
