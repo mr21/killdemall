@@ -11,7 +11,7 @@ KillDemAll.XShip = function(assets) {
 	this.anims = {
 		'reactors' : [],
 		'turrets'  : [],
-		'cannon'   : assets.anim(122, 21, 12, 50, 8, 0, false, 0.025)
+		'cannon'   : assets.anim(122, 21, 12, 50, 8, 0, false, 0.02)
 	};
 	for (var i = 0; i < 4; ++i)
 		this.anims.reactors[i] = assets.anim( 18, 77, 12, 24, 9, 5, true, 0.040);
