@@ -24,16 +24,21 @@ KillDemAll.Ammo.prototype = {
 KillDemAll.Ammo.Shot = function(Ammo, type, vPos, rad) {
 	this.sprite = Ammo.sprites[type];
 	this.vPos   = new Vector2D(vPos);
-	this.vDir   = new Vector2D(0, 0);
+	this.vDir   = new Vector2D(Math.sin(rad), -Math.cos(rad));
 	this.rad    = rad;
 	this.dist   = 0;
 	switch (type) {
-		case 'bullet' : this.speed = 200; this.recoil =  50; this.distMax = 400; break;
-		case 'roquet' : this.speed = 250; this.recoil = 100; this.distMax = 500; break;
+		case 'bullet' : this.speed = 400; this.recoil =  50; this.distMax = 400; break;
+		case 'roquet' : this.speed = 500; this.recoil = 100; this.distMax = 500; break;
 	}
 };
 KillDemAll.Ammo.Shot.prototype = {
 	update: function(time) {
+		var speed = this.speed * time.frameTime;
+		if ((this.dist += 1 * speed) > this.distMax)
+			return false;
+		this.vPos.x += this.vDir.x * speed;
+		this.vPos.y += this.vDir.y * speed;
 		return true;
 	},
 	render: function(ctx) {
