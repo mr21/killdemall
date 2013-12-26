@@ -7,15 +7,18 @@ function Canvas2D(el, images, fns) {
 	this.assets   = new Assets(this, images);
 	this.vectView = new Vector2D(0, 0);
 	// active/inactive
+	var body = document.getElementsByTagName('body')[0];
 	this.active = false;
 	el._addEvent('click', function(ev) {
 		ev.stopPropagation();
 		self.active = true;
-		this._addClass('active');
+		body._addClass('Canvas2D-active');
+		this._addClass('Canvas2D-active');
 	});
 	document._addEvent('click', function() {
 		self.active = false;
-		el._delClass('active');
+		body._delClass('Canvas2D-active');
+		el._delClass('Canvas2D-active');
 	});
 	el.click(); // tmp
 }
