@@ -33,7 +33,7 @@ KillDemAll.XShip.prototype = {
 	},
 	userShootCannon: function(ammo) {
 		this.anims.cannon.play();
-		ammo.createShot('roquet', this.ship.vPos, this.cannonRad);
+		ammo.createShot('roquet', this.ship.vPos, this.cannonRad, this.ship.vMove);
 	},
 	update: function(time) {
 		var speedArmor  = 15;

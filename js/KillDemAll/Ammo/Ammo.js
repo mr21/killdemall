@@ -6,8 +6,11 @@ KillDemAll.Ammo = function(assets) {
 	this.shots = [];
 };
 KillDemAll.Ammo.prototype = {
-	createShot: function(type, vPos, rad) {
-		this.shots.push(new KillDemAll.Ammo.Shot(this, type, vPos, rad));
+	createShot: function(type, vPos, rad, ship_vMove) {
+		var shot = new KillDemAll.Ammo.Shot(this, type, vPos, rad);
+		this.shots.push(shot);
+		ship_vMove.x -= shot.recoil * shot.vDir.x;
+		ship_vMove.y -= shot.recoil * shot.vDir.y;
 	},
 	update: function(time) {
 		for (var i = 0, j = 0; i < this.shots.length; ++i)
@@ -28,8 +31,8 @@ KillDemAll.Ammo.Shot = function(Ammo, type, vPos, rad) {
 	this.rad    = rad;
 	this.dist   = 0;
 	switch (type) {
-		case 'bullet' : this.speed = 400; this.recoil =  50; this.distMax = 400; break;
-		case 'roquet' : this.speed = 500; this.recoil = 100; this.distMax = 500; break;
+		case 'bullet' : this.speed = 400; this.recoil = 50; this.distMax = 400; break;
+		case 'roquet' : this.speed = 500; this.recoil = 75; this.distMax = 500; break;
 	}
 };
 KillDemAll.Ammo.Shot.prototype = {
