@@ -14,7 +14,7 @@ KillDemAll.XShip = function(assets) {
 		'cannon'   : assets.anim(122, 21, 12, 50, 8, 0, false, 0.02)
 	};
 	for (var i = 0; i < 4; ++i)
-		this.anims.reactors[i] = assets.anim( 18, 77, 12, 24, 9, 5, true, 0.040);
+		this.anims.reactors[i] = assets.anim( 18, 77, 12, 24, 9, 5, true, 0.04);
 	for (var i = 0; i < 8; ++i)
 		this.anims.turrets[i]  = assets.anim(137, 86, 10, 11, 7, 0, false);
 	this.armorVector = [0,0,0,0]; // v < ^ >
@@ -31,8 +31,9 @@ KillDemAll.XShip.prototype = {
 	userMoveCannon: function(x, y) {
 		this.ship.calcMouseRad(x, y);
 	},
-	userShootCannon: function() {
+	userShootCannon: function(ammo) {
 		this.anims.cannon.play();
+		ammo.createShot('roquet', this.ship.vPos, this.cannonRad);
 	},
 	update: function(time) {
 		var speedArmor  = 15;
