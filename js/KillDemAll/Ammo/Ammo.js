@@ -31,7 +31,7 @@ KillDemAll.Ammo.Shot = function(Ammo, type, vPos, rad) {
 	this.rad    = rad;
 	this.dist   = 0;
 	switch (type) {
-		case 'bullet' : this.speed = 400; this.recoil = 50; this.distMax = 400; break;
+		case 'bullet' : this.speed = 400; this.recoil = 20; this.distMax = 400; break;
 		case 'roquet' : this.speed = 500; this.recoil = 75; this.distMax = 500; break;
 	}
 };
