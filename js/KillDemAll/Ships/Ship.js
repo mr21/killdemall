@@ -6,6 +6,7 @@ KillDemAll.Ship = function() {
 	this.maxSpeed = 300;
 	this.speed    =   0;
 	this.moveKeys = [0,0,0,0]; // ^ > v <
+	this.shotKeys = [0,0,0,0]; // ^ > v <
 	this.mouseRad = 0;
 };
 KillDemAll.Ship.prototype = {
@@ -31,6 +32,16 @@ KillDemAll.Ship.prototype = {
 		}
 		if (dir !== -1)
 			this.calcDir();
+		return dir;
+	},
+	userShoot: function(key, press) {
+		var dir = -1;
+		switch (key) {
+			case 38 : this.shotKeys[dir = 0] = press; break; // ^
+			case 39 : this.shotKeys[dir = 1] = press; break; // >
+			case 40 : this.shotKeys[dir = 2] = press; break; // v
+			case 37 : this.shotKeys[dir = 3] = press; break; // <
+		}
 		return dir;
 	},
 	calcMouseRad: function(x, y) {
