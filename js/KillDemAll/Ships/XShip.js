@@ -4,11 +4,11 @@ KillDemAll.XShip = function(time, assets, ammo) {
 	// ship
 	this.ship = new KillDemAll.Ship();
 	// base
-	this.base = {sprite:assets.sprite(52, 5, 22, 22)};
+	this.base = { sprite : assets.sprite(52, 5, 22, 22) };
 	// reactors
-	this.reactors = [];
+	this.reactors = { anim : [] };
 	for (var i = 0; i < 4; ++i)
-		this.reactors[i] = {anim:assets.anim(18, 77, 12, 24, 9, 5, true, 0.04)};
+		this.reactors.anim[i] = assets.anim(18, 77, 12, 24, 9, 5, true, 0.04);
 	// armors
 	this.armors = {
 		sprite  : assets.sprite(5, 5, 23, 23),
@@ -30,7 +30,7 @@ KillDemAll.XShip = function(time, assets, ammo) {
 		}
 	}
 	// top
-	this.top = {sprite:assets.sprite(33, 5, 14, 14)};
+	this.top = { sprite : assets.sprite(33, 5, 14, 14) };
 	// cannon
 	this.cannon = {
 		rad  : 0,
@@ -41,7 +41,7 @@ KillDemAll.XShip.prototype = {
 	userMove: function(key, press) {
 		var dir = this.ship.userMove(key, press);
 		if (dir !== -1) {
-			var anim = this.reactors[(dir + 2) % 4].anim;
+			var anim = this.reactors.anim[(dir + 2) % 4];
 			press ? anim.play() : anim.stop();
 		}
 	},
@@ -124,10 +124,10 @@ KillDemAll.XShip.prototype = {
 				this.base.sprite.draw(-11, -11);
 				// reactors
 				ctx.save();
-					this.reactors[0].anim.draw(-6, -35); ctx.rotate(Math.PI / 2);
-					this.reactors[1].anim.draw(-6, -35); ctx.rotate(Math.PI / 2);
-					this.reactors[2].anim.draw(-6, -35); ctx.rotate(Math.PI / 2);
-					this.reactors[3].anim.draw(-6, -35);
+					this.reactors.anim[0].draw(-6, -35); ctx.rotate(Math.PI / 2);
+					this.reactors.anim[1].draw(-6, -35); ctx.rotate(Math.PI / 2);
+					this.reactors.anim[2].draw(-6, -35); ctx.rotate(Math.PI / 2);
+					this.reactors.anim[3].draw(-6, -35);
 				ctx.restore();
 				// armors / turrets
 				ctx.save();
