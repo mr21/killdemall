@@ -11,6 +11,7 @@ KillDemAll.XShip = function(time, assets, ammo) {
 		this.reactors.anim[i] = assets.anim(18, 77, 12, 24, 9, 5, true, 0.04);
 	// armors
 	this.armors = {
+		speed   : 15,
 		sprite  : assets.sprite(5, 5, 23, 23),
 		openMax : 8,
 		open    : [0,0,0,0]
@@ -35,8 +36,9 @@ KillDemAll.XShip = function(time, assets, ammo) {
 	this.top = { sprite : assets.sprite(33, 5, 14, 14) };
 	// cannon
 	this.cannon = {
-		rad  : 0,
-		anim : assets.anim(122, 21, 12, 50, 8, 0, false, 0.02)
+		speed : 10,
+		rad   : 0,
+		anim  : assets.anim(122, 21, 12, 50, 8, 0, false, 0.02)
 	};
 };
 KillDemAll.XShip.prototype = {
@@ -91,15 +93,14 @@ KillDemAll.XShip.prototype = {
 		// ship
 		this.ship.update(time);
 		// armors
-		var speedArmor  = 15;
 		for (var i = 0; i < 4; ++i) {
 			var aInd = (i + 2) % 4;
 			if (this.ship.moveKeys[i]) {
-				this.armors.open[aInd] += (this.armors.openMax - this.armors.open[aInd]) * speedArmor * time.frameTime;
+				this.armors.open[aInd] += (this.armors.openMax - this.armors.open[aInd]) * this.armors.speed * time.frameTime;
 				if (this.armors.open[aInd] > this.armors.openMax)
 					this.armors.open[aInd] = this.armors.openMax;
 			} else {
-				this.armors.open[aInd] -= this.armors.open[aInd] * speedArmor * time.frameTime;
+				this.armors.open[aInd] -= this.armors.open[aInd] * this.armors.speed * time.frameTime;
 				if (this.armors.open[aInd] < 0)
 					this.armors.open[aInd] = 0;
 			}
@@ -109,13 +110,12 @@ KillDemAll.XShip.prototype = {
 			if (this.ship.shotKeys[i] && time.realTime - couple.time >= couple.delay)
 				this.shootTurret(couple, i);
 		// cannon
-		var speedCannon = 10;
 		var diffRad = this.ship.mouseRad - this.cannon.rad;
 		if (diffRad > Math.PI)
 			diffRad -= Math.PI * 2;
 		else if (diffRad < -Math.PI)
 			diffRad += Math.PI * 2;
-		this.cannon.rad += diffRad * speedCannon * time.frameTime;
+		this.cannon.rad += diffRad * this.cannon.speed * time.frameTime;
 		this.cannon.rad = (Math.PI * 2 + this.cannon.rad) % (Math.PI * 2);
 	},
 	render: function(ctx) {
