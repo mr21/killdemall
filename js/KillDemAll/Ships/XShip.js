@@ -16,14 +16,16 @@ KillDemAll.XShip = function(time, assets, ammo) {
 		open    : [0,0,0,0]
 	};
 	// turrets
-	this.turretsDelayInc = 0.025;
-	this.turretsDelayMin = 0.100;
-	this.turretsDelayMax = 0.500;
-	this.turretsCouples  = [];
+	this.turrets = {
+		delayInc : 0.025,
+		delayMin : 0.100,
+		delayMax : 0.500,
+		couples  : []
+	};
 	for (var i = 0; i < 4; ++i) {
-		this.turretsCouples[i] = {side:0, delay:0, time:0, turrets:[]};
+		this.turrets.couples[i] = { side : 0, delay : 0, time : 0, turrets : [] };
 		for (var j = 0; j < 2; ++j) {
-			this.turretsCouples[i].turrets[j] = {
+			this.turrets.couples[i].turrets[j] = {
 				anim : assets.anim(137, 86, 10, 11, 7, 0, false),
 				rad  : Math.PI / 2 * i
 			};
@@ -61,15 +63,15 @@ KillDemAll.XShip.prototype = {
 	userShootTurrets: function(key, press) {
 		var dir = this.ship.userShoot(key, press);
 		if (dir !== -1) {
-			this.turretsCouples[dir].delay = this.turretsDelayMin;
-			this.turretsCouples[dir].time  = this.time.realTime;
+			this.turrets.couples[dir].delay = this.turrets.delayMin;
+			this.turrets.couples[dir].time  = this.time.realTime;
 		}
 	},
-	shootTurret: function(turretsCouple, ind) {
-		var turret = turretsCouple.turrets[turretsCouple.side];
+	shootTurret: function(couple, ind) {
+		var turret = couple.turrets[couple.side];
 		if (!turret.anim.playing) {
 			turret.anim.play();
-			var side   = turretsCouple.side ? +1 : -1;
+			var side   = couple.side ? +1 : -1;
 			var sinRad = Math.sin(turret.rad);
 			var cosRad = Math.cos(turret.rad);
 			var x = side * (6 + this.armors.open[ind]);
@@ -79,10 +81,10 @@ KillDemAll.XShip.prototype = {
 				this.ship.vPos.y + x * sinRad + y * cosRad
 			);
 			this.ammo.createShot('bullet', shotPos, turret.rad, this.ship.vMove);
-			if (turretsCouple.delay < this.turretsDelayMax)
-				turretsCouple.delay += this.turretsDelayInc;
-			turretsCouple.time = this.time.realTime;
-			turretsCouple.side = turretsCouple.side ? 0 : 1;
+			if (couple.delay < this.turrets.delayMax)
+				couple.delay += this.turrets.delayInc;
+			couple.time = this.time.realTime;
+			couple.side = couple.side ? 0 : 1;
 		}
 	},
 	update: function(time) {
@@ -103,9 +105,9 @@ KillDemAll.XShip.prototype = {
 			}
 		}
 		// turets
-		for (var i = 0, turret; turret = this.turretsCouples[i]; ++i)
-			if (this.ship.shotKeys[i] && time.realTime - turret.time >= turret.delay)
-				this.shootTurret(turret, i);
+		for (var i = 0, couple; couple = this.turrets.couples[i]; ++i)
+			if (this.ship.shotKeys[i] && time.realTime - couple.time >= couple.delay)
+				this.shootTurret(couple, i);
 		// cannon
 		var speedCannon = 10;
 		var diffRad = this.ship.mouseRad - this.cannon.rad;
@@ -132,20 +134,20 @@ KillDemAll.XShip.prototype = {
 				// armors / turrets
 				ctx.save();
 					this.armors.sprite.draw(-23 - this.armors.open[0], -23 - this.armors.open[3]);
-					this.turretsCouples[0].turrets[0].anim.draw(-11 - this.armors.open[0], -33 - this.armors.open[3]);
-					this.turretsCouples[0].turrets[1].anim.draw( +1 + this.armors.open[0], -33 - this.armors.open[1]);
+					this.turrets.couples[0].turrets[0].anim.draw(-11 - this.armors.open[0], -33 - this.armors.open[3]);
+					this.turrets.couples[0].turrets[1].anim.draw( +1 + this.armors.open[0], -33 - this.armors.open[1]);
 					ctx.rotate(Math.PI / 2);
 					this.armors.sprite.draw(-23 - this.armors.open[1], -23 - this.armors.open[0]);
-					this.turretsCouples[1].turrets[0].anim.draw(-11 - this.armors.open[1], -33 - this.armors.open[0]);
-					this.turretsCouples[1].turrets[1].anim.draw( +1 + this.armors.open[1], -33 - this.armors.open[2]);
+					this.turrets.couples[1].turrets[0].anim.draw(-11 - this.armors.open[1], -33 - this.armors.open[0]);
+					this.turrets.couples[1].turrets[1].anim.draw( +1 + this.armors.open[1], -33 - this.armors.open[2]);
 					ctx.rotate(Math.PI / 2);
 					this.armors.sprite.draw(-23 - this.armors.open[2], -23 - this.armors.open[1]);
-					this.turretsCouples[2].turrets[0].anim.draw(-11 - this.armors.open[2], -33 - this.armors.open[1]);
-					this.turretsCouples[2].turrets[1].anim.draw( +1 + this.armors.open[2], -33 - this.armors.open[3]);
+					this.turrets.couples[2].turrets[0].anim.draw(-11 - this.armors.open[2], -33 - this.armors.open[1]);
+					this.turrets.couples[2].turrets[1].anim.draw( +1 + this.armors.open[2], -33 - this.armors.open[3]);
 					ctx.rotate(Math.PI / 2);
 					this.armors.sprite.draw(-23 - this.armors.open[3], -23 - this.armors.open[2]);
-					this.turretsCouples[3].turrets[0].anim.draw(-11 - this.armors.open[3], -33 - this.armors.open[2]);
-					this.turretsCouples[3].turrets[1].anim.draw( +1 + this.armors.open[3], -33 - this.armors.open[0]);
+					this.turrets.couples[3].turrets[0].anim.draw(-11 - this.armors.open[3], -33 - this.armors.open[2]);
+					this.turrets.couples[3].turrets[1].anim.draw( +1 + this.armors.open[3], -33 - this.armors.open[0]);
 				ctx.restore();
 				// top
 				this.top.sprite.draw(-7, -7);
