@@ -69,10 +69,11 @@ KillDemAll.XShip.prototype = {
 		var turret = turretsCouple.turrets[turretsCouple.side];
 		if (!turret.anim.playing) {
 			turret.anim.play();
+			var side   = turretsCouple.side ? +1 : -1;
 			var sinRad = Math.sin(turret.rad);
 			var cosRad = Math.cos(turret.rad);
-			var x  = turretsCouple.side ? +6 : -6;
-			var y  = -33;
+			var x = side * (6 + this.armors.open[ind]);
+			var y = -33 - this.armors.open[(4 + ind + side) % 4];
 			var shotPos = new Vector2D(
 				this.ship.vPos.x + x * cosRad - y * sinRad,
 				this.ship.vPos.y + x * sinRad + y * cosRad
