@@ -2,7 +2,7 @@ body    { margin:0; font:12px sans-serif; text-align:center; color:#ddd; backgro
 #global { display:inline-block; margin:auto; text-align:left; }
 h1 span { font-size:12px; }
 canvas  { display:block; cursor:crosshair; }
-ul.man         { font-family:monospace; line-height:22px; }
+ul.man         { font-family:monospace; line-height:24px; }
 ul.man b:after { content:'\A0:\A0'; }
-ul.man b span        { border:1px solid #555; border-radius:2px; padding:0 4px; color:#aaa; background:#222; }
+ul.man b span        { border:1px solid #555; border-radius:2px; padding:0 4px; color:#aaa; font-size:15px; background:#222; }
 ul.man b span + span { margin-left:4px; }
