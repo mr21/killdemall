@@ -10,10 +10,10 @@ KillDemAll.XShip = function(time, assets, ammo) {
 	for (var i = 0; i < 4; ++i)
 		this.reactors[i] = {anim:assets.anim(18, 77, 12, 24, 9, 5, true, 0.04)};
 	// armors
-	this.armorOpenSize = 8;
-	this.armorsOpen = [0,0,0,0]; // v < ^ >
 	this.armors = {
-		sprite : assets.sprite(5, 5, 23, 23)
+		sprite  : assets.sprite(5, 5, 23, 23),
+		openMax : 8,
+		open    : [0,0,0,0]
 	};
 	// turrets
 	this.turretsDelayInc = 0.025;
@@ -92,13 +92,13 @@ KillDemAll.XShip.prototype = {
 		for (var i = 0; i < 4; ++i) {
 			var aInd = (i + 2) % 4;
 			if (this.ship.moveKeys[i]) {
-				this.armorsOpen[aInd] += (this.armorOpenSize - this.armorsOpen[aInd]) * speedArmor * time.frameTime;
-				if (this.armorsOpen[aInd] > this.armorOpenSize)
-					this.armorsOpen[aInd] = this.armorOpenSize;
+				this.armors.open[aInd] += (this.armors.openMax - this.armors.open[aInd]) * speedArmor * time.frameTime;
+				if (this.armors.open[aInd] > this.armors.openMax)
+					this.armors.open[aInd] = this.armors.openMax;
 			} else {
-				this.armorsOpen[aInd] -= this.armorsOpen[aInd] * speedArmor * time.frameTime;
-				if (this.armorsOpen[aInd] < 0)
-					this.armorsOpen[aInd] = 0;
+				this.armors.open[aInd] -= this.armors.open[aInd] * speedArmor * time.frameTime;
+				if (this.armors.open[aInd] < 0)
+					this.armors.open[aInd] = 0;
 			}
 		}
 		// turets
@@ -130,21 +130,21 @@ KillDemAll.XShip.prototype = {
 				ctx.restore();
 				// armors / turrets
 				ctx.save();
-					this.armors.sprite.draw(-23 - this.armorsOpen[0], -23 - this.armorsOpen[3]);
-					this.turretsCouples[0].turrets[0].anim.draw(-11 - this.armorsOpen[0], -33 - this.armorsOpen[3]);
-					this.turretsCouples[0].turrets[1].anim.draw( +1 + this.armorsOpen[0], -33 - this.armorsOpen[1]);
+					this.armors.sprite.draw(-23 - this.armors.open[0], -23 - this.armors.open[3]);
+					this.turretsCouples[0].turrets[0].anim.draw(-11 - this.armors.open[0], -33 - this.armors.open[3]);
+					this.turretsCouples[0].turrets[1].anim.draw( +1 + this.armors.open[0], -33 - this.armors.open[1]);
 					ctx.rotate(Math.PI / 2);
-					this.armors.sprite.draw(-23 - this.armorsOpen[1], -23 - this.armorsOpen[0]);
-					this.turretsCouples[1].turrets[0].anim.draw(-11 - this.armorsOpen[1], -33 - this.armorsOpen[0]);
-					this.turretsCouples[1].turrets[1].anim.draw( +1 + this.armorsOpen[1], -33 - this.armorsOpen[2]);
+					this.armors.sprite.draw(-23 - this.armors.open[1], -23 - this.armors.open[0]);
+					this.turretsCouples[1].turrets[0].anim.draw(-11 - this.armors.open[1], -33 - this.armors.open[0]);
+					this.turretsCouples[1].turrets[1].anim.draw( +1 + this.armors.open[1], -33 - this.armors.open[2]);
 					ctx.rotate(Math.PI / 2);
-					this.armors.sprite.draw(-23 - this.armorsOpen[2], -23 - this.armorsOpen[1]);
-					this.turretsCouples[2].turrets[0].anim.draw(-11 - this.armorsOpen[2], -33 - this.armorsOpen[1]);
-					this.turretsCouples[2].turrets[1].anim.draw( +1 + this.armorsOpen[2], -33 - this.armorsOpen[3]);
+					this.armors.sprite.draw(-23 - this.armors.open[2], -23 - this.armors.open[1]);
+					this.turretsCouples[2].turrets[0].anim.draw(-11 - this.armors.open[2], -33 - this.armors.open[1]);
+					this.turretsCouples[2].turrets[1].anim.draw( +1 + this.armors.open[2], -33 - this.armors.open[3]);
 					ctx.rotate(Math.PI / 2);
-					this.armors.sprite.draw(-23 - this.armorsOpen[3], -23 - this.armorsOpen[2]);
-					this.turretsCouples[3].turrets[0].anim.draw(-11 - this.armorsOpen[3], -33 - this.armorsOpen[2]);
-					this.turretsCouples[3].turrets[1].anim.draw( +1 + this.armorsOpen[3], -33 - this.armorsOpen[0]);
+					this.armors.sprite.draw(-23 - this.armors.open[3], -23 - this.armors.open[2]);
+					this.turretsCouples[3].turrets[0].anim.draw(-11 - this.armors.open[3], -33 - this.armors.open[2]);
+					this.turretsCouples[3].turrets[1].anim.draw( +1 + this.armors.open[3], -33 - this.armors.open[0]);
 				ctx.restore();
 				// top
 				this.top.sprite.draw(-7, -7);
