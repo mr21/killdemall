@@ -6,11 +6,9 @@ KillDemAll.Ammo = function(assets) {
 	this.shots = [];
 };
 KillDemAll.Ammo.prototype = {
-	createShot: function(type, vPos, rad, ship_vMove) {
-		var shot = new KillDemAll.Ammo.Shot(this, type, vPos, rad);
+	createShot: function(type, vPos, rad, ship) {
+		var shot = new KillDemAll.Ammo.Shot(this, type, vPos, rad, ship);
 		this.shots.push(shot);
-		ship_vMove.x -= shot.recoil * shot.vDir.x;
-		ship_vMove.y -= shot.recoil * shot.vDir.y;
 	},
 	update: function(time) {
 		for (var i = 0, j = 0; i < this.shots.length; ++i)
@@ -24,24 +22,30 @@ KillDemAll.Ammo.prototype = {
 	}
 };
 // Shot
-KillDemAll.Ammo.Shot = function(Ammo, type, vPos, rad) {
-	this.sprite = Ammo.sprites[type];
-	this.vPos   = new Vector2D(vPos);
-	this.vDir   = new Vector2D(Math.sin(rad), -Math.cos(rad));
-	this.rad    = rad;
-	this.dist   = 0;
+KillDemAll.Ammo.Shot = function(Ammo, type, vPos, rad, ship) {
 	switch (type) {
 		case 'bullet' : this.speed = 400; this.recoil = 20; this.distMax = 400; break;
 		case 'roquet' : this.speed = 500; this.recoil = 75; this.distMax = 500; break;
 	}
+	this.dist   = 0;
+	this.rad    = rad;
+	this.sprite = Ammo.sprites[type];
+	this.vPos   = new Vector2D(vPos);
+	var sinRad = +Math.sin(rad);
+	var cosRad = -Math.cos(rad);
+	this.vDir   = new Vector2D(
+		sinRad * this.speed + ship.vMove.x,
+		cosRad * this.speed + ship.vMove.y
+	);
+	ship.vMove.x -= this.recoil * sinRad;
+	ship.vMove.y -= this.recoil * cosRad;
 };
 KillDemAll.Ammo.Shot.prototype = {
 	update: function(time) {
-		var speed = this.speed * time.frameTime;
-		if ((this.dist += 1 * speed) > this.distMax)
+		if ((this.dist += this.speed * time.frameTime) > this.distMax)
 			return false;
-		this.vPos.x += this.vDir.x * speed;
-		this.vPos.y += this.vDir.y * speed;
+		this.vPos.x += this.vDir.x * time.frameTime;
+		this.vPos.y += this.vDir.y * time.frameTime;
 		return true;
 	},
 	render: function(ctx) {

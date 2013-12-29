@@ -25,12 +25,11 @@ KillDemAll.XShip = function(time, assets, ammo) {
 	};
 	for (var i = 0; i < 4; ++i) {
 		this.turrets.couples[i] = { side : 0, delay : 0, time : 0, turrets : [] };
-		for (var j = 0; j < 2; ++j) {
+		for (var j = 0; j < 2; ++j)
 			this.turrets.couples[i].turrets[j] = {
 				anim : assets.anim(137, 86, 10, 11, 7, 0, false),
 				rad  : Math.PI / 2 * i
 			};
-		}
 	}
 	// top
 	this.top = { sprite : assets.sprite(33, 5, 14, 14) };
@@ -59,7 +58,7 @@ KillDemAll.XShip.prototype = {
 				this.ship.vPos.x + 40 * +Math.sin(this.cannon.rad),
 				this.ship.vPos.y + 40 * -Math.cos(this.cannon.rad)
 			);
-			this.ammo.createShot('roquet', shotPos, this.cannon.rad, this.ship.vMove);
+			this.ammo.createShot('roquet', shotPos, this.cannon.rad, this.ship);
 		}
 	},
 	userShootTurrets: function(key, press) {
@@ -82,7 +81,7 @@ KillDemAll.XShip.prototype = {
 				this.ship.vPos.x + x * cosRad - y * sinRad,
 				this.ship.vPos.y + x * sinRad + y * cosRad
 			);
-			this.ammo.createShot('bullet', shotPos, turret.rad, this.ship.vMove);
+			this.ammo.createShot('bullet', shotPos, turret.rad, this.ship);
 			if (couple.delay < this.turrets.delayMax)
 				couple.delay += this.turrets.delayInc;
 			couple.time = this.time.realTime;
