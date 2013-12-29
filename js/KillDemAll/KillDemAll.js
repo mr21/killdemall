@@ -5,7 +5,7 @@ var KillDemAll = {
 			elem,
 			[
 				'css/sprites.png',
-				'css/ground.jpg'
+				'css/map.png'
 			],
 			{
 				load      : function() { self.load     .apply(self, arguments) },
@@ -21,11 +21,11 @@ var KillDemAll = {
 		//this.canvas2d.debug(true);
 	},
 	load: function() {
-		this.map   = new KillDemAll.Map(this.canvas2d.assets);
+		this.map   = new KillDemAll.Map(this.canvas2d);
 		this.ammo  = new KillDemAll.Ammo(this.canvas2d.assets);
 		this.xship = new KillDemAll.XShip(this.canvas2d.time, this.canvas2d.assets, this.ammo);
-		this.xship.ship.vPos.x = 100;
-		this.xship.ship.vPos.y = 200;
+		this.xship.ship.vPos.x = this.canvas2d.ctx.canvas.width  / 2;
+		this.xship.ship.vPos.y = this.canvas2d.ctx.canvas.height / 2;
 	},
 	update: function(time) {
 		// update des tirs
@@ -33,7 +33,7 @@ var KillDemAll = {
 		// update du XShip
 		this.xship.update(time);
 		// centrer la vue sur le XShip
-		var viewSpeed = 3 * time.frameTime;
+		var viewSpeed = 4 * time.frameTime;
 		var vShip = this.xship.ship.vPos;
 		var vView = this.canvas2d.getView();
 		this.canvas2d.setView(
