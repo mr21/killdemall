@@ -8,7 +8,7 @@ KillDemAll.XShip = function(time, assets, ammo) {
 	// reactors
 	this.reactors = { anim : [] };
 	for (var i = 0; i < 4; ++i)
-		this.reactors.anim[i] = assets.anim(18, 77, 12, 24, 9, 5, true, 0.04);
+		this.reactors.anim[i] = assets.anim(5, 32, 12, 24, 9, 5, true, 0.04);
 	// armors
 	this.armors = {
 		speed   : 15,
@@ -27,7 +27,7 @@ KillDemAll.XShip = function(time, assets, ammo) {
 		this.turrets.couples[i] = { side : 0, delay : 0, time : 0, turrets : [] };
 		for (var j = 0; j < 2; ++j)
 			this.turrets.couples[i].turrets[j] = {
-				anim : assets.anim(137, 86, 10, 11, 7, 0, false),
+				anim : assets.anim(5, 61, 10, 11, 7, 0, false),
 				rad  : Math.PI / 2 * i
 			};
 	}
@@ -37,7 +37,7 @@ KillDemAll.XShip = function(time, assets, ammo) {
 	this.cannon = {
 		speed : 10,
 		rad   : 0,
-		anim  : assets.anim(122, 21, 12, 50, 8, 0, false, 0.02)
+		anim  : assets.anim(5, 77, 12, 50, 8, 0, false, 0.02)
 	};
 };
 KillDemAll.XShip.prototype = {
