@@ -15,7 +15,6 @@ var KillDemAll = {
 				keyup     : function() { self.keyup    .apply(self, arguments) },
 				mousemove : function() { self.mousemove.apply(self, arguments) },
 				mousedown : function() { self.mousedown.apply(self, arguments) }
-				//mouseup   : function() { self.mouseup  .apply(self, arguments) },
 			}
 		);
 		//this.canvas2d.debug(true);
@@ -23,9 +22,16 @@ var KillDemAll = {
 	load: function() {
 		this.map   = new KillDemAll.Map(this.canvas2d);
 		this.ammo  = new KillDemAll.Ammo(this.canvas2d.assets);
-		this.xship = new KillDemAll.XShip(this.canvas2d.time, this.canvas2d.assets, this.ammo);
-		this.xship.ship.vPos.x = this.canvas2d.ctx.canvas.width  / 2;
-		this.xship.ship.vPos.y = this.canvas2d.ctx.canvas.height / 2;
+		// user ship : XShip
+		this.xship = new KillDemAll.UserShip_XShip(
+			{
+				x: this.canvas2d.ctx.canvas.width  / 2,
+				y: this.canvas2d.ctx.canvas.height / 2
+			},
+			this.canvas2d.time,
+			this.canvas2d.assets,
+			this.ammo
+		);
 	},
 	update: function(time) {
 		// update des tirs
@@ -34,7 +40,7 @@ var KillDemAll = {
 		this.xship.update(time);
 		// centrer la vue sur le XShip
 		var viewSpeed = 4 * time.frameTime;
-		var vShip = this.xship.ship.vPos;
+		var vShip = this.xship.vPos;
 		var vView = this.canvas2d.getView();
 		this.canvas2d.setView(
 			vView.x + ((-vShip.x + this.canvas2d.elem.width  / 2) - vView.x) * viewSpeed,
@@ -50,5 +56,4 @@ var KillDemAll = {
 	keyup:     function(k)    { this.xship.userMove(k, 0); this.xship.userShootTurrets(k, 0) },
 	mousemove: function(x, y) { this.xship.userMoveCannon(x, y) },
 	mousedown: function()     { this.xship.userShootCannon()    }
-	//mouseup:   function(x, y) { lg('mouseup(' + x + ', ' + y + ')') },
 };
