@@ -11,14 +11,17 @@ KillDemAll.Ship = function(vPos, weight, maxSpeed, acceleration) {
 KillDemAll.Ship.prototype = {
 	update: function(time) {
 		// deplacement
-		this.vPos.x += this.vMove.x * time.frameTime;
-		this.vPos.y += this.vMove.y * time.frameTime;
+		var incX = this.vMove.x * time.frameTime;
+		var incY = this.vMove.y * time.frameTime;
+		this.vPos.x += incX;
+		this.vPos.y += incY;
 		// adherence selon le poids
-		this.vMove.div(this.weight); // rajouter le frametime
+		this.vMove.x -= incX * this.weight;
+		this.vMove.y -= incY * this.weight;
 		// acceleration
 		this.vMove.addXY(
-			this.vDir.x * this.acceleration, // rajouter le frametime
-			this.vDir.y * this.acceleration
+			this.vDir.x * this.acceleration * time.frameTime,
+			this.vDir.y * this.acceleration * time.frameTime
 		);
 	}
 };
