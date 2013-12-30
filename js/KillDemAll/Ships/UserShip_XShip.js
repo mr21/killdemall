@@ -31,12 +31,15 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 		couples  : []
 	};
 	for (var i = 0; i < 4; ++i) {
-		this.turrets.couples[i] = { side : 0, delay : 0, time : 0, turrets : [] };
+		this.turrets.couples[i] = {
+			rad   : Math.PI / 2 * i,
+			side  : 0,
+			delay : 0,
+			time  : 0,
+			anims : []
+		};
 		for (var j = 0; j < 2; ++j)
-			this.turrets.couples[i].turrets[j] = {
-				anim : assets.anim(5, 61, 10, 11, 7, 0, false),
-				rad  : Math.PI / 2 * i
-			};
+			this.turrets.couples[i].anims[j] = assets.anim(5, 61, 10, 11, 7, 0, false);
 	}
 	// top
 	this.top = { sprite : assets.sprite(33, 5, 14, 14) };
@@ -82,19 +85,19 @@ KillDemAll.UserShip_XShip.prototype.userShootTurrets = function(key, press) {
 };
 
 KillDemAll.UserShip_XShip.prototype.shootTurret = function(couple, ind) {
-	var turret = couple.turrets[couple.side];
-	if (!turret.anim.playing) {
-		turret.anim.play();
+	var anim = couple.anims[couple.side];
+	if (!anim.playing) {
+		anim.play();
 		var side   = couple.side ? +1 : -1;
-		var sinRad = Math.sin(turret.rad);
-		var cosRad = Math.cos(turret.rad);
+		var sinRad = Math.sin(couple.rad);
+		var cosRad = Math.cos(couple.rad);
 		var x = side * (6 + this.armors.open[ind]);
 		var y = -33 - this.armors.open[(4 + ind + side) % 4];
 		var shotPos = new Vector2D(
 			this.vPos.x + x * cosRad - y * sinRad,
 			this.vPos.y + x * sinRad + y * cosRad
 		);
-		this.ammo.createShot('bullet', shotPos, turret.rad, this);
+		this.ammo.createShot('bullet', shotPos, couple.rad, this);
 		if (couple.delay < this.turrets.delayMax)
 			couple.delay += this.turrets.delayInc;
 		couple.time = this.time.realTime;
@@ -148,20 +151,20 @@ KillDemAll.UserShip_XShip.prototype.render = function(ctx) {
 			// armors / turrets
 			ctx.save();
 				this.armors.sprite.draw(-23 - this.armors.open[0], -23 - this.armors.open[3]);
-				this.turrets.couples[0].turrets[0].anim.draw(-11 - this.armors.open[0], -33 - this.armors.open[3]);
-				this.turrets.couples[0].turrets[1].anim.draw( +1 + this.armors.open[0], -33 - this.armors.open[1]);
+				this.turrets.couples[0].anims[0].draw(-11 - this.armors.open[0], -33 - this.armors.open[3]);
+				this.turrets.couples[0].anims[1].draw( +1 + this.armors.open[0], -33 - this.armors.open[1]);
 				ctx.rotate(Math.PI / 2);
 				this.armors.sprite.draw(-23 - this.armors.open[1], -23 - this.armors.open[0]);
-				this.turrets.couples[1].turrets[0].anim.draw(-11 - this.armors.open[1], -33 - this.armors.open[0]);
-				this.turrets.couples[1].turrets[1].anim.draw( +1 + this.armors.open[1], -33 - this.armors.open[2]);
+				this.turrets.couples[1].anims[0].draw(-11 - this.armors.open[1], -33 - this.armors.open[0]);
+				this.turrets.couples[1].anims[1].draw( +1 + this.armors.open[1], -33 - this.armors.open[2]);
 				ctx.rotate(Math.PI / 2);
 				this.armors.sprite.draw(-23 - this.armors.open[2], -23 - this.armors.open[1]);
-				this.turrets.couples[2].turrets[0].anim.draw(-11 - this.armors.open[2], -33 - this.armors.open[1]);
-				this.turrets.couples[2].turrets[1].anim.draw( +1 + this.armors.open[2], -33 - this.armors.open[3]);
+				this.turrets.couples[2].anims[0].draw(-11 - this.armors.open[2], -33 - this.armors.open[1]);
+				this.turrets.couples[2].anims[1].draw( +1 + this.armors.open[2], -33 - this.armors.open[3]);
 				ctx.rotate(Math.PI / 2);
 				this.armors.sprite.draw(-23 - this.armors.open[3], -23 - this.armors.open[2]);
-				this.turrets.couples[3].turrets[0].anim.draw(-11 - this.armors.open[3], -33 - this.armors.open[2]);
-				this.turrets.couples[3].turrets[1].anim.draw( +1 + this.armors.open[3], -33 - this.armors.open[0]);
+				this.turrets.couples[3].anims[0].draw(-11 - this.armors.open[3], -33 - this.armors.open[2]);
+				this.turrets.couples[3].anims[1].draw( +1 + this.armors.open[3], -33 - this.armors.open[0]);
 			ctx.restore();
 			// top
 			this.top.sprite.draw(-7, -7);
