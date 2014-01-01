@@ -7,7 +7,7 @@ KillDemAll.UserShip = function() {
 	this.mouseRad = 0;
 };
 
-KillDemAll.UserShip.prototype = KillDemAll.Ship.prototype;
+KillDemAll.UserShip.prototype = new KillDemAll.Ship();
 
 KillDemAll.UserShip.prototype.userMove = function(key, press) {
 	var dir = -1;

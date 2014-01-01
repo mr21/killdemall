@@ -5,6 +5,7 @@ var KillDemAll = {
 			elem,
 			[
 				'css/sprites.png',
+				'css/EnemyShip_Kamikase.png',
 				'css/map.png'
 			],
 			{
@@ -32,12 +33,22 @@ var KillDemAll = {
 			this.canvas2d.assets,
 			this.ammo
 		);
+		// tmp
+		this.enemyTest = new KillDemAll.EnemyShip_Kamikaze(
+			{
+				x: this.xship.vPos.x + 100,
+				y: this.xship.vPos.y,
+			},
+			this.canvas2d.assets
+		);
+		this.enemyTest.setTarget(this.xship);
 	},
 	update: function(time) {
 		// update des tirs
 		this.ammo.update(time);
 		// update du XShip
 		this.xship.update(time);
+		this.enemyTest.update(time);
 		// centrer la vue sur le XShip
 		var viewSpeed = 4 * time.frameTime;
 		var vShip = this.xship.vPos;
@@ -49,6 +60,7 @@ var KillDemAll = {
 	},
 	render: function(ctx) {
 		this.map.render(ctx);
+		this.enemyTest.render(ctx);
 		this.xship.render(ctx);
 		this.ammo.render(ctx);
 	},
