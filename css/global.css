@@ -1,4 +1,4 @@
-body    { margin:0; font:12px sans-serif; text-align:center; color:#ddd; background:#111; }
+body    { overflow:hidden; margin:0; font:12px sans-serif; text-align:center; color:#ddd; background:#111; }
 #global { display:inline-block; margin:auto; text-align:left; }
 h1 span { font-size:12px; }
 canvas  { display:block; cursor:crosshair; background:#151517; }
