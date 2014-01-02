@@ -45,7 +45,8 @@ var KillDemAll = {
 	},
 	update: function(time) {
 		// update des tirs
-		this.ammo.update(time);
+		var self = this;
+		this.ammo.update(time, function(shot) { return self.shotCollision(shot) });
 		// update du XShip
 		this.xship.update(time);
 		this.enemyTest.update(time);
@@ -57,6 +58,9 @@ var KillDemAll = {
 			vView.x + ((-vShip.x + this.canvas2d.elem.width  / 2) - vView.x) * viewSpeed,
 			vView.y + ((-vShip.y + this.canvas2d.elem.height / 2) - vView.y) * viewSpeed
 		);
+	},
+	shotCollision: function(shot) {
+		return false;
 	},
 	render: function(ctx) {
 		this.map.render(ctx);

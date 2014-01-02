@@ -10,9 +10,9 @@ KillDemAll.Ammo.prototype = {
 		var shot = new KillDemAll.Ammo.Shot(this, type, vPos, rad, ship);
 		this.shots.push(shot);
 	},
-	update: function(time) {
+	update: function(time, isIncollision) {
 		for (var i = 0, j = 0; i < this.shots.length; ++i)
-			if (this.shots[i].update(time))
+			if (this.shots[i].update(time, isIncollision))
 				this.shots[j++] = this.shots[i];
 		this.shots.length = j;
 	},
@@ -41,8 +41,8 @@ KillDemAll.Ammo.Shot = function(Ammo, type, vPos, rad, ship) {
 	ship.vMove.y -= this.recoil / (1 + ship.weight) * cosRad;
 };
 KillDemAll.Ammo.Shot.prototype = {
-	update: function(time) {
-		if ((this.dist += this.speed * time.frameTime) > this.distMax)
+	update: function(time, isIncollision) {
+		if (isIncollision(this) || (this.dist += this.speed * time.frameTime) > this.distMax)
 			return false;
 		this.vPos.x += this.vDir.x * time.frameTime;
 		this.vPos.y += this.vDir.y * time.frameTime;
