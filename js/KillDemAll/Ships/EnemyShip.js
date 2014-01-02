@@ -14,14 +14,13 @@ KillDemAll.EnemyShip.prototype.getTarget = function()     { return this.shipTarg
 KillDemAll.EnemyShip.prototype.update = function(time) {
 	KillDemAll.Ship.prototype.update.call(this, time);
 	if (this.shipTargeted) {
-		this._calcRadDir(this.shipTargeted.vPos);
+		this._calcRad(this.shipTargeted.vPos);
 	}
 };
 
-KillDemAll.EnemyShip.prototype._calcRadDir = function(target_vPos) {
+KillDemAll.EnemyShip.prototype._calcRad = function(target_vPos) {
 	this.rad = Math.PI - Math.atan2(
 		target_vPos.x - this.vPos.x,
 		target_vPos.y - this.vPos.y
 	);
-	this.vDir;
 };
