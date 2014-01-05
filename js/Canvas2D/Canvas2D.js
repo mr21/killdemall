@@ -14,12 +14,12 @@ function Canvas2D(container, images, fns) {
 		ev.stopPropagation();
 		self.active = true;
 		body._addClass('Canvas2D_focus');
-		this._addClass('active');
+		self.container._addClass('active');
 	});
 	document._addEvent('click', function() {
 		self.active = false;
 		body._delClass('Canvas2D_focus');
-		self.canvas._delClass('active');
+		self.container._delClass('active');
 	});
 	this.canvas.click(); // tmp
 }

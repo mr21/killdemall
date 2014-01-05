@@ -1,3 +1,5 @@
 body.Canvas2D_focus { -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
+.Canvas2D        { position:relative; overflow:hidden; }
+.Canvas2D.active { box-shadow:0 0 5px rgba(128, 128, 255, 0.7); }
 .Canvas2D canvas { position:relative; }
-.Canvas2D canvas.active { box-shadow:0 0 5px rgba(128, 128, 255, 0.7); }
+.Canvas2D > .cross { position:absolute; z-index:1; top:-21px; right:0px; margin:5px 5px 0 0; width:16px; height:16px; background:red; }
