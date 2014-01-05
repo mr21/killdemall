@@ -18,7 +18,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 		this.reactors.anim[i] = assets.anim(5, 32, 12, 24, 9, 5, true, 0.04);
 	// armors
 	this.armors = {
-		speed   : 15,
+		speed   : 7,
 		sprite  : assets.sprite(5, 5, 23, 23),
 		openMax : 8,
 		open    : [0,0,0,0]
