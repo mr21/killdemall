@@ -22,10 +22,42 @@ function Canvas2D(container, images, fns) {
 		self.container._delClass('active');
 	});
 	this.canvas.click(); // tmp
+	// create DOM pages
+	this.pageCurr = null;
+	this.domA_cross = document.createElement('a');
+	this.domA_cross.href      = '#';
+	this.domA_cross.className = 'cross';
+	this.domA_cross.onclick   = function() { return self.closePage(), false };
+	container.insertBefore(this.domA_cross, this.canvas);
 }
 Canvas2D.prototype = {
 	debug: function(state) {
 		this.assets.debug(state);
+	},
+	openPage: function(page) {
+		if (page !== this.pageCurr) {
+			this.closePage();
+			this.page_animId = page._cssAnim(
+				{css:'display',    val:'block'},
+				{css:'opacity',    val:'1',   dur:500},
+				{css:'top',        val:'0px', mov:'easeIn'},
+				{elm:this.domA_cross, css:'top', val:'5px', del:500}
+			);
+			this.pageCurr = page;
+		}
+	},
+	closePage: function() {
+		if (this.pageCurr !== null) {
+			document._cssAnimPause(this.page_animId);
+			this.page_animId = this.pageCurr._cssAnim(
+				{css:'opacity',    val:'0',     dur:250},
+				{css:'top',        val:'-50px', mov:'easeIn'},
+				{css:'display',    val:'none',  del:250},
+				{elm:this.domA_cross, css:'top', val:'-16px', del:0}
+			);
+			this.pageCurr = null;
+
+		}
 	},
 	launch: function() {
 		var self = this;

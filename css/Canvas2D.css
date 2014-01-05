@@ -1,5 +1,19 @@
+/* global */
 body.Canvas2D_focus { -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
+
+/* Canvas2D container */
 .Canvas2D        { position:relative; overflow:hidden; }
 .Canvas2D.active { box-shadow:0 0 5px rgba(128, 128, 255, 0.7); }
+
+/* <canvas> itself */
 .Canvas2D canvas { position:relative; }
-.Canvas2D > .cross { position:absolute; z-index:1; top:-21px; right:0px; margin:5px 5px 0 0; width:16px; height:16px; background:red; }
+
+/* pages */
+.Canvas2D > div    {
+	position:absolute; z-index:1; width:100%; height:100%; background:rgba(0,0,0,0.8);
+	display:none; opacity:0; top:-50px;
+}
+.Canvas2D > .cross {
+	position:absolute; z-index:1; top:5px; right:5px; width:16px; height:16px; background:red;
+	top:-16px;
+}
