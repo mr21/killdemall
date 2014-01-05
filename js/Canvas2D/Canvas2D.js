@@ -8,35 +8,42 @@ function Canvas2D(container, images, fns) {
 	this.assets    = new Assets(this, images);
 	this.vectView  = new Vector2D(0, 0);
 	// active/inactive
-	var body = document.getElementsByTagName('body')[0];
+	this.body = document.getElementsByTagName('body')[0];
 	this.active = false;
-	this.canvas._addEvent('click', function(ev) {
-		ev.stopPropagation();
-		self.active = true;
-		body._addClass('Canvas2D_focus');
-		self.container._addClass('active');
-	});
-	document._addEvent('click', function() {
-		self.active = false;
-		body._delClass('Canvas2D_focus');
-		self.container._delClass('active');
-	});
-	this.canvas.click(); // tmp
+	this.canvas._addEvent('mousedown', function(ev) { self.focus(ev) });
+	document   ._addEvent('mousedown', function()   { self.blur()    });
+	this.focus(); // tmp
 	// create DOM pages
 	this.pageCurr = null;
 	this.domA_cross = document.createElement('a');
 	this.domA_cross.href      = '#';
 	this.domA_cross.className = 'cross';
-	this.domA_cross.onclick   = function() { return self.closePage(), false };
+	this.domA_cross.onclick   = function() { return self.closePage(true), false };
 	container.insertBefore(this.domA_cross, this.canvas);
 }
 Canvas2D.prototype = {
 	debug: function(state) {
 		this.assets.debug(state);
 	},
+	focus: function(event) {
+		if (event)
+			event.stopPropagation();
+		if (this.active !== true) {
+			this.active = true;
+			this.body._addClass('Canvas2D_focus');
+			this.container._addClass('active');
+		}
+	},
+	blur: function() {
+		if (this.active === true) {
+			this.active = false;
+			this.body._delClass('Canvas2D_focus');
+			this.container._delClass('active');
+		}
+	},
 	openPage: function(page) {
 		if (page !== this.pageCurr) {
-			this.closePage();
+			this.closePage(false);
 			this.page_animId = page._cssAnim(
 				{css:'display',    val:'block'},
 				{css:'opacity',    val:'1',   dur:500},
@@ -44,9 +51,10 @@ Canvas2D.prototype = {
 				{elm:this.domA_cross, css:'top', val:'5px', del:500}
 			);
 			this.pageCurr = page;
+			this.blur();
 		}
 	},
-	closePage: function() {
+	closePage: function(focus) {
 		if (this.pageCurr !== null) {
 			document._cssAnimPause(this.page_animId);
 			this.page_animId = this.pageCurr._cssAnim(
@@ -56,7 +64,8 @@ Canvas2D.prototype = {
 				{elm:this.domA_cross, css:'top', val:'-16px', del:0}
 			);
 			this.pageCurr = null;
-
+			if (focus)
+				this.focus();
 		}
 	},
 	launch: function() {
