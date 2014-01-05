@@ -46,9 +46,9 @@ Canvas2D.prototype = {
 			this.closePage(false);
 			this.page_animId = page._cssAnim(
 				{css:'display',    val:'block'},
-				{css:'opacity',    val:'1',   dur:500},
+				{css:'opacity',    val:'1',   dur:250},
 				{css:'top',        val:'0px', mov:'easeIn'},
-				{elm:this.domA_cross, css:'top', val:'5px', del:500}
+				{elm:this.domA_cross, css:'top', val:'5px', del:250}
 			);
 			this.pageCurr = page;
 			this.blur();
