@@ -11,7 +11,7 @@ h1 span { font-size:12px; }
 #menu a        { color:#aaa; padding:2px 5px; font-weight:bold; text-decoration:none; border-radius:2px; }
 #menu a:hover  { color:#ccc; background:#222; text-shadow:0 1px 0px #000; }
 #menu a:active { box-shadow:inset 0 2px 3px rgba(0,0,0,0.5); }
-#menu .pages   { position:absolute; width:100%; z-index:1; margin-top:10px; background:rgba(0,0,0,0.8); }
+.Canvas2D > div h2 { margin:15px 0 10px 15px; }
 
 ul.man         { font-family:monospace; line-height:24px; }
 ul.man b:after { content:'\A0:\A0'; }
