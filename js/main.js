@@ -1,6 +1,7 @@
 function lg(s) { console.log(s) }
 
 window.onload = function() {
+	// creation de l'objet Canvas2D
 	var canvas2d = new Canvas2D(
 		document._domSelector('.Canvas2D')[0],
 		[
@@ -18,5 +19,10 @@ window.onload = function() {
 			mousedown : function() { KillDemAll.mousedown.apply(KillDemAll, arguments) }
 		}
 	);
+	// Initialisation du menu
+	var domA_menu = document.getElementById('menu').getElementsByTagName('a');
+	for (var i = 0, a; a = domA_menu[i]; ++i)
+		a.onclick = function() { return canvas2d.openPage(document._domSelector('.Canvas2D > .' + this.className)[0]), false };
+	// Initialisation et lancement du jeu
 	KillDemAll.init(canvas2d);
 };
