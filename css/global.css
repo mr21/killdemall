@@ -1,9 +1,9 @@
 /* global */
-body    { overflow:hidden; margin:0; font:12px sans-serif; text-align:center; color:#ddd; background:#111; }
+body    { margin:0; font:12px sans-serif; text-align:center; color:#ddd; background:#111; }
 #global { display:inline-block; margin:auto; text-align:left; }
 
 /* title */
-h1      { margin:10px 0; }
+h1      { margin:10px 0 25px 0; }
 h1 span { font-size:12px; }
 
 /* menu */
@@ -11,12 +11,16 @@ h1 span { font-size:12px; }
 #menu a        { color:#aaa; padding:2px 5px; font-weight:bold; text-decoration:none; border-radius:2px; }
 #menu a:hover  { color:#ccc; background:#222; text-shadow:0 1px 0px #000; }
 #menu a:active { box-shadow:inset 0 2px 3px rgba(0,0,0,0.5); }
-.Canvas2D > div h2 { margin:15px 0 10px 15px; }
 
-ul.man         { font-family:monospace; line-height:24px; }
-ul.man b:after { content:'\A0:\A0'; }
-ul.man b span        { border:1px solid #555; border-radius:2px; padding:0 4px; color:#aaa; font-size:15px; background:#222; }
-ul.man b span + span { margin-left:4px; }
-
-/* canvas */
-canvas  { display:block; cursor:crosshair; background:#151517; }
+/* canvas / pages */
+.Canvas2D canvas  { display:block; cursor:crosshair; background:#151517; }
+.Canvas2D h2 { margin:15px 0 20px 15px; }
+.Canvas2D ul.man               { line-height:32px; }
+.Canvas2D ul.man b             { display:inline-block; width:92px; }
+.Canvas2D ul.man b span        { border:1px solid #555; border-radius:2px; padding:2px 4px; color:#aaa; background:#222; font-size:11px; }
+.Canvas2D ul.man b span + span { margin-left:4px; }
+.Canvas2D ul.man li > span:before { content:'\A0\A0:\A0\A0'; color:#555; font-family:monospace; }
+.Canvas2D ul.man li > span        { font-size:12px; }
+.Canvas2D a       { text-decoration:none; color:#aaf; }
+.Canvas2D a:hover { text-decoration:underline; }
+.Canvas2D p { margin:20px; text-indent:10px; line-height:20px; }
