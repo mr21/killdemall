@@ -11,6 +11,7 @@ var KillDemAll = {
 			this.scoreInc    = 1;
 			this.enemyKilled = {'Kamikaze':0};
 			this.numFill     = '000000000';
+			this.numIncrSpd  = 10;
 			// DOM
 			this.DOM = {'score':0, 'enemyKilled':0};
 			for (var d in this.DOM) {
@@ -29,7 +30,7 @@ var KillDemAll = {
 		},
 		add: function(pts) {
 			this.score   += pts;
-			this.scoreInc = (this.score - this.scoreTmp) / 100;
+			this.scoreInc = (this.score - this.scoreTmp) / this.numIncrSpd;
 		},
 		kill: function(EnemyShip) {
 			this.set('enemyKilled', ++this.enemyKilled[EnemyShip.type]);
@@ -95,6 +96,16 @@ var KillDemAll = {
 		);
 	},
 	shotCollision: function(shot) {
+		for (var i = 0, k; k = this.kamikazes[i]; ++i)
+			if (shot.vPos.x >= k.vPos.x - k.bodySprite.w / 2 &&
+			    shot.vPos.x <= k.vPos.x + k.bodySprite.w / 2 &&
+			    shot.vPos.y >= k.vPos.y - k.bodySprite.h / 2 &&
+			    shot.vPos.y <= k.vPos.y + k.bodySprite.h / 2)
+			{
+			    this.score.kill(k);
+			    this.kamikazes.splice(i, 1);
+			    return true;
+			}
 		return false;
 	},
 	render: function(ctx) {
