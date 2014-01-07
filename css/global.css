@@ -14,13 +14,13 @@ h1 span { font-size:12px; }
 
 /* canvas / pages */
 .Canvas2D canvas  { display:block; cursor:crosshair; background:#151517; }
-.Canvas2D h2 { margin:15px 0 20px 15px; }
-.Canvas2D ul.man               { line-height:32px; }
-.Canvas2D ul.man b             { display:inline-block; width:92px; }
-.Canvas2D ul.man b span        { border:1px solid #555; border-radius:2px; padding:2px 4px; color:#aaa; background:#222; font-size:11px; }
-.Canvas2D ul.man b span + span { margin-left:4px; }
-.Canvas2D ul.man li > span:before { content:'\A0\A0:\A0\A0'; color:#555; font-family:monospace; }
-.Canvas2D ul.man li > span        { font-size:12px; }
-.Canvas2D a       { text-decoration:none; color:#aaf; }
-.Canvas2D a:hover { text-decoration:underline; }
-.Canvas2D p { margin:20px; text-indent:10px; line-height:20px; }
+.Canvas2D .page h2 { margin:15px 0 20px 15px; }
+.Canvas2D .page ul.man               { line-height:32px; }
+.Canvas2D .page ul.man b             { display:inline-block; width:92px; }
+.Canvas2D .page ul.man b span        { border:1px solid #555; border-radius:2px; padding:2px 4px; color:#aaa; background:#222; font-size:11px; }
+.Canvas2D .page ul.man b span + span { margin-left:4px; }
+.Canvas2D .page ul.man li > span:before { content:'\A0\A0:\A0\A0'; color:#555; font-family:monospace; }
+.Canvas2D .page ul.man li > span        { font-size:12px; }
+.Canvas2D .page a       { text-decoration:none; color:#aaf; }
+.Canvas2D .page a:hover { text-decoration:underline; }
+.Canvas2D .page p { margin:20px; text-indent:10px; line-height:20px; }

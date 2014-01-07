@@ -9,7 +9,7 @@ body.Canvas2D_focus { -webkit-touch-callout:none; -webkit-user-select:none; -kht
 .Canvas2D canvas { position:relative; }
 
 /* pages */
-.Canvas2D > div    {
+.Canvas2D > .page    {
 	position:absolute; z-index:1; width:100%; height:100%; background:rgba(0,0,0,0.8);
 	display:none; opacity:0; top:-50px;
 }
