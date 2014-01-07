@@ -4,10 +4,50 @@ var KillDemAll = {
 		this.canvas2d = canvas2d;
 		//canvas2d.debug(true);
 	},
+	score: {
+		init: function() {
+			this.score       = 0;
+			this.scoreTmp    = this.score;
+			this.scoreInc    = 1;
+			this.enemyKilled = {'Kamikaze':0};
+			this.numFill     = '000000000';
+			// DOM
+			this.DOM = {'score':0, 'enemyKilled':0};
+			for (var d in this.DOM) {
+				this.DOM[d] = [
+					document._domSelector('.scoring .' + d + ' + * span:first-child')[0],
+					document._domSelector('.scoring .' + d + ' + * span:last-child')[0]
+				];
+				this.set(d, 0);
+			}
+		},
+		set: function(dom, val) {
+			var width = 1, fill = '';
+			for (var valTmp = val; parseInt(valTmp /= 10); ++width) {}
+			this.DOM[dom][0].innerHTML = this.numFill.substr(width);
+			this.DOM[dom][1].innerHTML = val;
+		},
+		add: function(pts) {
+			this.score   += pts;
+			this.scoreInc = (this.score - this.scoreTmp) / 100;
+		},
+		kill: function(EnemyShip) {
+			this.set('enemyKilled', ++this.enemyKilled[EnemyShip.type]);
+			this.add(EnemyShip.nbPts);
+		},
+		update: function() {
+			if (this.scoreTmp < this.score) {
+				if ((this.scoreTmp += this.scoreInc) > this.score)
+					this.scoreTmp = this.score;
+				this.set('score', parseInt(this.scoreTmp));
+			}
+		}
+	},
 	load: function() {
 		this.map   = new KillDemAll.Map(this.canvas2d);
 		this.ammo  = new KillDemAll.Ammo(this.canvas2d.assets);
-		// user ship : XShip
+		this.score.init();
+		// UserShip::XShip
 		this.xship = new KillDemAll.UserShip_XShip(
 			{
 				x: this.canvas2d.ctx.canvas.width  / 2,
@@ -17,23 +57,34 @@ var KillDemAll = {
 			this.canvas2d.assets,
 			this.ammo
 		);
+		// EnemyShip::Kamikaze
+		this.kamikazes = [];
 		// tmp
-		this.enemyTest = new KillDemAll.EnemyShip_Kamikaze(
+		this.createEnemy('Kamikaze');
+	},
+	createEnemy: function(type) {
+		var distMin = 50;
+		var enemy = new KillDemAll['EnemyShip_' + type](
 			{
-				x: this.xship.vPos.x + 100,
-				y: this.xship.vPos.y,
+				x: this.xship.vPos.x + (distMin + Math.random() * 200) * (Math.random() > 0.5 ? -1 : +1),
+				y: this.xship.vPos.y + (distMin + Math.random() * 200) * (Math.random() > 0.5 ? -1 : +1),
 			},
 			this.canvas2d.assets
 		);
-		this.enemyTest.setTarget(this.xship);
+		enemy.setTarget(this.xship);
+		this.kamikazes.push(enemy);
 	},
 	update: function(time) {
-		// update des tirs
+		// tirs
 		var self = this;
 		this.ammo.update(time, function(shot) { return self.shotCollision(shot) });
-		// update du XShip
+		// scoring
+		this.score.update();
+		// XShip
 		this.xship.update(time);
-		this.enemyTest.update(time);
+		// Enemies
+		for (var i = 0, k; k = this.kamikazes[i]; ++i)
+			k.update(time);
 		// centrer la vue sur le XShip
 		var viewSpeed = 4 * time.frameTime;
 		var vShip = this.xship.vPos;
@@ -47,8 +98,11 @@ var KillDemAll = {
 		return false;
 	},
 	render: function(ctx) {
+		// map
 		this.map.render(ctx);
-		this.enemyTest.render(ctx);
+		// enemies
+		for (var i = 0, k; k = this.kamikazes[i]; ++i)
+			k.render(ctx);
 		this.xship.render(ctx);
 		this.ammo.render(ctx);
 	},

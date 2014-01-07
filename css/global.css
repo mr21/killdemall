@@ -24,3 +24,10 @@ h1 span { font-size:12px; }
 .Canvas2D .page a       { text-decoration:none; color:#aaf; }
 .Canvas2D .page a:hover { text-decoration:underline; }
 .Canvas2D .page p { margin:20px; text-indent:10px; line-height:20px; }
+
+/* score */
+.Canvas2D .scoring { position:absolute; z-index:1; right:0; margin:5px; text-align:right; }
+.Canvas2D .scoring > span       { opacity:0.2; font-size:11px; }
+.Canvas2D .scoring > span:after { content:'\A0:\A0'; }
+.Canvas2D .scoring > b        { font-family:monospace; }
+.Canvas2D .scoring > b .zeros { opacity:0.2; }

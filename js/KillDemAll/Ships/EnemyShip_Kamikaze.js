@@ -7,6 +7,8 @@ KillDemAll.EnemyShip_Kamikaze = function(vPos, assets) {
 		100,  // maxSpeeds
 		1200  // acceleration
 	);
+	this.type  = 'Kamikaze';
+	this.nbPts = 100;
 	// sprites
 	this.bodySprite = assets.sprite(5, 5, 16, 16, 'EnemyShip_Kamikase');
 	this.radCurr    = this.rad;
