@@ -14,7 +14,7 @@ body.Canvas2D_focus { -webkit-touch-callout:none; -webkit-user-select:none; -kht
 	display:none; opacity:0; top:-50px;
 }
 .Canvas2D > .cross {
-	position:absolute; z-index:1; top:5px; right:5px; width:16px; height:16px; background:center no-repeat url(cross.png); opacity:0.2;
+	position:absolute; z-index:1; top:5px; right:5px; width:16px; height:16px; background:center no-repeat url(cross.png); opacity:0.66;
 	top:-16px;
 }
 .Canvas2D > .cross:hover { opacity:1; }
