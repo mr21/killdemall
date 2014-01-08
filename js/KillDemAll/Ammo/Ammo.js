@@ -46,7 +46,7 @@ KillDemAll.Ammo.Shot.prototype = {
 		this.dist += incr;
 		if (this.dist > this.distMax)
 			return false;
-		var nbTests = Math.ceil(incr / 16);
+		var nbTests = Math.ceil(incr / 4);
 		for (var i = 0; i < nbTests; ++i) {
 			this.vPos.x += this.vDir.x * time.frameTime / nbTests;
 			this.vPos.y += this.vDir.y * time.frameTime / nbTests;
