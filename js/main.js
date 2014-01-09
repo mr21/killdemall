@@ -5,9 +5,10 @@ window.onload = function() {
 	var canvas2d = new Canvas2D(
 		document._domSelector('.Canvas2D')[0],
 		[
-			'css/sprites.png',
+			'css/Ammo.png',
+			'css/UserShip_XShip.png',
 			'css/EnemyShip_Kamikase.png',
-			'css/map.png'
+			'css/Ground.png'
 		],
 		{
 			load      : function() { KillDemAll.load     .apply(KillDemAll, arguments) },

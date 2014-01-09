@@ -11,15 +11,15 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 	this.time = time;
 	this.ammo = ammo;
 	// base
-	this.base = { sprite : assets.sprite(52, 5, 22, 22) };
+	this.base = { sprite : assets.sprite(52, 5, 22, 22, 'UserShip_XShip') };
 	// reactors
 	this.reactors = { anim : [] };
 	for (var i = 0; i < 4; ++i)
-		this.reactors.anim[i] = assets.anim(5, 32, 12, 24, 9, 5, true, 0.04);
+		this.reactors.anim[i] = assets.anim(5, 32, 12, 24, 9, 5, true, 0.04, 'UserShip_XShip');
 	// armors
 	this.armors = {
 		speed   : 7,
-		sprite  : assets.sprite(5, 5, 23, 23),
+		sprite  : assets.sprite(5, 5, 23, 23, 'UserShip_XShip'),
 		openMax : 8,
 		open    : [0,0,0,0]
 	};
@@ -39,15 +39,15 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 			anims : []
 		};
 		for (var j = 0; j < 2; ++j)
-			this.turrets.couples[i].anims[j] = assets.anim(5, 61, 10, 11, 7, 0, false);
+			this.turrets.couples[i].anims[j] = assets.anim(5, 61, 10, 11, 7, 0, false, 0.04, 'UserShip_XShip');
 	}
 	// top
-	this.top = { sprite : assets.sprite(33, 5, 14, 14) };
+	this.top = { sprite : assets.sprite(33, 5, 14, 14, 'UserShip_XShip') };
 	// cannon
 	this.cannon = {
 		speed : 10,
 		rad   : 0,
-		anim  : assets.anim(5, 77, 12, 50, 8, 0, false, 0.02)
+		anim  : assets.anim(5, 77, 12, 50, 8, 0, false, 0.02, 'UserShip_XShip')
 	};
 };
 

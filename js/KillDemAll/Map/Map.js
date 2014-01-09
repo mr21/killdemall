@@ -4,7 +4,7 @@ KillDemAll.Map = function(canvas2d) {
 	this.width  = canvas2d.ctx.canvas.width;
 	this.height = canvas2d.ctx.canvas.height;
 	this.sprites = {
-		'ground' : assets.sprite(0, 0, 32, 32, 'css/map.png')
+		'ground' : assets.sprite(0, 0, 32, 32, 'css/Ground.png')
 	};
 };
 KillDemAll.Map.prototype = {

@@ -1,7 +1,7 @@
 KillDemAll.Ammo = function(assets) {
 	this.sprites = {
-		'roquet' : assets.sprite(124, 5, 4, 14),
-		'bullet' : assets.sprite(133, 5, 4,  4)
+		'roquet' : assets.sprite( 5, 5, 4, 14, 'Ammo'),
+		'bullet' : assets.sprite(14, 5, 4,  4, 'Ammo')
 	};
 	this.shots = [];
 };
