@@ -1,7 +1,7 @@
 KillDemAll.EnemyShip_Kamikaze = function(vPos, assets) {
 	// KillDemAll.EnemyShip_Kamikaze herite de KillDemAll.EnemyShip
 	KillDemAll.EnemyShip.call(this,
-		10,   // HP
+		5,   // HP
 		vPos,
 		2,    // weight
 		100,  // maxSpeeds
