@@ -74,9 +74,19 @@ var KillDemAll = {
 			    shot.vPos.y >= k.vPos.y - k.bodySprite.h / 2 &&
 			    shot.vPos.y <= k.vPos.y + k.bodySprite.h / 2)
 			{
-				this.scoring.enemyKilled.add(+1);
-				this.scoring.score.add(k.hp, 1000);
-				this.kamikazes.splice(i, 1);
+				if (k.hp > shot.hp) { // l'ennemie a encaisse le tir.
+					k.hp -= shot.hp;
+					this.scoring.score.add(shot.hp, 1000);
+					return true;
+				} else { // le tir a au moins tue cet ennemie la.
+					this.kamikazes.splice(i, 1);
+					this.scoring.enemyKilled.add(+1);
+					this.scoring.score.add(k.hp + k.hpMax, 1000);
+					if (shot.hp > k.hp) { // le tir a encore de la puissance.
+						shot.hp -= k.hp;
+						return false;
+					}
+				}
 				return true;
 			}
 		return false;
