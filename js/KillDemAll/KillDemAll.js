@@ -33,6 +33,7 @@ var KillDemAll = {
 	},
 	createWave: function(type, nb, distMin, distMax) {
 		var distRand = distMax - distMin;
+		this.scoring.enemyAlive.add(nb, 500);
 		for (var i = 0; i < nb; ++i)
 			this.createEnemy(type, distMin, distRand);
 	},
@@ -80,6 +81,7 @@ var KillDemAll = {
 					return true;
 				} else { // le tir a au moins tue cet ennemie la.
 					this.kamikazes.splice(i, 1);
+					this.scoring.enemyAlive.add(-1);
 					this.scoring.enemyKilled.add(+1);
 					this.scoring.score.add(k.hp + k.hpMax, 250);
 					if (shot.hp > k.hp) { // le tir a encore de la puissance.
