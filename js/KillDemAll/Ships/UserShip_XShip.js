@@ -73,7 +73,6 @@ KillDemAll.UserShip_XShip.prototype.userShootCannon = function() {
 			this.vPos.y + 40 * -Math.cos(this.cannon.rad)
 		);
 		this.ammo.createShot('roquet', shotPos, this.cannon.rad, this);
-		KillDemAll.scoring.score.add(-2);
 	}
 };
 
@@ -99,7 +98,6 @@ KillDemAll.UserShip_XShip.prototype.shootTurret = function(couple, ind) {
 		this.vPos.y + x * sinRad + y * cosRad
 	);
 	this.ammo.createShot('bullet', shotPos, couple.rad, this);
-	KillDemAll.scoring.score.add(-1);
 	if (couple.delay < this.turrets.delayMax)
 		couple.delay += this.turrets.delayInc;
 	couple.time = this.time.realTime;
