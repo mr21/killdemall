@@ -1,7 +1,7 @@
 KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 	// heritage
-	KillDemAll.UserShip.call(
-		this,
+	KillDemAll.UserShip.call(this,
+		1000, // HP
 		vPos,
 		2,    // weight
 		300,  // maxSpeed
@@ -25,8 +25,8 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 	};
 	// turrets
 	this.turrets = {
-		delayInc : 0.025,
-		delayMin : 0.100,
+		delayInc : 0.01,
+		delayMin : 0.0,
 		delayMax : 0.500,
 		couples  : []
 	};
@@ -73,6 +73,7 @@ KillDemAll.UserShip_XShip.prototype.userShootCannon = function() {
 			this.vPos.y + 40 * -Math.cos(this.cannon.rad)
 		);
 		this.ammo.createShot('roquet', shotPos, this.cannon.rad, this);
+		KillDemAll.scoring.score.add(-2);
 	}
 };
 
@@ -86,23 +87,23 @@ KillDemAll.UserShip_XShip.prototype.userShootTurrets = function(key, press) {
 
 KillDemAll.UserShip_XShip.prototype.shootTurret = function(couple, ind) {
 	var anim = couple.anims[couple.side];
-	if (!anim.playing) {
-		anim.play();
-		var side   = couple.side ? +1 : -1;
-		var sinRad = Math.sin(couple.rad);
-		var cosRad = Math.cos(couple.rad);
-		var x = side * (6 + this.armors.open[ind]);
-		var y = -33 - this.armors.open[(4 + ind + side) % 4];
-		var shotPos = new Vector2D(
-			this.vPos.x + x * cosRad - y * sinRad,
-			this.vPos.y + x * sinRad + y * cosRad
-		);
-		this.ammo.createShot('bullet', shotPos, couple.rad, this);
-		if (couple.delay < this.turrets.delayMax)
-			couple.delay += this.turrets.delayInc;
-		couple.time = this.time.realTime;
-		couple.side = couple.side ? 0 : 1;
-	}
+	anim.stop();
+	anim.play();
+	var side   = couple.side ? +1 : -1;
+	var sinRad = Math.sin(couple.rad);
+	var cosRad = Math.cos(couple.rad);
+	var x = side * (6 + this.armors.open[ind]);
+	var y = -33 - this.armors.open[(4 + ind + side) % 4];
+	var shotPos = new Vector2D(
+		this.vPos.x + x * cosRad - y * sinRad,
+		this.vPos.y + x * sinRad + y * cosRad
+	);
+	this.ammo.createShot('bullet', shotPos, couple.rad, this);
+	KillDemAll.scoring.score.add(-1);
+	if (couple.delay < this.turrets.delayMax)
+		couple.delay += this.turrets.delayInc;
+	couple.time = this.time.realTime;
+	couple.side = couple.side ? 0 : 1;
 };
 
 KillDemAll.UserShip_XShip.prototype.update = function(time) {

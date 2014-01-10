@@ -1,18 +1,17 @@
 KillDemAll.EnemyShip_Kamikaze = function(vPos, assets) {
 	// KillDemAll.EnemyShip_Kamikaze herite de KillDemAll.EnemyShip
-	KillDemAll.EnemyShip.call(
-		this,
+	KillDemAll.EnemyShip.call(this,
+		10,   // HP
 		vPos,
-		1,    // weight
+		2,    // weight
 		100,  // maxSpeeds
-		1200  // acceleration
+		100 + 100 * Math.random()   // acceleration
 	);
 	this.type  = 'Kamikaze';
 	this.nbPts = 10;
 	// sprites
 	this.bodySprite = assets.sprite(5, 5, 16, 16, 'EnemyShip_Kamikase');
-	this.radCurr    = this.rad;
-	this.radSpeed   = 2;
+	this.radSpeed   = 0.5 + 10 * Math.random();
 };
 
 KillDemAll.EnemyShip_Kamikaze.prototype = new KillDemAll.EnemyShip();

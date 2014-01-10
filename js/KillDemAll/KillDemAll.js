@@ -3,51 +3,15 @@ var KillDemAll = {
 		var self      = this;
 		this.canvas2d = canvas2d;
 		//canvas2d.debug(true);
-	},
-	score: {
-		init: function() {
-			this.score       = 0;
-			this.scoreTmp    = this.score;
-			this.scoreInc    = 1;
-			this.enemyKilled = {'Kamikaze':0};
-			this.numFill     = '000000000';
-			this.numIncrSpd  = 10;
-			// DOM
-			this.DOM = {'score':0, 'enemyKilled':0};
-			for (var d in this.DOM) {
-				this.DOM[d] = [
-					document._domSelector('.scoring .' + d + ' + * span:first-child')[0],
-					document._domSelector('.scoring .' + d + ' + * span:last-child')[0]
-				];
-				this.set(d, 0);
-			}
-		},
-		set: function(dom, val) {
-			var width = 1, fill = '';
-			for (var valTmp = val; parseInt(valTmp /= 10); ++width) {}
-			this.DOM[dom][0].innerHTML = this.numFill.substr(width);
-			this.DOM[dom][1].innerHTML = val;
-		},
-		add: function(pts) {
-			this.score   += pts;
-			this.scoreInc = (this.score - this.scoreTmp) / this.numIncrSpd;
-		},
-		kill: function(EnemyShip) {
-			this.set('enemyKilled', ++this.enemyKilled[EnemyShip.type]);
-			this.add(EnemyShip.nbPts);
-		},
-		update: function() {
-			if (this.scoreTmp < this.score) {
-				if ((this.scoreTmp += this.scoreInc) > this.score)
-					this.scoreTmp = this.score;
-				this.set('score', parseInt(this.scoreTmp));
-			}
-		}
+		// scoring
+		this.scoring = {};
+		var domScore = document._domSelector('.scoring > span');
+		for (var i = 0; d = domScore[i]; ++i)
+			this.scoring[d.className] = new DomIntIncrease(d._next());
 	},
 	load: function() {
 		this.map   = new KillDemAll.Map(this.canvas2d);
 		this.ammo  = new KillDemAll.Ammo(this.canvas2d.assets);
-		this.score.init();
 		// UserShip::XShip
 		this.xship = new KillDemAll.UserShip_XShip(
 			{
@@ -61,14 +25,24 @@ var KillDemAll = {
 		// EnemyShip::Kamikaze
 		this.kamikazes = [];
 		// tmp
-		this.createEnemy('Kamikaze');
+		var self = this;
+		self.createWave('Kamikaze', 100, 400, 450);
+		window.setInterval(function() {
+			self.createWave('Kamikaze', 25, 400, 450);
+		}, 10 * 1000);
 	},
-	createEnemy: function(type) {
-		var distMin = 50;
+	createWave: function(type, nb, distMin, distMax) {
+		var distRand = distMax - distMin;
+		for (var i = 0; i < nb; ++i)
+			this.createEnemy(type, distMin, distRand);
+	},
+	createEnemy: function(type, distMin, distRand) {
+		var dist = distMin + distRand * Math.random();
+		var rad  = (2 * Math.PI) * Math.random();
 		var enemy = new KillDemAll['EnemyShip_' + type](
 			{
-				x: this.xship.vPos.x + (distMin + Math.random() * 200) * (Math.random() > 0.5 ? -1 : +1),
-				y: this.xship.vPos.y + (distMin + Math.random() * 200) * (Math.random() > 0.5 ? -1 : +1),
+				x: this.xship.vPos.x + Math.sin(rad) * dist,
+				y: this.xship.vPos.y - Math.cos(rad) * dist
 			},
 			this.canvas2d.assets
 		);
@@ -79,8 +53,6 @@ var KillDemAll = {
 		// tirs
 		var self = this;
 		this.ammo.update(time, function(shot) { return self.shotCollision(shot) });
-		// scoring
-		this.score.update();
 		// XShip
 		this.xship.update(time);
 		// Enemies
@@ -102,9 +74,10 @@ var KillDemAll = {
 			    shot.vPos.y >= k.vPos.y - k.bodySprite.h / 2 &&
 			    shot.vPos.y <= k.vPos.y + k.bodySprite.h / 2)
 			{
-			    this.score.kill(k);
-			    this.kamikazes.splice(i, 1);
-			    return true;
+				this.scoring.enemyKilled.add(+1);
+				this.scoring.score.add(k.hp, 1000);
+				this.kamikazes.splice(i, 1);
+				return true;
 			}
 		return false;
 	},

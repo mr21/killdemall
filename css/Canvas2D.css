@@ -18,3 +18,8 @@ body.Canvas2D_focus { -webkit-touch-callout:none; -webkit-user-select:none; -kht
 	top:-16px;
 }
 .Canvas2D > .cross:hover { opacity:1; }
+
+/* domIntIncrease */
+.DomIntIncrease        { font-family:monospace; }
+.DomIntIncrease .zeros { opacity:0.33; }
+.DomIntIncrease .value { font-weight:bold; }
