@@ -1,5 +1,6 @@
 KillDemAll.Ship = function(hp, vPos, weight, maxSpeed, acceleration) {
 	if (arguments.length > 0) {
+		this.hpMax        = hp;
 		this.hp           = hp;
 		this.vPos         = new Vector2D(vPos);
 		this.vMove        = new Vector2D(0, 0);
