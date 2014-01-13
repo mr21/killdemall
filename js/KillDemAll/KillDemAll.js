@@ -25,15 +25,25 @@ var KillDemAll = {
 		);
 		// EnemyShip::Kamikaze
 		this.kamikazes = [];
-		// tmp
+		this.reset();
+	},
+	reset: function() {
+		for (var s in this.scoring)
+			this.scoring[s].set(0);
 		var self = this;
-		var nbEnemies = 1;
-		self.createWave('Kamikaze', nbEnemies * 5, 400, 450);
-		this.scoring.enemyAlive.set(nbEnemies * 5, 500);
-		window.setInterval(function() {
-			self.scoring.enemyAlive.add(nbEnemies, 500);
-			self.createWave('Kamikaze', nbEnemies, 400, 450);
+		this.kamikazes.length = 0;
+		self.createWave('Kamikaze', 5, 400, 450);
+		this.scoring.enemyAlive.set(5, 500);
+		this.intervalId = window.setInterval(function() {
+			self.scoring.enemyAlive.add(1, 500);
+			self.createWave('Kamikaze', 1, 400, 450);
 		}, 0.18 * 1000);
+	},
+	gameover: function() {
+		window.clearInterval(this.intervalId);
+		var score = document._domSelector('.Canvas2D > .gameover b')[0];
+		score.innerHTML = this.scoring.score.value;
+		this.canvas2d.openPage(document._domSelector('.Canvas2D > .gameover')[0]);
 	},
 	createWave: function(type, nb, distMin, distMax) {
 		var distRand = distMax - distMin;
@@ -101,6 +111,7 @@ var KillDemAll = {
 	render: function(ctx) {
 		// map
 		this.map.render(ctx);
+		// explosions
 		this.explosions.render(ctx);
 		// enemies
 		for (var i = 0, k; k = this.kamikazes[i]; ++i)
