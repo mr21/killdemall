@@ -10,8 +10,9 @@ var KillDemAll = {
 			this.scoring[d.className] = new DomIntIncrease(d._next());
 	},
 	load: function() {
-		this.map   = new KillDemAll.Map(this.canvas2d);
-		this.ammo  = new KillDemAll.Ammo(this.canvas2d.assets);
+		this.map        = new KillDemAll.Map(this.canvas2d);
+		this.explosions = new KillDemAll.Explosions(this.canvas2d.assets);
+		this.ammo       = new KillDemAll.Ammo(this.canvas2d.assets);
 		// UserShip::XShip
 		this.xship = new KillDemAll.UserShip_XShip(
 			{
@@ -26,14 +27,17 @@ var KillDemAll = {
 		this.kamikazes = [];
 		// tmp
 		var self = this;
-		self.createWave('Kamikaze', 100, 400, 450);
+		var nbEnemies = 5;
+		self.createWave('Kamikaze', nbEnemies, 400, 450);
+		this.scoring.enemyAlive.set(nbEnemies, 500);
 		window.setInterval(function() {
-			self.createWave('Kamikaze', 25, 400, 450);
-		}, 10 * 1000);
+			//self.kamikazes.length = 0;
+			self.scoring.enemyAlive.add(nbEnemies, 500);
+			self.createWave('Kamikaze', nbEnemies, 400, 450);
+		}, 1 * 1000);
 	},
 	createWave: function(type, nb, distMin, distMax) {
 		var distRand = distMax - distMin;
-		this.scoring.enemyAlive.add(nb, 500);
 		for (var i = 0; i < nb; ++i)
 			this.createEnemy(type, distMin, distRand);
 	},
@@ -59,7 +63,8 @@ var KillDemAll = {
 		// Enemies
 		for (var i = 0, k; k = this.kamikazes[i]; ++i)
 			k.update(time);
-		// centrer la vue sur le XShip
+		// Map
+		this.explosions.update();
 		var viewSpeed = 4 * time.frameTime;
 		var vShip = this.xship.vPos;
 		var vView = this.canvas2d.getView();
@@ -83,6 +88,7 @@ var KillDemAll = {
 					this.kamikazes.splice(i, 1);
 					this.scoring.enemyAlive.add(-1);
 					this.scoring.enemyKilled.add(+1);
+					this.explosions.create(k.vPos);
 					this.scoring.score.add(k.hp + k.hpMax, 250);
 					if (shot.hp > k.hp) { // le tir a encore de la puissance.
 						shot.hp -= k.hp;
@@ -96,6 +102,7 @@ var KillDemAll = {
 	render: function(ctx) {
 		// map
 		this.map.render(ctx);
+		this.explosions.render(ctx);
 		// enemies
 		for (var i = 0, k; k = this.kamikazes[i]; ++i)
 			k.render(ctx);

@@ -5,6 +5,7 @@ window.onload = function() {
 	var canvas2d = new Canvas2D(
 		document._domSelector('.Canvas2D')[0],
 		[
+			'css/explosion.png',
 			'css/Ammo.png',
 			'css/UserShip_XShip.png',
 			'css/EnemyShip_Kamikase.png',
