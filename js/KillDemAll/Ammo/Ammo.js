@@ -24,8 +24,8 @@ KillDemAll.Ammo.prototype = {
 // Shot
 KillDemAll.Ammo.Shot = function(Ammo, type, vPos, rad, ship) {
 	switch (type) {
-		case 'bullet' : this.hp =  2; this.speed =  900; this.recoil =  50; this.distMax = 400; break;
-		case 'roquet' : this.hp = 10; this.speed = 1100; this.recoil = 210; this.distMax = 500; break;
+		case 'bullet' : this.hp =   2; this.speed =  900; this.recoil =  50; this.distMax = 400; break;
+		case 'roquet' : this.hp = 100; this.speed = 1100; this.recoil = 210; this.distMax = 500; break;
 	}
 	this.hpMax  = this.hp;
 	this.dist   = 0;
@@ -47,7 +47,7 @@ KillDemAll.Ammo.Shot.prototype = {
 		this.dist += incr;
 		if (this.dist > this.distMax) {
 			if (this.hp === this.hpMax) // si le tir est une balle perdue
-				KillDemAll.scoring.score.add(-this.hp, 250);
+				KillDemAll.scoring.score.add(-1, 250);
 			return false;
 		}
 		var nbTests = Math.ceil(incr / 4);
