@@ -25,6 +25,12 @@ window.onload = function() {
 	var domA_menu = document.getElementById('menu').getElementsByTagName('a');
 	for (var i = 0, a; a = domA_menu[i]; ++i)
 		a.onclick = function() { return canvas2d.openPage(document._domSelector('.Canvas2D > .' + this.className)[0]), false };
+	document._domSelector('.page.gameover a')[0].onclick = function() {
+		KillDemAll.reset();
+		KillDemAll.canvas2d.closePage();
+		KillDemAll.canvas2d.focus();
+		return false;
+	};
 	// Initialisation et lancement du jeu
 	KillDemAll.init(canvas2d);
 };
