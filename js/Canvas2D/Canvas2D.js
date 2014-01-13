@@ -7,6 +7,7 @@ function Canvas2D(container, images, fns) {
 	this.time      = new Time();
 	this.assets    = new Assets(this, images);
 	this.vectView  = new Vector2D(0, 0);
+	this.keyBool   = [];
 	// active/inactive
 	this.body = document.getElementsByTagName('body')[0];
 	this.active = false;
@@ -25,6 +26,15 @@ Canvas2D.prototype = {
 	debug: function(state) {
 		this.assets.debug(state);
 	},
+	resetKeyboard: function() {
+		for (var i in this.keyBool) {
+			i = parseInt(i);
+			if (this.keyBool[i]) {
+				this.fns.keyup(i);
+				this.keyBool[i] = 0;
+			}
+		}
+	},
 	focus: function(event) {
 		if (event)
 			event.stopPropagation();
@@ -39,6 +49,7 @@ Canvas2D.prototype = {
 			this.active = false;
 			this.body._delClass('Canvas2D_focus');
 			this.container._delClass('active');
+			this.resetKeyboard();
 		}
 	},
 	openPage: function(page) {
@@ -76,9 +87,8 @@ Canvas2D.prototype = {
 		this.fns.load();
 		// Events
 		// -- keyboard
-		var keyBool = [];
-		if (fns.keydown) document._addEvent('keydown', function(e) { if (self.active && !keyBool[e = e.keyCode]) { keyBool[e] = 1; fns.keydown(e) }});
-		if (fns.keyup)   document._addEvent('keyup',   function(e) { if (self.active &&  keyBool[e = e.keyCode]) { keyBool[e] = 0; fns.keyup  (e) }});
+		if (fns.keydown) document._addEvent('keydown', function(e) { if (self.active && !self.keyBool[e = e.keyCode]) { self.keyBool[e] = 1; fns.keydown(e) }});
+		if (fns.keyup)   document._addEvent('keyup',   function(e) { if (self.active &&  self.keyBool[e = e.keyCode]) { self.keyBool[e] = 0; fns.keyup  (e) }});
 		// -- mouse
 		if (fns.mousedown) this.canvas._addEvent('mousedown', function(e) { if (self.active) fns.mousedown(e.layerX - self.vectView.x, e.layerY - self.vectView.y) });
 		if (fns.mouseup)   this.canvas._addEvent('mouseup',   function(e) { if (self.active) fns.mouseup  (e.layerX - self.vectView.x, e.layerY - self.vectView.y) });
