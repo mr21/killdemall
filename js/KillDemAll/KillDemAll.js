@@ -27,14 +27,13 @@ var KillDemAll = {
 		this.kamikazes = [];
 		// tmp
 		var self = this;
-		var nbEnemies = 5;
-		self.createWave('Kamikaze', nbEnemies, 400, 450);
-		this.scoring.enemyAlive.set(nbEnemies, 500);
+		var nbEnemies = 1;
+		self.createWave('Kamikaze', nbEnemies * 5, 400, 450);
+		this.scoring.enemyAlive.set(nbEnemies * 5, 500);
 		window.setInterval(function() {
-			//self.kamikazes.length = 0;
 			self.scoring.enemyAlive.add(nbEnemies, 500);
 			self.createWave('Kamikaze', nbEnemies, 400, 450);
-		}, 1 * 1000);
+		}, 0.18 * 1000);
 	},
 	createWave: function(type, nb, distMin, distMax) {
 		var distRand = distMax - distMin;
