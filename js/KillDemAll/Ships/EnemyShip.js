@@ -2,8 +2,8 @@ KillDemAll.EnemyShip = function() {
 	// KillDemAll.EnemyShip herite de KillDemAll.Ship
 	KillDemAll.Ship.apply(this, arguments);
 	// EnemyShip
-	this.type  = '';
-	this.rad     = 0;
+	this.type    = '';
+	this.rad     = (2 * Math.PI) * Math.random();
 	this.radCurr = this.rad;
 	this.shipTargeted = null;
 };
