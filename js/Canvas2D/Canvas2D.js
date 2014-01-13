@@ -44,12 +44,14 @@ Canvas2D.prototype = {
 	openPage: function(page) {
 		if (page !== this.pageCurr) {
 			this.closePage(false);
-			this.page_animId = page._cssAnim(
+			var obj = [
 				{css:'display',    val:'block'},
 				{css:'opacity',    val:'1',   dur:250},
-				{css:'top',        val:'0px', mov:'easeIn'},
-				{elm:this.domA_cross, css:'top', val:'5px', del:250}
-			);
+				{css:'top',        val:'0px', mov:'easeIn'}
+			];
+			if (!page._hasClass('nocross'))
+				obj.push({elm:this.domA_cross, css:'top', val:'5px', del:250});
+			this.page_animId = page._cssAnim.apply(page, obj);
 			this.pageCurr = page;
 			this.blur();
 		}
