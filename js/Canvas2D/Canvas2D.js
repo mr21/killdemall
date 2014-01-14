@@ -11,7 +11,8 @@ function Canvas2D(container, images, fns) {
 	// active/inactive
 	this.body = document.getElementsByTagName('body')[0];
 	this.active = false;
-	document   ._addEvent('mousedown', function()   { self.blur()    });
+	window  ._addEvent('blur',      function() { self.blur() });
+	document._addEvent('mousedown', function() { self.blur() });
 	this.focus(); // tmp
 	// create DOM pages
 	this.pageCurr = null;
