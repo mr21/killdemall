@@ -11,7 +11,6 @@ function Canvas2D(container, images, fns) {
 	// active/inactive
 	this.body = document.getElementsByTagName('body')[0];
 	this.active = false;
-	this.canvas._addEvent('mousedown', function(ev) { self.focus(ev) });
 	document   ._addEvent('mousedown', function()   { self.blur()    });
 	this.focus(); // tmp
 	// create DOM pages
@@ -23,6 +22,23 @@ function Canvas2D(container, images, fns) {
 	container.insertBefore(this.domA_cross, this.canvas);
 }
 Canvas2D.prototype = {
+	launch: function() {
+		var self = this;
+		var fns  = this.fns;
+		this.fns.load();
+		// Events
+		// -- keyboard
+		if (fns.keydown) document._addEvent('keydown', function(e) { if (self.active && !self.keyBool[e = e.keyCode]) { self.keyBool[e] = 1; fns.keydown(e) }});
+		if (fns.keyup)   document._addEvent('keyup',   function(e) { if (self.active &&  self.keyBool[e = e.keyCode]) { self.keyBool[e] = 0; fns.keyup  (e) }});
+		// -- mouse
+		if (fns.mousedown) this.canvas._addEvent('mousedown', function(e) { if (self.active) fns.mousedown(e.layerX - self.vectView.x, e.layerY - self.vectView.y); else self.focus(e); });
+		if (fns.mouseup)   this.canvas._addEvent('mouseup',   function(e) { if (self.active) fns.mouseup  (e.layerX - self.vectView.x, e.layerY - self.vectView.y); });
+		if (fns.mousemove) this.canvas._addEvent('mousemove', function(e) { if (self.active) fns.mousemove(e.layerX - self.vectView.x, e.layerY - self.vectView.y, offsetMouse.xRel, offsetMouse.yRel) });
+		this.time.reset();
+		this.intervId = window.setInterval(function() {
+			self.loop();
+		}, 1000 / 40);
+	},
 	debug: function(state) {
 		this.assets.debug(state);
 	},
@@ -80,23 +96,6 @@ Canvas2D.prototype = {
 			if (focus)
 				this.focus();
 		}
-	},
-	launch: function() {
-		var self = this;
-		var fns  = this.fns;
-		this.fns.load();
-		// Events
-		// -- keyboard
-		if (fns.keydown) document._addEvent('keydown', function(e) { if (self.active && !self.keyBool[e = e.keyCode]) { self.keyBool[e] = 1; fns.keydown(e) }});
-		if (fns.keyup)   document._addEvent('keyup',   function(e) { if (self.active &&  self.keyBool[e = e.keyCode]) { self.keyBool[e] = 0; fns.keyup  (e) }});
-		// -- mouse
-		if (fns.mousedown) this.canvas._addEvent('mousedown', function(e) { if (self.active) fns.mousedown(e.layerX - self.vectView.x, e.layerY - self.vectView.y) });
-		if (fns.mouseup)   this.canvas._addEvent('mouseup',   function(e) { if (self.active) fns.mouseup  (e.layerX - self.vectView.x, e.layerY - self.vectView.y) });
-		if (fns.mousemove) this.canvas._addEvent('mousemove', function(e) { if (self.active) fns.mousemove(e.layerX - self.vectView.x, e.layerY - self.vectView.y, offsetMouse.xRel, offsetMouse.yRel) });
-		this.time.reset();
-		this.intervId = window.setInterval(function() {
-			self.loop();
-		}, 1000 / 40);
 	},
 	loop: function() {
 		var time = this.time;
