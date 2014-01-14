@@ -32,7 +32,7 @@ Canvas2D.prototype = {
 		if (fns.keydown) document._addEvent('keydown', function(e) { if (self.active && !self.keyBool[e = e.keyCode]) { self.keyBool[e] = 1; fns.keydown(e) }});
 		if (fns.keyup)   document._addEvent('keyup',   function(e) { if (self.active &&  self.keyBool[e = e.keyCode]) { self.keyBool[e] = 0; fns.keyup  (e) }});
 		// -- mouse
-		if (fns.mousedown) this.canvas._addEvent('mousedown', function(e) { if (self.active) fns.mousedown(e.layerX - self.vectView.x, e.layerY - self.vectView.y); else self.focus(e); });
+		if (fns.mousedown) this.canvas._addEvent('mousedown', function(e) { if (self.active) fns.mousedown(e.layerX - self.vectView.x, e.layerY - self.vectView.y); self.focus(e); });
 		if (fns.mouseup)   this.canvas._addEvent('mouseup',   function(e) { if (self.active) fns.mouseup  (e.layerX - self.vectView.x, e.layerY - self.vectView.y); });
 		if (fns.mousemove) this.canvas._addEvent('mousemove', function(e) { if (self.active) fns.mousemove(e.layerX - self.vectView.x, e.layerY - self.vectView.y, offsetMouse.xRel, offsetMouse.yRel) });
 		this.time.reset();
