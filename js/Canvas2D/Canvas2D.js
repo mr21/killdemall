@@ -70,6 +70,7 @@ Canvas2D.prototype = {
 			this.resetKeyboard();
 		}
 	},
+	getPageCurrent: function() { return this.pageCurr },
 	openPage: function(page) {
 		if (page !== this.pageCurr) {
 			this.closePage(false);
