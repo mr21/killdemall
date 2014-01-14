@@ -8,6 +8,7 @@ var KillDemAll = {
 		var domScore = document._domSelector('.scoring > span');
 		for (var i = 0; d = domScore[i]; ++i)
 			this.scoring[d.className] = new DomIntIncrease(d._next());
+		this.pageGameover = document._domSelector('.Canvas2D > .gameover')[0];
 	},
 	load: function() {
 		this.map        = new KillDemAll.Map(this.canvas2d);
@@ -29,22 +30,21 @@ var KillDemAll = {
 	},
 	reset: function() {
 		var self = this;
+		this.isGameover = false;
 		for (var s in this.scoring)
 			this.scoring[s].set(0);
 		this.ammo.reset();
 		this.kamikazes.length = 0;
-		this.intervalId = window.setInterval(function() {
-			self.scoring.enemyAlive.add(1, 500);
-			self.createWave('Kamikaze', 1, 400, 450);
-		}, 0.18 * 1000);
+		this.timeChronoEnemies = this.canvas2d.time.realTime;
 	},
 	gameover: function() {
-		window.clearInterval(this.intervalId);
-		var score = document._domSelector('.Canvas2D > .gameover b')[0];
+		this.isGameover = true;
+		var score = this.pageGameover.getElementsByTagName('b')[0];
 		score.innerHTML = this.scoring.score.value;
-		this.canvas2d.openPage(document._domSelector('.Canvas2D > .gameover')[0]);
+		this.canvas2d.openPage(this.pageGameover);
 	},
 	createWave: function(type, nb, distMin, distMax) {
+		this.scoring.enemyAlive.add(nb, 500);
 		var distRand = distMax - distMin;
 		for (var i = 0; i < nb; ++i)
 			this.createEnemy(type, distMin, distRand);
@@ -63,12 +63,20 @@ var KillDemAll = {
 		this.kamikazes.push(enemy);
 	},
 	update: function(time) {
+		if (this.isGameover && !this.canvas2d.getPageCurrent()) {
+			this.gameover();
+			return;
+		}
 		// tirs
 		var self = this;
 		this.ammo.update(time, function(shot) { return self.shotCollision(shot) });
 		// XShip
 		this.xship.update(time);
 		// Enemies
+		if (time.realTime - this.timeChronoEnemies > 0.18) {
+			this.timeChronoEnemies = time.realTime;
+			this.createWave('Kamikaze', 1, 400, 450);
+		}
 		for (var i = 0, k; k = this.kamikazes[i]; ++i)
 			k.update(time);
 		// Map
