@@ -59,6 +59,7 @@ Canvas2D.prototype = {
 			this.active = true;
 			this.body._addClass('Canvas2D_focus');
 			this.container._addClass('active');
+			this.time.update();
 		}
 	},
 	blur: function() {
@@ -99,16 +100,17 @@ Canvas2D.prototype = {
 		}
 	},
 	loop: function() {
-		var time = this.time;
-		var ctx  = this.ctx;
-		this.time.update();
-		this.fns.update(time);
-		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-		ctx.save();
-			ctx.translate(this.vectView.x, this.vectView.y);
-				this.fns.render(ctx);
-		ctx.restore();
-		this.assets.update();
+		if (this.active) {
+			var ctx = this.ctx;
+			this.time.update();
+			this.fns.update(this.time);
+			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			ctx.save();
+				ctx.translate(this.vectView.x, this.vectView.y);
+					this.fns.render(ctx);
+			ctx.restore();
+			this.assets.update();
+		}
 	},
 	stop: function() {
 		window.clearInterval(this.intervId);
