@@ -19,6 +19,9 @@ KillDemAll.Ammo.prototype = {
 	render: function(ctx) {
 		for (var i = 0, s; s = this.shots[i]; ++i)
 			s.render(ctx);
+	},
+	reset: function() {
+		this.shots.length = 0;
 	}
 };
 // Shot

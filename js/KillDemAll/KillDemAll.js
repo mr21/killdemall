@@ -28,12 +28,11 @@ var KillDemAll = {
 		this.reset();
 	},
 	reset: function() {
+		var self = this;
 		for (var s in this.scoring)
 			this.scoring[s].set(0);
-		var self = this;
+		this.ammo.reset();
 		this.kamikazes.length = 0;
-		self.createWave('Kamikaze', 5, 400, 450);
-		this.scoring.enemyAlive.set(5, 500);
 		this.intervalId = window.setInterval(function() {
 			self.scoring.enemyAlive.add(1, 500);
 			self.createWave('Kamikaze', 1, 400, 450);
