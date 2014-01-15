@@ -32,7 +32,7 @@ var KillDemAll = {
 		var self = this;
 		this.isGameover = false;
 		for (var s in this.scoring)
-			this.scoring[s].set(0);
+			this.scoring[s].set(0, 1000);
 		this.ammo.reset();
 		this.kamikazes.length = 0;
 		this.timeChronoEnemies = this.canvas2d.time.realTime;
