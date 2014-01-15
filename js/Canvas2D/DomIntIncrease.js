@@ -41,7 +41,7 @@ DomIntIncrease.prototype = {
 		this.value = val;
 		window.clearInterval(this.intervalId);
 		if (!duration) {
-			this._set(val);
+			this._set(this.valueTmp = val);
 		} else {
 			var self = this;
 			this.nbFrames = Math.ceil(duration / this.timer);
