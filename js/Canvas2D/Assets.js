@@ -3,8 +3,6 @@ function Assets(canvas2d, images) {
 	this.ctx           = canvas2d.ctx;
 	this.time          = canvas2d.time;
 	this.images        = [];
-	this.sprites       = [];
-	this.anims         = [];
 	var self           = this;
 	var nbImagesToLoad = images.length;
 	for (var i = 0, imgSrc; imgSrc = images[i]; ++i) {
@@ -24,26 +22,10 @@ Assets.prototype = {
 		this.debugging = state;
 	},
 	sprite: function(x, y, w, h, imgPath) {
-		var sprite = new Assets.assetSprite(this, arguments);
-		this.sprites.push(sprite);
-		return sprite;
+		return new Assets.assetSprite(this, arguments);
 	},
 	anim: function(x, y, w, h, nbFrames, returnTo, loop, delay, imgPath) {
-		var anim = new Assets.assetAnim(this, arguments);
-		this.anims.push(anim);
-		return anim;
-	},
-	del: function(asset) {
-		for (var i = 0, a; a = this.sprites[i]; ++i)
-			if (a === asset) {
-				this.sprites.splice(i, 1);
-				break;
-			}
-		for (var i = 0, a; a = this.anims[i]; ++i)
-			if (a === asset) {
-				this.anims.splice(i, 1);
-				break;
-			}
+		return new Assets.assetAnim(this, arguments);
 	},
 	// private
 	findImg: function(imgPath) {
@@ -55,10 +37,6 @@ Assets.prototype = {
 		else
 			for (var i = 0; (img = this.images[i]) && img.src.indexOf(imgPath) === -1; ++i) {}
 		return img || null;
-	},
-	update: function() {
-		for (var i = 0, a; a = this.anims[i]; ++i)
-			a.update(this.time);
 	}
 };
 
@@ -104,8 +82,10 @@ Assets.assetAnim = function(assets, args) {
 Assets.assetAnim.prototype = {
 	// public
 	draw: function(x, y) {
-		if (this.frame > -1)
+		if (this.frame > -1) {
 			this.sprite.draw(x, y);
+			this.update(this.sprite.assets.time);
+		}
 	},
 	play: function() {
 		this.playing = true;

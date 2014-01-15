@@ -110,7 +110,6 @@ Canvas2D.prototype = {
 				ctx.translate(this.vectView.x, this.vectView.y);
 					this.fns.render(ctx);
 			ctx.restore();
-			this.assets.update();
 		}
 	},
 	stop: function() {
