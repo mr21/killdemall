@@ -72,7 +72,7 @@ Assets.assetAnim = function(assets, args) {
 	this.nbFrames   = Math.abs(args[4]);
 	this.returnTo   = args[5];
 	this.loop       = args[6];
-	this.delay      = args[7] || 0.04;
+	this.delay      = args[7] / this.nbFrames;
 	this.frame      = this.returnTo === -1 ? -1 : 0;
 	args[4]         = args[8];
 	this.sprite     = new Assets.assetSprite(assets, args);

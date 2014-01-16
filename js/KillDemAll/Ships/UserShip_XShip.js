@@ -15,7 +15,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 	// reactors
 	this.reactors = { anim : [] };
 	for (var i = 0; i < 4; ++i)
-		this.reactors.anim[i] = assets.anim(5, 32, 12, 24, 9, 5, true, 0.04, 'UserShip_XShip');
+		this.reactors.anim[i] = assets.anim(5, 32, 12, 24, 9, 5, true, 0.4, 'UserShip_XShip');
 	// armors
 	this.armors = {
 		speed   : 7,
@@ -39,7 +39,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 			anims : []
 		};
 		for (var j = 0; j < 2; ++j)
-			this.turrets.couples[i].anims[j] = assets.anim(5, 61, 10, 11, 7, 0, false, 0.04, 'UserShip_XShip');
+			this.turrets.couples[i].anims[j] = assets.anim(5, 61, 10, 11, 7, 0, false, 0.3, 'UserShip_XShip');
 	}
 	// top
 	this.top = { sprite : assets.sprite(33, 5, 14, 14, 'UserShip_XShip') };
@@ -47,7 +47,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 	this.cannon = {
 		speed : 10,
 		rad   : 0,
-		anim  : assets.anim(5, 77, 12, 50, 8, 0, false, 0.02, 'UserShip_XShip')
+		anim  : assets.anim(5, 77, 12, 50, 8, 0, false, 0.2, 'UserShip_XShip')
 	};
 };
 

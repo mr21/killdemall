@@ -22,7 +22,7 @@ KillDemAll.Explosions.Explosion = function(assets, type, vPos) {
 	this.y = vPos.y;
 	this.rad = (Math.PI * 2) * Math.random();
 	switch (type) {
-		case 'a_48' : this.anim = assets.anim(0, 0, 64, 64, 48, 0, false, 0.01, 'explosion'); break;
+		case 'a_48' : this.anim = assets.anim(0, 0, 64, 64, 48, 0, false, 0.33, 'explosion'); break;
 	}
 	this.anim.play();
 };
