@@ -112,14 +112,17 @@ Assets.assetAnim.prototype = {
 	update: function(time) {
 		if (!this.playing) {
 			this.timePrev = time.realTime;
-		} else if (time.realTime - this.timePrev >= this.delay) {
-			if (this.frame >= this.nbFrames - 1) {
-				this.moveFrame(this.returnTo - this.nbFrames + 1);
-				if (!this.loop)
-					this.pause();
-			} else {
-				this.moveFrame(+1);
-				this.timePrev = time.realTime;
+		} else {
+			var nbDelay = Math.floor((time.realTime - this.timePrev) / this.delay);
+			if (nbDelay >= 1) {
+				if (this.frame + nbDelay >= this.nbFrames - 1) {
+					this.moveFrame(this.returnTo - this.frame);
+					if (!this.loop)
+						this.pause();
+				} else {
+					this.moveFrame(nbDelay);
+					this.timePrev = time.realTime;
+				}
 			}
 		}
 	}
