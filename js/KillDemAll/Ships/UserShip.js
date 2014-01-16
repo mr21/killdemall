@@ -12,10 +12,10 @@ KillDemAll.UserShip.prototype = new KillDemAll.Ship();
 KillDemAll.UserShip.prototype.userMove = function(key, press) {
 	var dir = -1;
 	switch (key) {
-		case 87 : this.moveKeys[dir = 0] = press; break; // ^ (W)
-		case 68 : this.moveKeys[dir = 1] = press; break; // > (D)
-		case 83 : this.moveKeys[dir = 2] = press; break; // v (S)
-		case 65 : this.moveKeys[dir = 3] = press; break; // < (A)
+		case 87 : case 90 : this.moveKeys[dir = 0] = press; break; // ^ (W || Z)
+		case 68 :           this.moveKeys[dir = 1] = press; break; // > (D)
+		case 83 :           this.moveKeys[dir = 2] = press; break; // v (S)
+		case 65 : case 81 : this.moveKeys[dir = 3] = press; break; // < (A || Q)
 	}
 	if (dir !== -1)
 		this._calcDir();
