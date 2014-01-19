@@ -23,7 +23,7 @@ h1 span { font-size:12px; }
 .Canvas2D .page ul.man li > span        { font-size:12px; }
 .Canvas2D .page a       { text-decoration:none; color:#aaf; }
 .Canvas2D .page a:hover { text-decoration:underline; }
-.Canvas2D .page p { margin:20px; text-indent:10px; line-height:20px; }
+.Canvas2D .page > div { margin:20px; text-indent:10px; line-height:20px; }
 .Canvas2D .page.gameover h2 { text-align:center; margin:60px 0 135px 0; font-size:28px; }
 .Canvas2D .page.gameover p  { text-align:center; }
 .Canvas2D .page.gameover b  { font-size:24px; }
