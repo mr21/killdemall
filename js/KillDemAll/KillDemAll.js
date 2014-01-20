@@ -75,7 +75,7 @@ var KillDemAll = {
 		// Enemies
 		if (time.realTime - this.timeChronoEnemies > 0.18) {
 			this.timeChronoEnemies = time.realTime;
-			this.createWave('Kamikaze', 1, 400, 450);
+			this.createWave('Kamikaze', 1, 500, 550);
 		}
 		for (var i = 0, k; k = this.kamikazes[i]; ++i)
 			k.update(time);
