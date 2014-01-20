@@ -1,5 +1,5 @@
 /* global */
-body    { margin:0; font:12px sans-serif; text-align:center; color:#ddd; background:#111; }
+body    { margin:0 0 30px 0; font:12px sans-serif; text-align:center; color:#ddd; background:#111; }
 #global { display:inline-block; margin:auto; text-align:left; }
 
 /* title */
