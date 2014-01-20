@@ -75,9 +75,9 @@ Canvas2D.prototype = {
 		if (page !== this.pageCurr) {
 			this.closePage(false);
 			var obj = [
-				{css:'display',    val:'block'},
-				{css:'opacity',    val:'1',   dur:250},
-				{css:'top',        val:'0px', mov:'easeIn'}
+				{css:'z-index', val:'1'},
+				{css:'opacity', val:'1',   dur:250},
+				{css:'top',     val:'0px', mov:'easeIn'}
 			];
 			if (!page._hasClass('nocross'))
 				obj.push({elm:this.domA_cross, css:'top', val:'5px', del:250});
@@ -90,9 +90,9 @@ Canvas2D.prototype = {
 		if (this.pageCurr !== null) {
 			document._cssAnimPause(this.page_animId);
 			this.page_animId = this.pageCurr._cssAnim(
-				{css:'opacity',    val:'0',     dur:250},
-				{css:'top',        val:'-50px', mov:'easeIn'},
-				{css:'display',    val:'none',  del:250},
+				{css:'opacity', val:'0',     dur:250},
+				{css:'top',     val:'-50px', mov:'easeIn'},
+				{css:'z-index', val:'0',     del:250},
 				{elm:this.domA_cross, css:'top', val:'-16px', del:0}
 			);
 			this.pageCurr = null;
