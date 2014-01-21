@@ -27,6 +27,7 @@ h1 span { font-size:12px; }
 .Canvas2D .page.gameover h2 { text-align:center; margin:60px 0 135px 0; font-size:28px; }
 .Canvas2D .page.gameover p  { text-align:center; }
 .Canvas2D .page.gameover b  { font-size:24px; }
+.Canvas2D .page.share .fb-like { margin-right:20px; }
 
 /* score */
 .Canvas2D .scoring { position:absolute; top:0; right:0; margin:5px; text-align:right; }
