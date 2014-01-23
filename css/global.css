@@ -13,24 +13,24 @@ h1 span { font-size:12px; }
 #menu a:active { box-shadow:inset 0 2px 3px rgba(0,0,0,0.5); }
 
 /* canvas / pages */
-.Canvasloth canvas  { display:block; cursor:crosshair; background:#151517; }
-.Canvasloth .page h2 { margin:15px 0 20px 15px; }
-.Canvasloth .page ul.man               { line-height:32px; }
-.Canvasloth .page ul.man b             { display:inline-block; width:92px; }
-.Canvasloth .page ul.man b span        { border:1px solid #555; border-radius:2px; padding:2px 4px; color:#aaa; background:#222; font-size:11px; }
-.Canvasloth .page ul.man b span + span { margin-left:4px; }
-.Canvasloth .page ul.man li > span:before { content:'\A0\A0:\A0\A0'; color:#555; font-family:monospace; }
-.Canvasloth .page ul.man li > span        { font-size:12px; }
-.Canvasloth .page a       { text-decoration:none; color:#aaf; }
-.Canvasloth .page a:hover { text-decoration:underline; }
-.Canvasloth .page > div { margin:20px; text-indent:10px; line-height:20px; }
-.Canvasloth .page.gameover h2 { text-align:center; margin:60px 0 135px 0; font-size:28px; }
-.Canvasloth .page.gameover p  { text-align:center; }
-.Canvasloth .page.gameover b  { font-size:24px; }
-.Canvasloth .page.share .fb-like { margin-right:20px; }
+.canvasloth canvas  { display:block; cursor:crosshair; background:#151517; }
+.canvasloth-page h2 { margin:15px 0 20px 15px; }
+.canvasloth-page ul.man               { line-height:32px; }
+.canvasloth-page ul.man b             { display:inline-block; width:92px; }
+.canvasloth-page ul.man b span        { border:1px solid #555; border-radius:2px; padding:2px 4px; color:#aaa; background:#222; font-size:11px; }
+.canvasloth-page ul.man b span + span { margin-left:4px; }
+.canvasloth-page ul.man li > span:before { content:'\A0\A0:\A0\A0'; color:#555; font-family:monospace; }
+.canvasloth-page ul.man li > span        { font-size:12px; }
+.canvasloth-page a       { text-decoration:none; color:#aaf; }
+.canvasloth-page a:hover { text-decoration:underline; }
+.canvasloth-page > div { margin:20px; text-indent:10px; line-height:20px; }
+.canvasloth-page.gameover h2 { text-align:center; margin:60px 0 135px 0; font-size:28px; }
+.canvasloth-page.gameover p  { text-align:center; }
+.canvasloth-page.gameover b  { font-size:24px; }
+.canvasloth-page.share .fb-like { margin-right:20px; }
 
 /* score */
-.Canvasloth .scoring { position:absolute; top:0; right:0; margin:5px; text-align:right; }
-.Canvasloth .scoring > span       { opacity:0.2; font-size:11px; }
-.Canvasloth .scoring > span:after { content:'\A0:\A0'; }
-.Canvasloth .scoring > span.score + b { font-size:22px; }
+.canvasloth .scoring { position:absolute; top:0; right:0; margin:5px; text-align:right; }
+.canvasloth .scoring > span       { opacity:0.2; font-size:11px; }
+.canvasloth .scoring > span:after { content:'\A0:\A0'; }
+.canvasloth .scoring > span.score + b { font-size:22px; }

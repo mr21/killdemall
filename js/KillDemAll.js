@@ -8,7 +8,7 @@ var KillDemAll = {
 		var domScore = document._domSelector('.scoring > span');
 		for (var i = 0; d = domScore[i]; ++i)
 			this.scoring[d.className] = new DomIntIncrease(d._next());
-		this.pageGameover = document._domSelector('.Canvasloth > .gameover')[0];
+		this.pageGameover = document._domSelector('.canvasloth-page.gameover')[0];
 	},
 	load: function() {
 		this.map        = new KillDemAll.Map(this.canvasloth);
