@@ -13,24 +13,24 @@ h1 span { font-size:12px; }
 #menu a:active { box-shadow:inset 0 2px 3px rgba(0,0,0,0.5); }
 
 /* canvas / pages */
-.Canvas2D canvas  { display:block; cursor:crosshair; background:#151517; }
-.Canvas2D .page h2 { margin:15px 0 20px 15px; }
-.Canvas2D .page ul.man               { line-height:32px; }
-.Canvas2D .page ul.man b             { display:inline-block; width:92px; }
-.Canvas2D .page ul.man b span        { border:1px solid #555; border-radius:2px; padding:2px 4px; color:#aaa; background:#222; font-size:11px; }
-.Canvas2D .page ul.man b span + span { margin-left:4px; }
-.Canvas2D .page ul.man li > span:before { content:'\A0\A0:\A0\A0'; color:#555; font-family:monospace; }
-.Canvas2D .page ul.man li > span        { font-size:12px; }
-.Canvas2D .page a       { text-decoration:none; color:#aaf; }
-.Canvas2D .page a:hover { text-decoration:underline; }
-.Canvas2D .page > div { margin:20px; text-indent:10px; line-height:20px; }
-.Canvas2D .page.gameover h2 { text-align:center; margin:60px 0 135px 0; font-size:28px; }
-.Canvas2D .page.gameover p  { text-align:center; }
-.Canvas2D .page.gameover b  { font-size:24px; }
-.Canvas2D .page.share .fb-like { margin-right:20px; }
+.Canvasloth canvas  { display:block; cursor:crosshair; background:#151517; }
+.Canvasloth .page h2 { margin:15px 0 20px 15px; }
+.Canvasloth .page ul.man               { line-height:32px; }
+.Canvasloth .page ul.man b             { display:inline-block; width:92px; }
+.Canvasloth .page ul.man b span        { border:1px solid #555; border-radius:2px; padding:2px 4px; color:#aaa; background:#222; font-size:11px; }
+.Canvasloth .page ul.man b span + span { margin-left:4px; }
+.Canvasloth .page ul.man li > span:before { content:'\A0\A0:\A0\A0'; color:#555; font-family:monospace; }
+.Canvasloth .page ul.man li > span        { font-size:12px; }
+.Canvasloth .page a       { text-decoration:none; color:#aaf; }
+.Canvasloth .page a:hover { text-decoration:underline; }
+.Canvasloth .page > div { margin:20px; text-indent:10px; line-height:20px; }
+.Canvasloth .page.gameover h2 { text-align:center; margin:60px 0 135px 0; font-size:28px; }
+.Canvasloth .page.gameover p  { text-align:center; }
+.Canvasloth .page.gameover b  { font-size:24px; }
+.Canvasloth .page.share .fb-like { margin-right:20px; }
 
 /* score */
-.Canvas2D .scoring { position:absolute; top:0; right:0; margin:5px; text-align:right; }
-.Canvas2D .scoring > span       { opacity:0.2; font-size:11px; }
-.Canvas2D .scoring > span:after { content:'\A0:\A0'; }
-.Canvas2D .scoring > span.score + b { font-size:22px; }
+.Canvasloth .scoring { position:absolute; top:0; right:0; margin:5px; text-align:right; }
+.Canvasloth .scoring > span       { opacity:0.2; font-size:11px; }
+.Canvasloth .scoring > span:after { content:'\A0:\A0'; }
+.Canvasloth .scoring > span.score + b { font-size:22px; }

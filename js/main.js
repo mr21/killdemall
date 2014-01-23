@@ -1,9 +1,9 @@
 function lg(s) { console.log(s) }
 
 window.onload = function() {
-	// creation de l'objet Canvas2D
-	var canvas2d = new Canvas2D(
-		document._domSelector('.Canvas2D')[0],
+	// creation de l'objet canvasloth
+	var canvasloth = new Canvasloth(
+		document._domSelector('.Canvasloth')[0],
 		[
 			'css/explosion.png',
 			'css/Ammo.png',
@@ -24,13 +24,13 @@ window.onload = function() {
 	// Initialisation du menu
 	var domA_menu = document.getElementById('menu').getElementsByTagName('a');
 	for (var i = 0, a; a = domA_menu[i]; ++i)
-		a.onclick = function() { return canvas2d.openPage(document._domSelector('.Canvas2D > .' + this.className)[0]), false };
+		a.onclick = function() { return canvasloth.openPage(document._domSelector('.Canvasloth > .' + this.className)[0]), false };
 	document._domSelector('.page.gameover a')[0].onclick = function() {
 		KillDemAll.reset();
-		KillDemAll.canvas2d.closePage();
-		KillDemAll.canvas2d.focus();
+		KillDemAll.canvasloth.closePage();
+		KillDemAll.canvasloth.focus();
 		return false;
 	};
 	// Initialisation et lancement du jeu
-	KillDemAll.init(canvas2d);
+	KillDemAll.init(canvasloth);
 };

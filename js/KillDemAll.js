@@ -1,27 +1,27 @@
 var KillDemAll = {
-	init: function(canvas2d) {
+	init: function(canvasloth) {
 		var self      = this;
-		this.canvas2d = canvas2d;
-		//canvas2d.debug(true);
+		this.canvasloth = canvasloth;
+		//canvasloth.debug(true);
 		// scoring
 		this.scoring = {};
 		var domScore = document._domSelector('.scoring > span');
 		for (var i = 0; d = domScore[i]; ++i)
 			this.scoring[d.className] = new DomIntIncrease(d._next());
-		this.pageGameover = document._domSelector('.Canvas2D > .gameover')[0];
+		this.pageGameover = document._domSelector('.Canvasloth > .gameover')[0];
 	},
 	load: function() {
-		this.map        = new KillDemAll.Map(this.canvas2d);
-		this.explosions = new KillDemAll.Explosions(this.canvas2d.assets);
-		this.ammo       = new KillDemAll.Ammo(this.canvas2d.assets);
+		this.map        = new KillDemAll.Map(this.canvasloth);
+		this.explosions = new KillDemAll.Explosions(this.canvasloth.assets);
+		this.ammo       = new KillDemAll.Ammo(this.canvasloth.assets);
 		// UserShip::XShip
 		this.xship = new KillDemAll.UserShip_XShip(
 			{
-				x: this.canvas2d.ctx.canvas.width  / 2,
-				y: this.canvas2d.ctx.canvas.height / 2
+				x: this.canvasloth.ctx.canvas.width  / 2,
+				y: this.canvasloth.ctx.canvas.height / 2
 			},
-			this.canvas2d.time,
-			this.canvas2d.assets,
+			this.canvasloth.time,
+			this.canvasloth.assets,
 			this.ammo
 		);
 		// EnemyShip::Kamikaze
@@ -35,13 +35,13 @@ var KillDemAll = {
 			this.scoring[s].set(0, 1000);
 		this.ammo.reset();
 		this.kamikazes.length = 0;
-		this.timeChronoEnemies = this.canvas2d.time.realTime;
+		this.timeChronoEnemies = this.canvasloth.time.realTime;
 	},
 	gameover: function() {
 		this.isGameover = true;
 		var score = this.pageGameover.getElementsByTagName('b')[0];
 		score.innerHTML = this.scoring.score.value;
-		this.canvas2d.openPage(this.pageGameover);
+		this.canvasloth.openPage(this.pageGameover);
 	},
 	createWave: function(type, nb, distMin, distMax) {
 		this.scoring.enemyAlive.add(nb, 500);
@@ -57,13 +57,13 @@ var KillDemAll = {
 				x: this.xship.vPos.x + Math.sin(rad) * dist,
 				y: this.xship.vPos.y - Math.cos(rad) * dist
 			},
-			this.canvas2d.assets
+			this.canvasloth.assets
 		);
 		enemy.setTarget(this.xship);
 		this.kamikazes.push(enemy);
 	},
 	update: function(time) {
-		if (this.isGameover && !this.canvas2d.getPageCurrent()) {
+		if (this.isGameover && !this.canvasloth.getPageCurrent()) {
 			this.gameover();
 			return;
 		}
@@ -83,10 +83,10 @@ var KillDemAll = {
 		this.explosions.update();
 		var viewSpeed = 4 * time.frameTime;
 		var vShip = this.xship.vPos;
-		var vView = this.canvas2d.getView();
-		this.canvas2d.setView(
-			vView.x + ((-vShip.x + this.canvas2d.canvas.width  / 2) - vView.x) * viewSpeed,
-			vView.y + ((-vShip.y + this.canvas2d.canvas.height / 2) - vView.y) * viewSpeed
+		var vView = this.canvasloth.getView();
+		this.canvasloth.setView(
+			vView.x + ((-vShip.x + this.canvasloth.canvas.width  / 2) - vView.x) * viewSpeed,
+			vView.y + ((-vShip.y + this.canvasloth.canvas.height / 2) - vView.y) * viewSpeed
 		);
 	},
 	shotCollision: function(shot) {
