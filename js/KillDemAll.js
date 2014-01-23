@@ -63,10 +63,6 @@ var KillDemAll = {
 		this.kamikazes.push(enemy);
 	},
 	update: function(time) {
-		if (this.isGameover && !this.canvasloth.getPageCurrent()) {
-			this.gameover();
-			return;
-		}
 		// tirs
 		var self = this;
 		this.ammo.update(time, function(shot) { return self.shotCollision(shot) });
