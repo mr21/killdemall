@@ -1,6 +1,6 @@
 /* global */
-body    { margin:0 0 30px 0; font:12px sans-serif; text-align:center; color:#ddd; background:#111; }
-#global { display:inline-block; margin:auto; text-align:left; }
+html, body { height:100%; margin:0; font:12px sans-serif; color:#ddd; background:#111; }
+#global { margin:auto; width:800px; padding-bottom:30px; }
 
 /* title */
 h1      { margin:10px 0 25px 0; }
@@ -13,7 +13,8 @@ h1 span { font-size:12px; }
 #menu a:active { box-shadow:inset 0 2px 3px rgba(0,0,0,0.5); }
 
 /* canvas / pages */
-.canvasloth canvas  { display:block; cursor:crosshair; background:#151517; }
+.canvasloth         { width:100%; height:600px; }
+.canvasloth canvas  { display:block; background:#151517; }
 .canvasloth-page h2 { margin:15px 0 20px 15px; }
 .canvasloth-page ul.man               { line-height:32px; }
 .canvasloth-page ul.man b             { display:inline-block; width:92px; }
@@ -21,7 +22,7 @@ h1 span { font-size:12px; }
 .canvasloth-page ul.man b span + span { margin-left:4px; }
 .canvasloth-page ul.man li > span:before { content:'\A0\A0:\A0\A0'; color:#555; font-family:monospace; }
 .canvasloth-page ul.man li > span        { font-size:12px; }
-.canvasloth-page a       { text-decoration:none; color:#aaf; }
+.canvasloth-page a       { text-decoration:none; }
 .canvasloth-page a:hover { text-decoration:underline; }
 .canvasloth-page > div { margin:20px; text-indent:10px; line-height:20px; }
 .canvasloth-page.gameover h2 { text-align:center; margin:60px 0 135px 0; font-size:28px; }

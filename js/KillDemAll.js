@@ -1,8 +1,7 @@
 var KillDemAll = {
 	init: function(canvasloth) {
-		var self      = this;
+		var self = this;
 		this.canvasloth = canvasloth;
-		//canvasloth.debug(true);
 		// scoring
 		this.scoring = {};
 		var domScore = document._domSelector('.scoring > span');
@@ -11,14 +10,15 @@ var KillDemAll = {
 		this.pageGameover = document._domSelector('.canvasloth-page.gameover')[0];
 	},
 	load: function() {
+		this.canvasloth.cursor('crosshair');
 		this.map        = new KillDemAll.Map(this.canvasloth);
 		this.explosions = new KillDemAll.Explosions(this.canvasloth.assets);
 		this.ammo       = new KillDemAll.Ammo(this.canvasloth.assets);
 		// UserShip::XShip
 		this.xship = new KillDemAll.UserShip_XShip(
 			{
-				x: this.canvasloth.ctx.canvas.width  / 2,
-				y: this.canvasloth.ctx.canvas.height / 2
+				x: this.canvasloth.width()  / 2,
+				y: this.canvasloth.height() / 2
 			},
 			this.canvasloth.time,
 			this.canvasloth.assets,
@@ -81,8 +81,8 @@ var KillDemAll = {
 		var vShip = this.xship.vPos;
 		var vView = this.canvasloth.getView();
 		this.canvasloth.setView(
-			vView.x + ((-vShip.x + this.canvasloth.canvas.width  / 2) - vView.x) * viewSpeed,
-			vView.y + ((-vShip.y + this.canvasloth.canvas.height / 2) - vView.y) * viewSpeed
+			vView.x + ((-vShip.x + this.canvasloth.width()  / 2) - vView.x) * viewSpeed,
+			vView.y + ((-vShip.y + this.canvasloth.height() / 2) - vView.y) * viewSpeed
 		);
 	},
 	shotCollision: function(shot) {

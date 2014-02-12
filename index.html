@@ -64,13 +64,13 @@
 </script>
 
 <div id="global">
-	<h1>KillDemAll <span>1.0</span></h1>
+	<h1>KillDemAll <span>1.1</span></h1>
 	<div id="menu">
 		<a href="#" class="controls">Contrôles</a>
 		<a href="#" class="about"   >À propos</a>
 		<a href="#" class="share"   >Partage</a>
 	</div>
-	<div class="canvasloth">
+	<div class="canvasloth canvasloth-dark">
 		<div class="canvasloth-page controls">
 			<h2>Contrôles</h2>
 			<ul class="man">
@@ -107,14 +107,13 @@
 				<a href="#">Click to try again</a>
 			</p>
 		</div>
-		<canvas width="800" height="600">
-			Arf... ce jeu necessite la technologie <a href="http://fr.wikipedia.org/wiki/Canvas_(HTML)">Canvas</a>.
-		</canvas>
-		<span class="scoring">
-			<span class="score"      >Score</span       ><b class="DomIntIncrease">000000</b><br/>
-			<span class="enemyKilled">Enemy killed</span><b class="DomIntIncrease">000000</b><br/>
-			<span class="enemyAlive" >Enemy alive</span ><b class="DomIntIncrease">000000</b><br/>
-		</span>
+		<div class="canvasloth-hud-passive">
+			<span class="scoring">
+				<span class="score"      >Score</span       ><b class="DomIntIncrease">000000</b><br/>
+				<span class="enemyKilled">Enemy killed</span><b class="DomIntIncrease">000000</b><br/>
+				<span class="enemyAlive" >Enemy alive</span ><b class="DomIntIncrease">000000</b><br/>
+			</span>
+		</div>
 	</div>
 </div>
 
