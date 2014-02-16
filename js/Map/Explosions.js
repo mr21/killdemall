@@ -20,9 +20,9 @@ KillDemAll.Explosions.prototype = {
 KillDemAll.Explosions.Explosion = function(assets, type, vPos) {
 	this.x = vPos.x;
 	this.y = vPos.y;
-	this.rad = (Math.PI * 2) * Math.random();
+	this.rad = Math.PI * 2 * Math.random();
 	switch (type) {
-		case 'a_48' : this.anim = assets.anim(0, 0, 64, 64, 48, 0, false, 0.33, 'explosion'); break;
+		case 'a_48' : this.anim = assets.anims.create('explosion', 0, 0, 64, 64, 48, 0, false, 0.33); break;
 	}
 	this.anim.play();
 };

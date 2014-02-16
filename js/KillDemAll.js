@@ -9,7 +9,7 @@ var KillDemAll = {
 			this.scoring[d.className] = new DomIntIncrease(d._next());
 		this.pageGameover = document._domSelector('.canvasloth-page.gameover')[0];
 	},
-	load: function() {
+	ready: function() {
 		this.canvasloth.cursor('crosshair');
 		this.map        = new KillDemAll.Map(this.canvasloth);
 		this.explosions = new KillDemAll.Explosions(this.canvasloth.assets);
@@ -41,7 +41,7 @@ var KillDemAll = {
 		this.isGameover = true;
 		var score = this.pageGameover.getElementsByTagName('b')[0];
 		score.innerHTML = this.scoring.score.value;
-		this.canvasloth.openPage(this.pageGameover);
+		this.canvasloth.pages.open(this.pageGameover);
 	},
 	createWave: function(type, nb, distMin, distMax) {
 		this.scoring.enemyAlive.add(nb, 500);
@@ -122,7 +122,14 @@ var KillDemAll = {
 		this.xship.render(ctx);
 		this.ammo.render(ctx);
 	},
-	keydown:   function(k)    { this.xship.userMove(k, 1); this.xship.userShootTurrets(k, 1) },
+	keydown: function(k) {
+		switch (k) {
+			case 27 : this.canvasloth.unfocus(); break;
+			default :
+				this.xship.userMove(k, 1);
+				this.xship.userShootTurrets(k, 1);
+		}
+	},
 	keyup:     function(k)    { this.xship.userMove(k, 0); this.xship.userShootTurrets(k, 0) },
 	mousemove: function(x, y) { this.xship.userMoveCannon(x, y) },
 	mousedown: function()     { this.xship.userShootCannon()    }

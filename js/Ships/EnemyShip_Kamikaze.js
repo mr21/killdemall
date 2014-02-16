@@ -10,7 +10,7 @@ KillDemAll.EnemyShip_Kamikaze = function(vPos, assets) {
 	this.type  = 'Kamikaze';
 	this.nbPts = 10;
 	// sprites
-	this.bodySprite = assets.sprite(5, 5, 16, 16, 'EnemyShip_Kamikase');
+	this.bodySprite = assets.sprites.create('EnemyShip_Kamikase', 5, 5, 16, 16);
 	this.radSpeed   = 0.5 + 3 * Math.random();
 };
 

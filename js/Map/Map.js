@@ -2,9 +2,10 @@ KillDemAll.Map = function(canvasloth) {
 	this.canvasloth = canvasloth;
 	this.vView = canvasloth.getView();
 	this.sprites = {
-		'ground' : canvasloth.assets.sprite(0, 0, 32, 32, 'css/Ground.png')
+		'ground' : canvasloth.assets.sprites.create('Ground', 0, 0, 32, 32)
 	};
 };
+
 KillDemAll.Map.prototype = {
 	render: function(ctx) {
 		var sprite = this.sprites.ground;
