@@ -71,7 +71,7 @@ var KillDemAll = {
 		// Enemies
 		if (time.realTime - this.timeChronoEnemies > 0.18) {
 			this.timeChronoEnemies = time.realTime;
-			this.createWave('Kamikaze', 1, 500, 550);
+			this.createWave('Kamikaze', 1, 600, 700);
 		}
 		for (var i = 0, k; k = this.kamikazes[i]; ++i)
 			k.update(time);
@@ -117,8 +117,9 @@ var KillDemAll = {
 		// explosions
 		this.explosions.render(ctx);
 		// enemies
-		for (var i = 0, k; k = this.kamikazes[i]; ++i)
-			k.render(ctx);
+		var i, k;
+		for (i = 0; k = this.kamikazes[i]; ++i) k.renderAura(ctx);
+		for (i = 0; k = this.kamikazes[i]; ++i) k.renderBody(ctx);
 		this.xship.render(ctx);
 		this.ammo.render(ctx);
 	},

@@ -11,7 +11,9 @@ KillDemAll.EnemyShip_Kamikaze = function(vPos, assets) {
 	this.nbPts = 10;
 	// sprites
 	this.bodySprite = assets.sprites.create('EnemyShip_Kamikase', 5, 5, 16, 16);
-	this.radSpeed   = 0.5 + 3 * Math.random();
+	this.aura = assets.sprites.create('kamikaze_aura', 0, 0, 155, 155);
+	this.aura.opacity(0.05);
+	this.radSpeed = 0.5 + 3 * Math.random();
 };
 
 KillDemAll.EnemyShip_Kamikaze.prototype = new KillDemAll.EnemyShip();
@@ -35,7 +37,11 @@ KillDemAll.EnemyShip_Kamikaze.prototype.update = function(time) {
 	this.radCurr = (Math.PI * 2 + this.radCurr) % (Math.PI * 2);
 };
 
-KillDemAll.EnemyShip_Kamikaze.prototype.render = function(ctx) {
+KillDemAll.EnemyShip_Kamikaze.prototype.renderAura = function(ctx) {
+	this.aura.draw(this.vPos.x - 77, this.vPos.y - 77);
+};
+
+KillDemAll.EnemyShip_Kamikaze.prototype.renderBody = function(ctx) {
 	ctx.save();
 		ctx.translate(this.vPos.x, this.vPos.y);
 			ctx.rotate(this.radCurr);

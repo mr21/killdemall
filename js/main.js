@@ -11,6 +11,7 @@ window.onload = function() {
 			'css/Ammo.png',
 			'css/UserShip_XShip.png',
 			'css/EnemyShip_Kamikase.png',
+			'css/kamikaze_aura.png',
 			'css/Ground.png'
 		]
 	);
