@@ -2,12 +2,8 @@ var KillDemAll = {
 	init: function(canvasloth) {
 		var self = this;
 		this.canvasloth = canvasloth;
-		// scoring
-		this.scoring = {};
-		var domScore = document._domSelector('.scoring > span');
-		for (var i = 0; d = domScore[i]; ++i)
-			this.scoring[d.className] = new DomIntIncrease(d._next());
 		this.pageGameover = document._domSelector('.canvasloth-page.gameover')[0];
+		this.scoring.init();
 	},
 	ready: function() {
 		this.canvasloth.cursor('crosshair');
@@ -31,8 +27,7 @@ var KillDemAll = {
 	reset: function() {
 		var self = this;
 		this.isGameover = false;
-		for (var s in this.scoring)
-			this.scoring[s].set(0, 1000);
+		KillDemAll.scoring.reset();
 		this.ammo.reset();
 		this.kamikazes.length = 0;
 		this.timeChronoEnemies = this.canvasloth.time.realTime;
@@ -40,11 +35,11 @@ var KillDemAll = {
 	gameover: function() {
 		this.isGameover = true;
 		var score = this.pageGameover.getElementsByTagName('b')[0];
-		score.innerHTML = this.scoring.score.get();
+		score.innerHTML = this.scoring.dom.score.get();
 		this.canvasloth.pages.open(this.pageGameover);
 	},
 	createWave: function(type, nb, distMin, distMax) {
-		this.scoring.enemyAlive.add(nb, 500);
+		this.scoring.dom.enemyAlive.add(nb, 500);
 		var distRand = distMax - distMin;
 		for (var i = 0; i < nb; ++i)
 			this.createEnemy(type, distMin, distRand);
@@ -103,8 +98,8 @@ var KillDemAll = {
 				} else { // le tir a au moins tue cet ennemie la.
 					pts = k.hp;
 					this.kamikazes.splice(i, 1);
-					this.scoring.enemyAlive.add(-1);
-					this.scoring.enemyKilled.add(+1);
+					this.scoring.dom.enemyAlive.add(-1);
+					this.scoring.dom.enemyKilled.add(+1);
 					this.explosions.create(k.vPos);
 					shot.hp -= k.hp;
 				}
@@ -115,7 +110,7 @@ var KillDemAll = {
 					ptsWin += pts * x;
 			}
 		if (ptsWin)
-			this.scoring.score.add(ptsWin, 250);
+			this.scoring.dom.score.add(ptsWin, 250);
 		return shot.hp <= 0;
 	},
 	render: function(ctx) {
