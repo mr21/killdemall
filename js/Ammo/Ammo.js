@@ -27,8 +27,8 @@ KillDemAll.Ammo.prototype = {
 // Shot
 KillDemAll.Ammo.Shot = function(Ammo, type, vPos, rad, ship) {
 	switch (type) {
-		case 'bullet' : this.hp =   2; this.speed =  900; this.recoil =  50; this.distMax = 400; break;
-		case 'roquet' : this.hp = 100; this.speed = 1100; this.recoil = 210; this.distMax = 500; break;
+		case 'bullet' : this.hp =  100; this.speed =  900; this.recoil =  50; this.distMax = 400; break;
+		case 'roquet' : this.hp = 1000; this.speed = 1100; this.recoil = 210; this.distMax = 500; break;
 	}
 	this.hpMax = this.hp;
 	this.dist = 0;

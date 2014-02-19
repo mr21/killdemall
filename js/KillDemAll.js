@@ -40,7 +40,7 @@ var KillDemAll = {
 	gameover: function() {
 		this.isGameover = true;
 		var score = this.pageGameover.getElementsByTagName('b')[0];
-		score.innerHTML = this.scoring.score.value;
+		score.innerHTML = this.scoring.score.get();
 		this.canvasloth.pages.open(this.pageGameover);
 	},
 	createWave: function(type, nb, distMin, distMax) {
@@ -86,30 +86,37 @@ var KillDemAll = {
 		);
 	},
 	shotCollision: function(shot) {
-		for (var i = 0, k; k = this.kamikazes[i]; ++i)
+		var pts, ptsWin = 0,
+		    i = 0, k,
+		    shipPos = this.xship.vPos,
+		    x, y, distMax = 100*100;
+		for (; k = this.kamikazes[i]; ++i)
 			if (shot.vPos.x >= k.vPos.x - k.bodySprite.w / 2 &&
 			    shot.vPos.x <= k.vPos.x + k.bodySprite.w / 2 &&
 			    shot.vPos.y >= k.vPos.y - k.bodySprite.h / 2 &&
 			    shot.vPos.y <= k.vPos.y + k.bodySprite.h / 2)
 			{
 				if (k.hp > shot.hp) { // l'ennemie a encaisse le tir.
+					pts = shot.hp;
 					k.hp -= shot.hp;
-					this.scoring.score.add(shot.hp, 250);
-					return true;
+					shot.hp = 0;
 				} else { // le tir a au moins tue cet ennemie la.
+					pts = k.hp;
 					this.kamikazes.splice(i, 1);
 					this.scoring.enemyAlive.add(-1);
 					this.scoring.enemyKilled.add(+1);
 					this.explosions.create(k.vPos);
-					this.scoring.score.add(k.hp + k.hpMax, 250);
-					if (shot.hp > k.hp) { // le tir a encore de la puissance.
-						shot.hp -= k.hp;
-						return false;
-					}
+					shot.hp -= k.hp;
 				}
-				return true;
+				x = k.vPos.x - shipPos.x;
+				y = k.vPos.y - shipPos.y;
+				x = (1 - (x*x + y*y)/distMax);
+				if (x > 0)
+					ptsWin += pts * x;
 			}
-		return false;
+		if (ptsWin)
+			this.scoring.score.add(ptsWin, 250);
+		return shot.hp <= 0;
 	},
 	render: function(ctx) {
 		// map
