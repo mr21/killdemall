@@ -68,7 +68,7 @@ KillDemAll.UserShip_XShip.prototype.userMoveCannon = function(x, y) {
 KillDemAll.UserShip_XShip.prototype.userShootCannon = function() {
 	if (!this.cannon.anim.playing) {
 		this.cannon.anim.play();
-		var shotPos = new Vector2D(
+		var shotPos = new Canvasloth.Math.V2(
 			this.vPos.x + 40 * +Math.sin(this.cannon.rad),
 			this.vPos.y + 40 * -Math.cos(this.cannon.rad)
 		);
@@ -93,7 +93,7 @@ KillDemAll.UserShip_XShip.prototype.shootTurret = function(couple, ind) {
 	var cosRad = Math.cos(couple.rad);
 	var x = side * (6 + this.armors.open[ind]);
 	var y = -33 - this.armors.open[(4 + ind + side) % 4];
-	var shotPos = new Vector2D(
+	var shotPos = new Canvasloth.Math.V2(
 		this.vPos.x + x * cosRad - y * sinRad,
 		this.vPos.y + x * sinRad + y * cosRad
 	);

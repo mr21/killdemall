@@ -3,6 +3,7 @@ function lg(s) { console.log(s) }
 window.onload = function() {
 	// creation de l'objet canvasloth
 	var canvasloth = new Canvasloth(
+		'2d',
 		document._domSelector('.canvasloth')[0],
 		KillDemAll,
 		[

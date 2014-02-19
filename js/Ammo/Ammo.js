@@ -30,19 +30,21 @@ KillDemAll.Ammo.Shot = function(Ammo, type, vPos, rad, ship) {
 		case 'bullet' : this.hp =   2; this.speed =  900; this.recoil =  50; this.distMax = 400; break;
 		case 'roquet' : this.hp = 100; this.speed = 1100; this.recoil = 210; this.distMax = 500; break;
 	}
-	this.hpMax  = this.hp;
-	this.dist   = 0;
-	this.rad    = rad;
+	this.hpMax = this.hp;
+	this.dist = 0;
+	this.rad = rad;
 	this.sprite = Ammo.sprites[type];
-	this.vPos   = new Vector2D(vPos);
+	this.vPos = vPos.copy();
 	var sinRad = +Math.sin(rad);
 	var cosRad = -Math.cos(rad);
-	this.vDir   = new Vector2D(
-		sinRad * this.speed + ship.vMove.x,
-		cosRad * this.speed + ship.vMove.y
+	this.vDir = ship.vMove.new_addF(
+		sinRad * this.speed,
+		cosRad * this.speed
 	);
-	ship.vMove.x -= this.recoil / (1 + ship.weight) * sinRad;
-	ship.vMove.y -= this.recoil / (1 + ship.weight) * cosRad;
+	ship.vMove.subF(
+		this.recoil / (1 + ship.weight) * sinRad,
+		this.recoil / (1 + ship.weight) * cosRad
+	);
 };
 KillDemAll.Ammo.Shot.prototype = {
 	update: function(time, isIncollision) {
@@ -55,8 +57,10 @@ KillDemAll.Ammo.Shot.prototype = {
 		}
 		var nbTests = Math.ceil(incr / 4);
 		for (var i = 0; i < nbTests; ++i) {
-			this.vPos.x += this.vDir.x * time.frameTime / nbTests;
-			this.vPos.y += this.vDir.y * time.frameTime / nbTests;
+			this.vPos.addF(
+				this.vDir.x * time.frameTime / nbTests,
+				this.vDir.y * time.frameTime / nbTests
+			);
 			if (isIncollision(this))
 				return false;
 		}
