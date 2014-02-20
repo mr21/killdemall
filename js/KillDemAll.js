@@ -3,7 +3,6 @@ var KillDemAll = {
 		this.canvasloth = canvasloth;
 		this.pageGameover = document._domSelector('.canvasloth-page.gameover')[0];
 		this.scoring.init(canvasloth.ctx);
-		this.distanceToScore = 100;
 	},
 	ready: function() {
 		this.canvasloth.cursor('crosshair');
@@ -18,8 +17,7 @@ var KillDemAll = {
 			},
 			this.canvasloth.time,
 			this.canvasloth.assets,
-			this.ammo,
-			this.distanceToScore
+			this.ammo
 		);
 		// EnemyShip::Kamikaze
 		this.kamikazes = [];
@@ -86,13 +84,9 @@ var KillDemAll = {
 		var pts, ptsWin = 0,
 		    i = 0, k,
 		    shipPos = this.xship.vPos,
-		    x, y, distMax = this.distanceToScore*this.distanceToScore;
+		    x, y, distMax = this.xship.hudRadius*this.xship.hudRadius;
 		for (; k = this.kamikazes[i]; ++i)
-			if (shot.vPos.x >= k.vPos.x - k.bodySprite.w / 2 &&
-			    shot.vPos.x <= k.vPos.x + k.bodySprite.w / 2 &&
-			    shot.vPos.y >= k.vPos.y - k.bodySprite.h / 2 &&
-			    shot.vPos.y <= k.vPos.y + k.bodySprite.h / 2)
-			{
+			if (shot.vPos.distSquare(k.vPos) <= (k.bodySprite.w / 2) * (k.bodySprite.w / 2)) {
 				if (k.hp > shot.hp) { // l'ennemie a encaisse le tir.
 					pts = shot.hp;
 					k.hp -= shot.hp;

@@ -1,4 +1,4 @@
-KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo, hudRadius) {
+KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 	// heritage
 	KillDemAll.UserShip.call(this,
 		1000, // HP
@@ -10,7 +10,8 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo, hudRadius) {
 	// objects needed
 	this.time = time;
 	this.ammo = ammo;
-	this.hudRadius = hudRadius;
+	this.radius = 30;
+	this.hudRadius = 100;
 	// base
 	this.base = { sprite : assets.sprites.create('UserShip_XShip', 52, 5, 22, 22) };
 	// reactors
@@ -21,7 +22,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo, hudRadius) {
 	this.armors = {
 		speed   : 7,
 		sprite  : assets.sprites.create('UserShip_XShip', 5, 5, 23, 23),
-		openMax : 8,
+		openMax : 9,
 		open    : [0,0,0,0]
 	};
 	// turrets
@@ -136,15 +137,25 @@ KillDemAll.UserShip_XShip.prototype.update = function(time) {
 };
 
 KillDemAll.UserShip_XShip.prototype.renderHUD = function(ctx) {
-	var alpA = 0.35, alpB = 0.02,
-		a = 0, i = 0,
-		radAngle = Math.PI / 2 * 0.1;
-
+	var i = 0, turretPx = 6, radAngle, armorOpen;
 	ctx.strokeStyle = '#fff';
-	for (; i < 4; ++i) {
-		ctx.beginPath(); ctx.globalAlpha = alpA; ctx.arc(0, 0, this.hudRadius, a - radAngle,                    a + radAngle); ctx.stroke();
-		ctx.beginPath(); ctx.globalAlpha = alpB; ctx.arc(0, 0, this.hudRadius, a + radAngle, (a += Math.PI * 0.5) - radAngle); ctx.stroke();
-	}
+	ctx.globalAlpha = 0.04;
+	ctx.beginPath(); ctx.arc(0, 0, this.hudRadius, 0, 2 * Math.PI); ctx.stroke();
+	ctx.beginPath(); ctx.arc(0, 0, this.radius, 0, 2 * Math.PI); ctx.stroke();
+	ctx.lineWidth = 2;
+	ctx.globalAlpha = 0.1;
+	ctx.save();
+		ctx.beginPath();
+			for (; i < 4; ++i) {
+				armorOpen = this.armors.open[(i + 1) % 4];
+				radAngle = Math.atan((turretPx + armorOpen) / this.hudRadius);
+				ctx.moveTo(this.hudRadius, -turretPx -armorOpen); ctx.arc(0, 0, this.hudRadius, -radAngle, radAngle);
+				ctx.moveTo(this.hudRadius, -turretPx -armorOpen); ctx.lineTo(this.hudRadius - 5, -turretPx -armorOpen);
+				ctx.moveTo(this.hudRadius, +turretPx +armorOpen); ctx.lineTo(this.hudRadius - 5, +turretPx +armorOpen);
+				ctx.rotate(Math.PI / 2);
+			}
+		ctx.stroke();
+	ctx.restore();
 };
 
 KillDemAll.UserShip_XShip.prototype.render = function(ctx) {

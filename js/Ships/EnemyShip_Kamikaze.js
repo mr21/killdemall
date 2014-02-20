@@ -21,19 +21,18 @@ KillDemAll.EnemyShip_Kamikaze.prototype.update = function(time) {
 	// ship
 	KillDemAll.EnemyShip.prototype.update.call(this, time);
 	// gestion temporaire de collision envers le joueur
-	var xshipPos = KillDemAll.xship.vPos;
-	if (this.vPos.x >= xshipPos.x - 20 && this.vPos.x < xshipPos.x + 20 &&
-	    this.vPos.y >= xshipPos.y - 20 && this.vPos.y < xshipPos.y + 20) {
-		KillDemAll.gameover();
+	if (this.vPos.distSquare(KillDemAll.xship.vPos) <= KillDemAll.xship.radius * KillDemAll.xship.radius) {
+	    KillDemAll.gameover();
+	} else {
+		// rad
+		var diffRad = this.rad - this.radCurr;
+		if (diffRad > Math.PI)
+			diffRad -= Math.PI * 2;
+		else if (diffRad < -Math.PI)
+			diffRad += Math.PI * 2;
+		this.radCurr += diffRad * this.radSpeed * time.frameTime;
+		this.radCurr = (Math.PI * 2 + this.radCurr) % (Math.PI * 2);
 	}
-	// rad
-	var diffRad = this.rad - this.radCurr;
-	if (diffRad > Math.PI)
-		diffRad -= Math.PI * 2;
-	else if (diffRad < -Math.PI)
-		diffRad += Math.PI * 2;
-	this.radCurr += diffRad * this.radSpeed * time.frameTime;
-	this.radCurr = (Math.PI * 2 + this.radCurr) % (Math.PI * 2);
 };
 
 KillDemAll.EnemyShip_Kamikaze.prototype.renderAura = function(ctx) {
