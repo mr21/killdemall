@@ -3,7 +3,7 @@ var KillDemAll = {
 		var self = this;
 		this.canvasloth = canvasloth;
 		this.pageGameover = document._domSelector('.canvasloth-page.gameover')[0];
-		this.scoring.init();
+		this.scoring.init(canvasloth.ctx);
 	},
 	ready: function() {
 		this.canvasloth.cursor('crosshair');
@@ -79,6 +79,7 @@ var KillDemAll = {
 			vView.x + ((-vShip.x + this.canvasloth.width()  / 2) - vView.x) * viewSpeed,
 			vView.y + ((-vShip.y + this.canvasloth.height() / 2) - vView.y) * viewSpeed
 		);
+		this.scoring.update(time);
 	},
 	shotCollision: function(shot) {
 		var pts, ptsWin = 0,
@@ -106,8 +107,10 @@ var KillDemAll = {
 				x = k.vPos.x - shipPos.x;
 				y = k.vPos.y - shipPos.y;
 				x = (1 - (x*x + y*y)/distMax);
-				if (x > 0)
-					ptsWin += pts * x;
+				if ((pts = Math.floor(pts * x)) > 0) {
+					ptsWin += pts;
+					this.scoring.newNumber(pts, 100, k.vPos.x, k.vPos.y);
+				}
 			}
 		if (ptsWin)
 			this.scoring.dom.score.add(ptsWin, 250);
@@ -124,6 +127,7 @@ var KillDemAll = {
 		for (i = 0; k = this.kamikazes[i]; ++i) k.renderBody(ctx);
 		this.xship.render(ctx);
 		this.ammo.render(ctx);
+		this.scoring.render(ctx);
 	},
 	keydown: function(k) {
 		switch (k) {
