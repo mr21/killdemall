@@ -1,9 +1,9 @@
 var KillDemAll = {
 	init: function(canvasloth) {
-		var self = this;
 		this.canvasloth = canvasloth;
 		this.pageGameover = document._domSelector('.canvasloth-page.gameover')[0];
 		this.scoring.init(canvasloth.ctx);
+		this.distanceToScore = 100;
 	},
 	ready: function() {
 		this.canvasloth.cursor('crosshair');
@@ -85,7 +85,7 @@ var KillDemAll = {
 		var pts, ptsWin = 0,
 		    i = 0, k,
 		    shipPos = this.xship.vPos,
-		    x, y, distMax = 100*100;
+		    x, y, distMax = this.distanceToScore*this.distanceToScore;
 		for (; k = this.kamikazes[i]; ++i)
 			if (shot.vPos.x >= k.vPos.x - k.bodySprite.w / 2 &&
 			    shot.vPos.x <= k.vPos.x + k.bodySprite.w / 2 &&
@@ -106,10 +106,10 @@ var KillDemAll = {
 				}
 				x = k.vPos.x - shipPos.x;
 				y = k.vPos.y - shipPos.y;
-				x = (1 - (x*x + y*y)/distMax);
-				if ((pts = Math.floor(pts * x)) > 0) {
-					ptsWin += pts;
-					this.scoring.newNumber(pts, 100, k.vPos.x, k.vPos.y);
+				x = Math.floor(pts * (1 - (x*x + y*y) / distMax));
+				if (x > 0) {
+					ptsWin += x;
+					this.scoring.newNumber(x, pts, k.vPos.x, k.vPos.y);
 				}
 			}
 		if (ptsWin)
