@@ -18,7 +18,8 @@ var KillDemAll = {
 			},
 			this.canvasloth.time,
 			this.canvasloth.assets,
-			this.ammo
+			this.ammo,
+			this.distanceToScore
 		);
 		// EnemyShip::Kamikaze
 		this.kamikazes = [];

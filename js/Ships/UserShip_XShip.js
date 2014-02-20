@@ -1,4 +1,4 @@
-KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
+KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo, hudRadius) {
 	// heritage
 	KillDemAll.UserShip.call(this,
 		1000, // HP
@@ -10,6 +10,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 	// objects needed
 	this.time = time;
 	this.ammo = ammo;
+	this.hudRadius = hudRadius;
 	// base
 	this.base = { sprite : assets.sprites.create('UserShip_XShip', 52, 5, 22, 22) };
 	// reactors
@@ -134,6 +135,18 @@ KillDemAll.UserShip_XShip.prototype.update = function(time) {
 	this.cannon.rad = (Math.PI * 2 + this.cannon.rad) % (Math.PI * 2);
 };
 
+KillDemAll.UserShip_XShip.prototype.renderHUD = function(ctx) {
+	var alpA = 0.35, alpB = 0.02,
+		a = 0, i = 0,
+		radAngle = Math.PI / 2 * 0.1;
+
+	ctx.strokeStyle = '#fff';
+	for (; i < 4; ++i) {
+		ctx.beginPath(); ctx.globalAlpha = alpA; ctx.arc(0, 0, this.hudRadius, a - radAngle,                    a + radAngle); ctx.stroke();
+		ctx.beginPath(); ctx.globalAlpha = alpB; ctx.arc(0, 0, this.hudRadius, a + radAngle, (a += Math.PI * 0.5) - radAngle); ctx.stroke();
+	}
+};
+
 KillDemAll.UserShip_XShip.prototype.render = function(ctx) {
 	ctx.save();
 		ctx.translate(this.vPos.x, this.vPos.y);
@@ -172,7 +185,8 @@ KillDemAll.UserShip_XShip.prototype.render = function(ctx) {
 				ctx.rotate(this.cannon.rad);
 					this.cannon.anim.draw(-6, -47);
 			ctx.restore();
+			// hud
+			this.renderHUD(ctx);
 
 	ctx.restore();
 };
-
