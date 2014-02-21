@@ -81,10 +81,11 @@ var KillDemAll = {
 		this.scoring.update(time);
 	},
 	shotCollision: function(shot) {
-		var pts, ptsWin = 0,
+		var pts, ptsWin = 0, ptsTmp,
 		    i = 0, k,
 		    shipPos = this.xship.vPos,
-		    x, y, distMax = this.xship.hudRadius*this.xship.hudRadius;
+		    shipRad = this.xship.radius * this.xship.radius,
+		    shotDistMax = this.xship.hudRadius * this.xship.hudRadius;
 		for (; k = this.kamikazes[i]; ++i)
 			if (shot.vPos.distSquare(k.vPos) <= (k.bodySprite.w / 2) * (k.bodySprite.w / 2)) {
 				if (k.hp > shot.hp) { // l'ennemie a encaisse le tir.
@@ -99,12 +100,10 @@ var KillDemAll = {
 					this.explosions.create(k.vPos);
 					shot.hp -= k.hp;
 				}
-				x = k.vPos.x - shipPos.x;
-				y = k.vPos.y - shipPos.y;
-				x = Math.floor(pts * (1 - (x*x + y*y) / distMax));
-				if (x > 0) {
-					ptsWin += x;
-					this.scoring.newNumber(x, pts, k.vPos.x, k.vPos.y);
+				ptsTmp = Math.ceil(pts * (1 - (k.vPos.distSquare(shipPos) - shipRad) / (shotDistMax - shipRad)));
+				if (ptsTmp > 0) {
+					ptsWin += ptsTmp;
+					this.scoring.newNumber(ptsTmp, pts, k.vPos.x, k.vPos.y);
 				}
 			}
 		if (ptsWin)

@@ -12,6 +12,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 	this.ammo = ammo;
 	this.radius = 30;
 	this.hudRadius = 100;
+	this.hudOpacity = 1;
 	// base
 	this.base = { sprite : assets.sprites.create('UserShip_XShip', 52, 5, 22, 22) };
 	// reactors
@@ -75,6 +76,7 @@ KillDemAll.UserShip_XShip.prototype.userShootCannon = function() {
 			this.vPos.y + 40 * -Math.cos(this.cannon.rad)
 		);
 		this.ammo.createShot('roquet', shotPos, this.cannon.rad, this);
+		this.hudOpacity = 1;
 	}
 };
 
@@ -100,6 +102,7 @@ KillDemAll.UserShip_XShip.prototype.shootTurret = function(couple, ind) {
 		this.vPos.y + x * sinRad + y * cosRad
 	);
 	this.ammo.createShot('bullet', shotPos, couple.rad, this);
+	this.hudOpacity = 1;
 	if (couple.delay < this.turrets.delayMax)
 		couple.delay += this.turrets.delayInc;
 	couple.time = this.time.realTime;
@@ -134,16 +137,20 @@ KillDemAll.UserShip_XShip.prototype.update = function(time) {
 		diffRad += Math.PI * 2;
 	this.cannon.rad += diffRad * this.cannon.speed * time.frameTime;
 	this.cannon.rad = (Math.PI * 2 + this.cannon.rad) % (Math.PI * 2);
+	// hud
+	this.hudOpacity -= 0.5 * time.frameTime;
+	if (this.hudOpacity < 0)
+		this.hudOpacity = 0;
 };
 
 KillDemAll.UserShip_XShip.prototype.renderHUD = function(ctx) {
 	var i = 0, turretPx = 6, radAngle, armorOpen;
 	ctx.strokeStyle = '#fff';
-	ctx.globalAlpha = 0.04;
-	ctx.beginPath(); ctx.arc(0, 0, this.hudRadius, 0, 2 * Math.PI); ctx.stroke();
+	ctx.globalAlpha = 0.08 * this.hudOpacity;
+	ctx.beginPath(); ctx.arc(0, 0, this.hudRadius - 1, 0, 2 * Math.PI); ctx.stroke();
 	ctx.beginPath(); ctx.arc(0, 0, this.radius, 0, 2 * Math.PI); ctx.stroke();
-	ctx.lineWidth = 2;
-	ctx.globalAlpha = 0.1;
+	ctx.lineWidth = 2.8;
+	ctx.globalAlpha = 0.1 * this.hudOpacity;
 	ctx.save();
 		ctx.beginPath();
 			for (; i < 4; ++i) {
