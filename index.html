@@ -12,8 +12,6 @@
 <link type="text/css" rel="stylesheet" href="../Canvasloth/Canvasloth.css"/>
 <!-- CSS.KillDemAll -->
 <link type="text/css" rel="stylesheet" href="css/global.css"/>
-<!-- JS.main -->
-<script type="text/javascript" src="js/main.js"></script>
 <!-- JS.JsExt -->
 <script type="text/javascript" src="../JsExt/ClassName.js"></script>
 <script type="text/javascript" src="../JsExt/CSS.js"></script>
@@ -25,6 +23,8 @@
 <script type="text/javascript" src="../JsExt/OffsetPosition.js"></script>
 <!-- JS.Canvasloth -->
 <script type="text/javascript" src="../Canvasloth/Canvasloth.js"></script>
+<script type="text/javascript" src="../Canvasloth/Canvas/Canvas.js"></script>
+<script type="text/javascript" src="../Canvasloth/Ctx2D/Ctx2D.js"></script>
 <script type="text/javascript" src="../Canvasloth/Hud/Pages.js"></script>
 <script type="text/javascript" src="../Canvasloth/Hud/DomIntIncrease.js"></script>
 <script type="text/javascript" src="../Canvasloth/Assets/Assets.js"></script>
@@ -35,9 +35,8 @@
 <script type="text/javascript" src="../Canvasloth/Math/Math.js"></script>
 <script type="text/javascript" src="../Canvasloth/Math/Vector.js"></script>
 <script type="text/javascript" src="../Canvasloth/Math/Matrix.js"></script>
-<script type="text/javascript" src="../Canvasloth/WebGL/WebGL.js"></script>
-<script type="text/javascript" src="../Canvasloth/WebGL/Shaders.js"></script>
 <!-- JS.KillDemAll -->
+<script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/KillDemAll.js"></script>
 <script type="text/javascript" src="js/Scoring.js"></script>
 <script type="text/javascript" src="js/Map/Explosions.js"></script>
@@ -76,34 +75,55 @@
 	<h1>KillDemAll <span>1.1</span></h1>
 	<div id="menu">
 		<a href="#" class="controls">Contrôles</a>
+		<a href="#" class="scoring" >Score</a>
 		<a href="#" class="about"   >À propos</a>
 		<a href="#" class="share"   >Partage</a>
 	</div>
 	<div class="canvasloth canvasloth-dark">
 		<div class="canvasloth-page controls">
 			<h2>Contrôles</h2>
-			<ul class="man">
-				<li><b><span>W</span><span>A</span><span>S</span><span>D</span></b>                     <span>Déplacer le vaisseau (fonctionne aussi pour ZQSD)</span></li>
-				<li><b><span>&uarr;</span><span>&larr;</span><span>&darr;</span><span>&rarr;</span></b> <span>Tirer avec les huits tourelles</span></li>
-				<li><b><span>Souris</span></b>                                                          <span>Viser avec le cannon</span></li>
-				<li><b><span>Clique gauche</span></b>                                                   <span>Tirer avec le cannon</span></li>
-			</ul>
+			<div>
+				<ul>
+					<li><b><span>W</span><span>A</span><span>S</span><span>D</span></b>                     <span>Déplacer le vaisseau (fonctionne aussi pour ZQSD)</span></li>
+					<li><b><span>&uarr;</span><span>&larr;</span><span>&darr;</span><span>&rarr;</span></b> <span>Tirer avec les huits tourelles</span></li>
+					<li><b><span>Souris</span></b>                                                          <span>Viser avec le cannon</span></li>
+					<li><b><span>Clique gauche</span></b>                                                   <span>Tirer avec le cannon</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="canvasloth-page scoring">
+			<h2>Score</h2>
+			<div>
+				<p>
+					Le système de point est relativement complexe.
+				</p>
+				<ul>
+					<li class="bonus">Tirer sur un ennemi dans le cercle rapporte des points.
+					Le nombre de points rapportés équivaut au total des damages que vient de subir la cible.
+					Mais attention, plus l'ennemi est loin de vous moins vous en obtenez.</li>
+					<li class="malus">Tirer sur un ennemi en dehors du cercle ne fait gagner aucun point.</li>
+					<li class="malus">Un tir n'atteignant aucune cible coûte 1 point.</li>
+				</ul>
+			</div>
 		</div>
 		<div class="canvasloth-page about">
 			<h2>À propos</h2>
 			<div>
-				Ce mini-jeu est un <i>shoot'em up</i> on ne peut plus simple&nbsp;:<br/>
-				On contrôle un vaisseau qui doit en détruire d'autres sans se faire toucher pour gagner des points.<br/>
-				À l'origine, j'étais censé le développer en <i>C/SDL</i> mais un jour… j'ai découvert la balise <i>&lt;canvas&gt;</i>&nbsp;:)<br/>
-				J'ai donc choisi de réécrire toute la base du jeu en <i>Javascript</i> ce qui explique le grand nombre de commits sur le
-				<a href="https://github.com/Mr21/KillDemAll">repo <i>GitHub</i></a>.<br/>
+				<p>
+					Ce mini-jeu est un <i>shoot'em up</i> on ne peut plus simple&nbsp;:<br/>
+					On contrôle un vaisseau qui doit en détruire d'autres sans se faire toucher pour gagner des points.<br/>
+					À l'origine, j'étais censé le développer en <i>C/SDL</i> mais un jour… j'ai découvert la balise <i>&lt;canvas&gt;</i>&nbsp;:)<br/>
+					J'ai donc choisi de réécrire toute la base du jeu en <i>Javascript</i> ce qui explique le grand nombre de commits sur le
+					<a href="https://github.com/Mr21/KillDemAll">repo <i>GitHub</i></a>.
+				</p>
 			</div>
 		</div>
 		<div class="canvasloth-page share">
 			<h2>Partage</h2>
 			<div>
-				Et voici quelques boutons pour partager ou mettre un like :)<br/>
-				<br/>
+				<p>
+					Et voici quelques boutons pour partager ou mettre un like :)
+				</p>
 				<div class="fb-like" data-href="http://mr21.fr/KillDemAll/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 				<a href="https://twitter.com/share" class="twitter-share-button" data-via="Mr21_" data-hashtags="canvas">Tweet</a>
 			</div>

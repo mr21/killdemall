@@ -15,23 +15,24 @@ h1 span { font-size:12px; }
 /* canvas / pages */
 .canvasloth         { width:100%; height:600px; }
 .canvasloth canvas  { display:block; background:#151517; }
+.canvasloth-page > div { margin:20px; line-height:20px; }
 .canvasloth-page h2 { margin:15px 0 20px 15px; }
-.canvasloth-page ul.man               { line-height:32px; }
-.canvasloth-page ul.man b             { display:inline-block; width:92px; }
-.canvasloth-page ul.man b span        { border:1px solid #555; border-radius:2px; padding:2px 4px; color:#aaa; background:#222; font-size:11px; }
-.canvasloth-page ul.man b span + span { margin-left:4px; }
-.canvasloth-page ul.man li > span:before { content:'\A0\A0:\A0\A0'; color:#555; font-family:monospace; }
-.canvasloth-page ul.man li > span        { font-size:12px; }
+.canvasloth-page p { text-indent:10px; }
 .canvasloth-page a       { text-decoration:none; }
 .canvasloth-page a:hover { text-decoration:underline; }
-.canvasloth-page > div { margin:20px; text-indent:10px; line-height:20px; }
+.canvasloth-page.controls ul               { line-height:32px; }
+.canvasloth-page.controls ul b             { display:inline-block; width:92px; }
+.canvasloth-page.controls ul b span        { border:1px solid #555; border-radius:2px; padding:2px 4px; color:#aaa; background:#222; font-size:11px; }
+.canvasloth-page.controls ul b span + span { margin-left:4px; }
+.canvasloth-page.controls ul li > span:before { content:'\A0\A0:\A0\A0'; color:#555; font-family:monospace; }
+.canvasloth-page.controls ul li > span        { font-size:12px; }
 .canvasloth-page.gameover h2 { text-align:center; margin:60px 0 135px 0; font-size:28px; }
 .canvasloth-page.gameover p  { text-align:center; }
 .canvasloth-page.gameover b  { font-size:24px; }
 .canvasloth-page.share .fb-like { margin-right:20px; }
 
 /* score */
-.canvasloth .scoring { position:absolute; top:0; right:0; margin:5px; text-align:right; }
-.canvasloth .scoring > span       { opacity:0.2; font-size:11px; }
-.canvasloth .scoring > span:after { content:'\A0:\A0'; }
-.canvasloth .scoring > span.score + b { font-size:22px; }
+.canvasloth-hud-passive .scoring { position:absolute; top:0; right:0; margin:5px; text-align:right; }
+.canvasloth-hud-passive .scoring > span       { opacity:0.2; font-size:11px; }
+.canvasloth-hud-passive .scoring > span:after { content:'\A0:\A0'; }
+.canvasloth-hud-passive .scoring > span.score + b { font-size:22px; }

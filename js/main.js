@@ -25,6 +25,4 @@ window.onload = function() {
 		KillDemAll.canvasloth.focus();
 		return false;
 	};
-	// Initialisation et lancement du jeu
-	KillDemAll.init(canvasloth);
 };
