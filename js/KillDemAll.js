@@ -130,7 +130,15 @@ var KillDemAll = {
 				this.xship.userShootTurrets(k, 1);
 		}
 	},
-	keyup:     function(k)    { this.xship.userMove(k, 0); this.xship.userShootTurrets(k, 0) },
-	mousemove: function(x, y) { this.xship.userMoveCannon(x, y) },
-	mousedown: function()     { this.xship.userShootCannon()    }
+	keyup: function(k) { 
+		this.xship.userMove(k, 0);
+		this.xship.userShootTurrets(k, 0); 
+	},
+	mousemove: function(x, y) { 
+		this.xship.userMoveCannon(x, y); 
+	},
+	mousedown: function(k)     {
+		if (k === Canvasloth.LEFT_BUTTON)
+			this.xship.userShootCannon();
+	}
 };
