@@ -76,7 +76,6 @@ var KillDemAll = {
 			viewSpeed * ((-vShip.x + this.canvasloth.width()  / 2) - this.cam.x),
 			viewSpeed * ((-vShip.y + this.canvasloth.height() / 2) - this.cam.y)
 		);
-		this.canvasloth.lookAt(this.cam);
 		this.scoring.update(time);
 	},
 	shotCollision: function(shot) {
@@ -110,6 +109,7 @@ var KillDemAll = {
 		return shot.hp <= 0;
 	},
 	render: function(ctx) {
+		ctx._lookAt(this.cam);
 		// map
 		this.map.render(ctx);
 		// explosions
