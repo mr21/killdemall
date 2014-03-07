@@ -58,7 +58,7 @@ var KillDemAll = {
 	update: function(time) {
 		// tirs
 		var self = this;
-		this.ammo.update(time, function(shot) { return self.shotCollision(shot) });
+		this.ammo.update(time, function(shot) { return self.shotCollision(shot); });
 		// XShip
 		this.xship.update(time);
 		// Enemies
@@ -134,10 +134,10 @@ var KillDemAll = {
 		this.xship.userMove(k, 0);
 		this.xship.userShootTurrets(k, 0); 
 	},
-	mousemove: function(x, y) { 
+	mousemove: function(x, y) {
 		this.xship.userMoveCannon(x, y); 
 	},
-	mousedown: function(k)     {
+	mousedown: function(k) {
 		if (k === Canvasloth.LEFT_BUTTON)
 			this.xship.userShootCannon();
 	}
