@@ -37,7 +37,7 @@ var KillDemAll = {
 		this.canvasloth.pages.open(this.pageGameover);
 	},
 	createWave: function(type, nb, distMin, distMax) {
-		this.scoring.dom.enemyAlive.add(nb, 500);
+		this.scoring.dom.enemyAlive.add(nb);
 		var distRand = distMax - distMin;
 		for (var i = 0; i < nb; ++i)
 			this.createEnemy(type, distMin, distRand);
@@ -105,7 +105,7 @@ var KillDemAll = {
 				}
 			}
 		if (ptsWin)
-			this.scoring.dom.score.add(ptsWin, 250);
+			this.scoring.dom.score.add(ptsWin, ptsWin * 4);
 		return shot.hp <= 0;
 	},
 	render: function(ctx) {
@@ -135,7 +135,7 @@ var KillDemAll = {
 		this.xship.userShootTurrets(k, 0); 
 	},
 	mousemove: function(x, y) {
-		this.xship.userMoveCannon(x, y); 
+		this.xship.userMoveCannon(x, y);
 	},
 	mousedown: function(k) {
 		if (k === Canvasloth.LEFT_BUTTON)
