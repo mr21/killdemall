@@ -2,7 +2,7 @@ var KillDemAll = {
 	ready: function(canvasloth) {
 		this.canvasloth = canvasloth;
 		this.pageGameover = document._domSelector('.canvasloth-page.gameover')[0];
-		this.scoring.init(canvasloth.getCtx());
+		this.Scoring.init(canvasloth.getCtx());
 		canvasloth.cursor('crosshair');
 		this.cam        = new Canvasloth.Math.V2(0,0);
 		this.map        = new KillDemAll.Map(this.canvasloth, this.cam);
@@ -25,7 +25,7 @@ var KillDemAll = {
 	reset: function() {
 		var self = this;
 		this.isGameover = false;
-		KillDemAll.scoring.reset();
+		this.Scoring.reset();
 		this.ammo.reset();
 		this.kamikazes.length = 0;
 		this.timeChronoEnemies = this.canvasloth.time.realTime;
@@ -33,11 +33,11 @@ var KillDemAll = {
 	gameover: function() {
 		this.isGameover = true;
 		var score = this.pageGameover.getElementsByTagName('b')[0];
-		score.innerHTML = this.scoring.dom.score.get();
+		score.innerHTML = this.Scoring.dom.score.get();
 		this.canvasloth.pages.open(this.pageGameover);
 	},
 	createWave: function(type, nb, distMin, distMax) {
-		this.scoring.dom.enemyAlive.add(nb);
+		this.Scoring.dom.enemyAlive.add(nb);
 		var distRand = distMax - distMin;
 		for (var i = 0; i < nb; ++i)
 			this.createEnemy(type, distMin, distRand);
@@ -76,7 +76,7 @@ var KillDemAll = {
 			viewSpeed * ((-vShip.x + this.canvasloth.width()  / 2) - this.cam.x),
 			viewSpeed * ((-vShip.y + this.canvasloth.height() / 2) - this.cam.y)
 		);
-		this.scoring.update(time);
+		this.Scoring.update(time);
 	},
 	shotCollision: function(shot) {
 		var pts, ptsWin = 0, ptsTmp,
@@ -93,19 +93,19 @@ var KillDemAll = {
 				} else { // le tir a au moins tue cet ennemie la.
 					pts = k.hp;
 					this.kamikazes.splice(i, 1);
-					this.scoring.dom.enemyAlive.add(-1);
-					this.scoring.dom.enemyKilled.add(+1);
+					this.Scoring.dom.enemyAlive.add(-1);
+					this.Scoring.dom.enemyKilled.add(+1);
 					this.explosions.create(k.vPos);
 					shot.hp -= k.hp;
 				}
 				ptsTmp = Math.ceil(pts * (1 - (k.vPos.distSquare(shipPos) - shipRad) / (shotDistMax - shipRad)));
 				if (ptsTmp > 0) {
 					ptsWin += ptsTmp;
-					this.scoring.newNumber(ptsTmp, pts, k.vPos.x, k.vPos.y);
+					this.Scoring.newNumber(ptsTmp, pts, k.vPos.x, k.vPos.y);
 				}
 			}
 		if (ptsWin)
-			this.scoring.dom.score.add(ptsWin, ptsWin * 4);
+			this.Scoring.dom.score.add(ptsWin, ptsWin * 4);
 		return shot.hp <= 0;
 	},
 	render: function(ctx) {
@@ -120,7 +120,7 @@ var KillDemAll = {
 		for (i = 0; k = this.kamikazes[i]; ++i) k.renderBody(ctx);
 		this.xship.render(ctx);
 		this.ammo.render(ctx);
-		this.scoring.render(ctx);
+		this.Scoring.render(ctx);
 	},
 	keydown: function(k) {
 		switch (k) {

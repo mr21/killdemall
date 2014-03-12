@@ -52,7 +52,7 @@ KillDemAll.Ammo.Shot.prototype = {
 		this.dist += incr;
 		if (this.dist > this.distMax) {
 			if (this.hp === this.hpMax) // si le tir est une balle perdue
-				KillDemAll.scoring.dom.score.add(-1);
+				KillDemAll.Scoring.dom.score.add(-1);
 			return false;
 		}
 		var nbTests = Math.ceil(incr / 4);
