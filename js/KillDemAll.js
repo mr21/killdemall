@@ -109,7 +109,7 @@ var KillDemAll = {
 		return shot.hp <= 0;
 	},
 	render: function(ctx) {
-		ctx._lookAt(this.cam);
+		ctx.lookAt(this.cam);
 		// map
 		this.map.render(ctx);
 		// explosions
