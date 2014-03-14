@@ -1,19 +1,22 @@
 KillDemAll.EnemyShip_Kamikaze = function(vPos, assets) {
 	// KillDemAll.EnemyShip_Kamikaze herite de KillDemAll.EnemyShip
+	var spd = KillDemAll.EnemyShip_Kamikaze.speedFactor;
 	KillDemAll.EnemyShip.call(this,
 		100,   // HP
 		vPos,
 		2,    // weight
 		100,  // maxSpeeds
-		200 + 100 * Math.random()   // acceleration
+		spd * (200 + 100 * Math.random())  // acceleration
 	);
-	this.type  = 'Kamikaze';
+	this.type = 'Kamikaze';
 	// sprites
 	this.bodySprite = assets.sprites.create('EnemyShip_Kamikase', 5, 5, 16, 16);
 	this.aura = assets.sprites.create('kamikaze_aura', 0, 0, 155, 155);
 	this.aura.opacity(0.05);
-	this.radSpeed = 0.5 + 3 * Math.random();
+	this.radSpeed = spd * (0.5 + 3 * Math.random());
 };
+
+KillDemAll.EnemyShip_Kamikaze.speedFactor = 1;
 
 KillDemAll.EnemyShip_Kamikaze.prototype = new KillDemAll.EnemyShip();
 

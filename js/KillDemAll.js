@@ -4,11 +4,10 @@ var KillDemAll = {
 		this.pageGameover = document._domSelector('.canvasloth-page.gameover')[0];
 		this.Scoring.init(canvasloth.getCtx());
 		canvasloth.cursor('crosshair');
-		this.cam        = new Canvasloth.Math.V2(0,0);
-		this.map        = new KillDemAll.Map(this.canvasloth, this.cam);
+		this.cam = new Canvasloth.Math.V2(0,0);
+		this.map = new KillDemAll.Map(this.canvasloth, this.cam);
 		this.explosions = new KillDemAll.Explosions(this.canvasloth.assets);
-		this.ammo       = new KillDemAll.Ammo(this.canvasloth.assets);
-		// UserShip::XShip
+		this.ammo = new KillDemAll.Ammo(this.canvasloth.assets);
 		this.xship = new KillDemAll.UserShip_XShip(
 			{
 				x: this.canvasloth.canvas.width()  / 2,
@@ -18,9 +17,24 @@ var KillDemAll = {
 			this.canvasloth.assets,
 			this.ammo
 		);
-		// EnemyShip::Kamikaze
 		this.kamikazes = [];
+		this.difficulty('medium');
 		this.reset();
+	},
+	difficulty: function(lvl) {
+		if (this.level === undefined) {
+			//...
+		}
+		var area, kamSpd, enemyFq;
+		switch (lvl) {
+			case 'easy'   : area = 200; kamSpd = 0.8; enemyFq =  3; break;
+			case 'medium' : area = 125; kamSpd = 1.0; enemyFq =  6; break;
+			case 'hard'   : area =  90; kamSpd = 1.4; enemyFq = 12; break;
+		}
+		this.xship.areaRadius = area;
+		this.EnemyShip_Kamikaze.speedFactor = kamSpd;
+		this.enemiesTimer = 1 / enemyFq;
+		this.level = lvl;
 	},
 	reset: function() {
 		var self = this;
@@ -62,7 +76,7 @@ var KillDemAll = {
 		// XShip
 		this.xship.update(time);
 		// Enemies
-		if (time.realTime - this.timeChronoEnemies > 0.18) {
+		if (time.realTime - this.timeChronoEnemies > this.enemiesTimer) {
 			this.timeChronoEnemies = time.realTime;
 			this.createWave('Kamikaze', 1, 600, 700);
 		}
@@ -83,7 +97,7 @@ var KillDemAll = {
 		    i = 0, k,
 		    shipPos = this.xship.vPos,
 		    shipRad = this.xship.radius * this.xship.radius,
-		    shotDistMax = this.xship.hudRadius * this.xship.hudRadius;
+		    shotDistMax = this.xship.areaRadius * this.xship.areaRadius;
 		for (; k = this.kamikazes[i]; ++i)
 			if (shot.vPos.distSquare(k.vPos) <= (k.bodySprite.w / 2) * (k.bodySprite.w / 2)) {
 				if (k.hp > shot.hp) { // l'ennemie a encaisse le tir.

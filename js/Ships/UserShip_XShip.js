@@ -11,7 +11,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 	this.time = time;
 	this.ammo = ammo;
 	this.radius = 30;
-	this.hudRadius = 100;
+	this.areaRadius = 125;
 	this.hudOpacity = 1;
 	// base
 	this.base = { sprite : assets.sprites.create('UserShip_XShip', 52, 5, 22, 22) };
@@ -147,7 +147,7 @@ KillDemAll.UserShip_XShip.prototype.renderHUD = function(ctx) {
 	var i = 0, turretPx = 6, radAngle, armorOpen;
 	ctx.strokeStyle = '#fff';
 	ctx.globalAlpha = 0.08 * this.hudOpacity;
-	ctx.beginPath(); ctx.arc(0, 0, this.hudRadius - 1, 0, 2 * Math.PI); ctx.stroke();
+	ctx.beginPath(); ctx.arc(0, 0, this.areaRadius - 1, 0, 2 * Math.PI); ctx.stroke();
 	ctx.beginPath(); ctx.arc(0, 0, this.radius, 0, 2 * Math.PI); ctx.stroke();
 	ctx.lineWidth = 2.8;
 	ctx.globalAlpha = 0.1 * this.hudOpacity;
@@ -155,10 +155,10 @@ KillDemAll.UserShip_XShip.prototype.renderHUD = function(ctx) {
 		ctx.beginPath();
 			for (; i < 4; ++i) {
 				armorOpen = this.armors.open[(i + 1) % 4];
-				radAngle = Math.atan((turretPx + armorOpen) / this.hudRadius);
-				ctx.moveTo(this.hudRadius, -turretPx -armorOpen); ctx.arc(0, 0, this.hudRadius, -radAngle, radAngle);
-				ctx.moveTo(this.hudRadius, -turretPx -armorOpen); ctx.lineTo(this.hudRadius - 5, -turretPx -armorOpen);
-				ctx.moveTo(this.hudRadius, +turretPx +armorOpen); ctx.lineTo(this.hudRadius - 5, +turretPx +armorOpen);
+				radAngle = Math.atan((turretPx + armorOpen) / this.areaRadius);
+				ctx.moveTo(this.areaRadius, -turretPx -armorOpen); ctx.arc(0, 0, this.areaRadius, -radAngle, radAngle);
+				ctx.moveTo(this.areaRadius, -turretPx -armorOpen); ctx.lineTo(this.areaRadius - 5, -turretPx -armorOpen);
+				ctx.moveTo(this.areaRadius, +turretPx +armorOpen); ctx.lineTo(this.areaRadius - 5, +turretPx +armorOpen);
 				ctx.rotate(Math.PI / 2);
 			}
 		ctx.stroke();
