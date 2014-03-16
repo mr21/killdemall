@@ -18,13 +18,15 @@ var KillDemAll = {
 			this.ammo
 		);
 		this.kamikazes = [];
-		this.difficulty('medium');
 		this.reset();
+		cssInit({
+			elem  : canvasloth.container._domSelector('.start .difficulty')[0],
+			click : function() {
+				KillDemAll.difficulty(this.innerHTML.toLowerCase());
+			}
+		});
 	},
 	difficulty: function(lvl) {
-		if (this.level === undefined) {
-			//...
-		}
 		var area, kamSpd, enemyFq;
 		switch (lvl) {
 			case 'easy'   : area = 200; kamSpd = 0.8; enemyFq =  3; break;

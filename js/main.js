@@ -1,5 +1,28 @@
 function lg(s) { console.log(s) }
 
+function cssInit(obj) {
+	if (obj.elem._hasClass('btn-grp')) {
+		var links = obj.elem._domSelector('> a');
+		var linkSelected = null;
+		for (var i = 0, l; l = links[i]; ++i) {
+			l.onclick = function() { return false; };
+			l._addEvent('click', function() {
+				if (linkSelected !== this) {
+					if (linkSelected)
+						linkSelected._delClass('selected');
+					this._addClass('selected');
+					linkSelected = this;
+					obj.click.call(this);
+				}
+			});
+			if (l._hasClass('selected')) {
+				linkSelected = l;
+				obj.click.call(l);
+			}
+		}
+	}
+}
+
 window.onload = function()
 {
 	var container = document._domSelector('.canvasloth')[0];
