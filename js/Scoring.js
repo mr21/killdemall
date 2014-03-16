@@ -3,9 +3,9 @@ KillDemAll.Scoring = {
 		this.ctx = ctx;
 		// DOM (HUD)
 		this.dom = {};
-		var domScore = document._domSelector('.scoring > span');
+		var domScore = document._domSelector('.scoring > .DomIntIncrease');
 		for (var i = 0; d = domScore[i]; ++i)
-			this.dom[d.className] = new DomIntIncrease(d._next());
+			this.dom[d._prev().className] = new DomIntIncrease(d);
 		// Screen (ctx)
 		this.numbers = [];
 	},

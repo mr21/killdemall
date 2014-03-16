@@ -22,16 +22,20 @@ var KillDemAll = {
 		cssInit({
 			elem  : canvasloth.container._domSelector('.start .difficulty')[0],
 			click : function() {
-				KillDemAll.difficulty(this.innerHTML.toLowerCase());
+				KillDemAll.difficulty(this.innerHTML);
 			}
 		});
 	},
 	difficulty: function(lvl) {
+		if (!this.difficulty.elem) {
+			this.difficulty.elem = document._domSelector('.scoring > .difficulty')[0];
+		}
+		this.difficulty.elem.innerHTML = lvl;
 		var area, kamSpd, enemyFq;
 		switch (lvl) {
-			case 'easy'   : area = 200; kamSpd = 0.8; enemyFq =  3; break;
-			case 'medium' : area = 125; kamSpd = 1.0; enemyFq =  6; break;
-			case 'hard'   : area =  90; kamSpd = 1.4; enemyFq = 12; break;
+			case 'Easy'   : area = 200; kamSpd = 0.8; enemyFq =  3; break;
+			case 'Medium' : area = 125; kamSpd = 1.0; enemyFq =  6; break;
+			case 'Hard'   : area =  90; kamSpd = 1.4; enemyFq = 12; break;
 		}
 		this.xship.areaRadius = area;
 		this.EnemyShip_Kamikaze.speedFactor = kamSpd;
