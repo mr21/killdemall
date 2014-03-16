@@ -15,41 +15,43 @@ a.btn                    { border-radius:3px; }
 .btn-grp > a:first-child { border-top-right-radius:0; border-bottom-right-radius:0; }
 .btn-grp > a:last-child  { border-top-left-radius: 0; border-bottom-left-radius: 0; }
 
+/* padding */
+.btn-grp > a:active,
+a.btn:active {
+	padding-top   :0.39em;
+	padding-bottom:0.27em;
+}
+.btn-grp > a,
+.btn-grp > a.selected:active,
+a.btn { padding:0.33em 0.5em; }
+
 /* color / background / text / size */
 .btn-grp > a,
 a.btn {
 	display:inline-block;
 	vertical-align:top;
-	padding:0.33em 0.5em;
 	color:#111;
 	font-size:16px;
 	font-weight:bold;
 	text-indent:0;
 	text-align:center;
-	text-shadow:0 1px 0 rgba(255,255,255,0.3);
+	text-shadow:0 1px 0 rgba(255,255,255,0.4);
 	background:rgba(255,255,255,0.4);
 }
 
 /* :hover */
 .btn-grp > a:hover,
 a.btn:hover {
-	text-shadow:0 1px 0 rgba(255,255,255,0.7);
-	background:rgba(255,255,255,0.7);
-}
-
-/* :active */
-.btn-grp > a:active,
-a.btn:active {
-	padding-top   :0.39em;
-	padding-bottom:0.27em;
+	text-shadow:0 1px 0 rgba(255,255,255,0.5);
+	background:rgba(255,255,255,0.5);
 }
 
 /* selected */
 .btn-grp > a.selected {
 	color:#000;
 	cursor:default;
-	text-shadow:0 1px 0 rgba(255,255,255,0.4);
-	background:rgba(255,255,255,0.5);
+	text-shadow:0 1px 0 rgba(255,255,255,0.7);
+	background:rgba(255,255,255,0.7);
 }
 /* ---------------------------------------------------------------- */
 
