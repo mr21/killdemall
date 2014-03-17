@@ -67,21 +67,19 @@ h1 span { font-size:12px; }
 #menu a:active { box-shadow:inset 0 2px 3px rgba(0,0,0,0.5); }
 
 /* canvas / pages */
-.canvasloth         { width:100%; height:600px; }
-.canvasloth canvas  { display:block; background:#151517; }
+.canvasloth { width:100%; height:600px; }
+.canvasloth canvas { background:#151517; }
 .canvasloth-page > div { margin:20px; line-height:20px; }
 .canvasloth-page h2 { margin:15px 0 20px 15px; }
-.canvasloth-page p { text-indent:10px; }
-.canvasloth-page.controls ul               { line-height:32px; }
-.canvasloth-page.controls ul b             { display:inline-block; width:92px; }
-.canvasloth-page.controls ul b span        { border:1px solid #555; border-radius:2px; padding:2px 4px; color:#aaa; background:#222; font-size:11px; }
-.canvasloth-page.controls ul b span + span { margin-left:4px; }
-.canvasloth-page.controls ul li > span:before { content:'\A0\A0:\A0\A0'; color:#555; font-family:monospace; }
-.canvasloth-page.controls ul li > span        { font-size:12px; }
-.canvasloth-page.gameover h2 { text-align:center; margin:60px 0 135px 0; font-size:28px; }
-.canvasloth-page.gameover p  { text-align:center; }
-.canvasloth-page.gameover b  { font-size:24px; }
-.canvasloth-page.share .fb-like { margin-right:20px; }
+.canvasloth-page > div > p { text-indent:10px; }
+
+/* controls */
+.canvasloth-page.controls ul { line-height:32px; }
+.canvasloth-page.controls b { display:inline-block; width:92px; }
+.canvasloth-page.controls b span        { border:1px solid #555; border-radius:2px; padding:2px 4px; color:#aaa; background:#222; font-size:11px; }
+.canvasloth-page.controls b span + span { margin-left:4px; }
+.canvasloth-page.controls li > span:before { content:':'; margin-right:1em; color:#555; font-family:monospace; }
+.canvasloth-page.controls li > span        { font-size:12px; }
 
 /* start */
 .canvasloth-page.start { text-align:center; background:#000; }
@@ -90,11 +88,23 @@ h1 span { font-size:12px; }
 .canvasloth-page.start div.logo .scene { position:absolute; top:67px; left:139px; width:518px; height:199px; background:url(start_logo_scene.png); }
 .canvasloth-page.start .btn.start { display:block; margin:1em auto 0; width:167px; }
 
+/* about */
+.canvasloth-page.about li > b { position:absolute; }
+.canvasloth-page.about li > b:after { content:':'; margin-left:0.75em; }
+.canvasloth-page.about li p { margin:0 0 0 40px; color:#aaa; }
+.canvasloth-page.about li p b { color:#ddd; }
+
+/* share */
+.canvasloth-page.share .fb-like { margin-right:20px; }
+
 /* gameover */
 .canvasloth-page.gameover a.btn { display:block; width:150px; margin:auto; }
 .canvasloth-page.gameover a:first-of-type { margin-top:90px; margin-bottom:1em; }
+.canvasloth-page.gameover h2 { text-align:center; margin:60px 0 135px 0; font-size:28px; }
+.canvasloth-page.gameover p { text-align:center; }
+.canvasloth-page.gameover b { font-size:24px; }
 
-/* score */
+/* HUD */
 .canvasloth-hud-passive .scoring { position:absolute; top:0; right:0; margin:5px; text-align:right; }
 .canvasloth-hud-passive .scoring > span { opacity:0.2; font-size:11px; }
 .canvasloth-hud-passive .scoring > span:after { content:'\A0:\A0'; }
