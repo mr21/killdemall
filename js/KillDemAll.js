@@ -34,7 +34,7 @@ var KillDemAll = {
 		var area, kamSpd, enemyFq;
 		switch (lvl) {
 			case 'Easy'   : area = 200; kamSpd = 0.8; enemyFq =  3; break;
-			case 'Medium' : area = 125; kamSpd = 1.0; enemyFq =  6; break;
+			case 'Normal' : area = 125; kamSpd = 1.0; enemyFq =  6; break;
 			case 'Hard'   : area =  90; kamSpd = 1.4; enemyFq = 12; break;
 		}
 		this.xship.areaRadius = area;
