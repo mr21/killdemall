@@ -29,6 +29,19 @@ KillDemAll.Explosions.Explosion = function(assets, vPos, blastRadius) {
 	this.blastRadius = blastRadius;
 	this.blastScale = 0;
 	this.explosion.play();
+	// le blast souffle tous les vaisseaux aux alentours
+	var vBlast = new Canvasloth.Math.V2(0,0);
+	var blastRadius2 = Math.pow(blastRadius, 2);
+	function moveShip(ship) {
+		var norm2 = vBlast.setV(ship.vPos).subV(vPos).normSquare();
+		if (norm2 < blastRadius2) {
+			norm2 = (blastRadius2 - norm2) / blastRadius2;
+			ship.vMove.addV(vBlast.normalize().mulS(norm2 * blastRadius));
+		}
+	}
+	moveShip(KillDemAll.xship);
+	for (var i = 0, e; e = KillDemAll.kamikazes[i]; ++i)
+		moveShip(e);
 };
 
 KillDemAll.Explosions.Explosion.prototype = {
