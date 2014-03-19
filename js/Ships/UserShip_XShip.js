@@ -3,9 +3,9 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammo) {
 	KillDemAll.UserShip.call(this,
 		1000, // HP
 		vPos,
-		2,    // weight
+		5,    // weight
 		300,  // maxSpeed
-		800   // acceleration
+		1250  // acceleration
 	);
 	// objects needed
 	this.time = time;
