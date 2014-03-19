@@ -32,6 +32,7 @@ window.onload = function()
 		app    : KillDemAll,
 		images : [
 			'css/explosion.png',
+			'css/explosion_blast.png',
 			'css/Ammo.png',
 			'css/UserShip_XShip.png',
 			'css/EnemyShip_Kamikase.png',

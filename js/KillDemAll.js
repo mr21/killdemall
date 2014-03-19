@@ -89,7 +89,7 @@ var KillDemAll = {
 		for (var i = 0, k; k = this.kamikazes[i]; ++i)
 			k.update(time);
 		// Map
-		this.explosions.update();
+		this.explosions.update(time);
 		var viewSpeed = 4 * time.frameTime;
 		var vShip = this.xship.vPos;
 		this.cam.addF(
