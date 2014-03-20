@@ -83,10 +83,10 @@ h1 span { font-size:12px; }
 
 /* start */
 .canvasloth-page.start { text-align:center; background:#000; }
-.canvasloth-page.start div.logo { position:relative; margin:auto; margin-bottom:110px; width:695px; height:278px; background:url(start_logo_map.png); }
-.canvasloth-page.start div.logo .logo  { position:absolute; top:87px; left:50%; margin-left:-259px; width:518px; height: 70px; background:url(start_logo_KillDemAll.png); }
-.canvasloth-page.start div.logo .scene { position:absolute; top:67px; left:139px; width:518px; height:199px; background:url(start_logo_scene.png); }
-.canvasloth-page.start .btn.start { display:block; margin:1em auto 0; width:167px; }
+.canvasloth-page.start div.logo { position:relative; margin:auto; margin-bottom:110px; width:695px; height:278px; background:url(pageStart_logoMap.png); }
+.canvasloth-page.start div.logo .logo  { position:absolute; top:87px; left:50%; margin-left:-259px; width:518px; height: 70px; background:url(pageStart_logoKillDemAll.png); }
+.canvasloth-page.start div.logo .scene { position:absolute; top:67px; left:139px; width:518px; height:199px; background:url(pageStart_logoScene.png); }
+.canvasloth-page.start .btn.start { display:block; margin:1em auto 0; width:162px; }
 
 /* about */
 .canvasloth-page.about li > b { position:absolute; }

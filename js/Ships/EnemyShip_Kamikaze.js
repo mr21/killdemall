@@ -10,8 +10,8 @@ KillDemAll.EnemyShip_Kamikaze = function(vPos, assets) {
 	);
 	this.type = 'Kamikaze';
 	// sprites
-	this.bodySprite = assets.sprites.create('EnemyShip_Kamikase', 5, 5, 16, 16);
-	this.aura = assets.sprites.create('kamikaze_aura', 0, 0, 155, 155);
+	this.bodySprite = assets.sprites.create('kamikaze.png', 5, 5, 16, 16);
+	this.aura = assets.sprites.create('kamikaze_aura.png', 0, 0, 155, 155);
 	this.aura.opacity(0.05);
 	this.radSpeed = spd * (0.5 + 3 * Math.random());
 };

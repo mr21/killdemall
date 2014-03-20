@@ -31,13 +31,13 @@ window.onload = function()
 		node   : container,
 		app    : KillDemAll,
 		images : [
-			'css/explosion.png',
+			'css/map_ground.png',
+			'css/explosion_fire.png',
 			'css/explosion_blast.png',
-			'css/Ammo.png',
-			'css/UserShip_XShip.png',
-			'css/EnemyShip_Kamikase.png',
-			'css/kamikaze_aura.png',
-			'css/Ground.png'
+			'css/ammo.png',
+			'css/xship.png',
+			'css/kamikaze.png',
+			'css/kamikaze_aura.png'
 		],
 		fn : {
 			ready     : KillDemAll.ready,

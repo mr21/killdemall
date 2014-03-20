@@ -1,10 +1,11 @@
 KillDemAll.Ammo = function(assets) {
 	this.sprites = {
-		'roquet' : assets.sprites.create('Ammo',  5, 5, 4, 14),
-		'bullet' : assets.sprites.create('Ammo', 14, 5, 4,  4)
+		'roquet' : assets.sprites.create('ammo',  5, 5, 4, 14),
+		'bullet' : assets.sprites.create('ammo', 14, 5, 4,  4)
 	};
 	this.shots = [];
 };
+
 KillDemAll.Ammo.prototype = {
 	createShot: function(type, vPos, rad, ship) {
 		var shot = new KillDemAll.Ammo.Shot(this, type, vPos, rad, ship);
@@ -24,7 +25,7 @@ KillDemAll.Ammo.prototype = {
 		this.shots.length = 0;
 	}
 };
-// Shot
+
 KillDemAll.Ammo.Shot = function(Ammo, type, vPos, rad, ship) {
 	switch (type) {
 		case 'bullet' : this.hp =  100; this.speed =  900; this.recoil = 125; this.distMax = 500; break;
@@ -47,6 +48,7 @@ KillDemAll.Ammo.Shot = function(Ammo, type, vPos, rad, ship) {
 		this.recoil / (1 + ship.weight) * cosRad
 	);
 };
+
 KillDemAll.Ammo.Shot.prototype = {
 	update: function(time, isIncollision) {
 		var incr = this.speed * time.frameTime
