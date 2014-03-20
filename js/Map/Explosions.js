@@ -1,11 +1,10 @@
-KillDemAll.Explosions = function(assets) {
-	this.assets  = assets;
-	this.explosions = [];
-};
-
-KillDemAll.Explosions.prototype = {
+KillDemAll.explosions = {
+	init: function(assets) {
+		this.assets = assets;
+		this.explosions = [];
+	},
 	create: function(vPos) {
-		this.explosions.push(new KillDemAll.Explosions.Explosion(this.assets, vPos, 125));
+		this.explosions.push(new this.explosion(this.assets, vPos, 125));
 	},
 	update: function(time) {
 		for (var i = 0, e; e = this.explosions[i]; ++i) {
@@ -20,7 +19,7 @@ KillDemAll.Explosions.prototype = {
 	}
 };
 
-KillDemAll.Explosions.Explosion = function(assets, vPos, blastRadius) {
+KillDemAll.explosions.explosion = function(assets, vPos, blastRadius) {
 	this.x = vPos.x;
 	this.y = vPos.y;
 	this.rad = Math.PI * 2 * Math.random();
@@ -44,7 +43,7 @@ KillDemAll.Explosions.Explosion = function(assets, vPos, blastRadius) {
 		moveShip(e);
 };
 
-KillDemAll.Explosions.Explosion.prototype = {
+KillDemAll.explosions.explosion.prototype = {
 	update: function(time) {
 		var op = this.sp_blast.opacity() - time.frameTime * 3.5;
 		if (op < 0)

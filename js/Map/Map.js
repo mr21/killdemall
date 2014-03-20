@@ -1,23 +1,23 @@
-KillDemAll.Map = function(canvasloth, cam) {
-	this.canvasloth = canvasloth;
-	this.cam = cam;
-	this.sp_ground = canvasloth.assets.sprites.create('map_ground');
-};
-
-KillDemAll.Map.prototype = {
+KillDemAll.map = {
+	init: function(canvasloth, v2cam) {
+		this.v2cam = v2cam;
+		// ground
+		this.sp_ground = canvasloth.assets.sprites.create('map_ground');
+		this.grW = this.sp_ground.w;
+		this.grH = this.sp_ground.h;
+		// nombre de dalles a placer sur le sol
+		this.nbX = canvasloth.width()  / this.grW + 1;
+		this.nbY = canvasloth.height() / this.grH + 1;
+	},
 	render: function(ctx) {
-		var grW = this.sp_ground.w,
-			grH = this.sp_ground.h,
-			nbX = this.canvasloth.width()  / grW + 1, // ctx.width
-			nbY = this.canvasloth.height() / grH + 1; // ctx.height
 		ctx.save();
 			ctx.translate(
-				grW * -Math.ceil(this.cam.x / grW),
-				grH * -Math.ceil(this.cam.y / grH)
+				this.grW * -Math.ceil(this.v2cam.x / this.grW),
+				this.grH * -Math.ceil(this.v2cam.y / this.grH)
 			);
-				for (var y = 0; y < nbY; ++y)
-					for (var x = 0; x < nbX; ++x)
-						this.sp_ground.draw(x * grW, y * grH);
+				for (var y = 0; y < this.nbY; ++y)
+					for (var x = 0; x < this.nbX; ++x)
+						this.sp_ground.draw(x * this.grW, y * this.grH);
 		ctx.restore();
 	}
 };
