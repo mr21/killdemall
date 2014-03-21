@@ -1,4 +1,4 @@
-KillDemAll.UserShip_XShip = function(vPos, time, assets, ammos) {
+KillDemAll.UserShip_XShip = function(vPos, time, assets, shots) {
 	// heritage
 	KillDemAll.UserShip.call(this,
 		1000, // HP
@@ -9,7 +9,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, ammos) {
 	);
 	// objects needed
 	this.time = time;
-	this.ammos = ammos;
+	this.shots = shots;
 	this.radius = 30;
 	this.areaRadius = 125;
 	this.hudOpacity = 1;
@@ -75,7 +75,7 @@ KillDemAll.UserShip_XShip.prototype.userShootCannon = function() {
 			this.vPos.x + 40 * +Math.sin(this.cannon.rad),
 			this.vPos.y + 40 * -Math.cos(this.cannon.rad)
 		);
-		this.ammos.createShot('roquet', shotPos, this.cannon.rad, this);
+		this.shots.create('roquet', shotPos, this.cannon.rad, this);
 		this.hudOpacity = 1;
 	}
 };
@@ -101,7 +101,7 @@ KillDemAll.UserShip_XShip.prototype.shootTurret = function(couple, ind) {
 		this.vPos.x + x * cosRad - y * sinRad,
 		this.vPos.y + x * sinRad + y * cosRad
 	);
-	this.ammos.createShot('bullet', shotPos, couple.rad, this);
+	this.shots.create('bullet', shotPos, couple.rad, this);
 	this.hudOpacity = 1;
 	if (couple.delay < this.turrets.delayMax)
 		couple.delay += this.turrets.delayInc;

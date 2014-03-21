@@ -7,7 +7,7 @@ var KillDemAll = {
 		this.cam = new Canvasloth.Math.V2(0,0);
 		this.map.init(canvasloth, this.cam);
 		this.explosions.init(canvasloth.assets);
-		this.ammo = new KillDemAll.Ammo(this.canvasloth.assets);
+		this.shots.init(canvasloth.assets);
 		this.xship = new KillDemAll.UserShip_XShip(
 			{
 				x: this.canvasloth.width()  / 2,
@@ -15,7 +15,7 @@ var KillDemAll = {
 			},
 			this.canvasloth.time,
 			this.canvasloth.assets,
-			this.ammo
+			this.shots
 		);
 		this.kamikazes = [];
 		this.reset();
@@ -46,7 +46,7 @@ var KillDemAll = {
 		var self = this;
 		this.isGameover = false;
 		this.Scoring.reset();
-		this.ammo.reset();
+		this.shots.reset();
 		this.kamikazes.length = 0;
 		this.timeChronoEnemies = this.canvasloth.time.realTime;
 	},
@@ -78,7 +78,7 @@ var KillDemAll = {
 	update: function(time) {
 		// tirs
 		var self = this;
-		this.ammo.update(time, function(shot) { return self.shotCollision(shot); });
+		this.shots.update(time, function(shot) { return self.shotCollision(shot); });
 		// XShip
 		this.xship.update(time);
 		// Enemies
@@ -139,7 +139,7 @@ var KillDemAll = {
 		for (i = 0; k = this.kamikazes[i]; ++i) k.renderAura(ctx);
 		for (i = 0; k = this.kamikazes[i]; ++i) k.renderBody(ctx);
 		this.xship.render(ctx);
-		this.ammo.render(ctx);
+		this.shots.render(ctx);
 		this.Scoring.render(ctx);
 	},
 	keydown: function(k) {

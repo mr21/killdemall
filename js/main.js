@@ -34,7 +34,7 @@ window.onload = function()
 			'css/map_ground.png',
 			'css/explosion_fire.png',
 			'css/explosion_blast.png',
-			'css/ammo.png',
+			'css/shots.png',
 			'css/xship.png',
 			'css/kamikaze.png',
 			'css/kamikaze_aura.png'
