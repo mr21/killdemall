@@ -44,14 +44,12 @@ var KillDemAll = {
 	},
 	reset: function() {
 		var self = this;
-		this.isGameover = false;
 		this.Scoring.reset();
 		this.shots.reset();
 		this.kamikazes.length = 0;
 		this.timeChronoEnemies = this.canvasloth.time.realTime;
 	},
 	gameover: function() {
-		this.isGameover = true;
 		var score = this.pageGameover.getElementsByTagName('b')[0];
 		score.innerHTML = this.Scoring.dom.score.get();
 		this.canvasloth.pages.open(this.pageGameover);
@@ -106,11 +104,11 @@ var KillDemAll = {
 		    shotDistMax = this.xship.areaRadius * this.xship.areaRadius;
 		for (; k = this.kamikazes[i]; ++i)
 			if (shot.vPos.distSquare(k.vPos) <= (k.bodySprite.w / 2) * (k.bodySprite.w / 2)) {
-				if (k.hp > shot.hp) { // l'ennemie a encaisse le tir.
+				if (k.hp > shot.hp) { // l'ennemi a encaisse le tir.
 					pts = shot.hp;
 					k.hp -= shot.hp;
 					shot.hp = 0;
-				} else { // le tir a au moins tue cet ennemie la.
+				} else { // le tir a au moins tue cet ennemi la.
 					pts = k.hp;
 					this.kamikazes.splice(i, 1);
 					this.Scoring.dom.enemyAlive.add(-1);
