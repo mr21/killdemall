@@ -23,8 +23,8 @@ KillDemAll.explosions.explosion = function(assets, vPos, blastRadius) {
 	this.x = vPos.x;
 	this.y = vPos.y;
 	this.rad = Math.PI * 2 * Math.random();
-	this.an_fire = assets.anims.create('explosion_fire', 0, 0, 64, 64, 48, -1, false, 0.33);
-	this.sp_blast = assets.sprites.create('explosion_blast');
+	this.an_fire = assets.anims.create({img:'explosion_fire', w:64, h:64, nbFrames:48, duration:0.33});
+	this.sp_blast = assets.sprites.create({img:'explosion_blast'});
 	this.blastRadius = blastRadius;
 	this.blastScale = 0;
 	this.an_fire.play();
@@ -45,26 +45,25 @@ KillDemAll.explosions.explosion = function(assets, vPos, blastRadius) {
 
 KillDemAll.explosions.explosion.prototype = {
 	update: function(time) {
-		var op = this.sp_blast.opacity() - time.frameTime * 3.5;
+		time = time.frameTime;
+		var prog = this.an_fire.progress(),
+			op = this.sp_blast.opacity() - time * 3.5;
 		if (op < 0)
 			op = 0;
-		this.sp_blast.opacity(op);
 		this.blastScale = (1 - op) * 2;
+		this.sp_blast.opacity(op);
 	},
 	render: function(ctx) {
 		ctx.save();
 			ctx.translate(this.x, this.y);
 				ctx.save();
 					ctx.scale(this.blastScale, this.blastScale);
-						this.sp_blast.draw(-62, -62);
+						this.sp_blast.draw();
 				ctx.restore();
 				ctx.save();
 					ctx.rotate(this.rad);
-						this.an_fire.draw(-32, -32);
+						this.an_fire.draw();
 				ctx.restore();
-				/*for (var i = 0, f; f = this.fragments[i]; ++i) {
-					this.sp_fragment.draw(-4, -4);
-				}*/
 		ctx.restore();
 	}
 };

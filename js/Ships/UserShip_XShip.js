@@ -1,5 +1,4 @@
 KillDemAll.UserShip_XShip = function(vPos, time, assets, shots) {
-	// heritage
 	KillDemAll.UserShip.call(this,
 		1000, // HP
 		vPos,
@@ -7,26 +6,50 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, shots) {
 		300,  // maxSpeed
 		1250  // acceleration
 	);
-	// objects needed
+	///////////////////////////
 	this.time = time;
 	this.shots = shots;
 	this.radius = 30;
 	this.areaRadius = 125;
 	this.hudOpacity = 1;
-	// base
-	this.base = { sprite : assets.sprites.create('xship', 52, 5, 22, 22) };
-	// reactors
-	this.reactors = { anim : [] };
-	for (var i = 0; i < 4; ++i)
-		this.reactors.anim[i] = assets.anims.create('xship', 5, 32, 12, 24, 9, 5, true, 0.4);
-	// armors
-	this.armors = {
-		speed   : 7,
-		sprite  : assets.sprites.create('xship', 5, 5, 23, 23),
-		openMax : 9,
-		open    : [0,0,0,0]
+	///////////////////////////
+	this.base = {
+		sprite : assets.sprites.create({
+			img:'xship',
+			x:52, y: 5,
+			w:22, h:22
+		})
 	};
-	// turrets
+	///////////////////////////
+	this.reactors = {
+		anim : []
+	};
+	for (var i = 0; i < 4; ++i)
+		this.reactors.anim[i] = assets.anims.create({
+			img:'xship',
+			x: 5, y:32,
+			w:12, h:24,
+			cx:Canvasloth.CENTER,
+			cy:Canvasloth.BOTTOM + this.base.sprite.h / 2,
+			nbFrames:9,
+			returnTo:5,
+			loop:true,
+			duration:0.4
+		});
+	///////////////////////////
+	this.armors = {
+		speed : 7,
+		openMax : 9,
+		open : [0,0,0,0],
+		sprite : assets.sprites.create({
+			img:'xship',
+			x: 5, y: 5,
+			w:23, h:23,
+			cx:Canvasloth.RIGHT,
+			cy:Canvasloth.BOTTOM
+		})
+	};
+	///////////////////////////
 	this.turrets = {
 		delayInc : 0.01,
 		delayMin : 0.0,
@@ -42,15 +65,39 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, shots) {
 			anims : []
 		};
 		for (var j = 0; j < 2; ++j)
-			this.turrets.couples[i].anims[j] = assets.anims.create('xship', 5, 61, 10, 11, 7, 0, false, 0.3);
+			this.turrets.couples[i].anims[j] = assets.anims.create({
+				img:'xship',
+				x: 5, y:61,
+				w:10, h:11,
+				cx:Canvasloth.CENTER + (j ? -6 : +6),
+				cy:Canvasloth.BOTTOM + this.armors.sprite.h,
+				nbFrames:7,
+				returnTo:0,
+				duration:0.3
+			});
 	}
-	// top
-	this.top = { sprite : assets.sprites.create('xship', 33, 5, 14, 14) };
-	// cannon
+	///////////////////////////
+	this.top = {
+		sprite : assets.sprites.create({
+			img:'xship',
+			x:33, y: 5,
+			w:14, h:14
+		})
+	};
+	///////////////////////////
 	this.cannon = {
 		speed : 10,
-		rad   : 0,
-		anim  : assets.anims.create('xship', 5, 77, 12, 50, 8, 0, false, 0.2)
+		rad : 0,
+		anim : assets.anims.create({
+			img:'xship',
+			x: 5, y:77,
+			w:12, h:50,
+			nbFrames:8,
+			returnTo:0,
+			duration:0.2,
+			cx:Canvasloth.CENTER,
+			cy:Canvasloth.BOTTOM - 3
+		})
 	};
 };
 
@@ -170,38 +217,38 @@ KillDemAll.UserShip_XShip.prototype.render = function(ctx) {
 		ctx.translate(this.vPos.x, this.vPos.y);
 
 			// base
-			this.base.sprite.draw(-11, -11);
+			this.base.sprite.draw();
 			// reactors
 			ctx.save();
-				this.reactors.anim[0].draw(-6, -35); ctx.rotate(Math.PI / 2);
-				this.reactors.anim[1].draw(-6, -35); ctx.rotate(Math.PI / 2);
-				this.reactors.anim[2].draw(-6, -35); ctx.rotate(Math.PI / 2);
-				this.reactors.anim[3].draw(-6, -35);
+				this.reactors.anim[0].draw(); ctx.rotate(Math.PI / 2);
+				this.reactors.anim[1].draw(); ctx.rotate(Math.PI / 2);
+				this.reactors.anim[2].draw(); ctx.rotate(Math.PI / 2);
+				this.reactors.anim[3].draw();
 			ctx.restore();
 			// armors / turrets
 			ctx.save();
-				this.armors.sprite.draw(-23 - this.armors.open[0], -23 - this.armors.open[3]);
-				this.turrets.couples[0].anims[0].draw(-11 - this.armors.open[0], -33 - this.armors.open[3]);
-				this.turrets.couples[0].anims[1].draw( +1 + this.armors.open[0], -33 - this.armors.open[1]);
+					this.armors.sprite.draw(-this.armors.open[0], -this.armors.open[3]);
+					this.turrets.couples[0].anims[0].draw(-this.armors.open[0], -this.armors.open[3]);
+					this.turrets.couples[0].anims[1].draw(+this.armors.open[0], -this.armors.open[1]);
 				ctx.rotate(Math.PI / 2);
-				this.armors.sprite.draw(-23 - this.armors.open[1], -23 - this.armors.open[0]);
-				this.turrets.couples[1].anims[0].draw(-11 - this.armors.open[1], -33 - this.armors.open[0]);
-				this.turrets.couples[1].anims[1].draw( +1 + this.armors.open[1], -33 - this.armors.open[2]);
+					this.armors.sprite.draw(-this.armors.open[1], -this.armors.open[0]);
+					this.turrets.couples[1].anims[0].draw(-this.armors.open[1], -this.armors.open[0]);
+					this.turrets.couples[1].anims[1].draw(+this.armors.open[1], -this.armors.open[2]);
 				ctx.rotate(Math.PI / 2);
-				this.armors.sprite.draw(-23 - this.armors.open[2], -23 - this.armors.open[1]);
-				this.turrets.couples[2].anims[0].draw(-11 - this.armors.open[2], -33 - this.armors.open[1]);
-				this.turrets.couples[2].anims[1].draw( +1 + this.armors.open[2], -33 - this.armors.open[3]);
+					this.armors.sprite.draw(-this.armors.open[2], -this.armors.open[1]);
+					this.turrets.couples[2].anims[0].draw(-this.armors.open[2], -this.armors.open[1]);
+					this.turrets.couples[2].anims[1].draw(+this.armors.open[2], -this.armors.open[3]);
 				ctx.rotate(Math.PI / 2);
-				this.armors.sprite.draw(-23 - this.armors.open[3], -23 - this.armors.open[2]);
-				this.turrets.couples[3].anims[0].draw(-11 - this.armors.open[3], -33 - this.armors.open[2]);
-				this.turrets.couples[3].anims[1].draw( +1 + this.armors.open[3], -33 - this.armors.open[0]);
+					this.armors.sprite.draw(-this.armors.open[3], -this.armors.open[2]);
+					this.turrets.couples[3].anims[0].draw(-this.armors.open[3], -this.armors.open[2]);
+					this.turrets.couples[3].anims[1].draw(+this.armors.open[3], -this.armors.open[0]);
 			ctx.restore();
 			// top
-			this.top.sprite.draw(-7, -7);
+			this.top.sprite.draw();
 			// cannon
 			ctx.save();
 				ctx.rotate(this.cannon.rad);
-					this.cannon.anim.draw(-6, -47);
+					this.cannon.anim.draw();
 			ctx.restore();
 			// hud
 			this.renderHUD(ctx);

@@ -2,8 +2,8 @@ KillDemAll.shots = {
 	init: function(assets) {
 		this.shots = [];
 		this.sprites = {
-			'roquet' : assets.sprites.create('shots',  5, 5, 4, 14),
-			'bullet' : assets.sprites.create('shots', 14, 5, 4,  4)
+			'roquet' : assets.sprites.create({img:'shots', x: 5, y:5, w:4, h:14}),
+			'bullet' : assets.sprites.create({img:'shots', x:14, y:5, w:4, h: 4})
 		};
 	},
 	create: function(type, vPos, rad, ship) {
@@ -71,7 +71,7 @@ KillDemAll.shots.shot.prototype = {
 		ctx.save();
 			ctx.translate(this.vPos.x, this.vPos.y);
 				ctx.rotate(this.rad);
-					this.sprite.draw(this.sprite.w / -2, this.sprite.h / -2);
+					this.sprite.draw();
 		ctx.restore();
 	}
 };
