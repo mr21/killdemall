@@ -1,6 +1,7 @@
 /* global */
 html, body { height:100%; margin:0; font:12px sans-serif; color:#ddd; background:#111; }
 #global { margin:auto; width:800px; padding-bottom:30px; }
+a { color:#99f; }
 
 /* text-decoration */
 a.btn:hover,
@@ -58,7 +59,7 @@ a.btn:hover {
 
 /* title */
 h1      { margin:10px 0 25px 0; }
-h1 span { font-size:12px; }
+h1 span { font-size:12px; word-spacing:0.7em; }
 
 /* menu */
 #menu   { margin-bottom:10px; }
