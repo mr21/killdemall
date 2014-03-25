@@ -3,16 +3,29 @@ KillDemAll.Scoring = {
 		this.ctx = ctx;
 		// DOM (HUD)
 		this.dom = {};
-		var domScore = document._domSelector('.scoring > .DomIntIncrease');
-		for (var i = 0; d = domScore[i]; ++i)
+		var domScoring = document._domSelector('.canvasloth-hud-passive .scoring')[0];
+		var domNumbers = domScoring._domSelector('.DomIntIncrease');
+		for (var i = 0; d = domNumbers[i]; ++i)
 			this.dom[d._prev().className] = new DomIntIncrease(d);
+		this.accuracy.elem = domScoring._domSelector('.accuracy + b')[0];
 		// Screen (ctx)
 		this.numbers = [];
 	},
 	reset: function() {
+		this.accuracy.shotsWin = 0;
+		this.accuracy.elem.innerHTML = '100%';
 		this.numbers.length = 0;
 		for (var s in this.dom)
 			this.dom[s].set(0, 1000);
+	},
+	accuracy: function(shotWin) {
+		if (shotWin)
+			++this.accuracy.shotsWin;
+		var val = String(this.accuracy.shotsWin / this.dom['shots'].get() * 100),
+			pt = val.indexOf('.');
+		if (pt > -1)
+			val = val.substr(0, pt + 2);
+		this.accuracy.elem.innerHTML = val + '%';
 	},
 	newNumber: function(val, valMax, x, y) {
 		this.numbers.push(new this.Number(this.ctx, val, valMax, x, y));

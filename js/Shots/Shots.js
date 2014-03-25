@@ -49,21 +49,27 @@ KillDemAll.shots.shot = function(shots, type, vPos, rad, ship) {
 
 KillDemAll.shots.shot.prototype = {
 	update: function(time, isIncollision) {
-		var incr = this.speed * time.frameTime
-		this.dist += incr;
-		if (this.dist > this.distMax) {
-			if (this.hp === this.hpMax) // si le tir est une balle perdue
-				KillDemAll.Scoring.dom.score.add(-4);
-			return false;
-		}
-		var nbTests = Math.ceil(incr / 4);
+		var incr = this.speed * time.frameTime,
+			nbTests = Math.ceil(incr / 4);
 		for (var i = 0; i < nbTests; ++i) {
 			this.vPos.addF(
 				this.vDir.x * time.frameTime / nbTests,
 				this.vDir.y * time.frameTime / nbTests
 			);
-			if (isIncollision(this))
+			if (isIncollision(this)) {
+				KillDemAll.Scoring.accuracy(true);
 				return false;
+			}
+		}
+		this.dist += incr;
+		if (this.dist > this.distMax) {
+			if (this.hp < this.hpMax) {
+				KillDemAll.Scoring.accuracy(true);
+			} else {
+				KillDemAll.Scoring.dom.score.add(-4);
+				KillDemAll.Scoring.accuracy(false);
+			}
+			return false;
 		}
 		return true;
 	},

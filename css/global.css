@@ -110,3 +110,5 @@ h1 span { font-size:12px; word-spacing:0.7em; }
 .canvasloth-hud-passive .scoring > span { opacity:0.2; font-size:11px; }
 .canvasloth-hud-passive .scoring > span:after { content:'\A0:\A0'; }
 .canvasloth-hud-passive .scoring > span.score + b { font-size:22px; }
+.canvasloth-hud-passive .scoring > span.accuracy + b { font-family:monospace,consolas,courier; }
+.canvasloth-hud-passive .scoring hr { border:0; border-top:1px dashed; opacity:0.1; }

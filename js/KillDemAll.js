@@ -55,7 +55,7 @@ var KillDemAll = {
 		this.canvasloth.pages.open(this.pageGameover);
 	},
 	createWave: function(type, nb, distMin, distMax) {
-		this.Scoring.dom.enemyAlive.add(nb);
+		this.Scoring.dom.enemiesAlive.add(nb);
 		var distRand = distMax - distMin;
 		for (var i = 0; i < nb; ++i)
 			this.createEnemy(type, distMin, distRand);
@@ -111,8 +111,8 @@ var KillDemAll = {
 				} else { // le tir a au moins tue cet ennemi la.
 					pts = k.hp;
 					this.kamikazes.splice(i, 1);
-					this.Scoring.dom.enemyAlive.add(-1);
-					this.Scoring.dom.enemyKilled.add(+1);
+					this.Scoring.dom.enemiesAlive.add(-1);
+					this.Scoring.dom.enemiesKilled.add(+1);
 					this.explosions.create(k.vPos);
 					shot.hp -= k.hp;
 				}

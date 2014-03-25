@@ -123,12 +123,13 @@ KillDemAll.UserShip_XShip.prototype.userShootCannon = function() {
 			this.vPos.y + 40 * -Math.cos(this.cannon.rad)
 		);
 		this.shots.create('roquet', shotPos, this.cannon.rad, this);
+		KillDemAll.Scoring.dom.shots.add(1);
 		this.hudOpacity = 1;
 	}
 };
 
 KillDemAll.UserShip_XShip.prototype.userShootTurrets = function(key, press) {
-	var dir  = KillDemAll.UserShip.prototype.userShoot.call(this, key, press);
+	var dir = KillDemAll.UserShip.prototype.userShoot.call(this, key, press);
 	if (dir !== -1) {
 		this.turrets.couples[dir].delay = this.turrets.delayMin;
 		this.turrets.couples[dir].time  = this.time.realTime;
@@ -149,6 +150,7 @@ KillDemAll.UserShip_XShip.prototype.shootTurret = function(couple, ind) {
 		this.vPos.y + x * sinRad + y * cosRad
 	);
 	this.shots.create('bullet', shotPos, couple.rad, this);
+	KillDemAll.Scoring.dom.shots.add(1);
 	this.hudOpacity = 1;
 	if (couple.delay < this.turrets.delayMax)
 		couple.delay += this.turrets.delayInc;
