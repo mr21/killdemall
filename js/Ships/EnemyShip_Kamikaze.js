@@ -1,4 +1,4 @@
-KillDemAll.EnemyShip_Kamikaze = function(vPos, assets) {
+KillDemAll.EnemyShip_Kamikaze = function(cnv, vPos) {
 	// KillDemAll.EnemyShip_Kamikaze herite de KillDemAll.EnemyShip
 	var spd = KillDemAll.EnemyShip_Kamikaze.speedFactor;
 	KillDemAll.EnemyShip.call(this,
@@ -10,8 +10,8 @@ KillDemAll.EnemyShip_Kamikaze = function(vPos, assets) {
 	);
 	this.type = 'Kamikaze';
 	// sprites
-	this.bodySprite = assets.sprites.create({img:'kamikaze', x:5, y:5, w:16, h:16});
-	this.aura = assets.sprites.create({img:'kamikaze_aura'});
+	this.bodySprite = cnv.sprites.create({img:'kamikaze', x:5, y:5, w:16, h:16});
+	this.aura = cnv.sprites.create({img:'kamikaze_aura'});
 	this.aura.opacity(0.05);
 	this.radSpeed = spd * (0.5 + 3 * Math.random());
 };
@@ -20,9 +20,9 @@ KillDemAll.EnemyShip_Kamikaze.speedFactor = 1;
 
 KillDemAll.EnemyShip_Kamikaze.prototype = new KillDemAll.EnemyShip();
 
-KillDemAll.EnemyShip_Kamikaze.prototype.update = function(time) {
+KillDemAll.EnemyShip_Kamikaze.prototype.update = function(times) {
 	// ship
-	KillDemAll.EnemyShip.prototype.update.call(this, time);
+	KillDemAll.EnemyShip.prototype.update.call(this, times);
 	// gestion temporaire de collision envers le joueur
 	if (this.vPos.distSquare(KillDemAll.xship.vPos) <= KillDemAll.xship.radius * KillDemAll.xship.radius) {
 	    KillDemAll.gameover();
@@ -33,7 +33,7 @@ KillDemAll.EnemyShip_Kamikaze.prototype.update = function(time) {
 			diffRad -= Math.PI * 2;
 		else if (diffRad < -Math.PI)
 			diffRad += Math.PI * 2;
-		this.radCurr += diffRad * this.radSpeed * time.frameTime;
+		this.radCurr += diffRad * this.radSpeed * times.frame;
 		this.radCurr = (Math.PI * 2 + this.radCurr) % (Math.PI * 2);
 	}
 };

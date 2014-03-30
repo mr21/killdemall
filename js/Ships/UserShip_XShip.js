@@ -1,4 +1,4 @@
-KillDemAll.UserShip_XShip = function(vPos, time, assets, shots) {
+KillDemAll.UserShip_XShip = function(cnv, vPos, shots) {
 	KillDemAll.UserShip.call(this,
 		1000, // HP
 		vPos,
@@ -7,14 +7,14 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, shots) {
 		1250  // acceleration
 	);
 	///////////////////////////
-	this.time = time;
+	this.times = cnv.times;
 	this.shots = shots;
 	this.radius = 30;
 	this.areaRadius = 125;
 	this.hudOpacity = 1;
 	///////////////////////////
 	this.base = {
-		sprite : assets.sprites.create({
+		sprite : cnv.sprites.create({
 			img:'xship',
 			x:52, y: 5,
 			w:22, h:22
@@ -25,7 +25,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, shots) {
 		anim : []
 	};
 	for (var i = 0; i < 4; ++i)
-		this.reactors.anim[i] = assets.anims.create({
+		this.reactors.anim[i] = cnv.anims.create({
 			img:'xship',
 			x: 5, y:32,
 			w:12, h:24,
@@ -41,7 +41,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, shots) {
 		speed : 7,
 		openMax : 9,
 		open : [0,0,0,0],
-		sprite : assets.sprites.create({
+		sprite : cnv.sprites.create({
 			img:'xship',
 			x: 5, y: 5,
 			w:23, h:23,
@@ -65,7 +65,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, shots) {
 			anims : []
 		};
 		for (var j = 0; j < 2; ++j)
-			this.turrets.couples[i].anims[j] = assets.anims.create({
+			this.turrets.couples[i].anims[j] = cnv.anims.create({
 				img:'xship',
 				x: 5, y:61,
 				w:10, h:11,
@@ -78,7 +78,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, shots) {
 	}
 	///////////////////////////
 	this.top = {
-		sprite : assets.sprites.create({
+		sprite : cnv.sprites.create({
 			img:'xship',
 			x:33, y: 5,
 			w:14, h:14
@@ -88,7 +88,7 @@ KillDemAll.UserShip_XShip = function(vPos, time, assets, shots) {
 	this.cannon = {
 		speed : 10,
 		rad : 0,
-		anim : assets.anims.create({
+		anim : cnv.anims.create({
 			img:'xship',
 			x: 5, y:77,
 			w:12, h:50,
@@ -132,7 +132,7 @@ KillDemAll.UserShip_XShip.prototype.userShootTurrets = function(key, press) {
 	var dir = KillDemAll.UserShip.prototype.userShoot.call(this, key, press);
 	if (dir !== -1) {
 		this.turrets.couples[dir].delay = this.turrets.delayMin;
-		this.turrets.couples[dir].time  = this.time.realTime;
+		this.turrets.couples[dir].time  = this.times.real;
 	}
 };
 
@@ -154,29 +154,29 @@ KillDemAll.UserShip_XShip.prototype.shootTurret = function(couple, ind) {
 	this.hudOpacity = 1;
 	if (couple.delay < this.turrets.delayMax)
 		couple.delay += this.turrets.delayInc;
-	couple.time = this.time.realTime;
+	couple.time = this.times.real;
 	couple.side = couple.side ? 0 : 1;
 };
 
-KillDemAll.UserShip_XShip.prototype.update = function(time) {
+KillDemAll.UserShip_XShip.prototype.update = function(times) {
 	// ship
-	KillDemAll.UserShip.prototype.update.call(this, time);
+	KillDemAll.UserShip.prototype.update.call(this, times);
 	// armors
 	for (var i = 0; i < 4; ++i) {
 		var aInd = (i + 2) % 4;
 		if (this.moveKeys[i]) {
-			this.armors.open[aInd] += (this.armors.openMax - this.armors.open[aInd]) * this.armors.speed * time.frameTime;
+			this.armors.open[aInd] += (this.armors.openMax - this.armors.open[aInd]) * this.armors.speed * times.frame;
 			if (this.armors.open[aInd] > this.armors.openMax)
 				this.armors.open[aInd] = this.armors.openMax;
 		} else {
-			this.armors.open[aInd] -= this.armors.open[aInd] * this.armors.speed * time.frameTime;
+			this.armors.open[aInd] -= this.armors.open[aInd] * this.armors.speed * times.frame;
 			if (this.armors.open[aInd] < 0)
 				this.armors.open[aInd] = 0;
 		}
 	}
 	// turets
 	for (var i = 0, couple; couple = this.turrets.couples[i]; ++i)
-		if (this.shotKeys[i] && time.realTime - couple.time >= couple.delay)
+		if (this.shotKeys[i] && times.real - couple.time >= couple.delay)
 			this.shootTurret(couple, i);
 	// cannon
 	var diffRad = this.mouseRad - this.cannon.rad;
@@ -184,10 +184,10 @@ KillDemAll.UserShip_XShip.prototype.update = function(time) {
 		diffRad -= Math.PI * 2;
 	else if (diffRad < -Math.PI)
 		diffRad += Math.PI * 2;
-	this.cannon.rad += diffRad * this.cannon.speed * time.frameTime;
+	this.cannon.rad += diffRad * this.cannon.speed * times.frame;
 	this.cannon.rad = (Math.PI * 2 + this.cannon.rad) % (Math.PI * 2);
 	// hud
-	this.hudOpacity -= 0.5 * time.frameTime;
+	this.hudOpacity -= 0.5 * times.frame;
 	if (this.hudOpacity < 0)
 		this.hudOpacity = 0;
 };

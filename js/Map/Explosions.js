@@ -1,10 +1,10 @@
 KillDemAll.explosions = {
-	init: function(assets) {
-		this.assets = assets;
+	init: function(cnv) {
+		this.cnv = cnv;
 		this.explosions = [];
 	},
 	create: function(vPos) {
-		this.explosions.push(new this.explosion(this.assets, vPos, 125));
+		this.explosions.push(new this.explosion(this.cnv, vPos, 125));
 	},
 	update: function(time) {
 		for (var i = 0, e; e = this.explosions[i]; ++i) {
@@ -13,19 +13,19 @@ KillDemAll.explosions = {
 				this.explosions.splice(i, 1);
 		}
 	},
-	render: function(ctx) {
+	render: function(cnv) {
 		for (var i = 0, e; e = this.explosions[i]; ++i)
-			e.render(ctx);
+			e.render(cnv);
 	}
 };
 
-KillDemAll.explosions.explosion = function(assets, vPos, blastRadius) {
+KillDemAll.explosions.explosion = function(cnv, vPos, blastRadius) {
 	this.x = vPos.x;
 	this.y = vPos.y;
 	this.rad = Math.PI * 2 * Math.random();
-	this.an_fire = assets.anims.create({img:'explosion_fire', w:64, h:64, nbFrames:48, duration:0.33});
-	this.sp_blast = assets.sprites.create({img:'explosion_blast'});
-	this.sp_fragment = assets.sprites.create({img:'explosion_fragment'});
+	this.an_fire = cnv.anims.create({img:'explosion_fire', w:64, h:64, nbFrames:48, duration:0.33});
+	this.sp_blast = cnv.sprites.create({img:'explosion_blast'});
+	this.sp_fragment = cnv.sprites.create({img:'explosion_fragment'});
 	this.blastRadius = blastRadius;
 	this.blastScale = 0;
 	this.an_fire.play();
@@ -44,7 +44,7 @@ KillDemAll.explosions.explosion = function(assets, vPos, blastRadius) {
 		moveShip(e);
 	// creation de N fragments
 	var nbFragments = 7 + Math.random() * 6;
-	this.fragments = [];
+ 	this.fragments = [];
 	for (var i = 0; i < nbFragments; ++i) {
 		var rad = Math.random() * Math.PI * 2,
 			frag = {
@@ -61,41 +61,41 @@ KillDemAll.explosions.explosion = function(assets, vPos, blastRadius) {
 };
 
 KillDemAll.explosions.explosion.prototype = {
-	update: function(time) {
-		time = time.frameTime;
+	update: function(times) {
+		times = times.frame;
 		var prog = this.an_fire.progress(),
-			op = this.sp_blast.opacity() - time * 3.5;
+			op = this.sp_blast.opacity() - times * 3.5;
 		if (op < 0)
 			op = 0;
 		this.blastScale = (1 - op) * 2;
 		this.sp_blast.opacity(op);
 		// fragments
 		this.sp_fragment.opacity(Math.sin(Math.PI / 2 * (1 - prog)));
-		time *= this.blastRadius;
+		times *= this.blastRadius;
 		for (var i = 0, f; f = this.fragments[i]; ++i) {
 			f.vPos.addF(
-				f.vDir.x * time,
-				f.vDir.y * time,
-				f.vDir.z * time / 4
+				f.vDir.x * times,
+				f.vDir.y * times,
+				f.vDir.z * times / 4
 			);
 		}
 	},
-	render: function(ctx) {
-		ctx.save();
-			ctx.translate(this.x, this.y);
-				ctx.save();
-					ctx.scale(this.blastScale, this.blastScale);
+	render: function(cnv) {
+		cnv.matrix.push();
+			cnv.matrix.translate(this.x, this.y);
+				cnv.matrix.push();
+					cnv.matrix.scale(this.blastScale, this.blastScale);
 						this.sp_blast.draw();
-				ctx.restore();
-				ctx.save();
-					ctx.rotate(this.rad);
+				cnv.matrix.pop();
+				cnv.matrix.push();
+					cnv.matrix.rotate(this.rad);
 						this.an_fire.draw();
-				ctx.restore();
-		ctx.restore();
+				cnv.matrix.pop();
+		cnv.matrix.pop();
 		for (var i = 0, f; f = this.fragments[i]; ++i)
 			this.sp_fragment.draw(
-				this.x + f.vPos.x,
-				this.y + f.vPos.y,
+				f.vPos.x + this.x,
+				f.vPos.y + this.y,
 				f.vPos.z
 			);
 	}

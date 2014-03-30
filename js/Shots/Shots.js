@@ -1,17 +1,17 @@
 KillDemAll.shots = {
-	init: function(assets) {
+	init: function(cnv) {
 		this.shots = [];
 		this.sprites = {
-			'roquet' : assets.sprites.create({img:'shots', x: 5, y:5, w:4, h:14}),
-			'bullet' : assets.sprites.create({img:'shots', x:14, y:5, w:4, h: 4})
+			'roquet' : cnv.sprites.create({img:'shots', x: 5, y:5, w:4, h:14}),
+			'bullet' : cnv.sprites.create({img:'shots', x:14, y:5, w:4, h: 4})
 		};
 	},
 	create: function(type, vPos, rad, ship) {
 		this.shots.push(new this.shot(this, type, vPos, rad, ship));
 	},
-	update: function(time, isIncollision) {
+	update: function(times, isIncollision) {
 		for (var i = 0, j = 0; i < this.shots.length; ++i)
-			if (this.shots[i].update(time, isIncollision))
+			if (this.shots[i].update(times, isIncollision))
 				this.shots[j++] = this.shots[i];
 		this.shots.length = j;
 	},
@@ -48,13 +48,13 @@ KillDemAll.shots.shot = function(shots, type, vPos, rad, ship) {
 };
 
 KillDemAll.shots.shot.prototype = {
-	update: function(time, isIncollision) {
-		var incr = this.speed * time.frameTime,
+	update: function(times, isIncollision) {
+		var incr = this.speed * times.frame,
 			nbTests = Math.ceil(incr / 4);
 		for (var i = 0; i < nbTests; ++i) {
 			this.vPos.addF(
-				this.vDir.x * time.frameTime / nbTests,
-				this.vDir.y * time.frameTime / nbTests
+				this.vDir.x * times.frame / nbTests,
+				this.vDir.y * times.frame / nbTests
 			);
 			if (isIncollision(this)) {
 				KillDemAll.Scoring.accuracy(true);

@@ -1,26 +1,25 @@
 var KillDemAll = {
-	ready: function(canvasloth) {
-		this.canvasloth = canvasloth;
+	ready: function(cnv) {
+		this.canvasloth = cnv;
 		this.pageGameover = document._domSelector('.canvasloth-page.gameover')[0];
-		this.Scoring.init(canvasloth.getCtx());
-		canvasloth.cursor('crosshair');
+		this.Scoring.init(cnv.ctx);
+		cnv.canvas.cursor('crosshair');
 		this.cam = new Canvasloth.Math.V2(0,0);
-		this.map.init(canvasloth, this.cam);
-		this.explosions.init(canvasloth.assets);
-		this.shots.init(canvasloth.assets);
+		this.map.init(cnv, this.cam);
+		this.explosions.init(cnv);
+		this.shots.init(cnv);
 		this.xship = new KillDemAll.UserShip_XShip(
+			cnv,
 			{
-				x: this.canvasloth.width()  / 2,
-				y: this.canvasloth.height() / 2
+				x: cnv.canvas.width()  / 2,
+				y: cnv.canvas.height() / 2
 			},
-			this.canvasloth.time,
-			this.canvasloth.assets,
 			this.shots
 		);
 		this.kamikazes = [];
 		this.reset();
 		cssInit({
-			elem  : canvasloth.container._domSelector('.start .difficulty')[0],
+			elem  : cnv.container._domSelector('.start .difficulty')[0],
 			click : function() {
 				KillDemAll.difficulty(this.innerHTML);
 			}
@@ -47,7 +46,7 @@ var KillDemAll = {
 		this.Scoring.reset();
 		this.shots.reset();
 		this.kamikazes.length = 0;
-		this.timeChronoEnemies = this.canvasloth.time.realTime;
+		this.timeChronoEnemies = this.canvasloth.times.real;
 	},
 	gameover: function() {
 		var score = this.pageGameover.getElementsByTagName('b')[0];
@@ -64,37 +63,34 @@ var KillDemAll = {
 		var dist = distMin + distRand * Math.random();
 		var rad  = (2 * Math.PI) * Math.random();
 		var enemy = new KillDemAll['EnemyShip_' + type](
+			this.canvasloth,
 			{
 				x: this.xship.vPos.x + Math.sin(rad) * dist,
 				y: this.xship.vPos.y - Math.cos(rad) * dist
-			},
-			this.canvasloth.assets
+			}
 		);
 		enemy.setTarget(this.xship);
 		this.kamikazes.push(enemy);
 	},
-	update: function(time) {
-		// tirs
-		var self = this;
-		this.shots.update(time, function(shot) { return self.shotCollision(shot); });
-		// XShip
-		this.xship.update(time);
-		// Enemies
-		if (time.realTime - this.timeChronoEnemies > this.enemiesTimer) {
-			this.timeChronoEnemies = time.realTime;
+	update: function(cnv) {
+		var self = this,
+		    times = cnv.times;
+		this.shots.update(times, function(shot) { return self.shotCollision(shot); });
+		this.xship.update(times);
+		if (times.real - this.timeChronoEnemies > this.enemiesTimer) {
+			this.timeChronoEnemies = times.real;
 			this.createWave('Kamikaze', 1, 600, 700);
 		}
 		for (var i = 0, k; k = this.kamikazes[i]; ++i)
-			k.update(time);
-		// Map
-		this.explosions.update(time);
-		var viewSpeed = 4 * time.frameTime;
+			k.update(times);
+		this.explosions.update(times);
+		var viewSpeed = 4 * times.frame;
 		var vShip = this.xship.vPos;
 		this.cam.addF(
-			viewSpeed * ((-vShip.x + this.canvasloth.width()  / 2) - this.cam.x),
-			viewSpeed * ((-vShip.y + this.canvasloth.height() / 2) - this.cam.y)
+			viewSpeed * ((-vShip.x + cnv.canvas.width()  / 2) - this.cam.x),
+			viewSpeed * ((-vShip.y + cnv.canvas.height() / 2) - this.cam.y)
 		);
-		this.Scoring.update(time);
+		this.Scoring.update(times);
 	},
 	shotCollision: function(shot) {
 		var pts, ptsWin = 0, ptsTmp,
@@ -126,14 +122,11 @@ var KillDemAll = {
 			this.Scoring.dom.score.add(ptsWin, ptsWin * 4);
 		return shot.hp <= 0;
 	},
-	render: function(ctx) {
-		ctx.lookAt(this.cam);
-		// map
+	render: function(cnv) {
+		var ctx = cnv.ctx, i, k;
+		cnv.camera.lookAt(this.cam);
 		this.map.render(ctx);
-		// explosions
-		this.explosions.render(ctx);
-		// enemies
-		var i, k;
+		this.explosions.render(cnv);
 		for (i = 0; k = this.kamikazes[i]; ++i) k.renderAura(ctx);
 		for (i = 0; k = this.kamikazes[i]; ++i) k.renderBody(ctx);
 		this.xship.render(ctx);

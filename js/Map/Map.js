@@ -1,13 +1,13 @@
 KillDemAll.map = {
-	init: function(canvasloth, v2cam) {
+	init: function(cnv, v2cam) {
 		this.v2cam = v2cam;
 		// ground
-		this.sp_ground = canvasloth.assets.sprites.create({img:'map_ground'});
+		this.sp_ground = cnv.sprites.create({img:'map_ground'});
 		this.grW = this.sp_ground.w;
 		this.grH = this.sp_ground.h;
 		// nombre de dalles a placer sur le sol
-		this.nbX = canvasloth.width()  / this.grW + 1;
-		this.nbY = canvasloth.height() / this.grH + 1;
+		this.nbX = cnv.canvas.width()  / this.grW + 1;
+		this.nbY = cnv.canvas.height() / this.grH + 1;
 	},
 	render: function(ctx) {
 		ctx.save();

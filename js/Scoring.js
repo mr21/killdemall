@@ -57,8 +57,8 @@ KillDemAll.Scoring.Number.SIZE = 11;
 KillDemAll.Scoring.Number.DURATION = 2;
 
 KillDemAll.Scoring.Number.prototype = {
-	update: function(time) {
-		this.opacity -= time.frameTime / KillDemAll.Scoring.Number.DURATION;
+	update: function(times) {
+		this.opacity -= times.frame / KillDemAll.Scoring.Number.DURATION;
 		this.marginTop = 3 * this.val * (1 - this.opacity);
 		return this.opacity <= 0;
 	},
