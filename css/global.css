@@ -71,7 +71,6 @@ h1 span { font-size:12px; word-spacing:0.7em; }
 .canvasloth { width:100%; height:600px; }
 .canvasloth canvas { background:#151517; }
 .canvasloth-page > div { margin:20px; line-height:20px; }
-.canvasloth-page h2 { margin:15px 0 20px 15px; }
 .canvasloth-page > div > p { text-indent:10px; }
 
 /* controls */
