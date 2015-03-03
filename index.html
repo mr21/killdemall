@@ -3,11 +3,10 @@
 <head>
 <title>KillDemAll</title>
 <meta charset="UTF-8"/>
-<!-- Facebook -->
 <meta property="og:title"       content="KillDemAll"/>
-<meta property="og:image"       content="http://mr21.fr/KillDemAll/thumbnail.jpg"/>
-<meta property="og:url"         content="http://mr21.fr/KillDemAll/"/>
-<meta property="og:description" content="KillDemAll est un petit Shoot'em Up développé en javascript avec la technologie <canvas>. (https://github.com/Mr21/KillDemAll)"/>
+<meta property="og:image"       content="https://mr21.github.io/killdemall/thumbnail.jpg"/>
+<meta property="og:url"         content="https://mr21.github.io/killdemall/"/>
+<meta property="og:description" content="KillDemAll est un petit Shoot'em Up développé en javascript avec la technologie <canvas>. (https://github.com/Mr21/killdemall)"/>
 <!-- CSS.Canvasloth -->
 <link rel="stylesheet" href="../canvasloth/old/Canvasloth.css"/>
 <!-- CSS.KillDemAll -->
@@ -48,29 +47,8 @@
 <script src="js/Ships/UserShip_XShip.js"></script>
 <script src="js/Ships/EnemyShip.js"></script>
 <script src="js/Ships/EnemyShip_kamikaze.js"></script>
-<!-- JS.Analytics -->
-<script>
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-418864-4', 'mr21.fr');
-	ga('send', 'pageview');
-</script>
-<!-- JS.Twitter -->
-<script id="twitter-wjs" src="http://platform.twitter.com/widgets.js"></script>
 </head>
 <body>
-<div id="fb-root"></div>
-<script type="text/javascript">
-	(function(d, s, id){
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
-	fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-</script>
 
 <div id="global">
 	<h1>KillDemAll<span> 1.3 <a href="https://github.com/Mr21/KillDemAll">GitHub</a></span></h1>
@@ -78,7 +56,6 @@
 		<a href="#" class="controls">Contrôles</a>
 		<a href="#" class="scoring" >Score</a>
 		<a href="#" class="about"   >À propos</a>
-		<a href="#" class="share"   >Partage</a>
 	</div>
 	<div class="canvasloth canvasloth-dark">
 		<div class="canvasloth-page canvasloth-start canvasloth-nocross start">
@@ -145,14 +122,6 @@
 						Tout <b>premier prototype</b> du jeu, on tire sur les ennemis sans aucune stratégie particulière.
 					</p></li>
 				</ul>
-			</div>
-		</div>
-		<div class="canvasloth-page share">
-			<div>
-				<h2>Partage</h2>
-				<p>Et voici quelques boutons pour partager ou mettre un like :)</p>
-				<div class="fb-like" data-href="http://mr21.fr/KillDemAll/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-				<a href="https://twitter.com/share" class="twitter-share-button" data-via="Mr21_" data-hashtags="canvas">Tweet</a>
 			</div>
 		</div>
 		<div class="canvasloth-page canvasloth-nocross gameover">

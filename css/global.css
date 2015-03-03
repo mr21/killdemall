@@ -92,9 +92,6 @@ h1 span { font-size:12px; word-spacing:0.7em; }
 .canvasloth-page.about li p { margin:0 0 0 40px; color:#aaa; }
 .canvasloth-page.about li p b { color:#ddd; }
 
-/* share */
-.canvasloth-page.share .fb-like { margin-right:20px; }
-
 /* gameover */
 .canvasloth-page.gameover a.btn { display:block; width:150px; margin:auto; }
 .canvasloth-page.gameover a:first-of-type { margin-top:90px; margin-bottom:1em; }
