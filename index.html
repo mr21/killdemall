@@ -4,14 +4,15 @@
 <title>KillDemAll</title>
 <meta charset="UTF-8"/>
 <meta property="og:title"       content="KillDemAll"/>
-<meta property="og:image"       content="https://mr21.github.io/killdemall/thumbnail.jpg"/>
 <meta property="og:url"         content="https://mr21.github.io/killdemall/"/>
-<meta property="og:description" content="KillDemAll est un petit Shoot'em Up développé en javascript avec la technologie <canvas>. (https://github.com/Mr21/killdemall)"/>
-<!-- CSS.Canvasloth -->
+<meta property="og:image"       content="https://mr21.github.io/killdemall/thumbnail.jpg"/>
+<meta property="og:description" content="A tiny shoot'em up JavaScript game with a very simple principle: You control a spaceship that must destroy some others without being touched for earn some points."/>
+<link rel="stylesheet" href="../_/fa/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="../_/header.css"/>
 <link rel="stylesheet" href="../canvasloth/old/Canvasloth.css"/>
-<!-- CSS.KillDemAll -->
 <link rel="stylesheet" href="css/global.css"/>
-<!-- JS.JsExt -->
+<script src="../_/jquery.min.js"></script>
+<script src="../_/header.js"></script>
 <script src="../JsExt/ClassName.js"></script>
 <script src="../JsExt/CSS.js"></script>
 <script src="../JsExt/CSSAnim.js"></script>
@@ -20,7 +21,6 @@
 <script src="../JsExt/EventsManager.js"></script>
 <script src="../JsExt/MathInterp.js"></script>
 <script src="../JsExt/OffsetPosition.js"></script>
-<!-- JS.Canvasloth -->
 <script src="../canvasloth/old/Canvasloth.js"></script>
 <script src="../canvasloth/old/Events.js"></script>
 <script src="../canvasloth/old/Images.js"></script>
@@ -35,7 +35,6 @@
 <script src="../canvasloth/old/2D/Camera.js"></script>
 <script src="../canvasloth/old/2D/Sprites.js"></script>
 <script src="../canvasloth/old/2D/Anims.js"></script>
-<!-- JS.KillDemAll -->
 <script src="js/main.js"></script>
 <script src="js/KillDemAll.js"></script>
 <script src="js/Scoring.js"></script>
@@ -49,6 +48,11 @@
 <script src="js/Ships/EnemyShip_Kamikaze.js"></script>
 </head>
 <body>
+
+<div id="header">
+	<i class="fa fa-fw fa-gamepad"></i>
+	<h1>KillDemAll</h1>
+</div>
 
 <div id="global">
 	<h1>KillDemAll<span> 1.3 <a href="https://github.com/Mr21/KillDemAll">GitHub</a></span></h1>
