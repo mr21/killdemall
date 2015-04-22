@@ -1,6 +1,6 @@
 /* global */
 html, body { height:100%; margin:0; font:12px sans-serif; color:#ddd; background:#111; }
-#global { margin:auto; width:800px; padding-bottom:30px; }
+#global { margin:15px auto 0; width:800px; padding-bottom:10px; }
 a { color:#99f; }
 
 /* text-decoration */
